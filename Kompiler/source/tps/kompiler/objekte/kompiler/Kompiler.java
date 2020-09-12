@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -26,7 +28,6 @@ public abstract class Kompiler extends Object {
 	private static final String KOMPILIERTE_DATEI_ENDUNG = ".tkp"; // Tolles-Kompiliertes-Programm
 	
 	
-	
 	/**
 	 * wird benutzt, um das TPSArchiv zu erstellen
 	 */
@@ -43,8 +44,13 @@ public abstract class Kompiler extends Object {
 	 * Liest den SourceCode ein
 	 */
 	protected Scanner sourceLeser;
-	
-	
+	/**
+	 * Die Sourcen in einer <code>List<Zeile></code> <br>
+	 * Standardweise nicht initialisiert. rufe {@link #ladeZeilen()} zum initialisieren auf. <br>
+	 * Danach ist allerdings {@link #sourceLeser} am Dateiende angelangt. <br>
+	 * Wenn {@link #sourceLeser} vorher nicht am Dateianfang war, wird ein teil nicht in der {@link #zeilen} liste sein.
+	 */
+	protected List <Zeile> zeilen;
 	
 	public Kompiler(OutputStream out, Charset zeichensatz) {
 		archivSchreiber = new TPSArchivSchreiber(out, zeichensatz);
@@ -63,6 +69,15 @@ public abstract class Kompiler extends Object {
 	}
 	
 	
+	/**
+	 * lädt alle Zeilen die noch in {@link #sourceLeser} sind in die {@link #zeilen} liste.
+	 */
+	protected void ladeZeilen() {
+		zeilen = new ArrayList <>();
+		while (sourceLeser.hasNextLine()) {
+			zeilen.add(new Zeile(sourceLeser.nextLine()));
+		}
+	}
 	
 	public void kompiliere(File source) throws IOException, KompilierungsFehler {
 		kompiliere(source, new Pzs8bCharset());
@@ -120,6 +135,68 @@ public abstract class Kompiler extends Object {
 	protected void testeZeilenende() {
 		sourceLeser.skip(WHITESPACE_BELIBIGE);
 		sourceLeser.skip(ZEILENUMSPRUNG);
+	}
+	
+	protected class Zeile {
+		
+		private String[] inhalt;
+		private Index index;
+		
+		
+		public Zeile(String inhalt) {
+			this.inhalt = inhalt.split(WHITESPACE_MEHRERE);
+		}
+		
+		
+		
+		public String wortAnStelle(int index) {
+			return inhalt[index];
+		}
+		
+		public int anzahlAnWorte() {
+			return inhalt.length;
+		}
+		
+		public int aktuellesWort() {
+			return index.index();
+		}
+		
+		public void nächstesWort() {
+			index.erhöheIndex();
+		}
+		
+		
+		public String wort() {
+			return inhalt[index.index()];
+		}
+		
+	}
+	
+	protected class Index {
+		
+		private int wert;
+		private int maxWert;
+		
+		public Index(int maxIndex) {
+			maxWert = maxIndex;
+		}
+		
+		public int index() {
+			return wert;
+		}
+		
+		public int maxIndex() {
+			return maxWert;
+		}
+		
+		public void erhöheIndex() {
+			if (wert < maxWert) {
+				wert ++ ;
+				return;
+			}
+			throw new IndexOutOfBoundsException(wert + 1);
+		}
+		
 	}
 	
 }

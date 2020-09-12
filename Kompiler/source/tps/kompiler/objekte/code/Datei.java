@@ -9,13 +9,13 @@ import java.util.TreeSet;
 
 import tps.kompiler.objekte.code.sache.Sache;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
+import tps.kompiler.objekte.fehler.FalscherNameFehler;
 import tps.regeln.Regeln;
 
 public class Datei {
 	
 	private final String[] braucht;
 	private Map <String, Sache> sachen;
-	private Set <String> unbekannteDatentypen;
 	private Set <String> bekannteDatentypen;
 	
 	
@@ -26,7 +26,6 @@ public class Datei {
 		}
 		this.braucht = braucht;
 		this.sachen = new TreeMap <>();
-		this.unbekannteDatentypen = new TreeSet <String>();
 		this.bekannteDatentypen = new TreeSet <String>();
 	}
 	
@@ -54,12 +53,12 @@ public class Datei {
 		return ergebnis;
 	}
 	
-	private void teste() throws FalscheSourcenFehler {
+	private void teste() throws FalscherNameFehler {
 		for (String dieser : braucht) {
 			String[] feld;
 			feld = dieser.split(Regeln.BRAUCHT_TEILER);
 			for (String teste : feld) {
-				Regeln.testeName(teste, new FalscheSourcenFehler("'" + teste + "' ist ein ungültiger name!"));
+				Regeln.testeName(teste, new FalscherNameFehler(teste));
 			}
 			bekannteDatentypen.add(feld[feld.length - 1]);
 		}
@@ -73,20 +72,19 @@ public class Datei {
 		return true;
 	}
 	
-	public int unbekannteAnzahlAnDatentypen() {
-		return unbekannteDatentypen.size();
+	
+	public String brauchtVon(int index) {
+		return braucht[index];
 	}
 	
-	public void datentyp(String name) {
-		if (bekannteDatentypen.contains(name)) {
-			return;
+	public int brauchtAnzahl() {
+		return braucht.length;
+	}
+	
+	public void istBekannt(String datantyp) throws FalscherNameFehler {
+		if ( !bekannteDatentypen.contains(datantyp)) {
+			throw new FalscherNameFehler(datantyp);
 		}
-		unbekannteDatentypen.add(name);
-	}
-	
-	public void bekannterDatentyp(String name) {
-		unbekannteDatentypen.remove(name);
-		bekannteDatentypen.add(name);
 	}
 	
 }
