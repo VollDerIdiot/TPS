@@ -1,7 +1,6 @@
 package tps.kompiler.objekte.code;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -9,6 +8,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import tps.kompiler.objekte.code.sache.Sache;
+import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.regeln.Regeln;
 
 public class Datei {
@@ -18,23 +18,8 @@ public class Datei {
 	private Set <String> unbekannteDatentypen;
 	private Set <String> bekannteDatentypen;
 	
-	/**
-	 * Legt eine neue Datei ohne irgendwelche Abhängigkeiten bei anderen Dateien an.
-	 */
-	public Datei() {
-		this(new String[0]);
-	}
 	
-	/**
-	 * Legt eine neue Datei mit den gegebenen Abhängigkeiten an.
-	 */
-	public Datei(Collection <String> braucht) {
-		this(braucht.toArray(new String[braucht.size()]));
-	}
 	
-	/**
-	 * Legt eine neue Datei mit den gegebenen Abhängigkeiten an.
-	 */
 	private Datei(String[] braucht) {
 		for (String testen : braucht) {
 			Objects.requireNonNull(testen, "Kann nicht von null abhängig sein!");
@@ -43,15 +28,38 @@ public class Datei {
 		this.sachen = new TreeMap <>();
 		this.unbekannteDatentypen = new TreeSet <String>();
 		this.bekannteDatentypen = new TreeSet <String>();
-		teste();
 	}
 	
-	private final void teste() {
+	/**
+	 * Legt eine neue Datei ohne Abhängigkeiten an.
+	 */
+	public static Datei erschaffe() throws FalscheSourcenFehler {
+		return erschaffe(new String[0]);
+	}
+	
+	/**
+	 * Legt eine neue Datei mit den gegebenen Abhängigkeiten an.
+	 */
+	public static Datei erschaffe(Collection <String> braucht) throws FalscheSourcenFehler {
+		return erschaffe(braucht.toArray(new String[braucht.size()]));
+	}
+	
+	/**
+	 * Legt eine neue Datei mit den gegebenen Abhängigkeiten an.
+	 */
+	public static Datei erschaffe(String[] braucht) throws FalscheSourcenFehler {
+		Datei ergebnis;
+		ergebnis = new Datei(braucht.clone());
+		ergebnis.teste();
+		return ergebnis;
+	}
+	
+	private void teste() throws FalscheSourcenFehler {
 		for (String dieser : braucht) {
 			String[] feld;
 			feld = dieser.split(Regeln.BRAUCHT_TEILER);
 			for (String teste : feld) {
-				
+				Regeln.testeName(teste, new FalscheSourcenFehler("'" + teste + "' ist ein ungültiger name!"));
 			}
 			bekannteDatentypen.add(feld[feld.length - 1]);
 		}

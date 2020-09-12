@@ -19,7 +19,6 @@ import tps.kompiler.objekte.konstanten.Implementierungstiefe;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.regeln.Regeln;
 
-
 public class TpstKompiler extends Kompiler {
 	
 	public TpstKompiler(OutputStream out, Charset zeichensatz) {
@@ -175,7 +174,7 @@ public class TpstKompiler extends Kompiler {
 		switch (zwischen) {
 		case "keine":
 			teste("anderen", "Dateien!");
-			bauen = new Datei();
+			bauen = Datei.erschaffe();
 			break;
 		case "die": {
 			boolean weitermachen;
@@ -198,7 +197,7 @@ public class TpstKompiler extends Kompiler {
 					throw new FalscheSourcenFehler(zwischen);
 				}
 			}
-			bauen = new Datei(braucht);
+			bauen = Datei.erschaffe(braucht);
 			break;
 		}
 		default:
