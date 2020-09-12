@@ -17,6 +17,7 @@ import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.fehler.NochNichtGemachtFehler;
 import tps.kompiler.objekte.konstanten.Implementierungstiefe;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
+import tps.regeln.Regeln;
 
 
 public class TpstKompiler extends Kompiler {
@@ -55,8 +56,8 @@ public class TpstKompiler extends Kompiler {
 	
 	private String leseSache(String ersteZeile) throws KompilierungsFehler {
 		leseSachenkopf(ersteZeile);
-		ersteZeile = leseSachenVariablen();
-		ersteZeile = leseStartMethoden(ersteZeile);
+		leseSachenVariablen();
+		ersteZeile = leseStartMethoden();
 		return leseMethoden(ersteZeile);
 	}
 	
@@ -66,30 +67,32 @@ public class TpstKompiler extends Kompiler {
 		throw new NochNichtGemachtFehler();
 	}
 	
-	private String leseStartMethoden(String start) {
+	private String leseStartMethoden() {
 		// TODO Auto-generated method stub
 		
 		throw new NochNichtGemachtFehler();
 	}
 	
-	private String leseSachenVariablen() throws FalscheSourcenFehler {
+	private void leseSachenVariablen() throws FalscheSourcenFehler {
 		String zwischen;
-		boolean variablen;
-		teste(new String[] {"Diese" + "Sache" + "hat" });
+		teste("Diese", "Sache", "hat");
 		zwischen = sourceLeser.next();
 		switch (zwischen) {
 		case "folgende":
+			zwischen = sourceLeser.next();
+			teste("Variablen:");
 			break;
 		case "keine":
 			zwischen = sourceLeser.next();
-			if ("Variablen!".equals(zwischen)) {
-				bisNächsteZeile();
-				return sourceLeser.nextLine();
-			}
-			// Wenn nicht, dann geh ins default rein.
+			teste("Variablen!");
+			return;
 		default:
 			throw new FalscheSourcenFehler(zwischen);
 		}
+		zwischen = sourceLeser.next();
+		Regeln.testeName(zwischen, new FalscheSourcenFehler("'" + zwischen + "' ist kein name!"));
+		bauen.datentyp(zwischen);
+		
 		
 		
 		throw new NochNichtGemachtFehler();
@@ -101,13 +104,13 @@ public class TpstKompiler extends Kompiler {
 		Sichtbarkeit sichtbarkeit;
 		Implementierungstiefe impl;
 		boolean merker;
-		ersteTeile = ersteZeile.split(WHITESPACE_MEHRERE);
+		ersteTeile = ersteZeile.split(WHITESPACE_BELIBIGE);
 		while (ersteTeile.length == 0) {
 			ersteTeile = sourceLeser.nextLine().split(WHITESPACE_MEHRERE);
 		}
-		testeName(ersteTeile[0]);
+		Regeln.testeName(ersteTeile[0], new FalscheSourcenFehler("'" + ersteTeile[0] + "' ist kein name!"));
 		zwischen = (ersteTeile.length > 1) ? ersteTeile[1] : sourceLeser.next();
-		assert "ist".equals(zwischen) : new FalscheSourcenFehler(zwischen);
+		teste("ist");
 		zwischen = (ersteTeile.length > 2) ? ersteTeile[2] : sourceLeser.next();
 		switch (zwischen) {
 		case "eine":
@@ -163,32 +166,32 @@ public class TpstKompiler extends Kompiler {
 	
 	private void leseKopf(String dateiName) throws FalscheSourcenFehler, IOException {
 		String zwischen;
-		teste(new String[] {"Diese" + "tolle" + "Datei" + "liegt" + "in:" });
-		sourceLeser.skip(WHITESPACE_MEHRERE);
+		teste("Diese", "tolle", "Datei", "liegt", "in:");
+		sourceLeser.skip(WHITESPACE_BELIBIGE);
 		zwischen = testePfad(sourceLeser.nextLine());
 		archivSchreiber.putNextEntry(new ZipEntry(zwischen + "/" + dateiName));
-		teste(new String[] {"und" + "braucht" });
+		teste("und", "braucht");
 		zwischen = sourceLeser.next();
 		switch (zwischen) {
 		case "keine":
-			teste(new String[] {"anderen" + "Dateien!" });
+			teste("anderen", "Dateien!");
 			bauen = new Datei();
 			break;
 		case "die": {
 			boolean weitermachen;
 			List <String> braucht;
-			teste(new String[] {"folgenden" + "Dateien:" });
+			teste("folgenden", "Dateien:");
 			weitermachen = true;
 			braucht = new ArrayList <>();
 			while (weitermachen) {
 				zwischen = sourceLeser.next();
 				switch (zwischen) {
 				case "-":
-					sourceLeser.skip(WHITESPACE_MEHRERE);
+					sourceLeser.skip(WHITESPACE_BELIBIGE);
 					braucht.add(testePfad(sourceLeser.nextLine()));
 					break;
 				case "um":
-					teste(new String[] {"zu" + "funktionieren." });
+					teste("zu", "funktionieren.");
 					weitermachen = true;
 					break;
 				default:
@@ -203,7 +206,7 @@ public class TpstKompiler extends Kompiler {
 		}
 	}
 	
-	private void teste(String[] testen) throws FalscheSourcenFehler {
+	private void teste(String... testen) throws FalscheSourcenFehler {
 		int runde;
 		for (runde = 0; runde < testen.length; runde ++ ) {
 			String dieses = sourceLeser.next();

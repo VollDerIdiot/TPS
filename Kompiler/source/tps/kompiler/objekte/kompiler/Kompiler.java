@@ -19,7 +19,8 @@ import tps.objects.archiv.TPSArchivSchreiber;
 public abstract class Kompiler extends Object {
 	
 	protected static final String WHITESPACE = "[ \t]";
-	protected static final String WHITESPACE_MEHRERE = "[ \t]*";
+	protected static final String WHITESPACE_BELIBIGE = WHITESPACE + "*";
+	protected static final String WHITESPACE_MEHRERE = WHITESPACE + "+";
 	protected static final String TABULATOR = "\t";
 	protected static final String ZEILENUMSPRUNG = System.lineSeparator();
 	private static final String KOMPILIERTE_DATEI_ENDUNG = ".tkp"; // Tolles-Kompiliertes-Programm
@@ -116,31 +117,8 @@ public abstract class Kompiler extends Object {
 		return testePfad;
 	}
 	
-	/**
-	 * Prüft <code>name</code> auf Gültigkeit. <br>
-	 * Ein Name ist gültig, wenn dieser nur aus Buchstaben (<code>a-zA-Z</code>) und Zahlen (<code>0-9</code>) besteht und das erste Zeichen keine Zahl ist. <br>
-	 * Wenn der Name nicht gültig ist, wird ein <code>FalscheSourcenFehler</code> geworfen.
-	 * 
-	 * @param name
-	 *            Der zu prüfende Name
-	 * @throws FalscheSourcenFehler
-	 *             wird geworfen, wenn der Name nicht gültig ist.
-	 */
-	protected void testeName(String name) throws FalscheSourcenFehler {
-		char[] zeichen;
-		zeichen = name.toCharArray();
-		if (zeichen[0] >= '0' && zeichen[0] <= '9') {
-			throw new FalscheSourcenFehler("'" + name + "' ist kein gültiger Name!");
-		}
-		for (char dieses : zeichen) {
-			if ( (dieses < 'a' || dieses > 'z') && (dieses < 'A' || dieses > 'Z') && (dieses < '0' || dieses > '9')) {
-				throw new FalscheSourcenFehler("'" + name + "' ist kein gültiger Name!");
-			}
-		}
-	}
-	
-	protected void bisNächsteZeile() {
-		sourceLeser.skip(WHITESPACE_MEHRERE);
+	protected void testeZeilenende() {
+		sourceLeser.skip(WHITESPACE_BELIBIGE);
 		sourceLeser.skip(ZEILENUMSPRUNG);
 	}
 	

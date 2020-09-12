@@ -1,12 +1,15 @@
 package tps.kompiler.objekte.code;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
 import tps.kompiler.objekte.code.sache.Sache;
+import tps.regeln.Regeln;
 
 public class Datei {
 	
@@ -15,20 +18,43 @@ public class Datei {
 	private Set <String> unbekannteDatentypen;
 	private Set <String> bekannteDatentypen;
 	
-	
 	/**
 	 * Legt eine neue Datei ohne irgendwelche Abhängigkeiten bei anderen Dateien an.
 	 */
 	public Datei() {
-		braucht = new String[0];
-		sachen = new TreeMap <>();
-		unbekannteDatentypen = new TreeSet <String>();
-		bekannteDatentypen = new TreeSet <String>();
+		this(new String[0]);
 	}
 	
-	public Datei(List <String> braucht) {
-		this.braucht = braucht.toArray(new String[braucht.size()]);
-		sachen = new TreeMap <>();
+	/**
+	 * Legt eine neue Datei mit den gegebenen Abhängigkeiten an.
+	 */
+	public Datei(Collection <String> braucht) {
+		this(braucht.toArray(new String[braucht.size()]));
+	}
+	
+	/**
+	 * Legt eine neue Datei mit den gegebenen Abhängigkeiten an.
+	 */
+	private Datei(String[] braucht) {
+		for (String testen : braucht) {
+			Objects.requireNonNull(testen, "Kann nicht von null abhängig sein!");
+		}
+		this.braucht = braucht;
+		this.sachen = new TreeMap <>();
+		this.unbekannteDatentypen = new TreeSet <String>();
+		this.bekannteDatentypen = new TreeSet <String>();
+		teste();
+	}
+	
+	private final void teste() {
+		for (String dieser : braucht) {
+			String[] feld;
+			feld = dieser.split(Regeln.BRAUCHT_TEILER);
+			for (String teste : feld) {
+				
+			}
+			bekannteDatentypen.add(feld[feld.length - 1]);
+		}
 	}
 	
 	public boolean add(Sache kommtDazu) {
@@ -48,6 +74,11 @@ public class Datei {
 			return;
 		}
 		unbekannteDatentypen.add(name);
+	}
+	
+	public void bekannterDatentyp(String name) {
+		unbekannteDatentypen.remove(name);
+		bekannteDatentypen.add(name);
 	}
 	
 }
