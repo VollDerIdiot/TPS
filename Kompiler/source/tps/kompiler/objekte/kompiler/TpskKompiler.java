@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 
+import tps.kompiler.objekte.fehler.NochNichtGemachtFehler;
+
 public class TpskKompiler extends Kompiler {
 	
 	public TpskKompiler(OutputStream out, Charset zeichensatz) {
@@ -26,10 +28,10 @@ public class TpskKompiler extends Kompiler {
 	
 	
 	@Override
-	protected void kompilierungsImplementation(String dateiName) {
+	protected void kompilierungsImplementation(String dateiName, Charset zeichensatz) {
 		// TODO Auto-generated method stub
 		
-		throw new RuntimeException("Not yet implemented!");
+		throw new NochNichtGemachtFehler();
 	}
 	
 }

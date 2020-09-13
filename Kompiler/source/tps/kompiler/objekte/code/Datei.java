@@ -1,5 +1,7 @@
 package tps.kompiler.objekte.code;
 
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
@@ -85,6 +87,18 @@ public class Datei {
 		if ( !bekannteDatentypen.contains(datantyp)) {
 			throw new FalscherNameFehler(datantyp);
 		}
+	}
+	
+	/**
+	 * kompiliert diese Datei in den <code>schreiber</code>. Zeichenketten werden mit dem <code>zeichensatz</code> umgewandelt.
+	 * 
+	 * @param schreiber
+	 *            Muss bereit zum schreiben sein.
+	 */
+	public void kompiliere(OutputStream schreiber, Charset zeichensatz) {
+		
+		
+		
 	}
 	
 }
