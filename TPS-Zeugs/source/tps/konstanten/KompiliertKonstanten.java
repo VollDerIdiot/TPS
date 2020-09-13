@@ -2,7 +2,7 @@ package tps.konstanten;
 
 public enum KompiliertKonstanten {
 	
-	anfangBraucht(0x00),
+	anfangDateiBrauchtUnterByteMV(0x00), anfangDateiBrauchtViele(0x01),
 	
 	sachenAnfangKlasse(0x01), anfangUnfertigeKlasse(0x02), sachenAnfangPlanFürKlasse(0x02), sachenAnfangDing(0x03), sachenAnfangUnfertigesDing(0x04), sachenAnfangPlanFürDing(0x05),
 	
@@ -18,10 +18,16 @@ public enum KompiliertKonstanten {
 	
 	;
 	
-	public final int nummer;
+	private final int nummer;
 	
 	private KompiliertKonstanten(int nummer) {
 		this.nummer = nummer;
+	}
+	
+	
+	
+	public int nummer() {
+		return nummer;
 	}
 	
 }

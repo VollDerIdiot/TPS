@@ -39,7 +39,6 @@ public class TpstKompiler extends Kompiler {
 		ladeKopf(dateiName);
 		while (ladeSache()) {
 		}
-		bauen.kompiliere(archivSchreiber, zeichensatz);
 	}
 	
 	private boolean ladeSache() {

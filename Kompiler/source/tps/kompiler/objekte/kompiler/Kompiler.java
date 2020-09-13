@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import de.hechler.patrick.pzs8b.Pzs8bCharset;
+import tps.hilfen.Regeln;
 import tps.kompiler.objekte.code.Datei;
 import tps.kompiler.objekte.code.sache.Sache;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
@@ -93,8 +94,8 @@ public abstract class Kompiler extends Object {
 	}
 	
 	/**
-	 * Die Datei wurden bereits in {@link #sourceLeser} eingelesen, aber es wurde noch kein neuer Eintrag im
-	 * {@link #archivSchreiber} gemacht, {@link #bauen} und {@link #sache} wurde auf null gesetzt wenn diese Methode aufgerufen wird. <br>
+	 * Die Datei wurden bereits in {@link #sourceLeser} eingelesen, aber es wurde noch kein neuer Eintrag im {@link #archivSchreiber} gemacht, {@link #bauen} und {@link #sache}
+	 * wurde auf null gesetzt wenn diese Methode aufgerufen wird. <br>
 	 * Nachdem die Methode Aufgerufen wurde, wird der aktuelle Eintrag des {@link #archivSchreiber}s geschlossen.
 	 * 
 	 * @param dateiName
@@ -104,29 +105,17 @@ public abstract class Kompiler extends Object {
 	 */
 	protected abstract void kompilierungsImplementation(String dateiName, Charset zeichensatz) throws KompilierungsFehler, IOException;
 	
-	/**
-	 * Prüft, ob der Übergebene Pfad gültig ist. Wenn ja, wird dieser zurückgegeben. wenn nicht, dann wird ein <code>FalscheSourcenFehler</code> geworfen.
-	 * 
-	 * @param testePfad
-	 *            Der zu testende Pfad
-	 * @return Den <code>testePfad</code>, wenn dieser akzeptabel ist. Ansonsten wird ein <code>FalscheSourcenFehler</code> geworfen
-	 * @throws FalscheSourcenFehler
-	 *             wird geworfen, wenn der Pfad ungültig ist
-	 */
-	protected String testePfad(String testePfad) throws FalscheSourcenFehler {
-		if (testePfad.indexOf((int) ':') == -1 || testePfad.indexOf((int) '*') == -1 || testePfad.indexOf((int) '?') == -1 || testePfad.indexOf((int) '"') == -1
-				|| testePfad.indexOf((int) '<') == -1 || testePfad.indexOf((int) '>') == -1 || testePfad.indexOf((int) '|') == -1) {
-			throw new FalscheSourcenFehler("Ungültiger Pfad: '" + testePfad + "'");
-		}
-		return testePfad;
-	}
-	
 	protected void teste(String... testen) throws FalscheSourcenFehler {
 		for (String teste : testen) {
-			if (!teste.equals(sourceLeser.nächstes())) {
+			if ( !teste.equals(sourceLeser.nächstes())) {
 				throw new FalscheSourcenFehler(teste);
 			}
 		}
+	}
+	
+	
+	protected String testePfad(String testen) throws FalscheSourcenFehler {
+		return Regeln.testePfad(testen, new FalscheSourcenFehler("'" + testen + "' ist kein gültiger Pfad!"));
 	}
 	
 }

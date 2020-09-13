@@ -1,104 +1,76 @@
 package tps.kompiler.objekte.code;
 
-import java.io.OutputStream;
-import java.nio.charset.Charset;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
 import tps.kompiler.objekte.code.sache.Sache;
-import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
-import tps.kompiler.objekte.fehler.FalscherNameFehler;
-import tps.regeln.Regeln;
 
 public class Datei {
 	
-	private final String[] braucht;
+	public static final Set <Datentyp> STANDARD_DATENTYPEN;
+	
+	static {
+		Set <Datentyp> zwischen;
+		zwischen = new TreeSet <>();
+		zwischen.add(new Datentyp("ZeichenKette"));
+		zwischen.add(new Datentyp("Zahl"));
+		zwischen.add(new Datentyp("Z1B"));
+		zwischen.add(new Datentyp("Z8B"));
+		zwischen.add(new Datentyp("Z16B"));
+		zwischen.add(new Datentyp("Z32B"));
+		zwischen.add(new Datentyp("Z64B"));
+		zwischen.add(new Datentyp("SuperZahl"));
+		zwischen.add(new Datentyp("DezimalZahl"));
+		zwischen.add(new Datentyp("Feld"));
+		zwischen.add(new Datentyp("Ding"));
+		zwischen.add(new Datentyp("Folge"));
+		zwischen.add(new Datentyp("EingangsFolge"));
+		zwischen.add(new Datentyp("AusgangsFolge"));
+		zwischen.add(new Datentyp("DateiLeser"));
+		zwischen.add(new Datentyp("DateiSchreiber"));
+		zwischen.add(new Datentyp("Leser"));
+		zwischen.add(new Datentyp("JaNö"));
+		STANDARD_DATENTYPEN = zwischen;
+	}
+	
+	
+	
+	private Set <String> braucht;
 	private Map <String, Sache> sachen;
-	private Set <String> bekannteDatentypen;
+	private Set <Datentyp> datentypen;
 	
 	
 	
-	private Datei(String[] braucht) {
-		for (String testen : braucht) {
-			Objects.requireNonNull(testen, "Kann nicht von null abhängig sein!");
-		}
+	public Datei(Set <String> braucht) {
 		this.braucht = braucht;
-		this.sachen = new TreeMap <>();
-		this.bekannteDatentypen = new TreeSet <String>();
+		this.sachen = new TreeMap <String, Sache>();
+		this.datentypen = new TreeSet <Datentyp>();
 	}
 	
-	/**
-	 * Legt eine neue Datei ohne Abhängigkeiten an.
-	 */
-	public static Datei erschaffe() throws FalscheSourcenFehler {
-		return erschaffe(new String[0]);
+	public static Datei erschaffe() {
+		return erschaffe(null);
 	}
 	
-	/**
-	 * Legt eine neue Datei mit den gegebenen Abhängigkeiten an.
-	 */
-	public static Datei erschaffe(Collection <String> braucht) throws FalscheSourcenFehler {
-		return erschaffe(braucht.toArray(new String[braucht.size()]));
+	public static Datei erschaffe(Collection <String> braucht) {
+		return new Datei( (braucht == null) ? Collections.emptySet() : new TreeSet <String>(braucht));
 	}
 	
-	/**
-	 * Legt eine neue Datei mit den gegebenen Abhängigkeiten an.
-	 */
-	public static Datei erschaffe(String[] braucht) throws FalscheSourcenFehler {
-		Datei ergebnis;
-		ergebnis = new Datei(braucht.clone());
-		ergebnis.teste();
-		return ergebnis;
+	public void neueSache(Sache dazu) {
+		sachen.put(dazu.name, dazu);
 	}
 	
-	private void teste() throws FalscherNameFehler {
-		for (String dieser : braucht) {
-			String[] feld;
-			feld = dieser.split(Regeln.BRAUCHT_TEILER);
-			for (String teste : feld) {
-				Regeln.testeName(teste, new FalscherNameFehler(teste));
-			}
-			bekannteDatentypen.add(feld[feld.length - 1]);
-		}
+	public void neuerDatentyp(Datentyp dazu) {
+		datentypen.add(dazu);
 	}
 	
-	public boolean add(Sache kommtDazu) {
-		if (sachen.containsKey(kommtDazu.name)) {
-			return false;
-		}
-		sachen.put(kommtDazu.name, kommtDazu);
-		return true;
-	}
-	
-	
-	public String brauchtVon(int index) {
-		return braucht[index];
-	}
-	
-	public int brauchtAnzahl() {
-		return braucht.length;
-	}
-	
-	public void istBekannt(String datantyp) throws FalscherNameFehler {
-		if ( !bekannteDatentypen.contains(datantyp)) {
-			throw new FalscherNameFehler(datantyp);
-		}
-	}
-	
-	/**
-	 * kompiliert diese Datei in den <code>schreiber</code>. Zeichenketten werden mit dem <code>zeichensatz</code> umgewandelt.
-	 * 
-	 * @param schreiber
-	 *            Muss bereit zum schreiben sein.
-	 */
-	public void kompiliere(OutputStream schreiber, Charset zeichensatz) {
-		
-		
-		
+	public void macheKonstant() {
+		braucht = Collections.unmodifiableSet(braucht);
+		sachen = Collections.unmodifiableMap(sachen);
+		datentypen = Collections.unmodifiableSet(datentypen);
 	}
 	
 }
