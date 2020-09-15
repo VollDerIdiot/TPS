@@ -55,17 +55,28 @@ public class TpstKompiler extends Kompiler {
 			List <String> braucht;
 			braucht = new ArrayList <String>();
 			teste("folgenden", "Dateien:", "-");
-			
-			
-			
-//			TODO machen
-			break;
+			braucht.add(lesePfad());
+			while (true) {
+				zwischen = sourceLeser.nächstes();
+				switch (zwischen) {
+				case "-":
+					braucht.add(lesePfad());
+					break;
+				case "um":
+					teste("um", "zu", "funktionieren.");
+					bauen = Datei.erschaffe(braucht);
+					return;
+				default:
+					throw new FalscheSourcenFehler("Da war etwas FALSCH: " + zwischen);
+				}
+				
+			}
 		}
 		case "keine":
 			bauen = Datei.erschaffe();
-			break;
+			return;
 		default:
-			break;
+			throw new FalscheSourcenFehler("Da war etwas FALSCH: " + zwischen);
 		}
 		
 		
