@@ -41,10 +41,6 @@ public abstract class Kompiler extends Object {
 	
 	
 	/**
-	 * Liest den SourceCode ein, um den {@link #sourceLeser} zu Initialisieren.
-	 */
-	private Scanner scanner;
-	/**
 	 * wird benutzt, um das TPSArchiv zu erstellen
 	 */
 	protected final TPSArchivSchreiber archivSchreiber;
@@ -98,7 +94,6 @@ public abstract class Kompiler extends Object {
 		sourceLeser = new Leser(new Scanner(source, zeichensatz));
 		ladeImplementierung(filtereNamenHeraus(source.getName()) + KOMPILIERTE_DATEI_ENDUNG);
 		archivSchreiber.closeEntry();
-		scanner.close();
 	}
 	
 	/**

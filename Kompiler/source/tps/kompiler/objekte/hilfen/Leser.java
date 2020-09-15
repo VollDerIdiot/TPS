@@ -133,4 +133,13 @@ public class Leser {
 		}
 	}
 	
+	/**
+	 * lässt den internen Scanner mit <code>überspringe</code> skippen. Allerdings wird damit maximal bis zum Zeilenende geskipt.
+	 * 
+	 * @param überspringen
+	 */
+	public void überspringe(String überspringen) {
+		scnner.skip(überspringen);
+	}
+	
 }
