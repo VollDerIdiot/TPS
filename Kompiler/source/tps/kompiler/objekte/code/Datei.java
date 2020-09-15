@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import tps.kompiler.objekte.code.sache.Sache;
+import tps.kompiler.objekte.fehler.KompilierungsFehler;
 
 public class Datei {
 	
@@ -41,14 +42,14 @@ public class Datei {
 	
 	private Set <String> braucht;
 	private Map <String, Sache> sachen;
-	private Set <Datentyp> datentypen;
+	private Map <String, Datentyp> datentypen;
 	
 	
 	
 	public Datei(Set <String> braucht) {
 		this.braucht = braucht;
 		this.sachen = new TreeMap <String, Sache>();
-		this.datentypen = new TreeSet <Datentyp>();
+		this.datentypen = new TreeMap <String, Datentyp>();
 	}
 	
 	public static Datei erschaffe() {
@@ -64,13 +65,31 @@ public class Datei {
 	}
 	
 	public void neuerDatentyp(Datentyp dazu) {
-		datentypen.add(dazu);
+		datentypen.put(dazu.name, dazu);
+	}
+	
+	/**
+	 * Prüft, ob alle {@link #datentypen} in <code>bekannteDatentypen</code> enthalten sind. <br>
+	 * Wenn alle bekannt sind passiert nichts. <br>
+	 * Wenn nicht, wird ein <code>KompilierungsFehler</code> geworfen.
+	 * 
+	 * @param bekannteDatentypen
+	 *            Es dürfen nur diese Datentypen benötigt werden.
+	 * @throws KompilierungsFehler
+	 *             Wird geworfen, wenn es mindestens einen Datentyp gibt, welcher nicht in <code>bekannteDatentypen</code> enthalten ist.
+	 */
+	public void testeDatentypen(Set <Datentyp> bekannteDatentypen) throws KompilierungsFehler {
+		for (Datentyp testen : datentypen.values()) {
+			if ( !bekannteDatentypen.contains(testen)) {
+				throw new KompilierungsFehler("Der Datentyp '" + testen + "' ist unbekannt!");
+			}
+		}
 	}
 	
 	public void macheKonstant() {
 		braucht = Collections.unmodifiableSet(braucht);
 		sachen = Collections.unmodifiableMap(sachen);
-		datentypen = Collections.unmodifiableSet(datentypen);
+		datentypen = Collections.unmodifiableMap(datentypen);
 	}
 	
 }
