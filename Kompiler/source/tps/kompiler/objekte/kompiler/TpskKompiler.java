@@ -2,9 +2,11 @@ package tps.kompiler.objekte.kompiler;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 
+import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.fehler.NochNichtGemachtFehler;
 
 public class TpskKompiler extends Kompiler {
@@ -28,7 +30,21 @@ public class TpskKompiler extends Kompiler {
 	
 	
 	@Override
-	protected void kompilierungsImplementation(String dateiName, Charset zeichensatz) {
+	protected void ladeImplementierung(String dateiName) {
+		// TODO Auto-generated method stub
+		
+		throw new NochNichtGemachtFehler();
+	}
+
+	@Override
+	protected void bereiteKompilierungVor() throws KompilierungsFehler {
+		// TODO Auto-generated method stub
+		
+		throw new NochNichtGemachtFehler();
+	}
+
+	@Override
+	protected void kompiliereImplementierung(Charset zeichensatz) throws IOException {
 		// TODO Auto-generated method stub
 		
 		throw new NochNichtGemachtFehler();

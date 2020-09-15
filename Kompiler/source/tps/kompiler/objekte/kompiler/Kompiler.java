@@ -20,12 +20,24 @@ import tps.objects.archiv.TPSArchivSchreiber;
 
 public abstract class Kompiler extends Object {
 	
-	protected static final String WHITESPACE = "[ \t]";
-	protected static final String WHITESPACE_BELIBIGE = WHITESPACE + "*";
-	protected static final String WHITESPACE_MEHRERE = WHITESPACE + "+";
-	protected static final String TABULATOR = "\t";
-	protected static final String ZEILENUMSPRUNG = System.lineSeparator();
-	private static final String KOMPILIERTE_DATEI_ENDUNG = ".tkp"; // Tolles-Kompiliertes-Programm
+	protected static final String WHITESPACE;
+	protected static final String WHITESPACE_BELIBIGE;
+	protected static final String WHITESPACE_MEHRERE;
+	protected static final String TABULATOR;
+	protected static final String ZEILENUMSPRUNG;
+	private static final String KOMPILIERTE_DATEI_ENDUNG;
+	
+	
+	
+	static {
+		WHITESPACE = "[ \t]";
+		WHITESPACE_BELIBIGE = WHITESPACE + "*";
+		WHITESPACE_MEHRERE = WHITESPACE + "+";
+		TABULATOR = "\t";
+		ZEILENUMSPRUNG = System.lineSeparator();
+		KOMPILIERTE_DATEI_ENDUNG = ".tpk"; // Tolles-Kompiliertes-Programm
+	}
+	
 	
 	
 	/**
@@ -51,9 +63,14 @@ public abstract class Kompiler extends Object {
 	 * Wenn {@link #scanner} vorher nicht am Dateianfang war, wird ein teil nicht in der {@link #sourceLeser} liste sein.
 	 */
 	protected Leser sourceLeser;
+	/**
+	 * Der Zeichensatz des {@link #archivSchreiber}s
+	 */
+	private Charset zeichensatz;
 	
 	public Kompiler(OutputStream out, Charset zeichensatz) {
 		archivSchreiber = new TPSArchivSchreiber(out, zeichensatz);
+		this.zeichensatz = zeichensatz;
 	}
 	
 	public Kompiler(OutputStream out) {
@@ -69,19 +86,30 @@ public abstract class Kompiler extends Object {
 	}
 	
 	
-	public void kompiliere(File source) throws IOException, KompilierungsFehler {
-		kompiliere(source, new Pzs8bCharset());
+	public void lade(File source) throws IOException, KompilierungsFehler {
+		lade(source, new Pzs8bCharset());
 	}
 	
-	public void kompiliere(File source, Charset zeichensatz) throws IOException, KompilierungsFehler {
+	public void lade(File source, Charset zeichensatz) throws IOException, KompilierungsFehler {
 		Objects.requireNonNull(source, "Ich kann nicht aus nichts lesen!");
 		Objects.requireNonNull(zeichensatz, "Ich kann nichtmit null lesen!");
 		bauen = null;
 		sache = null;
 		sourceLeser = new Leser(new Scanner(source, zeichensatz));
-		kompilierungsImplementation(filtereNamenHeraus(source.getName()) + KOMPILIERTE_DATEI_ENDUNG, zeichensatz);
+		ladeImplementierung(filtereNamenHeraus(source.getName()) + KOMPILIERTE_DATEI_ENDUNG);
 		archivSchreiber.closeEntry();
 		scanner.close();
+	}
+	
+	/**
+	 * Kompiliert die vorher geladenen Dateien und macht diese unveränderbar.
+	 * 
+	 * @throws KompilierungsFehler
+	 * @throws IOException
+	 */
+	public void kompiliere() throws KompilierungsFehler, IOException {
+		bereiteKompilierungVor();
+		kompiliereImplementierung(zeichensatz);
 	}
 	
 	private String filtereNamenHeraus(String kompletterName) {
@@ -100,10 +128,26 @@ public abstract class Kompiler extends Object {
 	 * 
 	 * @param dateiName
 	 *            Der Dateiname ohne die Dateiendung
-	 * @throws IOException
 	 * @throws KompilierungsFehler
 	 */
-	protected abstract void kompilierungsImplementation(String dateiName, Charset zeichensatz) throws KompilierungsFehler, IOException;
+	protected abstract void ladeImplementierung(String dateiName) throws KompilierungsFehler;
+	
+	/**
+	 * Wird direkt vor {@link #kompiliereImplementierung(Charset)} ausgeführt. <br>
+	 * Dies ist um Zeugs zu machen, welches nicht wirklich zur Kompilierung gehört, aber trotzdem davor getan werden muss. <br>
+	 * Hier werden unter anderem alle <code>Datei</code>en konstant gemacht.
+	 */
+	protected abstract void bereiteKompilierungVor() throws KompilierungsFehler;
+	
+	/**
+	 * Davor wurde {@link #ladeImplementierung(String)} und {@link #bereiteKompilierungVor()} ausgeführt. <br>
+	 * Hier wird alles eingelesene kompiliert und in dem {@link #archivSchreiber} gespeichert.
+	 * 
+	 * @param zeichensatz
+	 *            Strings werden mit diesem Zeichensatz in bytes umgewandelt.
+	 * @throws IOException
+	 */
+	protected abstract void kompiliereImplementierung(Charset zeichensatz) throws IOException;
 	
 	protected void teste(String... testen) throws FalscheSourcenFehler {
 		for (String teste : testen) {
