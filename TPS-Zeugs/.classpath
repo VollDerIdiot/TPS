@@ -8,6 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry exported="true" kind="lib" path="I:/Zeugs/Projekte/Textcodierung-PZC8B/Zeichensatzt-PZS8B.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Zeugs/Projekte/Textcodierung-PZC8B/Zeichensatzt-PZS8B.jar"/>
 	<classpathentry kind="output" path="binary"/>
 </classpath>
