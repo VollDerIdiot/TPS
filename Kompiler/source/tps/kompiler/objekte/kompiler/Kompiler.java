@@ -144,6 +144,19 @@ public abstract class Kompiler extends Object {
 	 */
 	protected abstract void kompiliereImplementierung(Charset zeichensatz) throws IOException;
 	
+	/**
+	 * @implSpec lässt den {@link #bereiteKompilierungVor()} whitespace skippen und liest die nächsteZeile ein: <br>
+	 *           Wenn diese leer ist, dann ruft die Methdoe sich selbst auf. <br>
+	 *           Wenn nicht, dann wird diese zurückgegeben.
+	 * @return
+	 */
+	protected String lesePfad() {
+		String ergebnis;
+		sourceLeser.überspringe(WHITESPACE_BELIBIGE);
+		ergebnis = sourceLeser.nächsteZeile();
+		return (ergebnis.isBlank()) ? lesePfad() : ergebnis;
+	}
+	
 	protected void teste(String... testen) throws FalscheSourcenFehler {
 		for (String teste : testen) {
 			if ( !teste.equals(sourceLeser.nächstes())) {
@@ -151,7 +164,6 @@ public abstract class Kompiler extends Object {
 			}
 		}
 	}
-	
 	
 	protected String testePfad(String testen) throws FalscheSourcenFehler {
 		return Regeln.testePfad(testen, new FalscheSourcenFehler("'" + testen + "' ist kein gültiger Pfad!"));

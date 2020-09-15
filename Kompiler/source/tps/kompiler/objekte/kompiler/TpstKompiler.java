@@ -8,7 +8,6 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdk.internal.jshell.tool.resources.l10n;
 import tps.kompiler.objekte.code.Datei;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
@@ -57,8 +56,9 @@ public class TpstKompiler extends Kompiler {
 			braucht = new ArrayList <String>();
 			teste("folgenden", "Dateien:", "-");
 			
-//			TODO machen
 			
+			
+//			TODO machen
 			break;
 		}
 		case "keine":
@@ -69,13 +69,6 @@ public class TpstKompiler extends Kompiler {
 		}
 		
 		
-	}
-	
-	private String lesePfad() {
-		String ergebnis;
-		sourceLeser.überspringe(WHITESPACE_BELIBIGE);
-		ergebnis = sourceLeser.nächsteZeile();
-		return (ergebnis.isBlank()) ? lesePfad() : ergebnis;
 	}
 	
 	@Override
