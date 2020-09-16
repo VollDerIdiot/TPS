@@ -37,12 +37,40 @@ public class TpstKompiler extends Kompiler {
 	@Override
 	protected void ladeImplementierung(String dateiName) throws KompilierungsFehler {
 		ladeKopf(dateiName);
+		while(ladeSache()) {
+		}
+	}
+	
+	private boolean ladeSache() {
+		ladeSachenKopf();
+		ladeSachenVariablen();
+		return ladeSachenMethoden();
+	}
+
+	private boolean ladeSachenMethoden() {
+		// TODO Auto-generated method stub
 		
 		
 		
 		throw new NochNichtGemachtFehler();
 	}
-	
+
+	private void ladeSachenVariablen() {
+		// TODO Auto-generated method stub
+		
+		
+		
+		throw new NochNichtGemachtFehler();
+	}
+
+	private void ladeSachenKopf() {
+		// TODO Auto-generated method stub
+		
+		
+		
+		throw new NochNichtGemachtFehler();
+	}
+
 	private void ladeKopf(String dateiName) throws FalscheSourcenFehler {
 		String ort;
 		String zwischen;
@@ -64,7 +92,7 @@ public class TpstKompiler extends Kompiler {
 					break;
 				case "um":
 					teste("um", "zu", "funktionieren.");
-					bauen = Datei.erschaffe(braucht);
+					bauen = Datei.erschaffe(ort, braucht);
 					return;
 				default:
 					throw new FalscheSourcenFehler("Da war etwas FALSCH: " + zwischen);
@@ -73,7 +101,7 @@ public class TpstKompiler extends Kompiler {
 			}
 		}
 		case "keine":
-			bauen = Datei.erschaffe();
+			bauen = Datei.erschaffe(ort);
 			return;
 		default:
 			throw new FalscheSourcenFehler("Da war etwas FALSCH: " + zwischen);
