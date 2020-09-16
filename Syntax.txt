@@ -1,63 +1,63 @@
-.tpst (toller programmier sprachen text)																				.tpsk (tolle programmier sprachen kurzform)													Unklarheiten/Fragen
+.tpst (toller programmier sprachen text)																.tpsk (tolle programmier sprachen kurzform)																																Unklarheiten/Fragen
 
-Dateianfang:
-	Diese tolle Datei liegt in: [ort]																					ort: [ort]
-	A:
-		und braucht die folgenden Dateien:																				(braucht: [pfad])*
-		- [pfad]																										[nichts]
-		- [pfad]*																										[nichts]
-		um zu funktionieren.																							[nichts]
-	B:
-		und braucht keine anderen Dateien!															
-Sache (min. 1):
+Dateianfang:																																																																	
+	Diese tolle Datei liegt in: [ort]																	ort: [ort]																																								-
+	A:																																																																			-
+		und braucht die folgenden Dateien:																(braucht: [pfad])*																																						-
+		- [pfad]																																																																-
+		- [pfad]*																																																																-
+		um zu funktionieren.																																																													-
+	B:																																																																			-
+		und braucht keine anderen Dateien!																																																										-
+Sache (min. 1):																														
 	Ordnung:
 		Sachenanfang
 		Sacheninhalt:
 			Variablen
 			start-Methoden
 			Methoden
-	Sachenanfang:																										[Name] [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan/Klasse/unfertige Klasse/Klassenplan]([bessert] [Name]) ([macht] [Name] (, [macht] [Name])*)
+	Sachenanfang:																						[Datentyp] [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan/Klasse/unfertige Klasse/Klassenplan]([bessert] [Datentyp]) ([macht] [Datentyp] (, [macht] [Datentyp])*)
 		Ding:
 
-			[Name] ist ein [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan] (und [bessert] [Name]) (und [macht] [Name])*
+			[Datentyp] ist ein [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*
 		Klasse:
 			A:
-				[Name] ist eine [Sichtbarkeit] [Klasse/unfertige Klasse] (und [bessert] [Name]) (und [macht] [Name])*
+				[Datentyp] ist eine [Sichtbarkeit] [Klasse/unfertige Klasse] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*
 			B:
-				[Name] ist ein [Sichtbarkeit] [Klassenplan] (und [bessert] [Name]) (und [macht] [Name])*
+				[Datentyp] ist ein [Sichtbarkeit] [Klassenplan] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*
 	Sacheninhalt:
 		Variablen (Außer bei Plan):
 			A:
-				Diese Sache hat folgende Variablen: [Parameter]															[Parameter mit Sichtbarkeit]
+				Diese Sache hat folgende Variablen: [Parameter]											[Parameter mit Sichtbarkeit]
 			B:
-				Diese Sache hat keine Variablen!																		[nichts]
+				Diese Sache hat keine Variablen!														[nichts]
 		start-Methoden (Außer bei Plan):
 			Ding (mindestes eine erschaffe-Methode):
 				A:
-					Dieses [erschaffe] ist [Sichtbarkeit] braucht folgende Parameter: [Parameter]						[Sichtbarkeit] [erschaffe] [Parameter]
-					[Box]																								[Box]
+					Dieses [erschaffe] ist [Sichtbarkeit] braucht folgende Parameter: [Parameter]		[Sichtbarkeit] [erschaffe] [Parameter]
+					[Box]																				[Box]
 				B:
-					Dieses [erschaffe] braucht keine Parameter!															[erschaffe]
-					[Box]																								[Box]
+					Dieses [erschaffe] braucht keine Parameter!											[erschaffe]
+					[Box]																				[Box]
 			Klasse (nicht verpflichtend):
-				Dies wird als erstes gemacht:																			[erstes] : }
-				[Box]																									[Box]
+				Dies wird als erstes gemacht:															[erstes] : }
+				[Box]																					[Box]
 		Methoden (Bei Plan nur der Rahmen (ohne Box)):
 			A:
-				[Name] ist [Sichtbarkeit] und braucht folgende Parameter: [Parameter]									[Name] [Sichtbarkeit] : [Parameter] }
-				[Box]																									[Box]
+				[Name] ist [Sichtbarkeit] und braucht folgende Parameter: [Parameter]					[Name] [Sichtbarkeit] : [Parameter] }
+				[Box]																					[Box]
 			B:
-				[Name] ist [Sichtbarkeit] braucht keine Parameter!														[Name] [Sichtbarkeit] : }
-				[Parameter]																								[Box]
+				[Name] ist [Sichtbarkeit] braucht keine Parameter!										[Name] [Sichtbarkeit] : }
+				[Parameter]																				[Box]
 Parameter:
-	[Sichtbarkeit] [Datentyp] als [Name] (, [Datentyp] als [Name])*														[Datentyp] [Name] (, [Datentyp][Name])*
+	[Sichtbarkeit] [Datentyp] als [Name] (, [Datentyp] als [Name])*										[Datentyp] [Name] (, [Datentyp][Name])*
 Parameterwerte:
 	[Var-Name/Wert] (, [Var-Name/Wert])*
 Box:
 	[Variablendeklaration]
 	[Methoden-Inhalt]
 Variablendeklaration:
-	Hier gibt es die Variablen: [Parameter]																				[Parameter]
+	Hier gibt es die Variablen: [Parameter]																[Parameter]
 Methoden-Inhalt:
 	[Befehl]*
 Bedingung:
@@ -69,23 +69,23 @@ Sichtbarkeit:
 	datei
 	eigen
 Befehle:
-	0:	setze [Var-Name] auf [Passender-Wert]																			[Var-Name] << [Passender-Wert]
+	0:	setze [Var-Name] auf [Passender-Wert]															[Var-Name] << [Passender-Wert]
 	1:	
-		A:	[Methodenname] mit [Parameterwerte]																			[Methodenname] : [Parameterwerte]}
-		B:	[Methodenname]																													[Methodenname] : }
-	2:	verschwinde mit [Rückgabewert]																					verschwinde [Rückgabewert]
-	3:	stirb mit [zahl]																								stirb [zahl]
-	4:	raus aus [zahl] Boxen																							raus [zahl]
+		A:	[Methodenname] mit [Parameterwerte]															[Methodenname] : [Parameterwerte]}
+		B:	[Methodenname]																				[Methodenname] : }
+	2:	verschwinde mit [Rückgabewert]																	verschwinde [Rückgabewert]
+	3:	stirb mit [zahl]																				stirb [zahl]
+	4:	raus aus [zahl] Boxen																			raus [zahl]
 	5:	
-		mache dies solange [Bedingung]																					mache [Bedingung]
-		[Box]																											[Box]
-	6:	werfe [Werfbar]																									wirf [Werfbar]
+		mache dies solange [Bedingung]																	mache [Bedingung]
+		[Box]																							[Box]
+	6:	werfe [Werfbar]																					wirf [Werfbar]
 	7:	
-		versuche folgendes:																								versuch
-		[Box]																											[Box]
-	8:	fange [Werfbarer-Parameter] ab																					fang [Werfbarer-Parameter]
-	9:	ist [Sache] von [Sache]																							[Sache] istVon [Sache]
-	A:	ist [Variable] nichts																							istNix [Variable]
+		versuche folgendes:																				versuch
+		[Box]																							[Box]
+	8:	fange [Werfbarer-Parameter] ab																	fang [Werfbarer-Parameter]
+	9:	ist [Sache] von [Sache]																			[Sache] istVon [Sache]
+	A:	ist [Variable] nichts																			istNix [Variable]
 	B:	erbe
 	C:	ich
 	D:	
