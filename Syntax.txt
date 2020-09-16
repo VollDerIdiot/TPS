@@ -1,6 +1,6 @@
 .tpst (toller programmier sprachen text)																.tpsk (tolle programmier sprachen kurzform)																																Unklarheiten/Fragen
 
-Dateianfang:																																																																	
+Dateianfang:																																																																	-
 	Diese tolle Datei liegt in: [ort]																	ort: [ort]																																								-
 	A:																																																																			-
 		und braucht die folgenden Dateien:																(braucht: [pfad])*																																						-
@@ -9,16 +9,15 @@ Dateianfang:
 		um zu funktionieren.																																																													-
 	B:																																																																			-
 		und braucht keine anderen Dateien!																																																										-
-Sache (min. 1):																														
-	Ordnung:
-		Sachenanfang
-		Sacheninhalt:
-			Variablen
-			start-Methoden
-			Methoden
-	Sachenanfang:																						[Datentyp] [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan/Klasse/unfertige Klasse/Klassenplan]([bessert] [Datentyp]) ([macht] [Datentyp] (, [macht] [Datentyp])*)
-		Ding:
-
+Sache (min. 1):																																																																	-
+	Ordnung:																																																																	-
+		Sachenanfang																																																															-
+		Sacheninhalt:																																																															-
+			Variablen																																																															-
+			start-Methoden																																																														-
+			Methoden																																																															-
+	Sachenanfang:																						[Datentyp] [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan/Klasse/unfertige Klasse/Klassenplan]([bessert] [Datentyp]) ([macht] [Datentyp] (, [macht] [Datentyp])*)		-
+		Ding:																																																																	-
 			[Datentyp] ist ein [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*
 		Klasse:
 			A:
@@ -50,9 +49,11 @@ Sache (min. 1):
 				[Name] ist [Sichtbarkeit] braucht keine Parameter!										[Name] [Sichtbarkeit] : }
 				[Parameter]																				[Box]
 Parameter:
-	[Sichtbarkeit] [Datentyp] als [Name] (, [Datentyp] als [Name])*										[Datentyp] [Name] (, [Datentyp][Name])*
+	[Sichtbarkeit] [Datentyp] als [Name] ( + [Datentyp] als [Name])*									[Datentyp] [Name] (, [Datentyp][Name])*
+Datentyp:
+	[Sachenname] (\[Dingname/ZusatzDing ( + Dingname/ZusatzDing)*\]
 Parameterwerte:
-	[Var-Name/Wert] (, [Var-Name/Wert])*
+	[Var-Name/Wert] ( + [Var-Name/Wert])*
 Box:
 	[Variablendeklaration]
 	[Methoden-Inhalt]

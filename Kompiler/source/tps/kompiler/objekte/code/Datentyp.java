@@ -1,5 +1,6 @@
 package tps.kompiler.objekte.code;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Objects;
@@ -17,7 +18,7 @@ public class Datentyp {
 		this(name, null);
 	}
 	
-	public Datentyp(String name, Set <Datentyp> zusatzSachen) {
+	public Datentyp(String name, Collection <Datentyp> zusatzSachen) {
 		Objects.requireNonNull(name, "Der Name kann nicht null sein!");
 		this.name = name;
 		this.zusatzSachen = Collections.unmodifiableSet( (zusatzSachen == null) ? Collections.emptySet() : new TreeSet <Datentyp>(zusatzSachen));

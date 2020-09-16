@@ -9,9 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tps.kompiler.objekte.code.Datei;
+import tps.kompiler.objekte.code.Datentyp;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.fehler.NochNichtGemachtFehler;
+import tps.kompiler.objekte.konstanten.Implementierungstiefe;
+import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 
 
 public class TpstKompiler extends Kompiler {
@@ -37,16 +40,16 @@ public class TpstKompiler extends Kompiler {
 	@Override
 	protected void ladeImplementierung(String dateiName) throws KompilierungsFehler {
 		ladeKopf(dateiName);
-		while(ladeSache()) {
+		while (ladeSache()) {
 		}
 	}
 	
-	private boolean ladeSache() {
+	private boolean ladeSache() throws KompilierungsFehler {
 		ladeSachenKopf();
 		ladeSachenVariablen();
 		return ladeSachenMethoden();
 	}
-
+	
 	private boolean ladeSachenMethoden() {
 		// TODO Auto-generated method stub
 		
@@ -54,7 +57,7 @@ public class TpstKompiler extends Kompiler {
 		
 		throw new NochNichtGemachtFehler();
 	}
-
+	
 	private void ladeSachenVariablen() {
 		// TODO Auto-generated method stub
 		
@@ -62,15 +65,48 @@ public class TpstKompiler extends Kompiler {
 		
 		throw new NochNichtGemachtFehler();
 	}
-
-	private void ladeSachenKopf() {
-		// TODO Auto-generated method stub
-		
+	
+	private void ladeSachenKopf() throws KompilierungsFehler {
+		String zwischen;
+		Datentyp name;
+		Sichtbarkeit sicht;
+		Implementierungstiefe impl;
+		Datentyp bessert;
+		List <Datentyp> macht;
+		name = leseDatentyp();
+		teste("ist");
+		zwischen = sourceLeser.nächstes();
 		
 		
 		throw new NochNichtGemachtFehler();
 	}
-
+	
+	private Datentyp leseDatentyp() throws FalscheSourcenFehler {
+		String name;
+		List <Datentyp> zusatz;
+		name = sourceLeser.nächstes();
+		if ("[".equals(sourceLeser.nächstes())) {
+			zusatz = new ArrayList <Datentyp>();
+			while (true) {
+				String zwischen;
+				zwischen = sourceLeser.nächstes();
+				switch (zwischen) {
+				case "+":
+					zusatz.add(leseDatentyp());
+					break;
+				case "]":
+					return new Datentyp(name, zusatz);
+				default:
+					throw new FalscheSourcenFehler("habe '+' oder ']' erwartet und '" + zwischen + "' erhalten!");
+				}
+			}
+		} else {
+			sourceLeser.zurück();
+			return new Datentyp(name);
+		}
+		
+	}
+	
 	private void ladeKopf(String dateiName) throws FalscheSourcenFehler {
 		String ort;
 		String zwischen;
