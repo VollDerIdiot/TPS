@@ -3,6 +3,7 @@ package tps.kompiler.objekte.code;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -40,24 +41,27 @@ public class Datei {
 	
 	
 	
+	public final String ort;
 	private Set <String> braucht;
 	private Map <String, Sache> sachen;
 	private Map <String, Datentyp> datentypen;
 	
 	
 	
-	public Datei(Set <String> braucht) {
+	public Datei(String ort, Set <String> braucht) {
+		Objects.requireNonNull(ort, "Der ort darf nicht null sein!");
+		this.ort = ort;
 		this.braucht = braucht;
 		this.sachen = new TreeMap <String, Sache>();
 		this.datentypen = new TreeMap <String, Datentyp>();
 	}
 	
-	public static Datei erschaffe() {
-		return erschaffe(null);
+	public static Datei erschaffe(String ort) {
+		return erschaffe(ort, null);
 	}
 	
-	public static Datei erschaffe(Collection <String> braucht) {
-		return new Datei( (braucht == null) ? Collections.emptySet() : new TreeSet <String>(braucht));
+	public static Datei erschaffe(String ort, Collection <String> braucht) {
+		return new Datei(ort, (braucht == null) ? Collections.emptySet() : new TreeSet <String>(braucht));
 	}
 	
 	public void neueSache(Sache dazu) {
