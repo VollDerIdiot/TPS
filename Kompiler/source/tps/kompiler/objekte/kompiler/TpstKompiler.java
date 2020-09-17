@@ -86,7 +86,7 @@ public class TpstKompiler extends Kompiler {
 		int art;
 		Datentyp name;
 		Sichtbarkeit sicht;
-		Datentyp bessert;
+		Datentyp bessert = null;
 		List <Datentyp> macht;
 		name = leseDatentyp();
 		teste("ist");
@@ -129,6 +129,7 @@ public class TpstKompiler extends Kompiler {
 		default:
 			throw new FalscheSourcenFehler("ein' oder 'eine", zwischen);
 		}
+		macht = new ArrayList <Datentyp>();
 		if ("und".equals(sourceLeser.nächstes())) {
 			zwischen = sourceLeser.nächstes();
 			switch (zwischen) {
@@ -139,7 +140,6 @@ public class TpstKompiler extends Kompiler {
 					break;
 				}
 			case "macht":
-				macht = new ArrayList <Datentyp>();
 				macht.add(leseDatentyp());
 				while (true) {
 					zwischen = sourceLeser.nächstes();
@@ -153,32 +153,32 @@ public class TpstKompiler extends Kompiler {
 				break;
 			}
 		} else {
-			macht = new ArrayList <Datentyp>(1);
-			if (art < 3) {
-				macht.add(Datentyp.DING_STANDARD);
-			} else {
-				macht.add(Datentyp.KLASSE_STANDARD);
-			}
 			sourceLeser.zurück();
 		}
 		switch (art) {
 		case 0:
-			sache = new Ding(name, Implementierungstiefe.fertig, sicht);
+			macht.add(Datentyp.DING_STANDARD);
+			sache = new Ding(name, Implementierungstiefe.fertig, sicht, bessert, macht);
 			return;
 		case 1:
-			sache = new Ding(name, Implementierungstiefe.unfertig, sicht);
+			macht.add(Datentyp.DING_STANDARD);
+			sache = new Ding(name, Implementierungstiefe.unfertig, sicht, bessert, macht);
 			return;
 		case 2:
-			sache = new Ding(name, Implementierungstiefe.plan, sicht);
+			macht.add(Datentyp.DING_STANDARD);
+			sache = new Ding(name, Implementierungstiefe.plan, sicht, bessert, macht);
 			return;
 		case 3:
-			sache = new Klasse(name, Implementierungstiefe.fertig, sicht);
+			macht.add(Datentyp.KLASSE_STANDARD);
+			sache = new Klasse(name, Implementierungstiefe.fertig, sicht, bessert, macht);
 			return;
 		case 4:
-			sache = new Klasse(name, Implementierungstiefe.unfertig, sicht);
+			macht.add(Datentyp.KLASSE_STANDARD);
+			sache = new Klasse(name, Implementierungstiefe.unfertig, sicht, bessert, macht);
 			return;
 		case 5:
-			sache = new Klasse(name, Implementierungstiefe.plan, sicht);
+			macht.add(Datentyp.KLASSE_STANDARD);
+			sache = new Klasse(name, Implementierungstiefe.plan, sicht, bessert, macht);
 			return;
 		default:
 			throw new KompilierungsFehler("Diese art ist mir nicht bekannt! (" + art + ")");
