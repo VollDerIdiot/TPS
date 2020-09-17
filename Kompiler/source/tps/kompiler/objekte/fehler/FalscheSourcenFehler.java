@@ -14,4 +14,8 @@ public class FalscheSourcenFehler extends KompilierungsFehler {
 		super(nachricht);
 	}
 	
+	public FalscheSourcenFehler(String erwartet, String erhalten) {
+		super("habe '" + erwartet + "' erwartet und '" + erhalten + "' erhalten!");
+	}
+	
 }
