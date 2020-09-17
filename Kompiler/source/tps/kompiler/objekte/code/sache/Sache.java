@@ -13,7 +13,7 @@ import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 
 public abstract class Sache {
 	
-	public final Datentyp name;
+	public final Datentyp datentyp;
 	public final Implementierungstiefe impl;
 	public final Sichtbarkeit sichtbarkeit;
 	protected List <Variable> variablen;
@@ -25,7 +25,7 @@ public abstract class Sache {
 		Objects.requireNonNull(name, "Der Name darf nicht null sein!");
 		Objects.requireNonNull(impl, "Die implementierungstiefe darf nicht null sein!");
 		Objects.requireNonNull(sichtbarkeit, "Die sichtbarkeit darf nicht null sein!");
-		this.name = name;
+		this.datentyp = name;
 		this.impl = impl;
 		this.sichtbarkeit = sichtbarkeit;
 		variablen = new ArrayList <Variable>();
