@@ -42,16 +42,29 @@ public class TpstKompiler extends Kompiler {
 	@Override
 	protected void ladeImplementierung(String dateiName) throws KompilierungsFehler {
 		ladeKopf(dateiName);
-		while (ladeSache()) {
+		while (sourceLeser.hatNächstes()) {
+			ladeSache();
 		}
 	}
 	
-	private boolean ladeSache() throws KompilierungsFehler {
+	private void ladeSache() throws KompilierungsFehler {
 		ladeSachenKopf();
-		ladeSachenVariablen();
-		return ladeSachenMethoden();
+		if (sache.impl != Implementierungstiefe.plan) {
+			ladeSachenVariablen();
+			ladeSachenMethoden();
+		} else {
+			ladePlanMethoden();
+		}
 	}
 	
+	private void ladePlanMethoden() {
+		// TODO Auto-generated method stub
+		
+		
+		
+		throw new NochNichtGemachtFehler();
+	}
+
 	private boolean ladeSachenMethoden() {
 		// TODO Auto-generated method stub
 		
