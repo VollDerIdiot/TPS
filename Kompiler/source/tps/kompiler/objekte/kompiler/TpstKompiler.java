@@ -84,7 +84,8 @@ public class TpstKompiler extends Kompiler {
 		case "folgende":
 			teste("Variablen:");
 			
-			
+//			TODO weitermachen (Variablen einscannen)
+//			[Sichtbarkeit] [Datentyp] als [Name] ( + [Datentyp] als [Name])*
 			
 			break;
 		default:
