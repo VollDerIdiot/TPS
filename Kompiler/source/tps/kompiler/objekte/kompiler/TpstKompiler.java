@@ -10,6 +10,8 @@ import java.util.List;
 
 import tps.kompiler.objekte.code.Datei;
 import tps.kompiler.objekte.code.Datentyp;
+import tps.kompiler.objekte.code.sache.Ding;
+import tps.kompiler.objekte.code.sache.Klasse;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.fehler.NochNichtGemachtFehler;
@@ -68,27 +70,106 @@ public class TpstKompiler extends Kompiler {
 	
 	private void ladeSachenKopf() throws KompilierungsFehler {
 		String zwischen;
+		int art;
 		Datentyp name;
 		Sichtbarkeit sicht;
-		Implementierungstiefe impl;
 		Datentyp bessert;
 		List <Datentyp> macht;
 		name = leseDatentyp();
 		teste("ist");
 		zwischen = sourceLeser.nächstes();
+		sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.nächstes());
 		switch (zwischen) {
 		case "ein":
-			
+			zwischen = sourceLeser.nächstes();
+			switch (zwischen) {
+			case "Ding":
+				art = 0;
+				break;
+			case "unfertiges":
+				teste("Ding");
+				art = 1;
+				break;
+			case "Dingplan":
+				art = 2;
+				break;
+			case "Klassenplan":
+				art = 5;
+				break;
+			default:
+				throw new FalscheSourcenFehler("Ding', 'Dingplan', ('unfertiges' und dann 'Ding') oder 'Klassenplan", zwischen);
+			}
 			break;
 		case "eine":
-			
+			switch (zwischen) {
+			case "Klasse":
+				art = 3;
+				break;
+			case "unfertige":
+				teste("Klasse");
+				art = 4;
+				break;
+			default:
+				throw new FalscheSourcenFehler("Klasse' oder 'unfertige", zwischen);
+			}
 			break;
 		default:
-			break;
+			throw new FalscheSourcenFehler("ein' oder 'eine", zwischen);
 		}
-		
-		
-		throw new NochNichtGemachtFehler();
+		if ("und".equals(sourceLeser.nächstes())) {
+			zwischen = sourceLeser.nächstes();
+			switch (zwischen) {
+			case "bessert":
+				bessert = leseDatentyp();
+				if ( !"und".equals(sourceLeser.nächstes())) {
+					sourceLeser.zurück();
+					break;
+				}
+			case "macht":
+				macht = new ArrayList <Datentyp>();
+				macht.add(leseDatentyp());
+				while (true) {
+					zwischen = sourceLeser.nächstes();
+					if ("und".equals(zwischen)) {
+						macht.add(leseDatentyp());
+					} else {
+						sourceLeser.zurück();
+						break;
+					}
+				}
+				break;
+			}
+		} else {
+			macht = new ArrayList <Datentyp>(1);
+			if (art < 3) {
+				macht.add(Datentyp.DING_STANDARD);
+			} else {
+				macht.add(Datentyp.KLASSE_STANDARD);
+			}
+			sourceLeser.zurück();
+		}
+		switch (art) {
+		case 0:
+			sache = new Ding(name, Implementierungstiefe.fertig, sicht);
+			return;
+		case 1:
+			sache = new Ding(name, Implementierungstiefe.unfertig, sicht);
+			return;
+		case 2:
+			sache = new Ding(name, Implementierungstiefe.plan, sicht);
+			return;
+		case 3:
+			sache = new Klasse(name, Implementierungstiefe.fertig, sicht);
+			return;
+		case 4:
+			sache = new Klasse(name, Implementierungstiefe.unfertig, sicht);
+			return;
+		case 5:
+			sache = new Klasse(name, Implementierungstiefe.plan, sicht);
+			return;
+		default:
+			throw new KompilierungsFehler("Diese art ist mir nicht bekannt! (" + art + ")");
+		}
 	}
 	
 	private Datentyp leseDatentyp() throws FalscheSourcenFehler {
