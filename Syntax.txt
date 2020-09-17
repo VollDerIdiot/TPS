@@ -27,7 +27,7 @@ Sache (min. 1):																																																																	
 	Sacheninhalt:																																																																-
 		Variablen (Außer bei Plan):																																																												-
 			A:																																																																	-
-				Diese Sache hat folgende Variablen: [Parameter]											[Parameter mit Sichtbarkeit]																																			-
+				Diese Sache hat folgende Variablen: [Parameter mit Sichtbarkeit]						[Parameter mit Sichtbarkeit]																																			-
 			B:																																																																	-
 				Diese Sache hat keine Variablen!														[nichts]																																								-
 		start-Methoden (Außer bei Plan):																																																										-
@@ -49,7 +49,7 @@ Sache (min. 1):																																																																	
 				[Name] ist [Sichtbarkeit] braucht keine Parameter!										[Name] [Sichtbarkeit] : }																																				-
 				[Parameter]																				[Box]																																									-
 Parameter:																																																																		-
-	[Sichtbarkeit] [Datentyp] als [Name] ( + [Datentyp] als [Name])*									[Datentyp] [Name] (, [Datentyp][Name])*																																	-
+	[Datentyp] als [Name] ( + [Datentyp] als [Name])*													[Datentyp] [Name] (, [Datentyp][Name])*																																	-
 Datentyp:																																																																		-
 	[Sachenname] (\[Dingname/ZusatzDing ( + Dingname/ZusatzDing)*\]																																																				-
 Parameterwerte:																																																																	-
