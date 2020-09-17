@@ -3,6 +3,7 @@ package tps.kompiler.objekte.code;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -10,7 +11,10 @@ import java.util.TreeSet;
 public class Datentyp {
 	
 	public final String name;
-	public final Set <Datentyp> zusatzSachen;
+	/**
+	 * Dies ist ein unveränderbares navigierbares Set in dem die zusätzlichen Sachen gespeichert werden
+	 */
+	public final NavigableSet <Datentyp> zusatzSachen;
 	
 	
 	
@@ -21,7 +25,7 @@ public class Datentyp {
 	public Datentyp(String name, Collection <Datentyp> zusatzSachen) {
 		Objects.requireNonNull(name, "Der Name kann nicht null sein!");
 		this.name = name;
-		this.zusatzSachen = Collections.unmodifiableSet( (zusatzSachen == null) ? Collections.emptySet() : new TreeSet <Datentyp>(zusatzSachen));
+		this.zusatzSachen = Collections.unmodifiableNavigableSet( (zusatzSachen == null) ? Collections.emptyNavigableSet() : new TreeSet <Datentyp>(zusatzSachen));
 	}
 	
 	
