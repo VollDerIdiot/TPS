@@ -18,10 +18,10 @@ Sache (min. 1):																																																																	
 			Methoden																																																															-
 	Sachenanfang:																						[Datentyp] [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan/Klasse/unfertige Klasse/Klassenplan]([bessert] [Datentyp]) ([macht] [Datentyp] (, [macht] [Datentyp])*)		-
 		Ding:																																																																	-																																			-
-			[Datentyp] ist ein [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*			||| und weglassen sonst gleich																										-
+			[Datentyp] ist ein [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*			||| 'und' weglassen sonst gleich																									-
 		Klasse:																																																																	-
 			A:																																																																	-
-				[Datentyp] ist eine [Sichtbarkeit] [Klasse/unfertige Klasse] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*			||| und weglassen sonst gleich																										-
+				[Datentyp] ist eine [Sichtbarkeit] [Klasse/unfertige Klasse] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*			||| 'und' weglassen sonst gleich																									-
 			B:																																																																	-
 				[Datentyp] ist ein [Sichtbarkeit] [Klassenplan] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*																																							-
 	Sacheninhalt:																																																																-
