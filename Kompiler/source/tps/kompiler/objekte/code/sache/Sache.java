@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import tps.kompiler.objekte.code.Datentyp;
 import tps.kompiler.objekte.code.Methode;
 import tps.kompiler.objekte.code.Variable;
 import tps.kompiler.objekte.konstanten.Implementierungstiefe;
@@ -12,7 +13,7 @@ import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 
 public abstract class Sache {
 	
-	public final String name;
+	public final Datentyp name;
 	public final Implementierungstiefe impl;
 	public final Sichtbarkeit sichtbarkeit;
 	protected List <Variable> variablen;
@@ -20,7 +21,7 @@ public abstract class Sache {
 	
 	
 	
-	public Sache(String name, Implementierungstiefe impl, Sichtbarkeit sichtbarkeit) {
+	public Sache(Datentyp name, Implementierungstiefe impl, Sichtbarkeit sichtbarkeit) {
 		Objects.requireNonNull(name, "Der Name darf nicht null sein!");
 		Objects.requireNonNull(impl, "Die implementierungstiefe darf nicht null sein!");
 		Objects.requireNonNull(sichtbarkeit, "Die sichtbarkeit darf nicht null sein!");
