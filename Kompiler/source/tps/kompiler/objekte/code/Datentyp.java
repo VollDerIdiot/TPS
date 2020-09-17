@@ -9,6 +9,11 @@ import java.util.TreeSet;
 
 public class Datentyp {
 	
+	public static final Datentyp DING_STANDARD = new Datentyp("DingStandard");
+	public static final Datentyp KLASSE_STANDARD = new Datentyp("KlasseStandard");
+	
+	
+	
 	public final String name;
 	/**
 	 * Dies ist ein unveränderbares navigierbares Set in dem die zusätzlichen Sachen gespeichert werden
