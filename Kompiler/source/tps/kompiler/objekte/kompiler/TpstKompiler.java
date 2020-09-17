@@ -76,6 +76,16 @@ public class TpstKompiler extends Kompiler {
 		name = leseDatentyp();
 		teste("ist");
 		zwischen = sourceLeser.nächstes();
+		switch (zwischen) {
+		case "ein":
+			
+			break;
+		case "eine":
+			
+			break;
+		default:
+			break;
+		}
 		
 		
 		throw new NochNichtGemachtFehler();
