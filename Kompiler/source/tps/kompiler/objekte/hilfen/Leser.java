@@ -17,6 +17,7 @@ public class Leser {
 	private List <Integer> log;
 	
 	
+	
 	public Leser(Scanner scanner) {
 		this.zeilen = new ArrayList <>();
 		while (scanner.hasNextLine()) {
@@ -25,6 +26,8 @@ public class Leser {
 		this.scnner = new Scanner(this.zeilen.get(0));
 		this.log = new ArrayList <Integer>();
 	}
+	
+	
 	
 	/**
 	 * Geht einen Schritt zurück. Dies bedeutet, dass man genau den stand hat, den man vor dem letzten veränderndem Befehl hatte ({@link #nächstes()} oder {@link #nächsteZeile()}).
@@ -87,17 +90,19 @@ public class Leser {
 		}
 	}
 	
-	
-	
 	public String nächstes() {
 		synchronized (this) {
 			if (scnner.hasNext()) {
 				log.add(NÄCHSTES);
 				return scnner.next();
 			} else {
-				scnner = new Scanner(zeilen.get( ++ index));
-				log.add(NEUE_ZEILE);
-				return nächstes();
+				if (index + 1 >= zeilen.size()) {
+					scnner = new Scanner(zeilen.get( ++ index));
+					log.add(NEUE_ZEILE);
+					return nächstes();
+				} else {
+					return null;
+				}
 			}
 		}
 	}
@@ -112,9 +117,13 @@ public class Leser {
 				log.add(NÄCHSTE_ZEILE);
 				return scnner.nextLine();
 			} else {
-				scnner = new Scanner(zeilen.get( ++ index));
-				log.add(NEUE_ZEILE);
-				return nächsteZeile();
+				if (index + 1 >= zeilen.size()) {
+					scnner = new Scanner(zeilen.get( ++ index));
+					log.add(NEUE_ZEILE);
+					return nächsteZeile();
+				} else {
+					return null;
+				}
 			}
 		}
 	}
