@@ -64,7 +64,7 @@ public class TpstKompiler extends Kompiler {
 		
 		throw new NochNichtGemachtFehler();
 	}
-
+	
 	private boolean ladeSachenMethoden() {
 		// TODO Auto-generated method stub
 		
@@ -73,10 +73,23 @@ public class TpstKompiler extends Kompiler {
 		throw new NochNichtGemachtFehler();
 	}
 	
-	private void ladeSachenVariablen() {
-		// TODO Auto-generated method stub
-		
-		
+	private void ladeSachenVariablen() throws KompilierungsFehler {
+		String zwischen;
+		teste("Diese", "Sache", "hat");
+		zwischen = sourceLeser.nächstes();
+		switch (zwischen) {
+		case "keine":
+			teste("Variablen!");
+			return;
+		case "folgende":
+			teste("Variablen:");
+			
+			
+			
+			break;
+		default:
+			throw new FalscheSourcenFehler("keine' oder 'folgende", zwischen);
+		}
 		
 		throw new NochNichtGemachtFehler();
 	}
