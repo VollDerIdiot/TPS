@@ -65,7 +65,7 @@ public class Datei {
 	}
 	
 	public void neueSache(Sache dazu) {
-		sachen.put(dazu.name, dazu);
+		sachen.put(dazu.datentyp.name, dazu);
 	}
 	
 	public void neuerDatentyp(Datentyp dazu) {
