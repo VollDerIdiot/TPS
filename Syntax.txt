@@ -49,7 +49,7 @@ Sache (min. 1):																																																																	
 				[Name] ist [Sichtbarkeit] braucht keine Parameter!										[Name] [Sichtbarkeit] : }																																				-
 				[Parameter]																				[Box]																																									-
 Parameter:																																																																		-
-	[Datentyp] als [Name] ( + [Datentyp] als [Name])*													[Datentyp] [Name] (, [Datentyp][Name])*																																	-
+	[Datentyp] als [Name] ( + [Datentyp] als [Name])*													[Datentyp] [Name] ( + Datentyp][Name])*																																	-
 Datentyp:																																																																		-
 	[Sachenname] (\[Dingname/ZusatzDing ( + Dingname/ZusatzDing)*\]																																																				-
 Parameterwerte:																																																																	-
