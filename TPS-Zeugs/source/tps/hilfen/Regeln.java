@@ -1,9 +1,35 @@
 package tps.hilfen;
 
+import java.util.Collections;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class Regeln {
 	
-	public static final String BRAUCHT_TEILER = "/";
-	public static final String GEHE_IN = "#";
+	public static final String BRAUCHT_TEILER;
+	public static final String GEHE_IN;
+	private static final Set<String> BESETZTE_NAMEN; 
+	
+	
+	
+	static {
+		Set <String> zwischen;
+		BRAUCHT_TEILER = "/";
+		GEHE_IN = "#";
+		zwischen = new TreeSet <String>();
+		zwischen.add("braucht");
+		zwischen.add("macht");
+		zwischen.add("bessert");
+		zwischen.add("offen");
+		zwischen.add("vererben");
+		zwischen.add("datei");
+		zwischen.add("eigen");
+//		TODO fertig machen
+		
+		BESETZTE_NAMEN = Collections.unmodifiableSet(zwischen);
+	}
+	
+	
 	
 	/**
 	 * Prüft <code>name</code> auf Gültigkeit. <br>
@@ -17,7 +43,7 @@ public class Regeln {
 	 *            Der zu prüfende Name
 	 * @param fehler
 	 *            wird geworfen, wenn <code>name</code> ungültig ist.
-	 * @throws F
+	 * @throws F0
 	 *             wenn <code>name</code> ungültig ist
 	 */
 	public static <F extends Exception> void testeName(String name, F fehler) throws F {
@@ -29,6 +55,9 @@ public class Regeln {
 			}
 		}
 		if (zeichen[0] >= '0' && zeichen[0] <= '9') {
+			throw fehler;
+		}
+		if (BESETZTE_NAMEN.contains(name)) {
 			throw fehler;
 		}
 	}

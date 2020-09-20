@@ -7,9 +7,13 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
+import tps.hilfen.Regeln;
 import tps.kompiler.objekte.code.Datei;
 import tps.kompiler.objekte.code.Datentyp;
+import tps.kompiler.objekte.code.Variable;
 import tps.kompiler.objekte.code.sache.Ding;
 import tps.kompiler.objekte.code.sache.Klasse;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
@@ -81,18 +85,44 @@ public class TpstKompiler extends Kompiler {
 		case "keine":
 			teste("Variablen!");
 			return;
-		case "folgende":
-			teste("Variablen:");
+		case "folgende": {
+			// - [Sichtbarkeit] [Datentyp] als [Name] ( + [Datentyp] als [Name])*
+			Set <Variable> variablen;
+			teste("Variablen:", "-");
+			variablen = new TreeSet <>();
+			variablen.add(leseVariable());
+			while (true) {
+				if ("-".equals(sourceLeser.nächstes())) {
+					variablen.add(leseVariable());
+				} else {
+					break;
+				}
+			}
 			
-//			TODO weitermachen (Variablen einscannen)
-//			[Sichtbarkeit] [Datentyp] als [Name] ( + [Datentyp] als [Name])*
 			
 			break;
+		}
 		default:
 			throw new FalscheSourcenFehler("keine' oder 'folgende", zwischen);
 		}
-		
-		throw new NochNichtGemachtFehler();
+	}
+	
+	/**
+	 * liest eine Variable ein, die folgendermaßen aufgebaut is: <br>
+	 * [Datentyp] als [Name]
+	 * 
+	 * @return die eingelesene Variable
+	 * @throws FalscheSourcenFehler
+	 *             wenn der name ungültig ist.
+	 */
+	private Variable leseVariable() throws FalscheSourcenFehler {
+		Datentyp datentyp;
+		String name;
+		datentyp = leseDatentyp();
+		teste("als");
+		name = sourceLeser.nächstes();
+		Regeln.testeName(name, new FalscheSourcenFehler("'" + name + "' ist kein Akzeptabler name!"));
+		return new Variable(name, datentyp);
 	}
 	
 	private void ladeSachenKopf() throws KompilierungsFehler {

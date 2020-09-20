@@ -27,7 +27,7 @@ Sache (min. 1):																																																																	
 	Sacheninhalt:																																																																-
 		Variablen (Außer bei Plan):																																																												-
 			A:																																																																	-
-				Diese Sache hat folgende Variablen: [Parameter mit Sichtbarkeit]						[Parameter mit Sichtbarkeit]																																			-
+				Diese Sache hat folgende Variablen: [Parameter mit Sichtbarkeit und '-' davor]			[Parameter mit Sichtbarkeit]																																			-
 			B:																																																																	-
 				Diese Sache hat keine Variablen!														[nichts]																																								-
 		start-Methoden (Außer bei Plan):																																																										-
