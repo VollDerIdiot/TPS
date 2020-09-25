@@ -11,4 +11,15 @@ public class Variable {
 		this.datentyp = datentyp;
 	}
 	
+	
+	
+	public Datentyp getDatentyp() {
+		return datentyp;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	
 }
