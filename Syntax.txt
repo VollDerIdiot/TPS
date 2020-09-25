@@ -33,10 +33,10 @@ Sache (min. 1):																																																																	
 		start-Methoden (Außer bei Plan):																																																										-
 			Ding (mindestes eine erschaffe-Methode):																																																							-
 				A:																																																																-
-					Dieses [erschaffe] ist [Sichtbarkeit] braucht folgende Parameter: [Parameter]		[Sichtbarkeit] [erschaffe] [Parameter]																																	-
+					Dieses [erschaffe] ist [Sichtbarkeit] und braucht folgende Parameter: [Parameter]	[Sichtbarkeit] [erschaffe] [Parameter]																																	-
 					[Box]																				[Box]																																									-
 				B:																																																																-
-					Dieses [erschaffe] ist [Sichtbarkeit] braucht keine Parameter!						[Sichtbarkeit] [erschaffe]																																								-
+					Dieses [erschaffe] ist [Sichtbarkeit] und braucht keine Parameter!					[Sichtbarkeit] [erschaffe]																																								-
 					[Box]																				[Box]																																									-
 			Klasse (nicht verpflichtend):																																																										-
 				Dies wird als erstes gemacht:															[erstes] : }																																							-

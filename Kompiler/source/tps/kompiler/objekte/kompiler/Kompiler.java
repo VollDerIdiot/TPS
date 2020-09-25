@@ -159,8 +159,10 @@ public abstract class Kompiler extends Object {
 	
 	protected void teste(String... testen) throws FalscheSourcenFehler {
 		for (String teste : testen) {
-			if ( !teste.equals(sourceLeser.nächstes())) {
-				throw new FalscheSourcenFehler(teste);
+			String zwischen;
+			zwischen = sourceLeser.nächstes();
+			if ( !teste.equals(zwischen)) {
+				throw new FalscheSourcenFehler(teste, zwischen);
 			}
 		}
 	}

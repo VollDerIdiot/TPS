@@ -79,11 +79,43 @@ public class TpstKompiler extends Kompiler {
 		throw new NochNichtGemachtFehler();
 	}
 	
-	private void ladeStartMethoden() {
-		// TODO Auto-generated method stub
-		
-		
-		
+	private void ladeStartMethoden() throws KompilierungsFehler {
+		if (sache.impl == Implementierungstiefe.plan) {
+			return;
+		}
+		if (sache instanceof Ding) {
+			Sichtbarkeit sicht;
+			String zwischen;
+			teste("Dieses", "erschaffe", "ist");
+			sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.nächstes());
+			teste("und", "braucht");
+			zwischen = sourceLeser.nächstes();
+			switch (zwischen) {
+			case "keine":
+				teste("Parameter!");
+				
+				
+				
+				break;
+			case "folgende":
+				teste("Parameter:");
+				
+				
+				
+				break;
+			default:
+				throw new FalscheSourcenFehler("ist' oder 'braucht", zwischen);
+			}
+			
+			
+		} else if (sache instanceof Klasse) {
+			// TODO machen
+			
+			
+			
+		} else {
+			throw new KompilierungsFehler("Die Sachenart '" + sache.getClass().getName() + "' ist unbekannt!");
+		}
 		throw new NochNichtGemachtFehler();
 	}
 	
