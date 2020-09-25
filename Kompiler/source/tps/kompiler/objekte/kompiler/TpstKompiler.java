@@ -13,6 +13,7 @@ import java.util.TreeSet;
 import tps.hilfen.Regeln;
 import tps.kompiler.objekte.code.Datei;
 import tps.kompiler.objekte.code.Datentyp;
+import tps.kompiler.objekte.code.SacheVariable;
 import tps.kompiler.objekte.code.Variable;
 import tps.kompiler.objekte.code.sache.Ding;
 import tps.kompiler.objekte.code.sache.Klasse;
@@ -87,20 +88,19 @@ public class TpstKompiler extends Kompiler {
 			return;
 		case "folgende": {
 			// - [Sichtbarkeit] [Datentyp] als [Name] ( + [Datentyp] als [Name])*
-			Set <Variable> variablen;
+			Sichtbarkeit sicht;
 			teste("Variablen:", "-");
-			variablen = new TreeSet <>();
-			variablen.add(leseVariable());
+			sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.nächstes());
+			sache.neueVariable(new SacheVariable(sicht, leseVariable()));
 			while (true) {
 				if ("-".equals(sourceLeser.nächstes())) {
-					variablen.add(leseVariable());
+					sache.neueVariable(new SacheVariable(sicht, leseVariable()));
 				} else {
+					sourceLeser.zurück();
 					break;
 				}
 			}
-			
-			
-			break;
+			return;
 		}
 		default:
 			throw new FalscheSourcenFehler("keine' oder 'folgende", zwischen);
