@@ -56,6 +56,7 @@ public class TpstKompiler extends Kompiler {
 		ladeSachenKopf();
 		if (sache.impl != Implementierungstiefe.plan) {
 			ladeSachenVariablen();
+			ladeStartMethoden();
 			ladeSachenMethoden();
 		} else {
 			ladePlanMethoden();
@@ -70,7 +71,15 @@ public class TpstKompiler extends Kompiler {
 		throw new NochNichtGemachtFehler();
 	}
 	
-	private boolean ladeSachenMethoden() {
+	private void ladeSachenMethoden() {
+		// TODO Auto-generated method stub
+		
+		
+		
+		throw new NochNichtGemachtFehler();
+	}
+	
+	private void ladeStartMethoden() {
 		// TODO Auto-generated method stub
 		
 		
@@ -87,7 +96,7 @@ public class TpstKompiler extends Kompiler {
 			teste("Variablen!");
 			return;
 		case "folgende": {
-			// - [Sichtbarkeit] [Datentyp] als [Name] ( + [Datentyp] als [Name])*
+			// - [Sichtbarkeit] [Datentyp] als [Name] ( - [Sichtbarkeit] [Datentyp] als [Name])*
 			Sichtbarkeit sicht;
 			teste("Variablen:", "-");
 			sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.nächstes());
