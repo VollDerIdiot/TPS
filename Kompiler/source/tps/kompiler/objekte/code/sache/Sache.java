@@ -10,6 +10,7 @@ import java.util.TreeSet;
 
 import tps.kompiler.objekte.code.Datentyp;
 import tps.kompiler.objekte.code.Methode;
+import tps.kompiler.objekte.code.SacheVariable;
 import tps.kompiler.objekte.code.Variable;
 import tps.kompiler.objekte.konstanten.Implementierungstiefe;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
@@ -21,7 +22,7 @@ public abstract class Sache {
 	public final Sichtbarkeit sichtbarkeit;
 	public final Datentyp bessert;
 	public final NavigableSet <Datentyp> macht;
-	protected List <Variable> variablen;
+	protected List <SacheVariable> variablen;
 	protected List <Methode> methoden;
 	
 	
@@ -35,7 +36,7 @@ public abstract class Sache {
 		this.datentyp = name;
 		this.impl = impl;
 		this.sichtbarkeit = sichtbarkeit;
-		variablen = new ArrayList <Variable>();
+		variablen = new ArrayList <SacheVariable>();
 		methoden = new ArrayList <Methode>();
 		this.bessert = bessert;
 		this.macht = Collections.unmodifiableNavigableSet(new TreeSet <Datentyp>(macht));
@@ -43,11 +44,11 @@ public abstract class Sache {
 	
 	
 	
-	public void addVariable(Variable variable) {
+	public void neueVariable(SacheVariable variable) {
 		variablen.add(variable);
 	}
 	
-	public void addMethode(Methode methode) {
+	public void neueMethode(Methode methode) {
 		methoden.add(methode);
 	}
 	
