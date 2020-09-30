@@ -31,8 +31,8 @@ public class TpstLader extends TpsSourceLader {
 	
 	
 	@Override
-	protected void ladeImplementierung() throws KompilierungsFehler {
-		ladeKopf();
+	protected void ladeImplementierung(String name) throws KompilierungsFehler {
+		ladeKopf(name);
 		while (sourceLeser.hatNächstes()) {
 			ladeSache();
 		}
@@ -284,7 +284,7 @@ public class TpstLader extends TpsSourceLader {
 		
 	}
 	
-	private void ladeKopf() throws FalscheSourcenFehler {
+	private void ladeKopf(String name) throws FalscheSourcenFehler {
 		String ort;
 		String zwischen;
 		teste("Diese", "tolle", "Datei", "liegt", "in:");
@@ -305,7 +305,7 @@ public class TpstLader extends TpsSourceLader {
 					break;
 				case "um":
 					teste("um", "zu", "funktionieren.");
-					bauen = Datei.erschaffe(ort, braucht);
+					bauen = Datei.erschaffe(ort, name, braucht);
 					return;
 				default:
 					throw new FalscheSourcenFehler("Da war etwas FALSCH: " + zwischen);
@@ -314,13 +314,18 @@ public class TpstLader extends TpsSourceLader {
 			}
 		}
 		case "keine":
-			bauen = Datei.erschaffe(ort);
+			bauen = Datei.erschaffe(ort, name);
 			return;
 		default:
 			throw new FalscheSourcenFehler("Da war etwas FALSCH: " + zwischen);
 		}
 		
 		
+	}
+	
+	@Override
+	public String endung() {
+		return "tpst";
 	}
 	
 }

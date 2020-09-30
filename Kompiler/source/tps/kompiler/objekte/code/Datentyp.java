@@ -2,15 +2,21 @@ package tps.kompiler.objekte.code;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeSet;
 
-public class Datentyp {
+public class Datentyp implements Comparable <Datentyp> {
 	
 	public static final Datentyp DING_STANDARD = new Datentyp("DingStandard");
 	public static final Datentyp KLASSE_STANDARD = new Datentyp("KlasseStandard");
+	public static final Comparator <? super Datentyp> COMPERATOR = (Datentyp vergleiche, Datentyp mit) -> {
+		Objects.requireNonNull(vergleiche, "Ich kann nicht mit null vergleichen");
+		Objects.requireNonNull(mit, "Ich kann nicht mit null vergleichen");
+		return vergleiche.compareTo(mit);
+	};
 	
 	
 	
@@ -33,6 +39,7 @@ public class Datentyp {
 	}
 	
 	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj.getClass().equals(getClass())) {
@@ -50,17 +57,27 @@ public class Datentyp {
 	public String toString() {
 		int runde;
 		StringBuilder ergebnis;
-		Iterator <Datentyp> iter;
+		Iterator <Datentyp> iterator;
 		ergebnis = new StringBuilder(name);
-		iter = zusatzSachen.iterator();
+		iterator = zusatzSachen.iterator();
 		ergebnis.append(" [");
 		for (runde = 0; runde < zusatzSachen.size(); runde ++ ) {
-			ergebnis.append(iter.next());
+			ergebnis.append(iterator.next());
 			if (runde == zusatzSachen.size() - 1) {
 				ergebnis.append(" + ");
 			}
 		}
 		return ergebnis.append("]").toString();
+	}
+	
+	@Override
+	public int compareTo(Datentyp mit) {
+		int zwischen;
+		zwischen = name.compareTo(mit.name);
+		if (zwischen == 0) {
+			zwischen = zusatzSachen.containsAll(mit.zusatzSachen) ? mit.zusatzSachen.containsAll(zusatzSachen) ? 0 : -1 : 1;
+		}
+		return zwischen;
 	}
 	
 }

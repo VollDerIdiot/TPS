@@ -1,6 +1,5 @@
 package tps.kompiler.objekte.kompilieren.sourcenladen;
 
-import java.io.FileNotFoundException;
 import java.nio.charset.Charset;
 
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
@@ -12,17 +11,22 @@ public class TpskLader extends TpsSourceLader {
 		super(zeichensatz);
 	}
 	
-	public TpskLader() throws FileNotFoundException {
+	public TpskLader() {
 		super();
 	}
 	
 	
 	
 	@Override
-	protected void ladeImplementierung() throws KompilierungsFehler {
+	protected void ladeImplementierung(String name) throws KompilierungsFehler {
 		// TODO Auto-generated method stub
 		
 		throw new NochNichtGemachtFehler();
+	}
+	
+	@Override
+	public String endung() {
+		return "tpsk";
 	}
 	
 }

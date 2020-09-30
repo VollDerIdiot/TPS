@@ -64,16 +64,20 @@ public abstract class TpsSourceLader {
 	
 	
 	
-	public Datei lade(File source) throws IOException, KompilierungsFehler {
+	public Datei lade(File source) throws KompilierungsFehler {
 		return lade(source, null);
 	}
 	
-	public Datei lade(File source, Charset zeichensatz) throws IOException, KompilierungsFehler {
+	public Datei lade(File source, Charset zeichensatz) throws KompilierungsFehler {
 		Objects.requireNonNull(source, "Ich kann nicht aus nichts lesen!");
 		bauen = null;
 		sache = null;
-		sourceLeser = new Leser(new Scanner(source, zeichensatz == null ? this.zeichensatz : zeichensatz));
-		ladeImplementierung();
+		try {
+			sourceLeser = new Leser(new Scanner(source, zeichensatz == null ? this.zeichensatz : zeichensatz));
+		} catch (IOException e) {
+			throw new KompilierungsFehler("Der sourceLeser wollte sich nicht initialisieren lassen: " + e);
+		}
+		ladeImplementierung(filtereNamenHeraus(source));
 		return bauen;
 	}
 	
@@ -86,7 +90,7 @@ public abstract class TpsSourceLader {
 	 *            Der Dateiname ohne die Dateiendung
 	 * @throws KompilierungsFehler
 	 */
-	protected abstract void ladeImplementierung() throws KompilierungsFehler;
+	protected abstract void ladeImplementierung(String name) throws KompilierungsFehler;
 	
 	/**
 	 * @implSpec lässt den {@link #bereiteKompilierungVor()} whitespace skippen und liest die nächsteZeile ein: <br>
@@ -113,6 +117,28 @@ public abstract class TpsSourceLader {
 	
 	protected String testePfad(String testen) throws FalscheSourcenFehler {
 		return Regeln.testePfad(testen, new FalscheSourcenFehler("'" + testen + "' ist kein gültiger Pfad!"));
+	}
+	
+	private String filtereNamenHeraus(File source) {
+		String ergebnis;
+		ergebnis = source.getName();
+		if (ergebnis.endsWith(endung())) {
+			return ergebnis.substring(0, ergebnis.length() - (endung().length() + 1));
+		} else {
+			return ergebnis;
+		}
+	}
+	
+	/**
+	 * Gibt die Dateiendung des Sourcecodes zurück. <br>
+	 * Dies entspricht allem, was nach dem letztem '.' kommt (ohne den '.' selbst!).
+	 * 
+	 * @return Die Endung der nicht kompilierten Datei
+	 */
+	public abstract String endung();
+	
+	public Charset zeichensatz() {
+		return zeichensatz;
 	}
 	
 }
