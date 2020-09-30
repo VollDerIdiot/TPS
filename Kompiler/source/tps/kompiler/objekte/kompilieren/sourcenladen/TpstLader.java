@@ -1,14 +1,8 @@
-package tps.kompiler.objekte.kompiler;
+package tps.kompiler.objekte.kompilieren.sourcenladen;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import tps.hilfen.Regeln;
 import tps.kompiler.objekte.code.Datei;
@@ -24,29 +18,21 @@ import tps.kompiler.objekte.konstanten.Implementierungstiefe;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 
 
-public class TpstKompiler extends Kompiler {
+public class TpstLader extends TpsSourceLader {
 	
-	public TpstKompiler(OutputStream out, Charset zeichensatz) {
-		super(out, zeichensatz);
+	public TpstLader(Charset zeichensatz) {
+		super(zeichensatz);
 	}
 	
-	public TpstKompiler(OutputStream out) {
-		super(out);
-	}
-	
-	public TpstKompiler(File datei, Charset zeichensatz) throws FileNotFoundException {
-		super(datei, zeichensatz);
-	}
-	
-	public TpstKompiler(File datei) throws FileNotFoundException {
-		super(datei);
+	public TpstLader() {
+		super();
 	}
 	
 	
 	
 	@Override
-	protected void ladeImplementierung(String dateiName) throws KompilierungsFehler {
-		ladeKopf(dateiName);
+	protected void ladeImplementierung() throws KompilierungsFehler {
+		ladeKopf();
 		while (sourceLeser.hatNächstes()) {
 			ladeSache();
 		}
@@ -93,12 +79,14 @@ public class TpstKompiler extends Kompiler {
 			switch (zwischen) {
 			case "keine":
 				teste("Parameter!");
+				// TODO machen
 				
 				
 				
 				break;
 			case "folgende":
 				teste("Parameter:");
+				// TODO machen
 				
 				
 				
@@ -296,7 +284,7 @@ public class TpstKompiler extends Kompiler {
 		
 	}
 	
-	private void ladeKopf(String dateiName) throws FalscheSourcenFehler {
+	private void ladeKopf() throws FalscheSourcenFehler {
 		String ort;
 		String zwischen;
 		teste("Diese", "tolle", "Datei", "liegt", "in:");
@@ -333,20 +321,6 @@ public class TpstKompiler extends Kompiler {
 		}
 		
 		
-	}
-	
-	@Override
-	protected void bereiteKompilierungVor() throws KompilierungsFehler {
-		// TODO Auto-generated method stub
-		
-		throw new NochNichtGemachtFehler();
-	}
-	
-	@Override
-	protected void kompiliereImplementierung(Charset zeichensatz) throws IOException {
-		// TODO Auto-generated method stub
-		
-		throw new NochNichtGemachtFehler();
 	}
 	
 }

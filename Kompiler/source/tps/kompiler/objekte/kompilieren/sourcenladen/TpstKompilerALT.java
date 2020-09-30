@@ -1,4 +1,4 @@
-package tps.kompiler.objekte.kompiler;
+package tps.kompiler.objekte.kompilieren.sourcenladen;
 
 import java.io.File;
 import java.io.FileNotFoundException;

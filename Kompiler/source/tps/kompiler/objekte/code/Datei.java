@@ -36,7 +36,7 @@ public class Datei {
 		zwischen.add(new Datentyp("DateiSchreiber"));
 		zwischen.add(new Datentyp("Leser"));
 		zwischen.add(new Datentyp("JaNö"));
-		STANDARD_DATENTYPEN = zwischen;
+		STANDARD_DATENTYPEN = Collections.unmodifiableSet(zwischen);
 	}
 	
 	
