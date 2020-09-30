@@ -1,92 +1,37 @@
-.tpst (toller programmier sprachen text)																.tpsk (tolle programmier sprachen kurzform)																																Unklarheiten/Fragen
+TPS: Tolle Programmier Sprache
 
-Dateianfang:																																																																	-
-	Diese tolle Datei liegt in: [ort]																	ort: [ort]																																								-
-	A:																																																																			-
-		und braucht die folgenden Dateien:																(braucht: [pfad])*																																						-
-		- [pfad]																																																																-
-		- [pfad]*																																																																-
-		um zu funktionieren.																																																													-
-	B:																																																																			-
-		und braucht keine anderen Dateien!																																																										-
-Sache (min. 1):																																																																	-
-	Ordnung:																																																																	-
-		Sachenanfang																																																															-
-		Sacheninhalt:																																																															-
-			Variablen																																																															-
-			start-Methoden																																																														-
-			Methoden																																																															-
-	Sachenanfang:																						[Datentyp] [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan/Klasse/unfertige Klasse/Klassenplan]([bessert] [Datentyp]) ([macht] [Datentyp] (, [macht] [Datentyp])*)		-
-		Ding:																																																																	-																																			-
-			[Datentyp] ist ein [Sichtbarkeit] [Ding/unfertiges Ding/Dingplan] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*			||| 'und' weglassen sonst gleich																									-
-		Klasse:																																																																	-
-			A:																																																																	-
-				[Datentyp] ist eine [Sichtbarkeit] [Klasse/unfertige Klasse] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*			||| 'und' weglassen sonst gleich																									-
-			B:																																																																	-
-				[Datentyp] ist ein [Sichtbarkeit] [Klassenplan] (und [bessert] [Datentyp]) (und [macht] [Datentyp])*																																							-
-	Sacheninhalt:																																																																-
-		Variablen (Außer bei Plan):																																																												-
-			A:																																																																	-
-				Diese Sache hat folgende Variablen: [Parameter mit Sichtbarkeit und '-' davor (und statt dem '+')]			[Parameter mit Sichtbarkeit]																														-
-			B:																																																																	-
-				Diese Sache hat keine Variablen!														[nichts]																																								-
-		start-Methoden (Außer bei Plan):																																																										-
-			Ding (mindestes eine erschaffe-Methode):																																																							-
-				A:																																																																-
-					Dieses [erschaffe] ist [Sichtbarkeit] und braucht folgende Parameter: [Parameter]	[Sichtbarkeit] [erschaffe] [Parameter]																																	-
-					[Box]																				[Box]																																									-
-				B:																																																																-
-					Dieses [erschaffe] ist [Sichtbarkeit] und braucht keine Parameter!					[Sichtbarkeit] [erschaffe]																																								-
-					[Box]																				[Box]																																									-
-			Klasse (nicht verpflichtend):																																																										-
-				Dies wird als erstes gemacht:															[erstes] : }																																							-
-				[Box]																					[Box]																																									-
-		Methoden (Bei Plan nur der Rahmen (ohne Box)):																																																							-
-			A:																																																																	-
-				[Name] ist [Sichtbarkeit] und braucht folgende Parameter: [Parameter]					[Name] [Sichtbarkeit] : [Parameter] }																																	-
-				[Box]																					[Box]																																									-
-			B:																																																																	-
-				[Name] ist [Sichtbarkeit] braucht keine Parameter!										[Name] [Sichtbarkeit] : }																																				-
-				[Parameter]																				[Box]																																									-
-Parameter:																																																																		-
-	[Datentyp] als [Name] ( + [Datentyp] als [Name])*													[Datentyp] [Name] ( + Datentyp][Name])*																																	-
-Datentyp:																																																																		-
-	[Sachenname] (\[Dingname/ZusatzDing ( + Dingname/ZusatzDing)*\]																																																				-
-Parameterwerte:																																																																	-
-	[Var-Name/Wert] ( + [Var-Name/Wert])*																																																										-
-Box:																																																																			-
-	[Variablendeklaration]																																																														-
-	[Methoden-Inhalt]																																																															-
-Variablendeklaration:																																																															-
-	Hier gibt es die Variablen: [Parameter]																[Parameter]																																								-
-Methoden-Inhalt:																																																																-
-	[Befehl]*																																																																	-
-Bedingung:																																																																		-
-	[JaNe-Wert]																																																																	-
-Sichtbarkeit:																																																																	-
-	offen																																																																		-
-	vererben																																																																	-
-	ort																																																																			-
-	datei																																																																		-
-	eigen																																																																		-
-Befehle:																																																																		-
-	0:	setze [Var-Name] auf [Passender-Wert]															[Var-Name] << [Passender-Wert]																																			-
-	1:																																																																			-
-		A:	[Methodenname] mit [Parameterwerte]															[Methodenname] : [Parameterwerte]}																																		-
-		B:	[Methodenname]																				[Methodenname] : }																																						-
-	2:	verschwinde mit [Rückgabewert]																	verschwinde [Rückgabewert]																																				-
-	3:	stirb mit [zahl]																				stirb [zahl]																																							-
-	4:	raus aus [zahl] Boxen																			raus [zahl]																																								-
-	5:																																																																			-
-		mache dies solange [Bedingung]																	mache [Bedingung]																																						-
-		[Box]																							[Box]																																									-
-	6:	werfe [Werfbar]																					wirf [Werfbar]																																							-
-	7:																																																																			-
-		versuche folgendes:																				versuch																																									-
-		[Box]																							[Box]																																									-
-	8:	fange [Werfbarer-Parameter] ab																	fang [Werfbarer-Parameter]																																				-
-	9:	ist [Sache] von [Sache]																			[Sache] istVon [Sache]																																					-
-	A:	ist [Variable] nichts																			istNix [Variable]																																						-
-	B:	erbe																																																																	-
-	C:	ich																																																																		-
-	D:																																																																			-
+Datei:
+	[Dateikopf]
+	[Sache]+
+Dateikopf:
+	[ort]
+	[braucht]
+Sache:
+	[Sachenkopf]
+	[Sacheninhalt]
+
+Sachenart:
+	[DingArt]
+	[DingPlanArt]
+	[UnfertigesDingArt]
+	[KlassenArt]
+	[KlassenPlanArt]
+	[UnfertigeKlasseArt]
+
+Sichtbarkeit:
+	[offen]
+	[vererben]
+	[datei]
+	[eigen]
+
+Sachenname:
+	[Großbuchstabe] [Buchstabe]+
+
+Buchstabe:
+	[Großbuchstabe / Kleinbuchstabe]
+
+Kleinbuchstabe:
+	a-z, ö, ä, ü, ß
+
+Großbuchstabe:
+	A-Z, Ö, Ä, Ü, ẞ

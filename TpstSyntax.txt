@@ -1,0 +1,4 @@
+TPST: Toller ProgrammierSprachen Text
+
+Sachenkopf:
+	Diese tolle [Sachenart] heißt [Sachenname] und ist [Sichtbarkeit]
