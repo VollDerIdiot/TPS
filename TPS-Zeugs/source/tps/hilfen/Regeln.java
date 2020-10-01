@@ -4,17 +4,19 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
 
+import de.hechler.patrick.pzs8b.zeichen.Pzs8bZeichen;
+
 public class Regeln {
 	
-	public static final String BRAUCHT_TEILER;
+	public static final String Pfad_TEILER;
 	public static final String GEHE_IN;
-	private static final Set<String> BESETZTE_NAMEN; 
+	public static final Set <String> BESETZTE_NAMEN;
 	
 	
 	
 	static {
 		Set <String> zwischen;
-		BRAUCHT_TEILER = "/";
+		Pfad_TEILER = "/";
 		GEHE_IN = "#";
 		zwischen = new TreeSet <String>();
 		zwischen.add("braucht");
@@ -24,7 +26,9 @@ public class Regeln {
 		zwischen.add("vererben");
 		zwischen.add("datei");
 		zwischen.add("eigen");
-//		TODO fertig machen
+		// TODO fertig machen
+		
+		
 		
 		BESETZTE_NAMEN = Collections.unmodifiableSet(zwischen);
 	}
@@ -32,48 +36,50 @@ public class Regeln {
 	
 	
 	/**
-	 * Prüft <code>name</code> auf Gültigkeit. <br>
-	 * Ein Name ist gültig, wenn dieser nur aus Buchstaben (<code>a-zA-Z</code>) und Zahlen (<code>0-9</code>) besteht und das erste Zeichen keine Zahl ist. <br>
-	 * Wenn der Name nicht gültig ist, wird ein <code>FalscheSourcenFehler</code> geworfen.
+	 * PrÃ¼ft <code>name</code> auf GÃ¼ltigkeit. <br>
+	 * Ein name ist nur dann gÃ¼ltig, wenn er nur aus Buchstaben besteht. <br>
+	 * Ein Buchstabe ist: a-z, A-Z, Ã¶, Ã¤, Ã¼, ÃŸ, Ã–, Ã„, Ãœ, áºž
 	 * 
 	 * @param <F>
-	 *            klasse von <code>fehler</code>, der beim ungültigen <code>name</code> geworfen wird.
+	 *            klasse von <code>fehler</code>, der beim ungÃ¼ltigen <code>name</code> geworfen wird.
 	 * 			
 	 * @param name
-	 *            Der zu prüfende Name
+	 *            Der zu prÃ¼fende Name
 	 * @param fehler
-	 *            wird geworfen, wenn <code>name</code> ungültig ist.
-	 * @throws F0
-	 *             wenn <code>name</code> ungültig ist
+	 *            wird geworfen, wenn <code>name</code> ungÃ¼ltig ist.
+	 * @throws F
+	 *             wenn <code>name</code> ungÃ¼ltig ist
 	 */
 	public static <F extends Exception> void testeName(String name, F fehler) throws F {
 		char[] zeichen;
+		int index;
 		zeichen = name.toCharArray();
-		for (char dieses : zeichen) {
-			if ( (dieses < 'a' || dieses > 'z') && (dieses < 'A' || dieses > 'Z') && (dieses < '0' || dieses > '9')) {
+		for (index = 0; index < zeichen.length; index ++ ) {
+			Pzs8bZeichen zwischen = new Pzs8bZeichen(zeichen[index]);
+			if ( !zwischen.istBuchstabe()) {
+				fehler.setStackTrace(new Throwable().getStackTrace());
 				throw fehler;
 			}
 		}
-		if (zeichen[0] >= '0' && zeichen[0] <= '9') {
-			throw fehler;
-		}
 		if (BESETZTE_NAMEN.contains(name)) {
+			fehler.setStackTrace(new Throwable().getStackTrace());
 			throw fehler;
 		}
 	}
 	
 	/**
-	 * Prüft, ob der Übergebene Pfad gültig ist. Wenn ja, wird dieser zurückgegeben. wenn nicht, dann wird ein <code>FalscheSourcenFehler</code> geworfen.
+	 * PrÃ¼ft, ob der Ã¼bergebene Pfad gÃ¼ltig ist. Wenn ja, wird dieser zurÃ¼ckgegeben. wenn nicht, dann wird ein <code>FalscheSourcenFehler</code> geworfen.
 	 * 
 	 * @param testePfad
 	 *            Der zu testende Pfad
 	 * @return Den <code>testePfad</code>, wenn dieser akzeptabel ist. Ansonsten wird ein <code>FalscheSourcenFehler</code> geworfen
 	 * @throws fehler
-	 *             wird geworfen, wenn der Pfad ungültig ist
+	 *             wird geworfen, wenn der Pfad ungÃ¼ltig ist
 	 */
 	public static <F extends Exception> String testePfad(String testePfad, F fehler) throws F {
 		if (testePfad.indexOf((int) ':') == -1 || testePfad.indexOf((int) '*') == -1 || testePfad.indexOf((int) '?') == -1 || testePfad.indexOf((int) '"') == -1
 				|| testePfad.indexOf((int) '<') == -1 || testePfad.indexOf((int) '>') == -1 || testePfad.indexOf((int) '|') == -1) {
+			fehler.setStackTrace(new Throwable().getStackTrace());
 			throw fehler;
 		}
 		return testePfad;
