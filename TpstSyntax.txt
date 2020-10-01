@@ -1,7 +1,10 @@
 TPST: Toller ProgrammierSprachen Text
 
 ort:
-	Diese Datei liegt in: [Pfad]
+	Diese tolle Datei liegt in: [Pfad]
+
+braucht:
+	Diese tolle Datei benötigt: 
 
 Sachenkopf:
 	Diese tolle [Sachenart] heißt [Sachenname] und ist [Sichtbarkeit]. Sie [bessert] [Sachenname eines nichtPlans der gleichen Art (Ding/Klasse)] und [macht] [Sachenname eines Plans der gleichen Art (Ding/Klasse)]
