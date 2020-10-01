@@ -2,12 +2,15 @@ package tps.kompiler.objekte.kompilieren;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 
 import de.hechler.patrick.pzs8b.Pzs8bCharset;
 import tps.kompiler.objekte.kompilieren.sourcenladen.TpsSourceLader;
+import tps.kompiler.objekte.kompilieren.sourcenladen.TpskLader;
+import tps.kompiler.objekte.kompilieren.sourcenladen.TpstLader;
 
 public class BekannteSourcenLader {
 	
@@ -18,7 +21,13 @@ public class BekannteSourcenLader {
 	static {
 		Pzs8bCharset pzs8b;
 		pzs8b = new Pzs8bCharset();
-		bekannte = new TpsSourceLader[0];
+		bekannte = new TpsSourceLader[6];
+		bekannte[0] = new TpstLader();
+		bekannte[1] = new TpstLader(pzs8b);
+		bekannte[2] = new TpstLader(StandardCharsets.UTF_8);
+		bekannte[3] = new TpskLader();
+		bekannte[4] = new TpskLader(pzs8b);
+		bekannte[5] = new TpskLader(StandardCharsets.UTF_8);
 	}
 	
 	

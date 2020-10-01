@@ -1,4 +1,9 @@
 TPST: Toller ProgrammierSprachen Text
 
+ort:
+	Diese Datei liegt in: [Pfad]
+
 Sachenkopf:
-	Diese tolle [Sachenart] heißt [Sachenname] und ist [Sichtbarkeit]
+	Diese tolle [Sachenart] heißt [Sachenname] und ist [Sichtbarkeit]. Sie [bessert] [Sachenname eines nichtPlans der gleichen Art (Ding/Klasse)] und [macht] [Sachenname eines Plans der gleichen Art (Ding/Klasse)]
+
+

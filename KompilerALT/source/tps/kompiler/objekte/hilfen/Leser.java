@@ -143,7 +143,7 @@ public class Leser {
 	}
 	
 	/**
-	 * lässt den internen Scanner mit <code>skip(String)</code> überspringen. Allerdings wird damit maximal bis zum Zeilenende gesprungen.
+	 * lässt den internen Scanner mit <code>überspringe</code> skippen. Allerdings wird damit maximal bis zum Zeilenende geskipt.
 	 * 
 	 * @param überspringen
 	 */

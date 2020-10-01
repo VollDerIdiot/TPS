@@ -25,7 +25,7 @@ Sichtbarkeit:
 	[eigen]
 
 Sachenname:
-	[Großbuchstabe] [Buchstabe]+
+	[Großbuchstabe] [Buchstabe]+ ([Zusatzsache])
 
 Buchstabe:
 	[Großbuchstabe / Kleinbuchstabe]
@@ -35,3 +35,6 @@ Kleinbuchstabe:
 
 Großbuchstabe:
 	A-Z, Ö, Ä, Ü, ẞ
+
+Pfad:
+	\[pfad mit '/' als Trennzeichen für Ordner\]

@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 import de.hechler.patrick.pzs8b.Pzs8bCharset;
 import tps.hilfen.Regeln;
+import tps.kompiler.objekte.code.Datei;
+import tps.kompiler.objekte.code.sache.Sache;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.hilfen.Leser;
-import tps.kompiler.objekte.programm.Datei;
-import tps.kompiler.objekte.programm.sache.Sache;
 
 public abstract class TpsSourceLader {
 	
@@ -37,7 +37,7 @@ public abstract class TpsSourceLader {
 	/**
 	 * Die aktuell zu bauende Datei
 	 */
-	protected Datei datei;
+	protected Datei bauen;
 	/**
 	 * Die Sache, die gerade gebaut wird, um diese dann der Datei hinzuzufügen.
 	 */
@@ -70,7 +70,7 @@ public abstract class TpsSourceLader {
 	
 	public Datei lade(File source, Charset zeichensatz) throws KompilierungsFehler {
 		Objects.requireNonNull(source, "Ich kann nicht aus nichts lesen!");
-		datei = null;
+		bauen = null;
 		sache = null;
 		try {
 			sourceLeser = new Leser(new Scanner(source, zeichensatz == null ? this.zeichensatz : zeichensatz));
@@ -78,13 +78,13 @@ public abstract class TpsSourceLader {
 			throw new KompilierungsFehler("Der sourceLeser wollte sich nicht initialisieren lassen: " + e);
 		}
 		ladeImplementierung(filtereNamenHeraus(source));
-		return datei;
+		return bauen;
 	}
 	
 	/**
-	 * Die Datei wurden bereits in {@link #sourceLeser} eingelesen, aber es wurde noch kein neuer Eintrag im {@link #archivSchreiber} gemacht, {@link #datei} und {@link #sache}
+	 * Die Datei wurden bereits in {@link #sourceLeser} eingelesen, aber es wurde noch kein neuer Eintrag im {@link #archivSchreiber} gemacht, {@link #bauen} und {@link #sache}
 	 * wurde auf null gesetzt wenn diese Methode aufgerufen wird. <br>
-	 * Nachdem die Methode Aufgerufen wurde, muss die dort geladene Datei in der variable {@link #datei} sein!
+	 * Nachdem die Methode Aufgerufen wurde, muss die dort geladene Datei in der variable {@link #bauen} sein!
 	 * 
 	 * @param dateiName
 	 *            Der Dateiname ohne die Dateiendung
