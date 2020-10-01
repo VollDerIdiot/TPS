@@ -33,7 +33,7 @@ public class TpstLader extends TpsSourceLader {
 	@Override
 	protected void ladeImplementierung(String name) throws KompilierungsFehler {
 		ladeKopf(name);
-		while (sourceLeser.hatN‰chstes()) {
+		while (sourceLeser.hatN√§chstes()) {
 			ladeSache();
 		}
 	}
@@ -73,9 +73,9 @@ public class TpstLader extends TpsSourceLader {
 			Sichtbarkeit sicht;
 			String zwischen;
 			teste("Dieses", "erschaffe", "ist");
-			sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.n‰chstes());
+			sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.n√§chstes());
 			teste("und", "braucht");
-			zwischen = sourceLeser.n‰chstes();
+			zwischen = sourceLeser.n√§chstes();
 			switch (zwischen) {
 			case "keine":
 				teste("Parameter!");
@@ -110,7 +110,7 @@ public class TpstLader extends TpsSourceLader {
 	private void ladeSachenVariablen() throws KompilierungsFehler {
 		String zwischen;
 		teste("Diese", "Sache", "hat");
-		zwischen = sourceLeser.n‰chstes();
+		zwischen = sourceLeser.n√§chstes();
 		switch (zwischen) {
 		case "keine":
 			teste("Variablen!");
@@ -119,13 +119,13 @@ public class TpstLader extends TpsSourceLader {
 			// - [Sichtbarkeit] [Datentyp] als [Name] ( - [Sichtbarkeit] [Datentyp] als [Name])*
 			Sichtbarkeit sicht;
 			teste("Variablen:", "-");
-			sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.n‰chstes());
+			sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.n√§chstes());
 			sache.neueVariable(new SacheVariable(sicht, leseVariable()));
 			while (true) {
-				if ("-".equals(sourceLeser.n‰chstes())) {
+				if ("-".equals(sourceLeser.n√§chstes())) {
 					sache.neueVariable(new SacheVariable(sicht, leseVariable()));
 				} else {
-					sourceLeser.zur¸ck();
+					sourceLeser.zur√ºck();
 					break;
 				}
 			}
@@ -137,19 +137,19 @@ public class TpstLader extends TpsSourceLader {
 	}
 	
 	/**
-	 * liest eine Variable ein, die folgendermaﬂen aufgebaut is: <br>
+	 * liest eine Variable ein, die folgenderma√üen aufgebaut is: <br>
 	 * [Datentyp] als [Name]
 	 * 
 	 * @return die eingelesene Variable
 	 * @throws FalscheSourcenFehler
-	 *             wenn der name ung¸ltig ist.
+	 *             wenn der name ungÔøΩltig ist.
 	 */
 	private Variable leseVariable() throws FalscheSourcenFehler {
 		Datentyp datentyp;
 		String name;
 		datentyp = leseDatentyp();
 		teste("als");
-		name = sourceLeser.n‰chstes();
+		name = sourceLeser.n√§chstes();
 		Regeln.testeName(name, new FalscheSourcenFehler("'" + name + "' ist kein Akzeptabler name!"));
 		return new Variable(name, datentyp);
 	}
@@ -163,11 +163,11 @@ public class TpstLader extends TpsSourceLader {
 		List <Datentyp> macht;
 		name = leseDatentyp();
 		teste("ist");
-		zwischen = sourceLeser.n‰chstes();
-		sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.n‰chstes());
+		zwischen = sourceLeser.n√§chstes();
+		sicht = Sichtbarkeit.erhalteVomNamen(sourceLeser.n√§chstes());
 		switch (zwischen) {
 		case "ein":
-			zwischen = sourceLeser.n‰chstes();
+			zwischen = sourceLeser.n√§chstes();
 			switch (zwischen) {
 			case "Ding":
 				art = 0;
@@ -203,30 +203,30 @@ public class TpstLader extends TpsSourceLader {
 			throw new FalscheSourcenFehler("ein' oder 'eine", zwischen);
 		}
 		macht = new ArrayList <Datentyp>();
-		if ("und".equals(sourceLeser.n‰chstes())) {
-			zwischen = sourceLeser.n‰chstes();
+		if ("und".equals(sourceLeser.n√§chstes())) {
+			zwischen = sourceLeser.n√§chstes();
 			switch (zwischen) {
 			case "bessert":
 				bessert = leseDatentyp();
-				if ( !"und".equals(sourceLeser.n‰chstes())) {
-					sourceLeser.zur¸ck();
+				if ( !"und".equals(sourceLeser.n√§chstes())) {
+					sourceLeser.zur√ºck();
 					break;
 				}
 			case "macht":
 				macht.add(leseDatentyp());
 				while (true) {
-					zwischen = sourceLeser.n‰chstes();
+					zwischen = sourceLeser.n√§chstes();
 					if ("und".equals(zwischen)) {
 						macht.add(leseDatentyp());
 					} else {
-						sourceLeser.zur¸ck();
+						sourceLeser.zur√ºck();
 						break;
 					}
 				}
 				break;
 			}
 		} else {
-			sourceLeser.zur¸ck();
+			sourceLeser.zur√ºck();
 		}
 		switch (art) {
 		case 0:
@@ -261,12 +261,12 @@ public class TpstLader extends TpsSourceLader {
 	private Datentyp leseDatentyp() throws FalscheSourcenFehler {
 		String name;
 		List <Datentyp> zusatz;
-		name = sourceLeser.n‰chstes();
-		if ("[".equals(sourceLeser.n‰chstes())) {
+		name = sourceLeser.n√§chstes();
+		if ("[".equals(sourceLeser.n√§chstes())) {
 			zusatz = new ArrayList <Datentyp>();
 			while (true) {
 				String zwischen;
-				zwischen = sourceLeser.n‰chstes();
+				zwischen = sourceLeser.n√§chstes();
 				switch (zwischen) {
 				case "+":
 					zusatz.add(leseDatentyp());
@@ -278,7 +278,7 @@ public class TpstLader extends TpsSourceLader {
 				}
 			}
 		} else {
-			sourceLeser.zur¸ck();
+			sourceLeser.zur√ºck();
 			return new Datentyp(name);
 		}
 		
@@ -290,7 +290,7 @@ public class TpstLader extends TpsSourceLader {
 		teste("Diese", "tolle", "Datei", "liegt", "in:");
 		ort = lesePfad();
 		teste("und", "braucht");
-		zwischen = sourceLeser.n‰chstes();
+		zwischen = sourceLeser.n√§chstes();
 		switch (zwischen) {
 		case "die": {
 			List <String> braucht;
@@ -298,7 +298,7 @@ public class TpstLader extends TpsSourceLader {
 			teste("folgenden", "Dateien:", "-");
 			braucht.add(lesePfad());
 			while (true) {
-				zwischen = sourceLeser.n‰chstes();
+				zwischen = sourceLeser.n√§chstes();
 				switch (zwischen) {
 				case "-":
 					braucht.add(lesePfad());

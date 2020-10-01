@@ -14,8 +14,9 @@ public abstract class TpsSourceLader {
 	public abstract String endung();
 	
 	/**
-	 * Gibt den Zeichensatz des <code>TpsSpurceLader</code>s, welche benutzt wird, um
-	 * @return
+	 * Gibt den Zeichensatz des <code>TpsSpurceLader</code>s, welche benutzt wird, um des gelesene zu in einen String umzuwandeln.
+	 * 
+	 * @return Den Zeichensatz, welcher zum decodieren des gelesenen verwendet wird
 	 */
 	public abstract Charset zeichensatz();
 	

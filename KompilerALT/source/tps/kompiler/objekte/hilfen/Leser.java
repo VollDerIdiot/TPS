@@ -8,8 +8,8 @@ import tps.kompiler.objekte.fehler.KompilierungsLaufzeitFehler;
 
 public class Leser {
 	
-	private static final int NÄCHSTES = 1;
-	private static final int NÄCHSTE_ZEILE = 2;
+	private static final int NÃ„CHSTES = 1;
+	private static final int NÃ„CHSTE_ZEILE = 2;
 	private static final int NEUE_ZEILE = 3;
 	private Scanner scnner;
 	private List <String> zeilen;
@@ -30,17 +30,17 @@ public class Leser {
 	
 	
 	/**
-	 * Geht einen Schritt zurück. Dies bedeutet, dass man genau den stand hat, den man vor dem letzten veränderndem Befehl hatte ({@link #nächstes()} oder {@link #nächsteZeile()}).
+	 * Geht einen Schritt zurÃ¼ck. Dies bedeutet, dass man genau den stand hat, den man vor dem letzten verÃ¤nderndem Befehl hatte ({@link #nÃ¤chstes()} oder {@link #nÃ¤chsteZeile()}).
 	 * 
 	 * @throws KompilierungsLaufzeitFehler
 	 *             wenn etwas mit dem log falsch war (Dies kann eigentlich nicht passieren!)
 	 * @throws IndexOutOfBoundsException,
 	 *             wenn man sich bereits am Anfang der Datei befindet.
 	 */
-	public void zurück() throws IndexOutOfBoundsException, KompilierungsLaufzeitFehler {
+	public void zurÃ¼ck() throws IndexOutOfBoundsException, KompilierungsLaufzeitFehler {
 		List <Integer> zwischen;
 		if (log.size() == 0) {
-			throw new IndexOutOfBoundsException("Ich bin schon am anfang, es geht nicht noch weiter zurück!");
+			throw new IndexOutOfBoundsException("Ich bin schon am anfang, es geht nicht noch weiter zurÃ¼ck!");
 		}
 		synchronized (this) {
 			log.remove(log.size() - 1);
@@ -50,11 +50,11 @@ public class Leser {
 			scnner = new Scanner(zeilen.get(0));
 			for (Integer aktion : zwischen) {
 				switch (aktion) {
-				case NÄCHSTES:
-					nächstes();
+				case NÃ„CHSTES:
+					nÃ¤chstes();
 					break;
-				case NÄCHSTE_ZEILE:
-					nächsteZeile();
+				case NÃ„CHSTE_ZEILE:
+					nÃ¤chsteZeile();
 					break;
 				case NEUE_ZEILE:
 					break;
@@ -68,11 +68,11 @@ public class Leser {
 		}
 	}
 	
-	public boolean hatNächstes() {
-		return hatNächstes(scnner, index + 1);
+	public boolean hatNÃ¤chstes() {
+		return hatNÃ¤chstes(scnner, index + 1);
 	}
 	
-	private boolean hatNächstes(Scanner scnner, int index) {
+	private boolean hatNÃ¤chstes(Scanner scnner, int index) {
 		if (scnner.hasNext()) {
 			return true;
 		} else {
@@ -82,7 +82,7 @@ public class Leser {
 				if (zwischen.hasNext()) {
 					return true;
 				} else {
-					return hatNächstes(zwischen, index + 1);
+					return hatNÃ¤chstes(zwischen, index + 1);
 				}
 			} else {
 				return false;
@@ -90,16 +90,16 @@ public class Leser {
 		}
 	}
 	
-	public String nächstes() {
+	public String nÃ¤chstes() {
 		synchronized (this) {
 			if (scnner.hasNext()) {
-				log.add(NÄCHSTES);
+				log.add(NÃ„CHSTES);
 				return scnner.next();
 			} else {
 				if (index + 1 >= zeilen.size()) {
 					scnner = new Scanner(zeilen.get( ++ index));
 					log.add(NEUE_ZEILE);
-					return nächstes();
+					return nÃ¤chstes();
 				} else {
 					return null;
 				}
@@ -107,20 +107,20 @@ public class Leser {
 		}
 	}
 	
-	public boolean hatNächsteZeile() {
+	public boolean hatNÃ¤chsteZeile() {
 		return index < (zeilen.size() - 1) || scnner.hasNextLine();
 	}
 	
-	public String nächsteZeile() {
+	public String nÃ¤chsteZeile() {
 		synchronized (this) {
 			if (scnner.hasNextLine()) {
-				log.add(NÄCHSTE_ZEILE);
+				log.add(NÃ„CHSTE_ZEILE);
 				return scnner.nextLine();
 			} else {
 				if (index + 1 >= zeilen.size()) {
 					scnner = new Scanner(zeilen.get( ++ index));
 					log.add(NEUE_ZEILE);
-					return nächsteZeile();
+					return nÃ¤chsteZeile();
 				} else {
 					return null;
 				}
@@ -143,12 +143,12 @@ public class Leser {
 	}
 	
 	/**
-	 * lässt den internen Scanner mit <code>überspringe</code> skippen. Allerdings wird damit maximal bis zum Zeilenende geskipt.
+	 * lÃ¤sst den internen Scanner mit <code>Ã¼berspringe</code> skippen. Allerdings wird damit maximal bis zum Zeilenende geskipt.
 	 * 
-	 * @param überspringen
+	 * @param Ã¼berspringen
 	 */
-	public void überspringe(String überspringen) {
-		scnner.skip(überspringen);
+	public void Ã¼berspringe(String Ã¼berspringen) {
+		scnner.skip(Ã¼berspringen);
 	}
 	
 }

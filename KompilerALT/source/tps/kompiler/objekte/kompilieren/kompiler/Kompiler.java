@@ -18,12 +18,12 @@ import tps.kompiler.objekte.kompilieren.sourcenladen.TpsSourceLader;
 
 public class Kompiler {
 	
-	private static final String KOMPILIERTE_DATEI_ENDUNG;
+//	private static final String KOMPILIERTE_DATEI_ENDUNG; // Umlagern oder entfernen 
 	
 	
 	
 	static {
-		KOMPILIERTE_DATEI_ENDUNG = ".tkp"; // Tolles-Kompiliertes-Programm
+//		KOMPILIERTE_DATEI_ENDUNG = ".tkp"; // Tolles-Kompiliertes-Programm
 	}
 	
 	
@@ -42,16 +42,16 @@ public class Kompiler {
 		ladeUndKompiliere(dateien, new Charset[dateien.length], schreiber);
 	}
 	
-	public void ladeUndKompiliere(File[] dateien, Charset[] zeichens‰tze, OutputStream schreiber) throws KompilierungsFehler, IOException {
+	public void ladeUndKompiliere(File[] dateien, Charset[] zeichens√§tze, OutputStream schreiber) throws KompilierungsFehler, IOException {
 		int durchlauf;
-		if (zeichens‰tze.length < dateien.length) {
-			ladeUndKompiliere(dateien, Arrays.copyOf(zeichens‰tze, dateien.length), schreiber);
+		if (zeichens√§tze.length < dateien.length) {
+			ladeUndKompiliere(dateien, Arrays.copyOf(zeichens√§tze, dateien.length), schreiber);
 		}
 		for (durchlauf = 0; durchlauf < dateien.length; durchlauf ++ ) {
 			TpsSourceLader sourceLader;
 			Datei geladen;
 			sourceLader = BekannteSourcenLader.erhalte(dateien[durchlauf]);
-			geladen = sourceLader.lade(dateien[durchlauf], zeichens‰tze[durchlauf]);
+			geladen = sourceLader.lade(dateien[durchlauf], zeichens√§tze[durchlauf]);
 			this.dateien.add(geladen);
 		}
 		for (Datei datentypenTesten : this.dateien) {
@@ -69,7 +69,7 @@ public class Kompiler {
 				}
 			}
 			if (durchlauf != braucht.size()) {
-				throw new FalscheSourcenFehler("Ich habe nicht genau soviele Dateien gefunden, wie benˆtigt werden (gefunden: " + durchlauf + " braucht: " + braucht.size()
+				throw new FalscheSourcenFehler("Ich habe nicht genau soviele Dateien gefunden, wie ben√∂tigt werden (gefunden: " + durchlauf + " braucht: " + braucht.size()
 						+ " in Datei " + datentypenTesten + ")!");
 			}
 			datentypenTesten.testeDatentypen(kennt);
