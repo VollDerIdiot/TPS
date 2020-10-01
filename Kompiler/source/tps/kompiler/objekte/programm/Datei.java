@@ -16,20 +16,20 @@ public class Datei implements Comparable <Datei> {
 	
 	
 	
-	private Datei(String ort, String name, String[] braucht) {
-		this.ort = ort;
-		this.name = name;
-		this.braucht = braucht;
-	}
-	
-	public Datei erschaffe(String ort, String name, Collection <String> braucht) {
+	public static Datei erschaffe(String ort, String name, Collection <String> braucht) {
 		String[] brauchtArray;
 		Objects.requireNonNull(name, "Ich weigere mich jetzt null zu heißen");
 		Objects.requireNonNull(ort, "Der ort kann nicht null sein!");
 		Regeln.testePfad(ort, new KompilierungsLaufzeitFehler("Das ist kein gültiger ort! (eigentlich darf das hier nicht mehr passieren!"));
 		brauchtArray = (braucht == null) ? new String[0] : braucht.toArray(new String[braucht.size()]);
-		Arrays.sort(this.braucht, Hilfen.vergleicherKeineNull());
+		Arrays.sort(brauchtArray, Hilfen.vergleicherKeineNull());
 		return new Datei(ort, name, brauchtArray);
+	}
+	
+	private Datei(String ort, String name, String[] braucht) {
+		this.ort = ort;
+		this.name = name;
+		this.braucht = braucht;
 	}
 	
 	
