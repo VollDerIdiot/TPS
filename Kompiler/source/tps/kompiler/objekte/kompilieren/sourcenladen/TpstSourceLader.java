@@ -1,5 +1,7 @@
 package tps.kompiler.objekte.kompilieren.sourcenladen;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
@@ -34,15 +36,37 @@ public class TpstSourceLader extends TpsSourceLader {
 		teste("Diese", "tolle", "Datei");
 		zwischen = sourceLeser.nächstes();
 		switch (zwischen) {
-		case "braucht":
-			
-			break;
-		case "kommt":
-			teste("alleine", "super", "zurecht!");
-			break;
-		default:
+		case "benötigt:": {
+			boolean stopp = false;
+			braucht = new ArrayList <String>();
+			braucht.add(lesePfad());
+			while (!stopp) {
+				zwischen = sourceLeser.nächstes();
+				switch (zwischen) {
+				case "und":
+					braucht.add(lesePfad());
+					break;
+				case "Dieser":
+				case "Dieses":
+				case "Diese":
+					sourceLeser.zurück();
+					stopp = true;
+					break;
+				default:
+					throw new FalscheSourcenFehler("und', 'Dieser', 'Dieses' oder 'Diese", zwischen);
+				}
+			}
 			break;
 		}
+		case "kommt":
+			teste("alleine", "super", "zurecht!");
+			braucht = Collections.emptyList();
+			break;
+		default:
+			throw new FalscheSourcenFehler("benötigt:' oder 'kommt", zwischen);
+		}
+//		TODO weitermachen
+		
 		
 		throw new NochNichtGemachtFehler();
 	}

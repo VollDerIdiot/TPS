@@ -3,6 +3,7 @@ package tps.kompiler.objekte.kompilieren.sourcenladen;
 import java.nio.charset.Charset;
 import java.util.Objects;
 
+import tps.hilfen.Regeln;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.hilfen.Leser;
@@ -10,8 +11,18 @@ import tps.kompiler.objekte.programm.Datei;
 
 public abstract class TpsSourceLader {
 	
-	private static final String PFAD_ENDE = ":>";
-	private static final String PFAD_ANFANG = "|:";
+	private static final String PFAD_ANFANG;
+	private static final String PFAD_ENDE;
+	
+	
+	
+	static {
+		PFAD_ANFANG = "|:";
+		PFAD_ENDE = ":>";
+	}
+	
+	
+	
 	/**
 	 * speichert den Zeichensatz des <code>TpsSpurceLader</code>s, welche benutzt wird, um des gelesene zu in einen String umzuwandeln.
 	 */
@@ -81,6 +92,14 @@ public abstract class TpsSourceLader {
 		}
 	}
 	
+	/**
+	 * Gibt alles von {@link #PFAD_ANFANG} bis zu {@link #PFAD_ENDE} in der gleichen Zeile zurück. <br>
+	 * Wenn dies nicht möglich ist wird ein <code>FalscheSourcenFehler</code> geworfen.
+	 * 
+	 * @return den nächsten Pfad
+	 * @throws FalscheSourcenFehler
+	 *             wenn in der nächsten Zeile des {@link #sourceLeser}s kein Pfad enthalten ist!
+	 */
 	protected String lesePfad() throws FalscheSourcenFehler {
 		String ergebnis;
 		int anfang;
@@ -94,7 +113,8 @@ public abstract class TpsSourceLader {
 			return lesePfad();
 		}
 		ende = ergebnis.lastIndexOf(PFAD_ENDE);
-		return ergebnis.substring(anfang, ende);
+		ergebnis = ergebnis.substring(anfang, ende);
+		return Regeln.testePfad(ergebnis, new FalscheSourcenFehler("'" + ergebnis + "' ist kein Pfad! Ein Pfad darf keine ungüligen Zeichen enthalten!"));
 	}
 	
 }
