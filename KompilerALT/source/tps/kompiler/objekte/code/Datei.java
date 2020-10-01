@@ -41,7 +41,7 @@ public class Datei implements Comparable <Datei> {
 		zwischen.add(new Datentyp("DateiLeser"));
 		zwischen.add(new Datentyp("DateiSchreiber"));
 		zwischen.add(new Datentyp("Leser"));
-		zwischen.add(new Datentyp("JaNö"));
+		zwischen.add(new Datentyp("JaNï¿½"));
 		STANDARD_DATENTYPEN = Collections.unmodifiableSet(zwischen);
 	}
 	
@@ -86,12 +86,12 @@ public class Datei implements Comparable <Datei> {
 	}
 	
 	/**
-	 * Prüft, ob alle {@link #datentypen} in <code>bekannteDatentypen</code> enthalten sind. <br>
+	 * Prï¿½ft, ob alle {@link #datentypen} in <code>bekannteDatentypen</code> enthalten sind. <br>
 	 * Wenn alle bekannt sind passiert nichts. <br>
 	 * Wenn nicht, wird ein <code>KompilierungsFehler</code> geworfen.
 	 * 
 	 * @param bekannteDatentypen
-	 *            Es dürfen nur diese Datentypen benötigt werden.
+	 *            Es dï¿½rfen nur diese Datentypen benï¿½tigt werden.
 	 * @throws KompilierungsFehler
 	 *             Wird geworfen, wenn es mindestens einen Datentyp gibt, welcher nicht in <code>bekannteDatentypen</code> enthalten ist.
 	 */
@@ -117,7 +117,7 @@ public class Datei implements Comparable <Datei> {
 		return (zwischen == 0) ? name.compareTo(mit.name) : zwischen;
 	}
 	
-	public Map <String, Datentyp> benötigteDatentypen() {
+	public Map <String, Datentyp> benÃ¶tigteDatentypen() {
 		return Collections.unmodifiableMap(datentypen);
 	}
 	

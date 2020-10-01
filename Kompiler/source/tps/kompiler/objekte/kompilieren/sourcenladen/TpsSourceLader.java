@@ -39,7 +39,7 @@ public abstract class TpsSourceLader {
 	 */
 	protected Datei datei;
 	/**
-	 * Die Sache, die gerade gebaut wird, um diese dann der Datei hinzuzufügen.
+	 * Die Sache, die gerade gebaut wird, um diese dann der Datei hinzuzufï¿½gen.
 	 */
 	protected Sache sache;
 	/**
@@ -93,22 +93,22 @@ public abstract class TpsSourceLader {
 	protected abstract void ladeImplementierung(String name) throws KompilierungsFehler;
 	
 	/**
-	 * @implSpec lässt den {@link #bereiteKompilierungVor()} whitespace skippen und liest die nächsteZeile ein: <br>
+	 * @implSpec lï¿½sst den {@link #bereiteKompilierungVor()} whitespace skippen und liest die nÃ¤chsteZeile ein: <br>
 	 *           Wenn diese leer ist, dann ruft die Methdoe sich selbst auf. <br>
-	 *           Wenn nicht, dann wird diese zurückgegeben.
+	 *           Wenn nicht, dann wird diese zurÃ¼ckgegeben.
 	 * @return
 	 */
 	protected String lesePfad() {
 		String ergebnis;
-		sourceLeser.überspringe(WHITESPACE_BELIBIGE);
-		ergebnis = sourceLeser.nächsteZeile();
+		sourceLeser.Ã¼berspringe(WHITESPACE_BELIBIGE);
+		ergebnis = sourceLeser.nÃ¤chsteZeile();
 		return (ergebnis.isBlank()) ? lesePfad() : ergebnis;
 	}
 	
 	protected void teste(String... testen) throws FalscheSourcenFehler {
 		for (String teste : testen) {
 			String zwischen;
-			zwischen = sourceLeser.nächstes();
+			zwischen = sourceLeser.nÃ¤chstes();
 			if ( !teste.equals(zwischen)) {
 				throw new FalscheSourcenFehler(teste, zwischen);
 			}
@@ -116,7 +116,7 @@ public abstract class TpsSourceLader {
 	}
 	
 	protected String testePfad(String testen) throws FalscheSourcenFehler {
-		return Regeln.testePfad(testen, new FalscheSourcenFehler("'" + testen + "' ist kein gültiger Pfad!"));
+		return Regeln.testePfad(testen, new FalscheSourcenFehler("'" + testen + "' ist kein gï¿½ltiger Pfad!"));
 	}
 	
 	private String filtereNamenHeraus(File source) {
@@ -130,7 +130,7 @@ public abstract class TpsSourceLader {
 	}
 	
 	/**
-	 * Gibt die Dateiendung des Sourcecodes zurück. <br>
+	 * Gibt die Dateiendung des Sourcecodes zurÃ¼ck. <br>
 	 * Dies entspricht allem, was nach dem letztem '.' kommt (ohne den '.' selbst!).
 	 * 
 	 * @return Die Endung der nicht kompilierten Datei
