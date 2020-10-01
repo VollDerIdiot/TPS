@@ -2,12 +2,11 @@ package tps.kompiler.objekte.programm;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Objects;
 
+import tps.hilfen.Hilfen;
 import tps.hilfen.Regeln;
 import tps.kompiler.objekte.fehler.KompilierungsLaufzeitFehler;
-import tps.kompiler.objekte.hilfen.Vergleiche;
 
 public class Datei implements Comparable <Datei> {
 	
@@ -29,7 +28,7 @@ public class Datei implements Comparable <Datei> {
 		Objects.requireNonNull(ort, "Der ort kann nicht null sein!");
 		Regeln.testePfad(ort, new KompilierungsLaufzeitFehler("Das ist kein gültiger ort! (eigentlich darf das hier nicht mehr passieren!"));
 		brauchtArray = (braucht == null) ? new String[0] : braucht.toArray(new String[braucht.size()]);
-		Arrays.sort(this.braucht, Vergleiche.STRING);
+		Arrays.sort(this.braucht, Hilfen.vergleicherKeineNull());
 		return new Datei(ort, name, brauchtArray);
 	}
 	
@@ -40,7 +39,7 @@ public class Datei implements Comparable <Datei> {
 	}
 	
 	public boolean braucht(String testen) {
-		return -1 != Arrays.binarySearch(braucht, testen, Vergleiche.STRING);
+		return -1 != Arrays.binarySearch(braucht, testen, Hilfen.vergleicherKeineNull());
 	}
 	
 	@Override
