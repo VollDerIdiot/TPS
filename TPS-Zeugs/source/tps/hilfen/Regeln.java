@@ -1,36 +1,19 @@
 package tps.hilfen;
 
-import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
 
 import de.hechler.patrick.pzs8b.zeichen.Pzs8bZeichen;
+import de.hechler.patrick.pzs8b.zeichenKette.Pzs8bZeichenKette;
 
 public class Regeln {
 	
-	public static final String Pfad_TEILER;
-	public static final String GEHE_IN;
-	public static final Set <String> BESETZTE_NAMEN;
+	public static final String PFAD_TEILER;
 	
 	
 	
 	static {
-		Set <String> zwischen;
-		Pfad_TEILER = "/";
-		GEHE_IN = "#";
-		zwischen = new TreeSet <String>();
-		zwischen.add("braucht");
-		zwischen.add("macht");
-		zwischen.add("bessert");
-		zwischen.add("offen");
-		zwischen.add("vererben");
-		zwischen.add("datei");
-		zwischen.add("eigen");
-		// TODO fertig machen
-		
-		
-		
-		BESETZTE_NAMEN = Collections.unmodifiableSet(zwischen);
+		PFAD_TEILER = "/";
 	}
 	
 	
@@ -50,18 +33,22 @@ public class Regeln {
 	 * @throws F
 	 *             wenn <code>name</code> ungültig ist
 	 */
-	public static <F extends Exception> void testeName(String name, F fehler) throws F {
-		char[] zeichen;
-		int index;
-		zeichen = name.toCharArray();
-		for (index = 0; index < zeichen.length; index ++ ) {
-			Pzs8bZeichen zwischen = new Pzs8bZeichen(zeichen[index]);
-			if ( !zwischen.istBuchstabe()) {
+	public static <F extends Exception> void testeName(String name, F fehler, Set <String> besetzteNamen) throws F {
+		Pzs8bZeichen[] zeichen;
+		Objects.requireNonNull(name, "Ich kann nicht auf null prüfen!");
+		Objects.requireNonNull(fehler, "Ich kann null nuicht werfen!");
+		zeichen = new Pzs8bZeichenKette(name).getZeichen();
+		if (zeichen.length < 2) {
+			fehler.setStackTrace(new Throwable().getStackTrace());
+			throw fehler;
+		}
+		for (Pzs8bZeichen dieses : zeichen) {
+			if ( !dieses.istBuchstabe()) {
 				fehler.setStackTrace(new Throwable().getStackTrace());
 				throw fehler;
 			}
 		}
-		if (BESETZTE_NAMEN.contains(name)) {
+		if (besetzteNamen != null && besetzteNamen.contains(name)) {
 			fehler.setStackTrace(new Throwable().getStackTrace());
 			throw fehler;
 		}
@@ -77,6 +64,8 @@ public class Regeln {
 	 *             wird geworfen, wenn der Pfad ungültig ist
 	 */
 	public static <F extends Exception> String testePfad(String testePfad, F fehler) throws F {
+		Objects.requireNonNull(testePfad, "Ich kann nicht auf null prüfen!");
+		Objects.requireNonNull(fehler, "Ich kann null nuicht werfen!");
 		if (testePfad.indexOf((int) ':') == -1 || testePfad.indexOf((int) '*') == -1 || testePfad.indexOf((int) '?') == -1 || testePfad.indexOf((int) '"') == -1
 				|| testePfad.indexOf((int) '<') == -1 || testePfad.indexOf((int) '>') == -1 || testePfad.indexOf((int) '|') == -1) {
 			fehler.setStackTrace(new Throwable().getStackTrace());

@@ -1,10 +1,16 @@
 TPST: Toller ProgrammierSprachen Text
 
+Informationen:
+	[Einrückung um ein TAB pro BOX und pro Sache, in welcher man sich befindet (bei Sache ist dies aktuell max. 1)]
+
 ort:
 	Diese tolle Datei liegt in: [Pfad]
 
 braucht:
-	Diese tolle Datei benötigt: 
+	- braucht etwas:
+		Diese tolle Datei benötigt: [Pfad]+
+	- braucht nichts:
+		Diese tolle Datei kommt alleine super zurecht!
 
 Sachenkopf:
 	- DingPlan:
@@ -23,4 +29,72 @@ Sachenkopf:
 				Es bessert [Name von Ding/UnfertigesDing]
 			Danach eventuell:
 				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
-		TODO für Klasse machen
+	- KlassenPlan:
+		Dieser tolle KlassenPlan heißt [Name] und ist [Sichtbarkeit].
+			Danach eventuell:
+				Es bessert [Name von anderen KlassenPLans] ( + [Name von anderen KlassenPLans])*
+	- UnfertigeKlasse:
+		Diese tolle unfertige Klasse heißt [Name] und ist [Sichtbarkeit].
+			Danach eventuell:
+				Es bessert [Name von Klasse/UnfertigeKlasse]
+			Danach eventuell:
+				Es macht [Name von KlassenPlan] ( + [Name von KlassenPlan])*
+	- Klasse:
+		Diese tolle Klasse heißt [Name] und ist [Sichtbarkeit].
+			Danach eventuell:
+				Es bessert [Name von Klasse/UnfertigeKlasse]
+			Danach eventuell:
+				Es macht [Name von KlassenPLan] ( + [Name von KlassenPLan])*
+
+Sacheninhalt:
+	- DingPlan:
+		[UnfertigeMethode]*
+	- UnfertigesDing:
+		[SachenVariable]*
+		[erschaffeMethode]*					(Muss immer einzigartige Übergabeparameter haben)
+		[FertigeMethode]*
+		[UnfertigeMethode]*					(Es darf nicht mehrere Methoden mit gleichem Namen und Übergabeparameter geben)
+	- Ding:
+		[SachenVariable]*
+		[erschaffeMethode]*					(Muss immer einzigartige Übergabeparameter haben)
+		[FertigeMethode]*					(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
+	- KlassenPlan:
+		[UnfertigeMethode]*
+	- UnfertigeKlasse:
+		[SachenVariable]*
+		Potentiell: [erstesMethode]
+		[Methode]*							(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
+	- Klasse:
+		[SachenVariable]*
+		(Potentiell:		[erstesMethode])
+		[FertigeMethode]*					(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
+
+UnfertigeMethode:
+	- keine Übergabeparametern:
+		Diese unfertige Methode ist [Sichtbarkeit] und heißt [Name]
+	- mit Übergabeparametern:
+		Diese unfertige Methode ist [Sichtbarkeit], heißt [Name] und erhält [Übergabeparameter]
+
+FertigeMethode:
+	- keine Übergabeparametern:
+		Diese tolle Methode heißt [Name] und ist [Sichtbarkeit]
+		[Box]
+	- mit Übergabeparametern:
+		Diese tolle Methode heißt [Name] ist [Sichtbarkeit] und erhält [Übergabeparameter]
+		[Box]
+
+Übergabeparameter:
+	[RohName] als [Name von Sache] ( + [RohName] als [Name von Sache])
+
+Box:
+	[Befehl]+
+
+Zusatzgedings:
+	von [Name] ( und [Name])*
+
+Befehl:
+	- Methodenaufruf:
+	- Schleife:
+	- Falls:
+	- Sonst:
+	- 

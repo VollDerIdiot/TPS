@@ -142,7 +142,7 @@ public class TpstLader extends TpsSourceLader {
 	 * 
 	 * @return die eingelesene Variable
 	 * @throws FalscheSourcenFehler
-	 *             wenn der name ung�ltig ist.
+	 *             wenn der name ungültig ist.
 	 */
 	private Variable leseVariable() throws FalscheSourcenFehler {
 		Datentyp datentyp;
@@ -150,7 +150,7 @@ public class TpstLader extends TpsSourceLader {
 		datentyp = leseDatentyp();
 		teste("als");
 		name = sourceLeser.nächstes();
-		Regeln.testeName(name, new FalscheSourcenFehler("'" + name + "' ist kein Akzeptabler name!"));
+		Regeln.testeName(name, new FalscheSourcenFehler("'" + name + "' ist kein Akzeptabler name!"), null);
 		return new Variable(name, datentyp);
 	}
 	
