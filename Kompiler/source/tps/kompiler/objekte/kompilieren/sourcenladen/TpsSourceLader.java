@@ -11,12 +11,12 @@ public abstract class TpsSourceLader {
 	 * @return Die Dateiendung, welche Dateien haben, die von diesem <code>TpsSourceLader</code> geladen werden können. <br>
 	 *         Die Dateiendung ist alles was nach dem letztem '.' Zeichen kommt (also ohne das '.' Zeichen selbst)
 	 */
-	protected abstract String endung();
+	public abstract String endung();
 	
 	/**
 	 * Gibt den Zeichensatz des <code>TpsSpurceLader</code>s, welche benutzt wird, um
 	 * @return
 	 */
-	protected abstract Charset zeichensatz();
+	public abstract Charset zeichensatz();
 	
 }
