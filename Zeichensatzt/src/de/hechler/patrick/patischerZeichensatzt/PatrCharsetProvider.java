@@ -10,7 +10,7 @@ import de.hechler.patrick.pzs8b.Pzs8bCharset;
 
 public class PatrCharsetProvider extends CharsetProvider {
 	
-	private PatrCharset[] charsets = {new Pzs8bCharset() };
+	private final PatrCharset[] charsets = {new Pzs8bCharset() };
 	
 	@Override
 	public Iterator <Charset> charsets() {
