@@ -2,6 +2,14 @@ package tps.hilfen;
 
 public class Hilfen {
 	
+	/**
+	 * Ein Konstruktor der Niemals aufgerufen werden wird.
+	 */
+	private Hilfen() {
+	}
+	
+	
+	
 	public static byte[] zuFeld(int umwandeln) {
 		byte[] ergebnis;
 		ergebnis = new byte[4];

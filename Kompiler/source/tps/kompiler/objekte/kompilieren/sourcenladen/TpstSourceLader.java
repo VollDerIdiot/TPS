@@ -20,7 +20,7 @@ public class TpstSourceLader extends TpsSourceLader {
 	}
 	
 	@Override
-	protected void lade() throws KompilierungsFehler {
+	protected void lade(String name) throws KompilierungsFehler {
 		String zwischen;
 		String ort;
 		List <String> braucht;
@@ -40,7 +40,7 @@ public class TpstSourceLader extends TpsSourceLader {
 			boolean stopp = false;
 			braucht = new ArrayList <String>();
 			braucht.add(lesePfad());
-			while (!stopp) {
+			while ( !stopp) {
 				zwischen = sourceLeser.nächstes();
 				switch (zwischen) {
 				case "und":
@@ -65,7 +65,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		default:
 			throw new FalscheSourcenFehler("benötigt:' oder 'kommt", zwischen);
 		}
-//		TODO weitermachen
+		// TODO weitermachen
 		
 		
 		throw new NochNichtGemachtFehler();
