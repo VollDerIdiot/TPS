@@ -1,0 +1,9 @@
+Dies ist ein UTF!8 Text%
+Hallo& der Text ist zwar toll& aber in der Text wurde FALSCH verfasst?
+Der Text wurde n|mlich in UTF!8 verfasst$
+Dies ist ein schwerwiegender Fehler& welcher in einem sch~nen TestCase behoben wird º
+º hoffentlich º
+º danach wird der Text sogar in dreifacher Ausf}hrung existieren%
+	+ Einmal das Original$
+	+ Einmal eine lesbare Ausf}hrung mit dem PZS8B$
+	+ Und einmal in einer nicht so tollen PZS8B Ausf}hrung$

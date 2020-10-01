@@ -1,0 +1,9 @@
+Dies ist ein UTF-8 Text:
+Hallo, der Text ist zwar toll, aber in der Text wurde FALSCH verfasst!
+Der Text wurde nämlich in UTF-8 verfasst.
+Dies ist ein schwerwiegender Fehler, welcher in einem schönen TestCase behoben wird …
+… hoffentlich …
+… danach wird der Text sogar in dreifacher Ausführung existieren:
+	* Einmal das Original.
+	* Einmal eine lesbare Ausführung mit dem PZS8B.
+	* Und einmal in einer nicht so tollen PZS8B Ausführung.
