@@ -3,15 +3,18 @@ package de.hechler.patrick.pzs8b.zeichenKette;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-import de.hechler.patrick.patischerZeichensatzt.zeichen.ZeichenZeugs;
+import de.hechler.patrick.patischerZeichensatzt.zeichen.ZeichenInterface;
+import de.hechler.patrick.patischerZeichensatzt.zeichenKette.UnfertigeZeichenKette;
 import de.hechler.patrick.patischerZeichensatzt.zeichenKette.ZeichenKetteInterface;
 import de.hechler.patrick.pzs8b.zeichen.Pzs8bZeichen;
 
-public class Pzs8bZeichenKette implements ZeichenKetteInterface {
+public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
 	
-	private Pzs8bZeichen[] pzs8bZeichen;
+	private final Pzs8bZeichen[] pzs8bZeichen;
 	
 	public Pzs8bZeichenKette(InputStream leser) throws Exception {
 		List <Pzs8bZeichen> zeichen;
@@ -51,10 +54,25 @@ public class Pzs8bZeichenKette implements ZeichenKetteInterface {
 	}
 	
 	public Pzs8bZeichenKette(Pzs8bZeichen[] zeichen) {
+		Objects.requireNonNull(zeichen, "Ich kann nicht meine zeichen in null speihern!");
+		this.pzs8bZeichen = zeichen.clone();
+	}
+	
+	private Pzs8bZeichenKette(Pzs8bZeichen[] zeichen, Void nichts) {
 		this.pzs8bZeichen = zeichen;
 	}
 	
 	
+	
+	@Override
+	public Pzs8bZeichen getZeichen(int index) {
+		return pzs8bZeichen[index];
+	}
+	
+	@Override
+	public int größe() {
+		return pzs8bZeichen.length;
+	}
 	
 	@Override
 	public int[] getBytes() {
@@ -68,11 +86,11 @@ public class Pzs8bZeichenKette implements ZeichenKetteInterface {
 	
 	@Override
 	public Pzs8bZeichen[] getZeichen() {
-		return pzs8bZeichen;
+		return pzs8bZeichen.clone();
 	}
 	
 	@Override
-	public boolean contains(ZeichenZeugs prüfen) {
+	public boolean contains(ZeichenInterface prüfen) {
 		if (prüfen instanceof Pzs8bZeichen) {
 			for (Pzs8bZeichen prüfer : pzs8bZeichen) {
 				if (prüfer.equals(prüfen)) {
@@ -104,7 +122,7 @@ public class Pzs8bZeichenKette implements ZeichenKetteInterface {
 	}
 	
 	@Override
-	public int getIndex(ZeichenZeugs prüfen) {
+	public int getIndex(ZeichenInterface prüfen) {
 		int runde;
 		for (runde = 0; runde < pzs8bZeichen.length; runde ++ ) {
 			if (prüfen.equals(pzs8bZeichen[runde])) {
@@ -138,7 +156,7 @@ public class Pzs8bZeichenKette implements ZeichenKetteInterface {
 	}
 	
 	@Override
-	public int getLetztenIndex(ZeichenZeugs prüfen) {
+	public int getLetztenIndex(ZeichenInterface prüfen) {
 		int runde;
 		for (runde = pzs8bZeichen.length - 1; runde > 0; runde -- ) {
 			if (prüfen.equals(pzs8bZeichen[runde])) {
@@ -182,7 +200,7 @@ public class Pzs8bZeichenKette implements ZeichenKetteInterface {
 	}
 	
 	@Override
-	public int[] getAlleIndexe(ZeichenZeugs prüfen) {
+	public int[] getAlleIndexe(ZeichenInterface prüfen) {
 		ArrayList <Integer> indexe = new ArrayList <Integer>();
 		int runde;
 		
@@ -229,6 +247,40 @@ public class Pzs8bZeichenKette implements ZeichenKetteInterface {
 			schreiber.write(schreiben.getNummer());
 		}
 		schreiber.close();
+	}
+	
+	@Override
+	public Pzs8bZeichenKette zuGroßbuchstaben() {
+		Pzs8bZeichen[] ergebnis;
+		int runde;
+		ergebnis = pzs8bZeichen.clone();
+		for (runde = 0; runde < ergebnis.length; runde ++ ) {
+			ergebnis[runde] = pzs8bZeichen[runde].zuGroßbuchstaben();
+		}
+		return new Pzs8bZeichenKette(ergebnis, null);
+	}
+	
+	@Override
+	public Pzs8bZeichenKette zuKleinbuchstaben() {
+		Pzs8bZeichen[] ergebnis;
+		int runde;
+		ergebnis = pzs8bZeichen.clone();
+		for (runde = 0; runde < ergebnis.length; runde ++ ) {
+			ergebnis[runde] = pzs8bZeichen[runde].clone().zuKleinbuchstaben();
+		}
+		return new Pzs8bZeichenKette(ergebnis, null);
+	}
+	
+	@Override
+	public Pzs8bZeichenKette unterKette(int beginn, int ende) {
+		Pzs8bZeichen[] ergebnis;
+		ergebnis = Arrays.copyOfRange(pzs8bZeichen, beginn, ende);
+		return new Pzs8bZeichenKette(ergebnis, null);
+	}
+	
+	@Override
+	public Pzs8bZeichenKette clone() {
+		return new Pzs8bZeichenKette(pzs8bZeichen.clone(), null);
 	}
 	
 }

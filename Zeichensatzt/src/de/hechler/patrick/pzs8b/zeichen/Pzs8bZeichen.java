@@ -1,11 +1,25 @@
 package de.hechler.patrick.pzs8b.zeichen;
 
-import de.hechler.patrick.patischerZeichensatzt.zeichen.ZeichenZeugs;
+import de.hechler.patrick.patischerZeichensatzt.zeichen.ZeichenInterface;
 import de.hechler.patrick.patischerZeichensatzt.zeichen.exeption.FalscheAnzahlBytesUmEinZeichenZuGenerieren;
 import de.hechler.patrick.patischerZeichensatzt.zeichen.exeption.UnbekanntesZeichen;
 
-public class Pzs8bZeichen extends ZeichenZeugs {
+public class Pzs8bZeichen implements ZeichenInterface {
 	
+	public static final int GROẞ_ANFANG;
+	public static final int GROẞ_ENDE;
+	public static final int KLEIN_ANFANG;
+	public static final int KLEIN_ENDE;
+	public static final int GROẞ_ZU_KLEIN;
+	public static final int KLEIN_ZU_GROẞ;
+	public static final int ZAHL_ANFANG;
+	public static final int ZAHL_ENDE;
+	public static final int HOCHZAHL_ANFANG;
+	public static final int HOCHZAHL_ENDE;
+	public static final int RUNTERZAHL_ANFANG;
+	public static final int RUNTERZAHL_ENDE;
+	public static final int SONDERZAHL_ANFANG;
+	public static final int SONDERZAHL_ENDE;
 	private static Character[] alleZeichen;
 	private static boolean[] command;
 	
@@ -17,6 +31,20 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 	
 	static {
 		setup();
+		GROẞ_ANFANG = getIndex('A');
+		GROẞ_ENDE = getIndex('Ö');
+		KLEIN_ANFANG = getIndex('a');
+		KLEIN_ENDE = getIndex('ö');
+		GROẞ_ZU_KLEIN = KLEIN_ANFANG - GROẞ_ANFANG;
+		KLEIN_ZU_GROẞ = -GROẞ_ZU_KLEIN;
+		ZAHL_ANFANG = getIndex('0');
+		ZAHL_ENDE = getIndex('9');
+		HOCHZAHL_ANFANG = getIndex('⁰');
+		HOCHZAHL_ENDE = getIndex('⁹');
+		RUNTERZAHL_ANFANG = getIndex('₀');
+		RUNTERZAHL_ENDE = getIndex('₉');
+		SONDERZAHL_ANFANG = getIndex('⅓');
+		SONDERZAHL_ENDE = getIndex('⅞');
 	}
 	
 	
@@ -88,6 +116,49 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		return false;
 	}
 	
+	@Override
+	public Pzs8bZeichen zuGroßbuchstaben() {
+		if ( (zeichen < KLEIN_ANFANG) || (zeichen > KLEIN_ENDE)) {
+			return this;
+		}
+		return new Pzs8bZeichen(zeichen + KLEIN_ZU_GROẞ);
+	}
+	
+	@Override
+	public Pzs8bZeichen zuKleinbuchstaben() {
+		if ( (zeichen < GROẞ_ANFANG) || (zeichen > GROẞ_ENDE)) {
+			return this;
+		}
+		return new Pzs8bZeichen(zeichen + GROẞ_ZU_KLEIN);
+	}
+	
+	@Override
+	public boolean istBuchstabe() {
+		return (zeichen >= GROẞ_ANFANG && zeichen <= GROẞ_ENDE) || (zeichen >= KLEIN_ANFANG && zeichen <= KLEIN_ENDE);
+	}
+	
+	@Override
+	public boolean istGroßbuchstaben() {
+		return zeichen >= GROẞ_ANFANG && zeichen <= GROẞ_ENDE;
+	}
+	
+	@Override
+	public boolean istKleinbuchstaben() {
+		return zeichen >= KLEIN_ANFANG && zeichen <= KLEIN_ENDE;
+	}
+	
+	@Override
+	public boolean istZahl() {
+		return (zeichen >= ZAHL_ANFANG && zeichen <= ZAHL_ENDE) || (zeichen >= HOCHZAHL_ANFANG && zeichen <= HOCHZAHL_ENDE)
+				|| (zeichen >= RUNTERZAHL_ANFANG && zeichen <= RUNTERZAHL_ENDE);
+	}
+	
+	public Pzs8bZeichen clone() {
+		return new Pzs8bZeichen(zeichen);
+	}
+	
+	
+	
 	private static void setup() {
 		alleZeichen = new Character[0xFD]; // Das letzte ist einfach immer frei!
 		command = new boolean[0xFD];
@@ -144,6 +215,7 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0x2D] = '/';
 		alleZeichen[0x2E] = '\\';
 		alleZeichen[0x2F] = '|';
+		
 		alleZeichen[0x30] = '0';
 		alleZeichen[0x31] = '1';
 		alleZeichen[0x32] = '2';
@@ -154,14 +226,16 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0x37] = '7';
 		alleZeichen[0x38] = '8';
 		alleZeichen[0x39] = '9';
+		
 		alleZeichen[0x3A] = '}';
+		
 		alleZeichen[0x3B] = '=';
 		alleZeichen[0x3C] = '&';
 		alleZeichen[0x3D] = '%';
+		
 		alleZeichen[0x3E] = '@';
 		alleZeichen[0x3F] = '!';
 		alleZeichen[0x40] = '°';
-		
 		alleZeichen[0x41] = 'A';
 		alleZeichen[0x42] = 'B';
 		alleZeichen[0x43] = 'C';
@@ -233,8 +307,10 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0x80] = '$';
 		alleZeichen[0x81] = '€';
 		alleZeichen[0x82] = '£';
+		
 		alleZeichen[0x83] = '<';
 		alleZeichen[0x84] = '>';
+		
 		alleZeichen[0x85] = '´';
 		alleZeichen[0x86] = '`';
 		alleZeichen[0x87] = '?';
@@ -249,7 +325,9 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0x90] = '↓';
 		alleZeichen[0x91] = '©';
 		alleZeichen[0x92] = '®';
+		
 		alleZeichen[0x93] = '±';
+		
 		alleZeichen[0x94] = '¨';
 		alleZeichen[0x95] = '„';
 		alleZeichen[0x96] = '“';
@@ -266,15 +344,21 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0xA3] = '⁞';
 		alleZeichen[0xA4] = '‼';
 		alleZeichen[0xA5] = '≈';
+		
 		alleZeichen[0xA6] = '≤';
 		alleZeichen[0xA7] = '≥';
+		
 		alleZeichen[0xA8] = '≠';
 		alleZeichen[0xA9] = '÷';
+		
 		alleZeichen[0xAA] = 'ೱ';
 		alleZeichen[0xAB] = '™';
+		
 		alleZeichen[0xAC] = 'Ʃ';
+		
 		alleZeichen[0xAD] = '֍';
 		alleZeichen[0xAF] = '֎';
+		
 		alleZeichen[0xB0] = '⁰';
 		alleZeichen[0xB1] = '¹';
 		alleZeichen[0xB2] = '²';
@@ -285,11 +369,13 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0xB7] = '⁷';
 		alleZeichen[0xB8] = '⁸';
 		alleZeichen[0xB9] = '⁹';
+		
 		alleZeichen[0xBA] = '…';
 		alleZeichen[0xBB] = '↔';
 		alleZeichen[0xBC] = '↕';
 		alleZeichen[0xBD] = '℗';
 		alleZeichen[0xBE] = '⌂';
+		
 		alleZeichen[0xBF] = '₀';
 		alleZeichen[0xC0] = '₁';
 		alleZeichen[0xC1] = '₂';
@@ -300,6 +386,7 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0xC6] = '₇';
 		alleZeichen[0xC7] = '₈';
 		alleZeichen[0xC8] = '₉';
+		
 		alleZeichen[0xC9] = '♀';
 		alleZeichen[0xCA] = '♂';
 		alleZeichen[0xCB] = '☺';
@@ -322,6 +409,7 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0xDC] = 'ꜛ';
 		alleZeichen[0xDD] = 'ꜜ';
 		alleZeichen[0xDE] = 'ǁ';
+		
 		alleZeichen[0xDF] = '⅓';
 		alleZeichen[0xE0] = '⅔';
 		alleZeichen[0xE1] = '⅕';
@@ -334,7 +422,9 @@ public class Pzs8bZeichen extends ZeichenZeugs {
 		alleZeichen[0xE8] = '⅜';
 		alleZeichen[0xE9] = '⅝';
 		alleZeichen[0xEA] = '⅞';
+		
 		alleZeichen[0xEB] = '‰';
+		
 		alleZeichen[0xEC] = '‼';
 		alleZeichen[0xED] = '‽';
 	}
