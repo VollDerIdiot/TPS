@@ -6,7 +6,5 @@ ort:
 braucht:
 	Diese tolle Datei benötigt: 
 
-Sachenkopf:
-	Diese tolle [Sachenart] heißt [Sachenname] und ist [Sichtbarkeit]. Sie [bessert] [Sachenname eines nichtPlans der gleichen Art (Ding/Klasse)] und [macht] [Sachenname eines Plans der gleichen Art (Ding/Klasse)]
-
-
+Sachenkopf: TODO richtig machen
+	Diese tolle [Sachenart] heißt [Name] und ist [Sichtbarkeit]. Sie [bessert] [Name eines nichtPlans der gleichen Art (Ding/Klasse)] und [macht] [name eines Plans der gleichen Art (Ding/Klasse)]

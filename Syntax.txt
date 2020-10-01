@@ -24,8 +24,8 @@ Sichtbarkeit:
 	[datei]
 	[eigen]
 
-Sachenname:
-	[Großbuchstabe] [Buchstabe]+ ([Zusatzsache])
+Name:
+	[Buchstabe]+ ([Zusatzsache])
 
 Buchstabe:
 	[Großbuchstabe / Kleinbuchstabe]
@@ -37,4 +37,4 @@ Großbuchstabe:
 	A-Z, Ö, Ä, Ü, ẞ
 
 Pfad:
-	\[pfad mit '/' als Trennzeichen für Ordner\]
+	pfad mit '/' als Trennzeichen für Ordner\>
