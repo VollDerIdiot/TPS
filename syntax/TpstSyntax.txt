@@ -8,42 +8,42 @@ ort:
 
 braucht:
 	- braucht etwas:
-		Diese tolle Datei benötigt: [Pfad]+
+		Diese tolle Datei benötigt: [Pfad] ( und [Pfad])*
 	- braucht nichts:
 		Diese tolle Datei kommt alleine super zurecht!
 
 Sachenkopf:
 	- DingPlan:
 		Dieser tolle DingPlan heißt [Name] und ist [Sichtbarkeit].
-			Danach eventuell:
+			Potentiell:
 				Es bessert [Name von anderen DingPLans] ( + [Name von anderen DingPLans])*
 	- UnfertigesDing:
 		Dieses tolle unfertige Ding heißt [Name] und ist [Sichtbarkeit].
-			Danach eventuell:
+			Potentiell:
 				Es bessert [Name von Ding/UnfertigesDing]
-			Danach eventuell:
+			Potentiell:
 				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
 	- Ding:
 		Dieses tolle Ding heißt [Name] und ist [Sichtbarkeit].
-			Danach eventuell:
+			Potentiell:
 				Es bessert [Name von Ding/UnfertigesDing]
-			Danach eventuell:
+			Potentiell:
 				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
 	- KlassenPlan:
 		Dieser tolle KlassenPlan heißt [Name] und ist [Sichtbarkeit].
-			Danach eventuell:
+			Potentiell:
 				Es bessert [Name von anderen KlassenPLans] ( + [Name von anderen KlassenPLans])*
 	- UnfertigeKlasse:
 		Diese tolle unfertige Klasse heißt [Name] und ist [Sichtbarkeit].
-			Danach eventuell:
+			Potentiell:
 				Es bessert [Name von Klasse/UnfertigeKlasse]
-			Danach eventuell:
+			Potentiell:
 				Es macht [Name von KlassenPlan] ( + [Name von KlassenPlan])*
 	- Klasse:
 		Diese tolle Klasse heißt [Name] und ist [Sichtbarkeit].
-			Danach eventuell:
+			Potentiell:
 				Es bessert [Name von Klasse/UnfertigeKlasse]
-			Danach eventuell:
+			Potentiell:
 				Es macht [Name von KlassenPLan] ( + [Name von KlassenPLan])*
 
 Sacheninhalt:
@@ -62,7 +62,7 @@ Sacheninhalt:
 		[UnfertigeMethode]*
 	- UnfertigeKlasse:
 		[SachenVariable]*
-		Potentiell: [erstesMethode]
+		Potentiell: 	[erstesMethode]
 		[Methode]*							(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
 	- Klasse:
 		[SachenVariable]*
@@ -71,9 +71,9 @@ Sacheninhalt:
 
 UnfertigeMethode:
 	- keine Übergabeparametern:
-		Diese unfertige Methode ist [Sichtbarkeit] und heißt [Name]
+		Diese unfertige Methode ist [Sichtbarkeit] und heißt [Name]. Hier gibt es [Name einer Sache oder 'nichts'] zurück!
 	- mit Übergabeparametern:
-		Diese unfertige Methode ist [Sichtbarkeit], heißt [Name] und erhält [Übergabeparameter]
+		Diese unfertige Methode ist [Sichtbarkeit], heißt [Name] und erhält [Übergabeparameter]. Hier gibt es [Name einer Sache oder 'nichts'] zurück!
 
 FertigeMethode:
 	- keine Übergabeparametern:
