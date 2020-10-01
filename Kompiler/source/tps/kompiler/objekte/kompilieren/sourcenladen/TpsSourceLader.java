@@ -56,10 +56,12 @@ public abstract class TpsSourceLader {
 	/**
 	 * Lädt die aktuelle Datei
 	 * 
+	 * @param name
+	 *            Der name der Datei. Wird benötigt, wenn die {@link #datei} initialisiert wird, um ihren name zu setzen.
 	 * @throws KompilierungsFehler
 	 *             Wenn etwas schief gelaufen ist oder, z.B. wenn es fehlerhafte Sourcen gibt.
 	 */
-	protected abstract void lade() throws KompilierungsFehler;
+	protected abstract void lade(String name) throws KompilierungsFehler;
 	
 	/**
 	 * Setzt den aktuellen {@link #zeichensatz} auf den übergebenen <code>zeichensatz</code>
