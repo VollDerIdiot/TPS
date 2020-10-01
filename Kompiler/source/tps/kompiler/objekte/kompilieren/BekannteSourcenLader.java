@@ -85,37 +85,6 @@ public class BekannteSourcenLader {
 	}
 	
 	/**
-	 * Iteriert durch alle bekannten <code>TpsSourceLader</code>. <br>
-	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurückgegeben.
-	 * 
-	 * @param dateiname
-	 *            Der name der zu ladenden Datei oder <code>null</code> wenn keiner mit passender Dateiendung gefunden wurde
-	 * @return den gefunden <code>TpsSourceLader</code> oder <code>null</code>
-	 */
-	public static TpsSourceLader erhalte(File datei) {
-		return erhalte(datei.getName());
-	}
-	
-	/**
-	 * Iteriert durch alle bekannten <code>TpsSourceLader</code>. <br>
-	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurückgegeben.
-	 * 
-	 * @param dateiname
-	 *            Der name der zu ladenden Datei oder <code>null</code> wenn keiner mit passender Dateiendung gefunden wurde
-	 * @return den gefunden <code>TpsSourceLader</code> oder <code>null</code>
-	 */
-	public static TpsSourceLader erhalte(String dateiname) {
-		Objects.requireNonNull(dateiname, "Ich kann das nicht mit null machen!");
-		dateiname = dateiname.substring(dateiname.lastIndexOf('.'));
-		for (TpsSourceLader testen : bekannte) {
-			if (dateiname.equals(testen.endung())) {
-				return testen;
-			}
-		}
-		return null;
-	}
-	
-	/**
 	 * Fügt den <code>TpsSourceLader neu</code> zu den bekannten <code>TpsSourceLader</code>n hinzu, sofern dieser nicht schon vorher bekannt ist.
 	 * 
 	 * @param neu
