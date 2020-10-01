@@ -5,15 +5,16 @@ import java.nio.charset.Charset;
 public abstract class TpsSourceLader {
 	
 	/**
-	 * Gibt die Dateiendung des Sourcecodes zurück. <br>
-	 * Dies entspricht allem, was nach dem letztem '.' kommt (ohne den '.' selbst!).
+	 * Gibt die Dateiendung des <code>TpsSourceLader</code>s zurück. <br>
+	 * Anhand dieser wird dann entschieden, ob dieser Kompiler für die Datei geeignet ist. Das Ergebnis der {@link #zeichensatz()} Methode wird auch dafür benutzt.
 	 * 
-	 * @return Die Endung der nicht kompilierten Datei
+	 * @return Die Dateiendung, welche Dateien haben, die von diesem <code>TpsSourceLader</code> geladen werden können. <br>
+	 *         Die Dateiendung ist alles was nach dem letztem '.' Zeichen kommt (also ohne das '.' Zeichen selbst)
 	 */
 	public abstract String endung();
 	
 	/**
-	 * Gibt den Zeichensatz des Sourcecodes zurück.
+	 * Gibt den Zeichensatz des <code>TpsSpurceLader</code>s, welche benutzt wird, um des gelesene zu in einen String umzuwandeln.
 	 * 
 	 * @return Den Zeichensatz, welcher zum decodieren des gelesenen verwendet wird
 	 */
