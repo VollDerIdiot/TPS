@@ -54,7 +54,9 @@ PosZahl:
 		BIN:(0-1)+
 
 Pfad:
-	pfad mit '/' als Trennzeichen für Ordner\>
+	startet mit '|:' 
+	pfad mit '/' als Trennzeichen für Ordner
+	endet mit ':>[ZEILENUMBRUCH]' (es sollte das letzte vor Zeilenende genommen werden)
 
 Befehl:
 	- [Methodenaufruf]
