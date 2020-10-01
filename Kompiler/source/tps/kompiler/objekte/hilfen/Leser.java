@@ -44,27 +44,39 @@ public class Leser {
 		}
 		synchronized (this) {
 			log.remove(log.size() - 1);
-			zwischen = new ArrayList <Integer>(log);
-			log = new ArrayList <Integer>();
-			index = 0;
-			scnner = new Scanner(zeilen.get(0));
-			for (Integer aktion : zwischen) {
-				switch (aktion) {
-				case NÄCHSTES:
-					nächstes();
-					break;
-				case NÄCHSTE_ZEILE:
-					nächsteZeile();
-					break;
-				case NEUE_ZEILE:
-					break;
-				default:
-					throw new KompilierungsLaufzeitFehler("Der log war falsch!");
-				}
+			zwischen = log;
+			laufeNach(zwischen);
+		}
+	}
+	
+	/**
+	 * Es wird alles zurückgesetzt, was den aktuellen status speichert ({@link #log}, {@link #index} und {@link #scnner}), bevor dem <code>nachlaufen</code> nachgelaufen wird. <br>
+	 * Macht alles, was in der nachlaufen liste steht. <br>
+	 * Danach wird der {@link #log} genauso sein, wie <code>nachlaufen</code> <br>
+	 * 
+	 * @param nachlaufen
+	 *            Es wird nach dem <code>nachlaufen</code>-log alles gemacht. der {@link #log} wird entsprechend geändert.
+	 */
+	private void laufeNach(List <Integer> nachlaufen) {
+		log = new ArrayList <Integer>();
+		index = 0;
+		scnner = new Scanner(zeilen.get(0));
+		for (Integer aktion : nachlaufen) {
+			switch (aktion) {
+			case NÄCHSTES:
+				nächstes();
+				break;
+			case NÄCHSTE_ZEILE:
+				nächsteZeile();
+				break;
+			case NEUE_ZEILE:
+				break;
+			default:
+				throw new KompilierungsLaufzeitFehler("Der log war falsch!");
 			}
-			if ( !log.equals(zwischen)) {
-				throw new KompilierungsLaufzeitFehler("Da ist etwas mit dem log falschgelaufen!");
-			}
+		}
+		if ( !log.equals(nachlaufen)) {
+			throw new KompilierungsLaufzeitFehler("Da ist etwas mit dem log falschgelaufen!");
 		}
 	}
 	

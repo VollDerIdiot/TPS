@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ServiceLoader;
 
-import de.hechler.patrick.pzs8b.Pzs8bCharset;
 import tps.kompiler.objekte.kompilieren.sourcenladen.TpsSourceLader;
 
 public class BekannteSourcenLader {
@@ -19,11 +18,9 @@ public class BekannteSourcenLader {
 	
 	
 	static {
-		Pzs8bCharset pzs8b;
 		TpsSourceLader[] standards;
 		TpsSourceLader[] andere;
 		standards = new TpsSourceLader[0];
-		pzs8b = new Pzs8bCharset();
 		andere = lade();
 		bekannte = new TpsSourceLader[standards.length + andere.length];
 		System.arraycopy(standards, 0, bekannte, 0, standards.length);
@@ -79,7 +76,8 @@ public class BekannteSourcenLader {
 		Objects.requireNonNull(dateiname, "Ich kann das nicht mit null machen!");
 		dateiname = dateiname.substring(dateiname.lastIndexOf('.'));
 		for (TpsSourceLader testen : bekannte) {
-			if (dateiname.equals(testen.endung()) && zeichensatz.equals(testen.zeichensatz())) {
+			if (dateiname.equals(testen.endung())) {
+				testen.zeichensatz(zeichensatz);
 				return testen;
 			}
 		}
