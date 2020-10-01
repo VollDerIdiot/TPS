@@ -25,7 +25,10 @@ Sichtbarkeit:
 	[eigen]
 
 Name:
-	[Buchstabe]+ ([Zusatzsache])
+	[RohName] (Potentiell:		[Zusatzgedings])
+
+RohName:
+	[Buchstabe][Buchstabe]+ 		(Immer mindestens 2 Buchstaben)
 
 Buchstabe:
 	[Großbuchstabe / Kleinbuchstabe]
