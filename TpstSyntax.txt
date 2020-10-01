@@ -6,5 +6,21 @@ ort:
 braucht:
 	Diese tolle Datei benötigt: 
 
-Sachenkopf: TODO richtig machen
-	Diese tolle [Sachenart] heißt [Name] und ist [Sichtbarkeit]. Sie [bessert] [Name eines nichtPlans der gleichen Art (Ding/Klasse)] und [macht] [name eines Plans der gleichen Art (Ding/Klasse)]
+Sachenkopf:
+	- DingPlan:
+		Dieser tolle DingPlan heißt [Name] und ist [Sichtbarkeit].
+			Danach eventuell:
+				Es bessert [Name von anderen DingPLans] ( + [Name von anderen DingPLans])*
+	- UnfertigesDing:
+		Dieses tolle unfertige Ding heißt [Name] und ist [Sichtbarkeit].
+			Danach eventuell:
+				Es bessert [Name von Ding/UnfertigesDing]
+			Danach eventuell:
+				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
+	- Ding:
+		Dieses tolle Ding heißt [Name] und ist [Sichtbarkeit].
+			Danach eventuell:
+				Es bessert [Name von Ding/UnfertigesDing]
+			Danach eventuell:
+				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
+		TODO für Klasse machen
