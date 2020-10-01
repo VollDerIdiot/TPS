@@ -39,5 +39,25 @@ Kleinbuchstabe:
 Großbuchstabe:
 	A-Z, Ö, Ä, Ü, ẞ
 
+Zahl:
+	- Negativezahl:
+		NEG-[PosZahl]
+	- Positivezahl:
+		[PosZahl]
+
+PosZahl:
+	- Decimal:
+		DEC:(0-9)+
+	- Hexadecimal:
+		HEX:(0-9|A-F)+
+	- Binär:
+		BIN:(0-1)+
+
 Pfad:
 	pfad mit '/' als Trennzeichen für Ordner\>
+
+Befehl:
+	- [Methodenaufruf]
+	- [Schleife]
+	- [Falls]
+	- [SetzeAuf]

@@ -1,4 +1,4 @@
-TPST: Toller ProgrammierSprachen Text
+TPST: Toller ProgrammierSprachenText
 
 Informationen:
 	[Einrückung um ein TAB pro BOX und pro Sache, in welcher man sich befindet (bei Sache ist dies aktuell max. 1)]
@@ -84,17 +84,43 @@ FertigeMethode:
 		[Box]
 
 Übergabeparameter:
-	[RohName] als [Name von Sache] ( + [RohName] als [Name von Sache])
+	[RohName] ist ein [Name von Sache] ( + [RohName] ist ein [Name von Sache])*
+
+Parameter:
+	[Wert] ( + [Wert])*
+
+Wert:
+	- [DirekterWert]
+	- [VariablenRohName]
+DirekterWert:
+	- Zeugs mit eben diesem Wert als Rückgabe (zum Beispiel die erschaffe Methode bei einem Ding)
+	- bei zahlen kann dies auch eine [Zahl] sein.
 
 Box:
 	[Befehl]+
 
+Bedingung:
+	[Wert Dieser Wert muss von JaNö abstammen]
+
 Zusatzgedings:
 	von [Name] ( und [Name])*
 
-Befehl:
-	- Methodenaufruf:
-	- Schleife:
-	- Falls:
-	- Sonst:
-	- 
+Methodenaufruf:
+	- Ohne Übergabeparameter:
+		Rufe die tolle Methode (Potentiell:		MethodenPfad) [Name der Methode] von [Wert] auf!
+	- Mit Übergabeparameter:
+		Rufe die tolle Methode (Potentiell:		MethodenPfad) [Name der Methode] von [Wert] mit [Parameter] auf!
+
+Schleife:
+	Wiederhohle das folgende solange [Bedingung] erfüllt ist
+	[BOX]
+
+Falls:
+	Mache das folgende wenn [Bedingung] erfüllt ist
+	[BOX]
+	- Potentiell:
+		Ansonsten mache dies:
+		[BOX]
+
+SetzeAuf:
+	Setzte [VariablenRohName] auf [Wert dieser muss von der VariablenRohName sein]
