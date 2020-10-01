@@ -1,5 +1,8 @@
 package tps.hilfen;
 
+import java.util.Comparator;
+import java.util.Objects;
+
 public class Hilfen {
 	
 	/**
@@ -9,6 +12,26 @@ public class Hilfen {
 	}
 	
 	
+	
+	public static <V extends Comparable <V>> Comparator <V> vergleicherAkzeptiertNull() {
+		return (V vergleiche, V mit) -> {
+			if (vergleiche == null) {
+				return mit == null ? 0 : 1;
+			}
+			if (mit == null) {
+				return -1;
+			}
+			return vergleiche.compareTo(mit);
+		};
+	}
+	
+	public static <V extends Comparable <V>> Comparator <V> vergleicherKeineNull() {
+		return (V vergleiche, V mit) -> {
+			Objects.requireNonNull(vergleiche, "Ich vergleiche nicht mit null!");
+			Objects.requireNonNull(mit, "Ich vergleiche nicht mit null!");
+			return vergleiche.compareTo(mit);
+		};
+	}
 	
 	public static byte[] zuFeld(int umwandeln) {
 		byte[] ergebnis;
