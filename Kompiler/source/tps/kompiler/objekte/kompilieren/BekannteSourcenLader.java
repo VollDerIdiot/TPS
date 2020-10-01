@@ -2,9 +2,13 @@ package tps.kompiler.objekte.kompilieren;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
+import java.util.ServiceLoader;
 
 import de.hechler.patrick.pzs8b.Pzs8bCharset;
 import tps.kompiler.objekte.kompilieren.sourcenladen.TpsSourceLader;
@@ -17,8 +21,14 @@ public class BekannteSourcenLader {
 	
 	static {
 		Pzs8bCharset pzs8b;
+		TpsSourceLader[] standards;
+		TpsSourceLader[] andere;
+		standards = new TpsSourceLader[0];
 		pzs8b = new Pzs8bCharset();
-		bekannte = new TpsSourceLader[0];
+		andere = lade();
+		bekannte = new TpsSourceLader[standards.length + andere.length];
+		System.arraycopy(standards, 0, bekannte, 0, standards.length);
+		System.arraycopy(andere, 0, bekannte, standards.length, andere.length);
 	}
 	
 	
@@ -31,9 +41,24 @@ public class BekannteSourcenLader {
 	
 	
 	
+	private static TpsSourceLader[] lade() {
+		List <TpsSourceLader> ergebnis;
+		Iterator <TpsSourceLader> iterator;
+		iterator = ServiceLoader.load(TpsSourceLader.class).iterator();
+		ergebnis = new ArrayList <TpsSourceLader>();
+		while (iterator.hasNext()) {
+			try {
+				ergebnis.add(Objects.requireNonNull(iterator.next(), "Ich weigere mich dies zu akzeptieren!"));
+			} catch (Error e) {
+				e.printStackTrace();
+			}
+		}
+		return ergebnis.toArray(new TpsSourceLader[ergebnis.size()]);
+	}
+	
 	/**
 	 * Iteriert durch alle bekannten <code>TpsSourceLader</code>. <br>
-	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurückgegeben.
+	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurÃ¼ckgegeben.
 	 * 
 	 * @param dateiname
 	 *            Der name der zu ladenden Datei oder <code>null</code> wenn keiner mit passender Dateiendung gefunden wurde
@@ -45,7 +70,7 @@ public class BekannteSourcenLader {
 	
 	/**
 	 * Iteriert durch alle bekannten <code>TpsSourceLader</code>. <br>
-	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurückgegeben.
+	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurÃ¼ckgegeben.
 	 * 
 	 * @param dateiname
 	 *            Der name der zu ladenden Datei oder <code>null</code> wenn keiner mit passender Dateiendung gefunden wurde
@@ -64,7 +89,7 @@ public class BekannteSourcenLader {
 	
 	/**
 	 * Iteriert durch alle bekannten <code>TpsSourceLader</code>. <br>
-	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurückgegeben.
+	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurÃ¼ckgegeben.
 	 * 
 	 * @param dateiname
 	 *            Der name der zu ladenden Datei oder <code>null</code> wenn keiner mit passender Dateiendung gefunden wurde
@@ -76,7 +101,7 @@ public class BekannteSourcenLader {
 	
 	/**
 	 * Iteriert durch alle bekannten <code>TpsSourceLader</code>. <br>
-	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurückgegeben.
+	 * Es wird der erste passende <code>TpsSourceLader</code>, welcher gefunden wurde zurÃ¼ckgegeben.
 	 * 
 	 * @param dateiname
 	 *            Der name der zu ladenden Datei oder <code>null</code> wenn keiner mit passender Dateiendung gefunden wurde
@@ -94,11 +119,11 @@ public class BekannteSourcenLader {
 	}
 	
 	/**
-	 * Fügt den <code>TpsSourceLader neu</code> zu den bekannten <code>TpsSourceLader</code>n hinzu, sofern dieser nicht schon vorher bekannt ist.
+	 * FÃ¼gt den <code>TpsSourceLader neu</code> zu den bekannten <code>TpsSourceLader</code>n hinzu, sofern dieser nicht schon vorher bekannt ist.
 	 * 
 	 * @param neu
-	 *            der <code>TpsSourceLader</code>, welcher hinzugefügt werden soll.
-	 * @return <code>true</code>, wenn der <code>TpsSourceLader</code> davor unbekannt war. Wenn nicht wird <code>false</code> zurückgegeben.
+	 *            der <code>TpsSourceLader</code>, welcher hinzugefÃ¼gt werden soll.
+	 * @return <code>true</code>, wenn der <code>TpsSourceLader</code> davor unbekannt war. Wenn nicht wird <code>false</code> zurÃ¼ckgegeben.
 	 */
 	public static boolean neuerLader(TpsSourceLader neu) {
 		Objects.requireNonNull(neu, "Ich weigere mich den neuen null TpsSourceLader zu akzeptieren!");
@@ -110,33 +135,6 @@ public class BekannteSourcenLader {
 		bekannte = Arrays.copyOf(bekannte, bekannte.length + 1);
 		bekannte[bekannte.length - 1] = neu;
 		return true;
-	}
-	
-	/**
-	 * Fügt alle neuen <code>TpsSourceLader</code> hinzu.
-	 * 
-	 * @param neue
-	 *            die ab jetzt bekannten <code>TpsSourceLader</code>
-	 * @return Die Anzahl an neuen <code>TpsSourceLader</code>n
-	 * @implSpec Es wird in ein <code>TpsSourceLader[]</code> umgewandelt und dann mit der {@link #neueLader(TpsSourceLader[])} Methode hinzugefügt
-	 */
-	public static int neueLader(Collection <TpsSourceLader> neue) {
-		return neueLader(neue.toArray(new TpsSourceLader[neue.size()]));
-	}
-	
-	/**
-	 * Fügt alle neuen <code>TpsSourceLader</code> hinzu.
-	 * 
-	 * @param neue
-	 *            die ab jetzt bekannten <code>TpsSourceLader</code>
-	 * @return Die Anzahl an neuen <code>TpsSourceLader</code>n
-	 */
-	public static int neueLader(TpsSourceLader[] neue) {
-		int ergebnis = 0;
-		for (TpsSourceLader neu : neue) {
-			ergebnis += neuerLader(neu) ? 1 : 0;
-		}
-		return ergebnis;
 	}
 	
 }
