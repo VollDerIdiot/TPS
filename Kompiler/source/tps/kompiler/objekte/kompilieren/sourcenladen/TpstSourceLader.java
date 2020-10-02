@@ -38,6 +38,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		besetzteNamen.add("Datei");
 		besetzteNamen.add("Diese");
 		besetzteNamen.add("Dieser");
+		besetzteNamen.add("Dieses");
 		besetzteNamen.add("Ding");
 		besetzteNamen.add("DingPlan");
 		besetzteNamen.add("Es");
@@ -61,6 +62,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		besetzteNamen.add("erbe");
 		besetzteNamen.add("erfüllt");
 		besetzteNamen.add("erhält");
+		besetzteNamen.add("erschaffe");
 		besetzteNamen.add("es");
 		besetzteNamen.add("folgende");
 		besetzteNamen.add("gibt");
@@ -313,7 +315,35 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
-	private void ladeSachenVariablen() {
+	private void ladeSachenVariablen() throws KompilierungsFehler {
+		String name;
+		Sichtbarkeit sicht;
+		Datentyp datentyp;
+		if ( ! (sache instanceof UnfertigeSacheInterface || sache instanceof FertigeSacheInterface)) {
+			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+		}
+		while (true) {
+			name = sourceLeser.nächstes();
+			try {
+				Regeln.testeName(name, new KompilierungsFehler("dummy"), BESETZTE_NAMEN);
+			} catch (KompilierungsFehler kf) {
+				sourceLeser.zurück();
+				return;
+			}
+			teste("ist");
+			sicht = leseSichtbarkeit();
+			teste("und", "von");
+			datentyp = leseDatentyp();
+			if (sache instanceof FertigeSacheInterface) {
+				((FertigeSacheInterface)sache).neueVariable(new Variable(name, datentyp), sicht);
+			}
+		}
+	}
+	
+	private void ladeFertigeMethoden() throws KompilierungsFehler {
+		if ( ! (sache instanceof UnfertigeSacheInterface || sache instanceof FertigeSacheInterface)) {
+			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+		}
 		// TODO Auto-generated method stub
 		
 		
@@ -321,15 +351,10 @@ public class TpstSourceLader extends TpsSourceLader {
 		throw new NochNichtGemachtFehler();
 	}
 	
-	private void ladeFertigeMethoden() {
-		// TODO Auto-generated method stub
-		
-		
-		
-		throw new NochNichtGemachtFehler();
-	}
-	
-	private void ladeAnfangsMethoden() {
+	private void ladeAnfangsMethoden() throws KompilierungsFehler {
+		if ( ! (sache instanceof UnfertigeSacheInterface || sache instanceof FertigeSacheInterface)) {
+			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+		}
 		// TODO Auto-generated method stub
 		
 		
