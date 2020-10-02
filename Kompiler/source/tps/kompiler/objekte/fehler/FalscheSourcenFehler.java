@@ -14,6 +14,15 @@ public class FalscheSourcenFehler extends KompilierungsFehler {
 		super(nachricht);
 	}
 	
+	/**
+	 * Wenn man etwas erwartet und etwas anderes erhalten hat kann man diesen Fehler werfen.
+	 * 
+	 * @implSpec <code>super("habe '" + erwartet + "' erwartet und '" + erhalten + "' erhalten!");</code>
+	 * @param erwartet
+	 *            Das was man erwartet hat.
+	 * @param erhalten
+	 *            Das was statt dem erwarteten gekommen ist.
+	 */
 	public FalscheSourcenFehler(String erwartet, String erhalten) {
 		super("habe '" + erwartet + "' erwartet und '" + erhalten + "' erhalten!");
 	}

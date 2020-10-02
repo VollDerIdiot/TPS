@@ -72,6 +72,9 @@ Sacheninhalt:
 SachenVariable:
 	[RohName] ist [Sichtbarkeit] und von [Name der dazugehöhrigen Sache]
 
+erstesMethode:
+	Zuerst:
+
 erschaffeMethode:
 	Dieses erschaffe ist [Sichtbarkeit] und braucht [Übergabeparameter oder 'nichts']
 
@@ -102,9 +105,6 @@ DirekterWert:
 	- Zeugs mit eben diesem Wert als Rückgabe (zum Beispiel die erschaffe Methode bei einem Ding)
 	- bei zahlen kann dies auch eine [Zahl] sein.
 
-Box:
-	[Befehl]+
-
 Bedingung:
 	[Wert Dieser Wert muss von JaNö abstammen]
 
@@ -130,6 +130,24 @@ Falls:
 
 SetzeAuf:
 	Setzte [VariablenRohName] auf [Wert dieser muss von der VariablenRohName sein]
+
+IstNichts:
+	ist [Wert] nichts?
+
+IstVon:
+	ist [Wert] von [Wert/Sache]
+
+IstSelbe:
+	ist [Wert] und [Wert] das selbe?
+
+stirb:
+	sterbe mit [Zahl]
+
+verschwinde:
+	verschwinde mit [Wert]
+
+geheAusXBoxen:
+	gehe aus [Zahl] Boxen!
 
 Nichts:
 	nichts

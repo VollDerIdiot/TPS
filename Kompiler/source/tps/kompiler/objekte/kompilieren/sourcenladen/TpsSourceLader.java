@@ -15,7 +15,13 @@ import tps.kompiler.objekte.programm.sache.Sache;
 
 public abstract class TpsSourceLader {
 	
+	/**
+	 * Das Startsymbol für einen Pfad
+	 */
 	private static final String PFAD_ANFANG;
+	/**
+	 * Das Endsymbol für einen Pfad
+	 */
 	private static final String PFAD_ENDE;
 	
 	
@@ -48,6 +54,9 @@ public abstract class TpsSourceLader {
 	
 	
 	
+	/**
+	 * Erstellt einen neuen {@link TpsSourceLader}
+	 */
 	public TpsSourceLader() {
 	}
 	
@@ -101,6 +110,16 @@ public abstract class TpsSourceLader {
 		return zeichensatz;
 	}
 	
+	/**
+	 * Testet, ob das was in {@code testen} steht auch in der gleichen Reihenfolge übergeben wird wenn man immer wieder im {@link #sourceLeser} die {@link Leser#nächstes()} Methode
+	 * aufruft. Nachdem die Methode aufgerufen wurde, wurde der stand des {@link #sourceLeser}s um entsprechend viel nach vorne verschoben.
+	 * 
+	 * @param testen
+	 *            Die zu testende {@link String}s
+	 * @throws FalscheSourcenFehler
+	 *             Wenn nicht alle {@link String}s aus {@code testen} in genau so in der Reihenfolge kamen wird ein
+	 *             {@link FalscheSourcenFehler#FalscheSourcenFehler(String, String)} geworfen.
+	 */
 	protected void teste(String... testen) throws FalscheSourcenFehler {
 		String zwischen;
 		for (String dieser : testen) {

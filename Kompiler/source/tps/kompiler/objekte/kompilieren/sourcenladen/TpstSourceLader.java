@@ -10,8 +10,10 @@ import tps.hilfen.Regeln;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
+import tps.kompiler.objekte.programm.Befehl;
 import tps.kompiler.objekte.programm.Datei;
 import tps.kompiler.objekte.programm.Datentyp;
+import tps.kompiler.objekte.programm.Erschaffe;
 import tps.kompiler.objekte.programm.UnfertigeMethode;
 import tps.kompiler.objekte.programm.Variable;
 import tps.kompiler.objekte.programm.sache.Ding;
@@ -20,6 +22,7 @@ import tps.kompiler.objekte.programm.sache.FertigeSacheInterface;
 import tps.kompiler.objekte.programm.sache.Klasse;
 import tps.kompiler.objekte.programm.sache.KlassenPlan;
 import tps.kompiler.objekte.programm.sache.PlanInterface;
+import tps.kompiler.objekte.programm.sache.Sache;
 import tps.kompiler.objekte.programm.sache.UnfertigeKlasse;
 import tps.kompiler.objekte.programm.sache.UnfertigeSacheInterface;
 import tps.kompiler.objekte.programm.sache.UnfertigesDing;
@@ -27,6 +30,9 @@ import tps.objects.fehler.NochNichtGemachtFehler;
 
 public class TpstSourceLader extends TpsSourceLader {
 	
+	/**
+	 * {@link #BESETZTE_NAMEN} speichert alle name, die nicht benutzt werden dürfen, da diese in der TPST-Syntax verwendet werden.
+	 */
 	private static final Set <String> BESETZTE_NAMEN;
 	
 	
@@ -90,6 +96,9 @@ public class TpstSourceLader extends TpsSourceLader {
 	
 	
 	
+	/**
+	 * Erstellt einen neuen {@link TpstSourceLader}, welcher den {@link TpsSourceLader} fertig implementiert.
+	 */
 	public TpstSourceLader() {
 		super();
 	}
@@ -160,26 +169,59 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
+	/**
+	 * Lädt eine neue {@link Sache} in {@link TpsSourceLader#sache}. <br>
+	 * 
+	 * @implNote Dafür wird zuerst {@link #ladeSachenKopf()} aufgerufen. Dort wird {@link TpsSourceLader#sache} Initialisiert. <br>
+	 *           Dann wird je nach Initialisierung weiter verfahren: <br>
+	 *           - Wenn es ein {@link PlanInterface} ist: {@link #ladePlan()} <br>
+	 *           - Wenn es eine {@link UnfertigeSacheInterface} ist: {@link #ladeUnfertigeSache()} <br>
+	 *           - Wenn es eine {@link FertigeSacheInterface} ist: {@link #ladeFertigeSache()} <br>
+	 *           - Wenn es nicht davon ist, wird ein {@link KompilierungsFehler} geworfen.
+	 * 			
+	 * @throws KompilierungsFehler
+	 *             Wenn es eine unbekannte {@link Sache} ist oder wenn in den aufgerufenen Methoden einer geworfen wird.
+	 */
 	private void ladeSache() throws KompilierungsFehler {
 		ladeSachenKopf();
-		if (sache instanceof DingPlan || sache instanceof KlassenPlan) {
+		if (sache instanceof PlanInterface) {
 			ladePlan();
-		} else if (sache instanceof UnfertigesDing || sache instanceof UnfertigeKlasse) {
+		} else if (sache instanceof UnfertigeSacheInterface) {
 			ladeUnfertigeSache();
-		} else if (sache instanceof Ding || sache instanceof Klasse) {
+		} else if (sache instanceof FertigeSacheInterface) {
 			ladeFertigeSache();
 		} else {
 			throw new KompilierungsFehler("Diese Sachenart ist mir unbekannt: '" + sache.getClass().getName() + "'!");
 		}
 	}
 	
+	/**
+	 * Lädt einen {@link PlanInterface} indem alle unfertigenMethoden mit dem {@link TpsSourceLader#sourceLeser} eingelesen werden und dann in {@link TpsSourceLader#sache}
+	 * gespeichert werden.
+	 * 
+	 * @throws KompilierungsFehler
+	 *             Wenn {@link TpsSourceLader#sache} kein {@link PlanInterface} ist oder wenn in {@link #ladeUnfertigeMethoden()} etwas schief läuft.
+	 */
 	private void ladePlan() throws KompilierungsFehler {
 		if ( ! (sache instanceof PlanInterface)) {
-			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+			throw new KompilierungsFehler("Ich kann so nicht arbeiten: sache muss ein Plan sein, damit ich einen Plan laden kann!");
 		}
 		ladeUnfertigeMethoden();
 	}
 	
+	/**
+	 * Liest eine {@link UnfertigeSacheInterface} mit dem {@link TpsSourceLader#sourceLeser} ein. Dies ist entweder eine {@link UnfertigeKlasse} oder ein {@link UnfertigesDing}.
+	 * <br>
+	 * Dafür werden zuerst die {@link Variable}n eingelesen <br>
+	 * Danach werden die Anfangs Methoden eingelesen <br>
+	 * Dann kommen die fertig implementierten Methoden. <br>
+	 * Und als letztes werden die {@link UnfertigeMethode}n eingelesen. <br>
+	 * 
+	 * Wenn diese Reihenfolge nicht eingehalten wurde wird ein Fehler geworfen.
+	 * 
+	 * @throws KompilierungsFehler
+	 *             Wenn sache nicht von {@link UnfertigeSacheInterface} ist oder wenn etwas beim laden der {@link Sache} schiefgeht.
+	 */
 	private void ladeUnfertigeSache() throws KompilierungsFehler {
 		if ( ! (sache instanceof UnfertigeSacheInterface)) {
 			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
@@ -200,18 +242,17 @@ public class TpstSourceLader extends TpsSourceLader {
 	}
 	
 	private void ladeUnfertigeMethoden() throws KompilierungsFehler {
-		if ( ! (sache instanceof PlanInterface || sache instanceof UnfertigeSacheInterface)) {
-			throw new KompilierungsFehler("So kann ich nicht arbeiten!");
-		}
 		String zwischen;
 		String varName;
 		Datentyp varDat;
-		boolean stopp = false;
 		int anfangsTabsulatoren;
 		Sichtbarkeit sicht = null;
 		Datentyp name;
 		Datentyp methodenErgebnis;
 		List <Variable> parameter;
+		if ( ! (sache instanceof PlanInterface || sache instanceof UnfertigeSacheInterface)) {
+			throw new KompilierungsFehler("So kann ich nicht arbeiten!");
+		}
 		while (true) {
 			zwischen = sourceLeser.nächstes();
 			anfangsTabsulatoren = sourceLeser.anfangsTabsulatoren();
@@ -249,31 +290,7 @@ public class TpstSourceLader extends TpsSourceLader {
 						teste("heißt");
 						name = leseDatentyp();
 						teste("und", "erhält");
-						parameter = new ArrayList <Variable>();
-						varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
-						teste("ist", "ein");
-						varDat = leseDatentyp();
-						parameter.add(new Variable(varName, varDat));
-						while ( !stopp) {
-							zwischen = sourceLeser.nächstes();
-							switch (zwischen) {
-							case "+":
-								varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
-								teste("ist", "ein");
-								varDat = leseDatentyp();
-								parameter.add(new Variable(varName, varDat));
-								break;
-							case "und":
-								varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
-								teste("ist", "ein");
-								varDat = leseDatentyp();
-								parameter.add(new Variable(varName, varDat));
-								stopp = true;
-								break;
-							default:
-								throw new FalscheSourcenFehler("+' oder 'und", zwischen);
-							}
-						}
+						parameter = leseÜbergabeparameter();
 						break;
 					default:
 						throw new FalscheSourcenFehler("offen', 'vererbe', 'datei' oder 'eigen", zwischen);
@@ -311,18 +328,57 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
+	
+	
+	private List <Variable> leseÜbergabeparameter() throws FalscheSourcenFehler {
+		String zwischen;
+		String varName;
+		Datentyp varDat;
+		List <Variable> parameter;
+		boolean stopp = false;
+		parameter = new ArrayList <Variable>();
+		varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
+		teste("ist", "ein");
+		varDat = leseDatentyp();
+		parameter.add(new Variable(varName, varDat));
+		while ( !stopp) {
+			zwischen = sourceLeser.nächstes();
+			switch (zwischen) {
+			case "+":
+				varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
+				teste("ist", "ein");
+				varDat = leseDatentyp();
+				parameter.add(new Variable(varName, varDat));
+				break;
+			case "und":
+				varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
+				teste("ist", "ein");
+				varDat = leseDatentyp();
+				parameter.add(new Variable(varName, varDat));
+				stopp = true;
+				break;
+			default:
+				throw new FalscheSourcenFehler("+' oder 'und", zwischen);
+			}
+		}
+		return parameter;
+	}
+	
 	/**
-	 * Liest die Variablen einer Sache ein und speichert dies dann in {@link TpsSourceLader#sache}
+	 * Liest die Variablen aus der aktuellen Sache mit dem {@link TpsSourceLader#sourceLeser} ein und speichert dies dann in {@link TpsSourceLader#sache}
 	 * 
 	 * 
 	 * @throws KompilierungsFehler
+	 *             Wenn {@link TpsSourceLader#sache} kein {@link UnfertigeSacheInterface} und kein {@link FertigeSacheInterface} ist
+	 * @throws FalscheSourcenFehler
+	 *             Wenn das eingelesene nicht TPST-Syntaktisch korrekt ist.
 	 */
 	private void ladeSachenVariablen() throws KompilierungsFehler {
 		String name;
 		Sichtbarkeit sicht;
 		Datentyp datentyp;
 		if ( ! (sache instanceof UnfertigeSacheInterface || sache instanceof FertigeSacheInterface)) {
-			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+			throw new KompilierungsFehler("Ich kann so nicht arbeiten! ");
 		}
 		while (true) {
 			name = sourceLeser.nächstes();
@@ -356,16 +412,85 @@ public class TpstSourceLader extends TpsSourceLader {
 	}
 	
 	private void ladeAnfangsMethoden() throws KompilierungsFehler {
-		if ( ! (sache instanceof UnfertigeSacheInterface || sache instanceof FertigeSacheInterface)) {
-			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+		boolean fertig;
+		String zwischen;
+		Sichtbarkeit sicht;
+		List <Befehl> box;
+		List <Variable> parameter;
+		fertig = sache instanceof Klasse || sache instanceof Ding;
+		if (sache instanceof Klasse || sache instanceof UnfertigeKlasse) {
+			zwischen = sourceLeser.nächstes();
+			switch (zwischen) {
+			case "Zuerst:":
+				box = leseBox(2);
+				if (fertig) {
+					((Klasse) sache).startMethode(box);
+				} else {
+					((UnfertigeKlasse) sache).startMethode(box);
+				}
+				return;
+			default:
+				sourceLeser.zurück();
+				return;
+			}
+		} else if (sache instanceof Ding || sache instanceof UnfertigesDing) {
+			while (true) {
+				zwischen = sourceLeser.nächstes();
+				if ( !"Dieses".equals(zwischen)) {
+					sourceLeser.zurück();
+					return;
+				}
+				zwischen = sourceLeser.nächstes();
+				switch (zwischen) {
+				case "erschaffe":
+					teste("ist");
+					sicht = leseSichtbarkeit();
+					teste("und", "braucht");
+					zwischen = sourceLeser.nächstes();
+					switch (zwischen) {
+					case "nichts":
+						parameter = Collections.emptyList();
+						break;
+					default:
+						sourceLeser.zurück();
+						parameter = leseÜbergabeparameter();
+					}
+					box = leseBox(2);
+					if (fertig) {
+						((Ding) sache).neueErschaffe(new Erschaffe(parameter, sicht, box));
+					} else {
+						((UnfertigesDing) sache).neueErschaffe(new Erschaffe(parameter, sicht, box));
+					}
+				default:
+					sourceLeser.zurück(2);
+					return;
+				}
+			}
+		} else {
+			throw new KompilierungsFehler("sache muss von (Unfertige)Klasse/(Unfertiges)Ding sein, da nur diese Anfangs Methoden haben können!");
 		}
-		// TODO Auto-generated method stub
+	}
+	
+	private List <Befehl> leseBox(int anfangsTabs) {
+		String zwischen;
+		List <Befehl> ergebnis;
+		zwischen = sourceLeser.nächstes();
+		// TODO
 		
 		
 		
 		throw new NochNichtGemachtFehler();
 	}
 	
+	
+	
+	/**
+	 * Liest den Kopf einer {@link Sache} ein. <br>
+	 * Wenn die Methode fertig ist, wird {@link TpsSourceLader#sache} neu Initialisiert sein. Dort wird dann die Art der Sache ({@code Ding}/{@code Klasse} und
+	 * {@code Plan}/{@code Unfertig}/{@code Fertig}), der Name ({@link Datentyp}), die {@link Sichtbarkeit} und evtl. der Zusatz {@code konstant} gespeichert sein.
+	 * 
+	 * @throws KompilierungsFehler
+	 */
 	private void ladeSachenKopf() throws KompilierungsFehler {
 		String zwischen;
 		Datentyp name;
@@ -451,7 +576,7 @@ public class TpstSourceLader extends TpsSourceLader {
 	}
 	
 	@Override
-	protected Datentyp leseDatentyp() throws KompilierungsFehler {
+	protected Datentyp leseDatentyp() throws FalscheSourcenFehler {
 		String name;
 		String zwischen;
 		List <Datentyp> zusatz;

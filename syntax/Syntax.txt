@@ -58,11 +58,21 @@ Pfad:
 	pfad mit '/' als Trennzeichen für Ordner
 	endet mit ':>[ZEILENUMBRUCH]' (es sollte das letzte vor Zeilenende genommen werden)
 
+Box:
+	[Befehl]+
+
 Befehl:
 	- [Methodenaufruf]
 	- [Schleife]
 	- [Falls]
 	- [SetzeAuf]
+	- [IstNichts]
+	- [IstVon]
+	- [IstSelbe]
+	- [stirb]
+	- [verschwinde]
+	- [geheAusXBoxen]
+	- 
 
 Besondere Werte:
 	[Nichts]
