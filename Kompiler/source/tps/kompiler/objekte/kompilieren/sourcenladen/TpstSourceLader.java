@@ -6,8 +6,9 @@ import java.util.List;
 
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
-import tps.kompiler.objekte.fehler.NochNichtGemachtFehler;
 import tps.kompiler.objekte.programm.Datei;
+import tps.kompiler.objekte.programm.Datentyp;
+import tps.objects.fehler.NochNichtGemachtFehler;
 
 public class TpstSourceLader extends TpsSourceLader {
 	
@@ -67,26 +68,60 @@ public class TpstSourceLader extends TpsSourceLader {
 			throw new FalscheSourcenFehler("benötigt:' oder 'kommt", zwischen);
 		}
 		datei = Datei.erschaffe(ort, name, braucht);
-		 while (leseSache()) {
+		while (ladeSache()) {
 		}
 	}
-
-	private boolean leseSache() {
-		leseSachenKopf();
+	
+	private boolean ladeSache() throws FalscheSourcenFehler {
+		ladeSachenKopf();
+		
+		
+		
+		throw new NochNichtGemachtFehler();
+	}
+	
+	private void ladeSachenKopf() throws FalscheSourcenFehler {
+		String zwischen;
+		zwischen = sourceLeser.nächstes();
+		teste("tolle");
+		switch (zwischen) {
+		case "Dieser":
+			zwischen = sourceLeser.nächstes();
+			teste("heißt");
+			switch (zwischen) {
+			case "DingPlan":
+				Datentyp name = lesedatentyp();
+				
+				break;
+			case "KlassenPlan":
+				
+				
+				
+				break;
+			default:
+				throw new FalscheSourcenFehler("DinPlan' oder 'KlassenPlan", zwischen);
+			}
+			break;
+		case "Dieses":
+			
+			
+			break;
+		case "Diese":
+			
+			
+			break;
+		default:
+			throw new FalscheSourcenFehler("Dieser', 'Dieses' oder 'Diese", zwischen);
+		}
 		
 		
 		
 		throw new NochNichtGemachtFehler();
 	}
 
-	private void leseSachenKopf() {
-		
-		
-		
-		
-		
-		
-		throw new NochNichtGemachtFehler();
+	private Datentyp lesedatentyp() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
