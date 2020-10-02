@@ -16,10 +16,12 @@ import tps.kompiler.objekte.programm.UnfertigeMethode;
 import tps.kompiler.objekte.programm.Variable;
 import tps.kompiler.objekte.programm.sache.Ding;
 import tps.kompiler.objekte.programm.sache.DingPlan;
+import tps.kompiler.objekte.programm.sache.FertigeSacheInterface;
 import tps.kompiler.objekte.programm.sache.Klasse;
 import tps.kompiler.objekte.programm.sache.KlassenPlan;
 import tps.kompiler.objekte.programm.sache.PlanInterface;
 import tps.kompiler.objekte.programm.sache.UnfertigeKlasse;
+import tps.kompiler.objekte.programm.sache.UnfertigeSacheInterface;
 import tps.kompiler.objekte.programm.sache.UnfertigesDing;
 import tps.objects.fehler.NochNichtGemachtFehler;
 
@@ -164,14 +166,10 @@ public class TpstSourceLader extends TpsSourceLader {
 		ladeSachenKopf();
 		if (sache instanceof DingPlan || sache instanceof KlassenPlan) {
 			ladePlan();
-		} else if (sache instanceof UnfertigesDing) {
-			ladeUnfertigesDing();
-		} else if (sache instanceof Ding) {
-			ladeDing();
-		} else if (sache instanceof UnfertigeKlasse) {
-			ladeUnfertigeKlasse();
-		} else if (sache instanceof Klasse) {
-			ladeKlasse();
+		} else if (sache instanceof UnfertigesDing || sache instanceof UnfertigeKlasse) {
+			ladeUnfertigeSache();
+		} else if (sache instanceof Ding || sache instanceof Klasse) {
+			ladeFertigeSache();
 		} else {
 			throw new KompilierungsFehler("Diese Sachenart ist mir unbekannt: '" + sache.getClass().getName() + "'!");
 		}
@@ -179,7 +177,33 @@ public class TpstSourceLader extends TpsSourceLader {
 	
 	private void ladePlan() throws KompilierungsFehler {
 		if ( ! (sache instanceof PlanInterface)) {
-			throw new KompilierungsFehler("Ich kann keinen Plan laden, wenn die sache in der ich den PLan reinmachen soll keiner ist!");
+			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+		}
+		ladeUnfertigeMethoden();
+	}
+	
+	private void ladeUnfertigeSache() throws KompilierungsFehler {
+		if ( ! (sache instanceof UnfertigeSacheInterface)) {
+			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+		}
+		ladeSachenVariablen();
+		ladeAnfangsMethoden();
+		ladeFertigeMethoden();
+		ladeUnfertigeMethoden();
+	}
+	
+	private void ladeFertigeSache() throws KompilierungsFehler {
+		if ( ! (sache instanceof FertigeSacheInterface)) {
+			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+		}
+		ladeSachenVariablen();
+		ladeAnfangsMethoden();
+		ladeFertigeMethoden();
+	}
+	
+	private void ladeUnfertigeMethoden() throws KompilierungsFehler {
+		if ( ! (sache instanceof PlanInterface || sache instanceof UnfertigeSacheInterface)) {
+			throw new KompilierungsFehler("So kann ich nicht arbeiten!");
 		}
 		String zwischen;
 		String varName;
@@ -267,8 +291,14 @@ public class TpstSourceLader extends TpsSourceLader {
 						break;
 					}
 					teste("zurück!");
-					if ( ! ((PlanInterface) sache).neueUnfertigeMethode(new UnfertigeMethode(name, parameter, methodenErgebnis))) {
-						throw new FalscheSourcenFehler("Es darf keine zwei Methoden mit gleichem Namen und Übergabeparametern geben!");
+					if (sache instanceof PlanInterface) {
+						if ( ! ((PlanInterface) sache).neueUnfertigeMethode(new UnfertigeMethode(name, parameter, methodenErgebnis))) {
+							throw new FalscheSourcenFehler("Es darf keine zwei Methoden mit gleichem Namen und Übergabeparametern geben!");
+						}
+					} else if (sache instanceof UnfertigeSacheInterface) {
+						if ( ! ((UnfertigeSacheInterface) sache).neueUnfertigeMethode(new UnfertigeMethode(name, parameter, methodenErgebnis))) {
+							throw new FalscheSourcenFehler("Es darf keine zwei Methoden mit gleichem Namen und Übergabeparametern geben!");
+						}
 					}
 					break;
 				default:
@@ -283,7 +313,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
-	private void ladeUnfertigesDing() {
+	private void ladeSachenVariablen() {
 		// TODO Auto-generated method stub
 		
 		
@@ -291,7 +321,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		throw new NochNichtGemachtFehler();
 	}
 	
-	private void ladeDing() {
+	private void ladeFertigeMethoden() {
 		// TODO Auto-generated method stub
 		
 		
@@ -299,15 +329,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		throw new NochNichtGemachtFehler();
 	}
 	
-	private void ladeUnfertigeKlasse() {
-		// TODO Auto-generated method stub
-		
-		
-		
-		throw new NochNichtGemachtFehler();
-	}
-	
-	private void ladeKlasse() {
+	private void ladeAnfangsMethoden() {
 		// TODO Auto-generated method stub
 		
 		
