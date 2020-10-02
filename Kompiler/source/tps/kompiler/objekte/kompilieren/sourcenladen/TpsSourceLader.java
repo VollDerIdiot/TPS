@@ -7,7 +7,10 @@ import tps.hilfen.Regeln;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.hilfen.Leser;
+import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datei;
+import tps.kompiler.objekte.programm.Datentyp;
+import tps.objects.fehler.NochNichtGemachtFehler;
 
 public abstract class TpsSourceLader {
 	
@@ -118,5 +121,27 @@ public abstract class TpsSourceLader {
 		ergebnis = ergebnis.substring(anfang, ende);
 		return Regeln.testePfad(ergebnis, new FalscheSourcenFehler("'" + ergebnis + "' ist kein Pfad! Ein Pfad darf keine ungüligen Zeichen enthalten!"));
 	}
+	
+	/**
+	 * List einen {@code Datentyp} nach der jeweiligen TpsSprache ein und gibt diesen dann zurück.<br>
+	 * Eigentlich nur eine Hilfe um es einzuteilen. <br>
+	 * Die Unterklasse wird nicht gezwungen diese Methode zu Implementieren und/oder zu verwenden.
+	 * 
+	 * @return Den eingelesenes {@code Datentyp}
+	 * @throws KompilierungsFehler
+	 *             Wenn etwas schiefgelaufen ist
+	 */
+	protected abstract Datentyp lesedatentyp() throws KompilierungsFehler;
+	
+	/**
+	 * List eine {@code Sichtbarkeit} nach der jeweiligen TpsSprache ein und gibt dann die dazugehörige Konstante zurück.<br>
+	 * Eigentlich nur eine Hilfe um es einzuteilen. <br>
+	 * Die Unterklasse wird nicht gezwungen diese Methode zu Implementieren und/oder zu verwenden.
+	 * 
+	 * @return Die eingelesene Sichtbarkeit
+	 * @throws KompilierungsFehler
+	 *             Wenn etwas schiefgelaufen ist
+	 */
+	protected abstract Sichtbarkeit leseSichtbarkeit() throws KompilierungsFehler;
 	
 }
