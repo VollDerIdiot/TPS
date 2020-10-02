@@ -63,3 +63,13 @@ Befehl:
 	- [Schleife]
 	- [Falls]
 	- [SetzeAuf]
+
+Besondere Werte:
+	[Nichts]
+
+Zusätze:
+	[Konstant]
+
+Zugriff:
+	[Ich]
+	[Erbe]

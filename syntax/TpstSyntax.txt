@@ -14,33 +14,33 @@ braucht:
 
 Sachenkopf:
 	- DingPlan:
-		Dieser tolle DingPlan heißt [Name] und ist [Sichtbarkeit].
+		Dieser tolle (Potentiell:		[Konstant]) DingPlan heißt [Name] und ist [Sichtbarkeit].
 			Potentiell:
 				Es bessert [Name von anderen DingPLans] ( + [Name von anderen DingPLans])*
 	- UnfertigesDing:
-		Dieses tolle unfertige Ding heißt [Name] und ist [Sichtbarkeit].
+		Dieses tolle (Potentiell:		[Konstant]) unfertige Ding heißt [Name] und ist [Sichtbarkeit].
 			Potentiell:
 				Es bessert [Name von Ding/UnfertigesDing]
 			Potentiell:
 				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
 	- Ding:
-		Dieses tolle Ding heißt [Name] und ist [Sichtbarkeit].
+		Dieses tolle (Potentiell:		[Konstant]) Ding heißt [Name] und ist [Sichtbarkeit].
 			Potentiell:
 				Es bessert [Name von Ding/UnfertigesDing]
 			Potentiell:
 				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
 	- KlassenPlan:
-		Dieser tolle KlassenPlan heißt [Name] und ist [Sichtbarkeit].
+		Dieser tolle (Potentiell:		[Konstant]) KlassenPlan heißt [Name] und ist [Sichtbarkeit].
 			Potentiell:
 				Es bessert [Name von anderen KlassenPLans] ( + [Name von anderen KlassenPLans])*
 	- UnfertigeKlasse:
-		Diese tolle unfertige Klasse heißt [Name] und ist [Sichtbarkeit].
+		Diese tolle (Potentiell:		[Konstant]) unfertige Klasse heißt [Name] und ist [Sichtbarkeit].
 			Potentiell:
 				Es bessert [Name von Klasse/UnfertigeKlasse]
 			Potentiell:
 				Es macht [Name von KlassenPlan] ( + [Name von KlassenPlan])*
 	- Klasse:
-		Diese tolle Klasse heißt [Name] und ist [Sichtbarkeit].
+		Diese tolle (Potentiell:		[Konstant]) Klasse heißt [Name] und ist [Sichtbarkeit].
 			Potentiell:
 				Es bessert [Name von Klasse/UnfertigeKlasse]
 			Potentiell:
@@ -62,7 +62,7 @@ Sacheninhalt:
 		[UnfertigeMethode]*
 	- UnfertigeKlasse:
 		[SachenVariable]*
-		Potentiell: 	[erstesMethode]
+		(Potentiell:		[erstesMethode])
 		[Methode]*							(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
 	- Klasse:
 		[SachenVariable]*
@@ -77,10 +77,10 @@ UnfertigeMethode:
 
 FertigeMethode:
 	- keine Übergabeparametern:
-		Diese tolle Methode heißt [Name] und ist [Sichtbarkeit]
+		Diese tolle (Potentiell:		[Konstant]) Methode heißt [Name] und ist [Sichtbarkeit]
 		[Box]
 	- mit Übergabeparametern:
-		Diese tolle Methode heißt [Name] ist [Sichtbarkeit] und erhält [Übergabeparameter]
+		Diese tolle (Potentiell:		[Konstant]) Methode heißt [Name] ist [Sichtbarkeit] und erhält [Übergabeparameter]
 		[Box]
 
 Übergabeparameter:
@@ -103,13 +103,13 @@ Bedingung:
 	[Wert Dieser Wert muss von JaNö abstammen]
 
 Zusatzgedings:
-	von [Name] ( und [Name])*
+	von [Name] (Potentiell:		( + [Name])* und [Name])
 
 Methodenaufruf:
 	- Ohne Übergabeparameter:
-		Rufe die tolle Methode (Potentiell:		MethodenPfad) [Name der Methode] von [Wert] auf!
+		Rufe die tolle Methode (Potentiell:		MethodenPfad) [Name der Methode] aus [Wert] auf!
 	- Mit Übergabeparameter:
-		Rufe die tolle Methode (Potentiell:		MethodenPfad) [Name der Methode] von [Wert] mit [Parameter] auf!
+		Rufe die tolle Methode (Potentiell:		MethodenPfad) [Name der Methode] aus [Wert] mit [Parameter] auf!
 
 Schleife:
 	Wiederhohle das folgende solange [Bedingung] erfüllt ist
@@ -124,3 +124,27 @@ Falls:
 
 SetzeAuf:
 	Setzte [VariablenRohName] auf [Wert dieser muss von der VariablenRohName sein]
+
+Nichts:
+	nichts
+
+Konstant:
+	konstante
+
+offen:
+	offen
+
+vererben:
+	vererbe
+
+datei:
+	datei
+
+eigen:
+	eigen
+
+Ich:
+	ich
+
+Erbe:
+	erbe
