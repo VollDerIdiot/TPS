@@ -18,7 +18,7 @@ import tps.kompiler.objekte.programm.sache.Ding;
 import tps.kompiler.objekte.programm.sache.DingPlan;
 import tps.kompiler.objekte.programm.sache.Klasse;
 import tps.kompiler.objekte.programm.sache.KlassenPlan;
-import tps.kompiler.objekte.programm.sache.Plan;
+import tps.kompiler.objekte.programm.sache.PlanInterface;
 import tps.kompiler.objekte.programm.sache.UnfertigeKlasse;
 import tps.kompiler.objekte.programm.sache.UnfertigesDing;
 import tps.objects.fehler.NochNichtGemachtFehler;
@@ -178,7 +178,7 @@ public class TpstSourceLader extends TpsSourceLader {
 	}
 	
 	private void ladePlan() throws KompilierungsFehler {
-		if ( ! (sache instanceof Plan)) {
+		if ( ! (sache instanceof PlanInterface)) {
 			throw new KompilierungsFehler("Ich kann keinen Plan laden, wenn die sache in der ich den PLan reinmachen soll keiner ist!");
 		}
 		String zwischen;
@@ -267,7 +267,7 @@ public class TpstSourceLader extends TpsSourceLader {
 						break;
 					}
 					teste("zurück!");
-					if ( ! ((Plan) sache).neueUnfertigeMethode(new UnfertigeMethode(name, parameter, methodenErgebnis))) {
+					if ( ! ((PlanInterface) sache).neueUnfertigeMethode(new UnfertigeMethode(name, parameter, methodenErgebnis))) {
 						throw new FalscheSourcenFehler("Es darf keine zwei Methoden mit gleichem Namen und Übergabeparametern geben!");
 					}
 					break;

@@ -3,7 +3,7 @@ package tps.kompiler.objekte.programm.sache;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datentyp;
 
-public class Klasse extends Sache {
+public class Klasse extends Sache implements FertigeSacheInterface {
 	
 	public Klasse(Datentyp name, Sichtbarkeit sicht, boolean konstant) {
 		super(name, sicht, konstant);

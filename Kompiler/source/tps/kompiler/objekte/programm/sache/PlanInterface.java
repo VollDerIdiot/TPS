@@ -4,7 +4,7 @@ import java.util.NavigableSet;
 
 import tps.kompiler.objekte.programm.UnfertigeMethode;
 
-public interface Plan {
+public interface PlanInterface {
 	
 	/**
 	 * Fügt {@code neu} zu den unfertigen Methoden hinzu.

@@ -10,7 +10,7 @@ import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datentyp;
 import tps.kompiler.objekte.programm.UnfertigeMethode;
 
-public class KlassenPlan extends Sache implements Plan {
+public class KlassenPlan extends Sache implements PlanInterface {
 	
 	private NavigableSet <UnfertigeMethode> methoden;
 	
