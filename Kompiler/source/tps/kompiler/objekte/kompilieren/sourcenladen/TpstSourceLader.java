@@ -12,10 +12,13 @@ import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datei;
 import tps.kompiler.objekte.programm.Datentyp;
+import tps.kompiler.objekte.programm.UnfertigeMethode;
+import tps.kompiler.objekte.programm.Variable;
 import tps.kompiler.objekte.programm.sache.Ding;
 import tps.kompiler.objekte.programm.sache.DingPlan;
 import tps.kompiler.objekte.programm.sache.Klasse;
 import tps.kompiler.objekte.programm.sache.KlassenPlan;
+import tps.kompiler.objekte.programm.sache.Plan;
 import tps.kompiler.objekte.programm.sache.UnfertigeKlasse;
 import tps.kompiler.objekte.programm.sache.UnfertigesDing;
 import tps.objects.fehler.NochNichtGemachtFehler;
@@ -159,14 +162,12 @@ public class TpstSourceLader extends TpsSourceLader {
 	
 	private void ladeSache() throws KompilierungsFehler {
 		ladeSachenKopf();
-		if (sache instanceof DingPlan) {
-			ladeDingPlan();
+		if (sache instanceof DingPlan || sache instanceof KlassenPlan) {
+			ladePlan();
 		} else if (sache instanceof UnfertigesDing) {
 			ladeUnfertigesDing();
 		} else if (sache instanceof Ding) {
 			ladeDing();
-		} else if (sache instanceof KlassenPlan) {
-			ladeKlassenPlan();
 		} else if (sache instanceof UnfertigeKlasse) {
 			ladeUnfertigeKlasse();
 		} else if (sache instanceof Klasse) {
@@ -176,12 +177,110 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
-	private void ladeDingPlan() {
-		// TODO Auto-generated method stub
-		
-		
-		
-		throw new NochNichtGemachtFehler();
+	private void ladePlan() throws KompilierungsFehler {
+		if ( ! (sache instanceof Plan)) {
+			throw new KompilierungsFehler("Ich kann keinen Plan laden, wenn die sache in der ich den PLan reinmachen soll keiner ist!");
+		}
+		String zwischen;
+		String varName;
+		Datentyp varDat;
+		boolean stopp = false;
+		int anfangsTabsulatoren;
+		Sichtbarkeit sicht = null;
+		Datentyp name;
+		Datentyp methodenErgebnis;
+		List <Variable> parameter;
+		while (true) {
+			zwischen = sourceLeser.nächstes();
+			anfangsTabsulatoren = sourceLeser.anfangsTabsulatoren();
+			switch (zwischen) {
+			case "Diese":
+				zwischen = sourceLeser.nächstes();
+				switch (zwischen) {
+				case "unfertige":
+					if (anfangsTabsulatoren != 1) {
+						throw new FalscheSourcenFehler("Jede Methode muss genau einen AnfangsTabulator besitzen!");
+					}
+					teste("Methode", "ist");
+					switch (zwischen) {
+					case "offen":
+						sicht = Sichtbarkeit.offen;
+					case "vererbe":
+						sicht = sicht != null ? sicht : Sichtbarkeit.erben;
+					case "datei":
+						sicht = sicht != null ? sicht : Sichtbarkeit.datei;
+					case "eigen":
+						sicht = sicht != null ? sicht : Sichtbarkeit.eigen;
+						teste("und", "heißt");
+						name = leseDatentyp();
+						parameter = Collections.emptyList();
+						break;
+					
+					case "offen,":
+						sicht = Sichtbarkeit.offen;
+					case "vererbe,":
+						sicht = sicht != null ? sicht : Sichtbarkeit.erben;
+					case "datei,":
+						sicht = sicht != null ? sicht : Sichtbarkeit.datei;
+					case "eigen,":
+						sicht = sicht != null ? sicht : Sichtbarkeit.eigen;
+						teste("heißt");
+						name = leseDatentyp();
+						teste("und", "erhält");
+						parameter = new ArrayList <Variable>();
+						varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
+						teste("ist", "ein");
+						varDat = leseDatentyp();
+						parameter.add(new Variable(varName, varDat));
+						while ( !stopp) {
+							zwischen = sourceLeser.nächstes();
+							switch (zwischen) {
+							case "+":
+								varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
+								teste("ist", "ein");
+								varDat = leseDatentyp();
+								parameter.add(new Variable(varName, varDat));
+								break;
+							case "und":
+								varName = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Übergabeparameter-Name"), BESETZTE_NAMEN);
+								teste("ist", "ein");
+								varDat = leseDatentyp();
+								parameter.add(new Variable(varName, varDat));
+								stopp = true;
+								break;
+							default:
+								throw new FalscheSourcenFehler("+' oder 'und", zwischen);
+							}
+						}
+						break;
+					default:
+						throw new FalscheSourcenFehler("offen', 'vererbe', 'datei' oder 'eigen", zwischen);
+					}
+					teste("Hier", "gibt", "es");
+					zwischen = sourceLeser.nächstes();
+					switch (zwischen) {
+					case "nichts":
+						methodenErgebnis = null;
+						break;
+					default:
+						methodenErgebnis = leseDatentyp();
+						break;
+					}
+					teste("zurück!");
+					if ( ! ((Plan) sache).neueUnfertigeMethode(new UnfertigeMethode(name, parameter, methodenErgebnis))) {
+						throw new FalscheSourcenFehler("Es darf keine zwei Methoden mit gleichem Namen und Übergabeparametern geben!");
+					}
+					break;
+				default:
+					sourceLeser.zurück(2);
+					return;
+				}
+				break;
+			default:
+				sourceLeser.zurück();
+				return;
+			}
+		}
 	}
 	
 	private void ladeUnfertigesDing() {
@@ -193,14 +292,6 @@ public class TpstSourceLader extends TpsSourceLader {
 	}
 	
 	private void ladeDing() {
-		// TODO Auto-generated method stub
-		
-		
-		
-		throw new NochNichtGemachtFehler();
-	}
-	
-	private void ladeKlassenPlan() {
 		// TODO Auto-generated method stub
 		
 		
@@ -308,6 +399,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
+	@Override
 	protected Datentyp leseDatentyp() throws KompilierungsFehler {
 		String name;
 		String zwischen;
@@ -337,6 +429,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
+	@Override
 	protected Sichtbarkeit leseSichtbarkeit() throws FalscheSourcenFehler {
 		String zwischen;
 		zwischen = sourceLeser.nächstes();
