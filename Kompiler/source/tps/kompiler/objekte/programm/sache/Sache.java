@@ -1,9 +1,11 @@
 package tps.kompiler.objekte.programm.sache;
 
+import java.util.Objects;
+
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datentyp;
 
-public abstract class Sache {
+public abstract class Sache implements Comparable <Sache> {
 	
 	public final Datentyp name;
 	public final Sichtbarkeit sicht;
@@ -11,11 +13,16 @@ public abstract class Sache {
 	
 	
 	public Sache(Datentyp name, Sichtbarkeit sicht, boolean konstant) {
-		this.name = name;
-		this.sicht = sicht;
+		this.name = Objects.requireNonNull(name, "Ich weigere mich null zu heißen!");
+		this.sicht = sicht == null ? Sichtbarkeit.offen : sicht;
 		this.konstant = konstant;
 	}
 	
 	
+	
+	@Override
+	public int compareTo(Sache mit) {
+		return name.name.compareTo(mit.name.name);
+	}
 	
 }
