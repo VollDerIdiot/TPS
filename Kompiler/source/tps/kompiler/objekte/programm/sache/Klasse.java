@@ -1,12 +1,25 @@
 package tps.kompiler.objekte.programm.sache;
 
+import java.util.Collections;
+import java.util.NavigableSet;
+import java.util.Objects;
+import java.util.TreeSet;
+
+import tps.hilfen.Hilfen;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datentyp;
+import tps.kompiler.objekte.programm.FertigeMethode;
+import tps.kompiler.objekte.programm.Variable;
 
 public class Klasse extends Sache implements FertigeSacheInterface {
 	
+	private NavigableSet <FertigeMethode> methoden;
+	private NavigableSet <Variable> variablen;
+	
 	public Klasse(Datentyp name, Sichtbarkeit sicht, boolean konstant) {
 		super(name, sicht, konstant);
+		methoden = new TreeSet <FertigeMethode>(Hilfen.vergleicherKeineNull());
+		variablen = new TreeSet <Variable>(Hilfen.vergleicherKeineNull());
 	}
 	
 	
@@ -20,6 +33,36 @@ public class Klasse extends Sache implements FertigeSacheInterface {
 		} else {
 			return 1;
 		}
+	}
+	
+	
+	
+	@Override
+	public boolean neueFertigeMethode(FertigeMethode neu) {
+		Objects.requireNonNull(neu, "Ich werde keine null-Methode hinzufügen!");
+		return methoden.add(neu);
+	}
+	
+	
+	
+	@Override
+	public NavigableSet <FertigeMethode> fertigeMethoden() {
+		return Collections.unmodifiableNavigableSet(fertigeMethoden());
+	}
+	
+	
+	
+	@Override
+	public boolean neueVariable(Variable neu) {
+		Objects.requireNonNull(neu, "Ich werde nich null hinzufügen!");
+		return variablen.add(neu);
+	}
+	
+	
+	
+	@Override
+	public NavigableSet <Variable> variablen() {
+		return Collections.unmodifiableNavigableSet(variablen);
 	}
 	
 }
