@@ -88,11 +88,7 @@ public class TpstSourceLader extends TpsSourceLader {
 		BESETZTE_NAMEN = Collections.unmodifiableSet(besetzteNamen);
 	}
 	
-	public static void main(String[] args) {
-		for (String string : BESETZTE_NAMEN) {
-			System.out.println(string);
-		}
-	}
+	
 	
 	public TpstSourceLader() {
 		super();
@@ -315,6 +311,12 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
+	/**
+	 * Liest die Variablen einer Sache ein und speichert dies dann in {@link TpsSourceLader#sache}
+	 * 
+	 * 
+	 * @throws KompilierungsFehler
+	 */
 	private void ladeSachenVariablen() throws KompilierungsFehler {
 		String name;
 		Sichtbarkeit sicht;
@@ -325,8 +327,8 @@ public class TpstSourceLader extends TpsSourceLader {
 		while (true) {
 			name = sourceLeser.nächstes();
 			try {
-				Regeln.testeName(name, new KompilierungsFehler("dummy"), BESETZTE_NAMEN);
-			} catch (KompilierungsFehler kf) {
+				Regeln.testeName(name, new KompilierungsFehler("stoppe"), BESETZTE_NAMEN);
+			} catch (KompilierungsFehler stoppe) {
 				sourceLeser.zurück();
 				return;
 			}
@@ -335,7 +337,9 @@ public class TpstSourceLader extends TpsSourceLader {
 			teste("und", "von");
 			datentyp = leseDatentyp();
 			if (sache instanceof FertigeSacheInterface) {
-				((FertigeSacheInterface)sache).neueVariable(new Variable(name, datentyp), sicht);
+				((FertigeSacheInterface) sache).neueVariable(new Variable(name, datentyp), sicht);
+			} else {
+				((UnfertigeSacheInterface) sache).neueVariable(new Variable(name, datentyp), sicht);
 			}
 		}
 	}

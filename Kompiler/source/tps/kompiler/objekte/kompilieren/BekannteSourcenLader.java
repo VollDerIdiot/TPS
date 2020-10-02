@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.ServiceLoader;
 
 import tps.kompiler.objekte.kompilieren.sourcenladen.TpsSourceLader;
+import tps.kompiler.objekte.kompilieren.sourcenladen.TpstSourceLader;
 
 public class BekannteSourcenLader {
 	
@@ -20,7 +21,7 @@ public class BekannteSourcenLader {
 	static {
 		TpsSourceLader[] standards;
 		TpsSourceLader[] andere;
-		standards = new TpsSourceLader[0];
+		standards = new TpsSourceLader[] {new TpstSourceLader() };
 		andere = lade();
 		bekannte = new TpsSourceLader[standards.length + andere.length];
 		System.arraycopy(standards, 0, bekannte, 0, standards.length);
@@ -61,6 +62,7 @@ public class BekannteSourcenLader {
 	 * @return den gefunden <code>TpsSourceLader</code> oder <code>null</code>
 	 */
 	public static TpsSourceLader erhalte(File datei, Charset zeichensatz) {
+		Objects.requireNonNull(datei, "Ich kann mit eimer null-Datei micht arbeiten!");
 		return erhalte(datei.getName(), zeichensatz);
 	}
 	
@@ -74,7 +76,8 @@ public class BekannteSourcenLader {
 	 */
 	public static TpsSourceLader erhalte(String dateiname, Charset zeichensatz) {
 		Objects.requireNonNull(dateiname, "Ich kann das nicht mit null machen!");
-		dateiname = dateiname.substring(dateiname.lastIndexOf('.'));
+		Objects.requireNonNull(zeichensatz, "Ich kann das nicht mit null machen!");
+		dateiname = dateiname.substring(dateiname.lastIndexOf('.') + 1);
 		for (TpsSourceLader testen : bekannte) {
 			if (dateiname.equals(testen.endung())) {
 				testen.zeichensatz(zeichensatz);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry excluding="tps/kompiler/objekte/kompiler/TpstKompilerALT.java|tps/kompiler/objekte/code/DateiALT.java|tps/kompiler/objekte/kompilieren/sourcenladen/TpstKompilerALT.java" kind="src" path="source"/>
+	<classpathentry kind="src" path="testresource"/>
 	<classpathentry kind="src" path="testsrc"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>

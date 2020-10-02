@@ -121,7 +121,7 @@ public class Leser {
 				log.add(NÄCHSTES);
 				return scnner.next();
 			} else {
-				if (index + 1 >= zeilen.size()) {
+				if ((index + 1 ) < zeilen.size()) {
 					scnner = new Scanner(zeilen.get( ++ index));
 					log.add(NEUE_ZEILE);
 					return nächstes();
