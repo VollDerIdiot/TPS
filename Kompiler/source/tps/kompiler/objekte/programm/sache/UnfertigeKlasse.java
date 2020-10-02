@@ -1,8 +1,10 @@
 package tps.kompiler.objekte.programm.sache;
 
 import java.util.Collections;
+import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.Objects;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import tps.hilfen.Hilfen;
@@ -14,7 +16,7 @@ import tps.kompiler.objekte.programm.Variable;
 
 public class UnfertigeKlasse extends Sache implements UnfertigeSacheInterface {
 	
-	private NavigableSet <Variable> variablen;
+	private NavigableMap <Variable, Sichtbarkeit> variablen;
 	private NavigableSet <FertigeMethode> fertigeMethoden;
 	private NavigableSet <UnfertigeMethode> unfertigeMethoden;
 	
@@ -22,7 +24,7 @@ public class UnfertigeKlasse extends Sache implements UnfertigeSacheInterface {
 		super(name, sicht, konstant);
 		unfertigeMethoden = new TreeSet <UnfertigeMethode>(Hilfen.vergleicherKeineNull());
 		fertigeMethoden = new TreeSet <FertigeMethode>(Hilfen.vergleicherKeineNull());
-		variablen = new TreeSet <Variable>(Hilfen.vergleicherKeineNull());
+		variablen = new TreeMap <Variable, Sichtbarkeit>(Hilfen.vergleicherKeineNull());
 	}
 	
 	
@@ -39,16 +41,16 @@ public class UnfertigeKlasse extends Sache implements UnfertigeSacheInterface {
 	
 	
 	@Override
-	public boolean neueVariable(Variable neu) {
+	public boolean neueVariable(Variable neu, Sichtbarkeit sicht) {
 		Objects.requireNonNull(neu, "Ich weigere mich eine null-Methode hinzuzufügen!");
-		return variablen.add(neu);
+		return variablen.put(neu, sicht) == null;
 	}
 	
 	
 	
 	@Override
-	public NavigableSet <Variable> variablen() {
-		return Collections.unmodifiableNavigableSet(variablen);
+	public NavigableMap <Variable, Sichtbarkeit> variablen() {
+		return Collections.unmodifiableNavigableMap(variablen);
 	}
 	
 	@Override
