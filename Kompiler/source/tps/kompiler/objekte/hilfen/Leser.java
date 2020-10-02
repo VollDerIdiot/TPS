@@ -32,22 +32,35 @@ public class Leser {
 	/**
 	 * Geht einen Schritt zurück. Dies bedeutet, dass man genau den stand hat, den man vor dem letzten veränderndem Befehl hatte ({@link #nächstes()} oder {@link #nächsteZeile()}).
 	 * 
-	 * @throws KompilierungsLaufzeitFehler
-	 *             wenn etwas mit dem log falsch war (Dies kann eigentlich nicht passieren!)
 	 * @throws IndexOutOfBoundsException,
 	 *             wenn man sich bereits am Anfang der Datei befindet.
 	 */
-	public void zurück() throws IndexOutOfBoundsException, KompilierungsLaufzeitFehler {
+	public void zurück() throws IndexOutOfBoundsException {
+		zurück(1);
+	}
+	
+	/**
+	 * Geht {@code anzahl} Schritte zurück. Dies bedeutet, dass man genau den stand hat, den man vor den {@code anzahl} letzten verändernden Befehlen hatte ({@link #nächstes()}
+	 * oder {@link #nächsteZeile()}).
+	 * 
+	 * @throws IndexOutOfBoundsException,
+	 *             wenn man sich bereits am Anfang der Datei befindet.
+	 */
+	public void zurück(int anzahl) throws IndexOutOfBoundsException {
 		List <Integer> zwischen;
 		if (log.size() == 0) {
 			throw new IndexOutOfBoundsException("Ich bin schon am anfang, es geht nicht noch weiter zurück!");
 		}
 		synchronized (this) {
-			log.remove(log.size() - 1);
+			for (; anzahl > 0; anzahl -- ) {
+				log.remove(log.size() - 1);
+			}
 			zwischen = log;
 			laufeNach(zwischen);
 		}
 	}
+	
+	
 	
 	/**
 	 * Es wird alles zurückgesetzt, was den aktuellen status speichert ({@link #log}, {@link #index} und {@link #scnner}), bevor dem <code>nachlaufen</code> nachgelaufen wird. <br>
