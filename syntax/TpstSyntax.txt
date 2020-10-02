@@ -69,6 +69,12 @@ Sacheninhalt:
 		(Potentiell:		[erstesMethode])
 		[FertigeMethode]*					(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
 
+SachenVariable:
+	[RohName] ist [Sichtbarkeit] und von [Name der dazugehöhrigen Sache]
+
+erschaffeMethode:
+	Dieses erschaffe ist [Sichtbarkeit] und braucht [Übergabeparameter oder 'nichts']
+
 UnfertigeMethode:
 	- keine Übergabeparametern:
 		Diese unfertige Methode ist [Sichtbarkeit] und heißt [Name]. Hier gibt es [Name einer Sache oder 'nichts'] zurück!
