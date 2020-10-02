@@ -9,7 +9,6 @@ import java.util.Objects;
 
 import de.hechler.patrick.patischerZeichensatzt.zeichen.ZeichenInterface;
 import de.hechler.patrick.patischerZeichensatzt.zeichenKette.UnfertigeZeichenKette;
-import de.hechler.patrick.patischerZeichensatzt.zeichenKette.ZeichenKetteInterface;
 import de.hechler.patrick.pzs8b.zeichen.Pzs8bZeichen;
 
 public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
