@@ -2,8 +2,10 @@ package tps.kompiler.objekte.programm;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.NavigableSet;
 import java.util.Objects;
+import java.util.TreeSet;
 
 import tps.hilfen.Hilfen;
 import tps.hilfen.Regeln;
@@ -16,6 +18,7 @@ public class Datei implements Comparable <Datei> {
 	public final String name;
 	private final String[] braucht;
 	private NavigableSet <Sache> sachen;
+	
 	
 	
 	public static Datei erschaffe(String ort, String name, Collection <String> braucht) {
@@ -32,6 +35,7 @@ public class Datei implements Comparable <Datei> {
 		this.ort = ort;
 		this.name = name;
 		this.braucht = braucht;
+		this.sachen = new TreeSet <Sache>(Hilfen.vergleicherKeineNull());
 	}
 	
 	
@@ -48,14 +52,16 @@ public class Datei implements Comparable <Datei> {
 	public int compareTo(Datei mit) {
 		int ergebnis;
 		ergebnis = this.ort.compareTo(mit.ort);
-		ergebnis = ergebnis == 0 ? (int) Math.signum(this.braucht.length - mit.braucht.length) : ergebnis;
-		ergebnis = ergebnis == 0 ? this.name.compareTo(mit.name) : ergebnis;
-		return ergebnis;
+		return ergebnis == 0 ? this.name.compareTo(mit.name) : ergebnis;
 	}
 	
 	public void neueSache(Sache sache) {
 		Objects.requireNonNull(sache, "Ich werde keine null-Sache hinzufügen!");
 		sachen.add(sache);
+	}
+	
+	public NavigableSet <Sache> sachen() {
+		return Collections.unmodifiableNavigableSet(sachen);
 	}
 	
 }
