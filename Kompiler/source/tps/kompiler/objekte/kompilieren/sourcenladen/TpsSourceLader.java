@@ -2,6 +2,7 @@ package tps.kompiler.objekte.kompilieren.sourcenladen;
 
 import java.nio.charset.Charset;
 import java.util.Objects;
+import java.util.Set;
 
 import tps.hilfen.Regeln;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
@@ -10,7 +11,7 @@ import tps.kompiler.objekte.hilfen.Leser;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datei;
 import tps.kompiler.objekte.programm.Datentyp;
-import tps.objects.fehler.NochNichtGemachtFehler;
+import tps.kompiler.objekte.programm.sache.Sache;
 
 public abstract class TpsSourceLader {
 	
@@ -39,12 +40,25 @@ public abstract class TpsSourceLader {
 	 * Wird vor jedem {@link #lade()} auf null gesetzt.
 	 */
 	protected Datei datei;
+	/**
+	 * Die aktuell zu bauende Sache in der {@link #datei} oder {@code null}. <br>
+	 * Wird vor jedem {@link #lade()} auf {@code null} gesetzt.
+	 */
+	protected Sache sache;
 	
 	
 	
 	public TpsSourceLader() {
 	}
 	
+	
+	
+	/**
+	 * Gibt alle Namen die in dieser TPS-Sprache nicht verwendet werden dürfen zurück
+	 * 
+	 * @return Die Namen, die man nicht benutzen darf.
+	 */
+	public abstract Set <String> besetzteNamen();
 	
 	
 	/**
@@ -131,7 +145,7 @@ public abstract class TpsSourceLader {
 	 * @throws KompilierungsFehler
 	 *             Wenn etwas schiefgelaufen ist
 	 */
-	protected abstract Datentyp lesedatentyp() throws KompilierungsFehler;
+	protected abstract Datentyp leseDatentyp() throws KompilierungsFehler;
 	
 	/**
 	 * List eine {@code Sichtbarkeit} nach der jeweiligen TpsSprache ein und gibt dann die dazugehörige Konstante zurück.<br>

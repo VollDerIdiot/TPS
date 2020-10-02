@@ -6,6 +6,8 @@ import java.util.NavigableSet;
 import java.util.TreeSet;
 
 import tps.hilfen.Hilfen;
+import tps.hilfen.Regeln;
+import tps.kompiler.objekte.fehler.KompilierungsLaufzeitFehler;
 
 public class Datentyp implements Comparable <Datentyp> {
 	
@@ -16,7 +18,7 @@ public class Datentyp implements Comparable <Datentyp> {
 	
 	public Datentyp(String name, Collection <Datentyp> zusatzsachen) {
 		TreeSet <Datentyp> zusatz;
-		this.name = name;
+		this.name = Regeln.testeName(name, new KompilierungsLaufzeitFehler("Das darf hier nicht mehr passieren! Man sollte den Namen schon vorher prüfen!"), Collections.emptySet());
 		zusatz = new TreeSet <>(Hilfen.vergleicherKeineNull());
 		zusatz.addAll(zusatzsachen);
 		this.zusatzsachen = Collections.unmodifiableNavigableSet(zusatz);

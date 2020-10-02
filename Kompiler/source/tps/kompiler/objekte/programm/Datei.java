@@ -2,18 +2,20 @@ package tps.kompiler.objekte.programm;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.NavigableSet;
 import java.util.Objects;
 
 import tps.hilfen.Hilfen;
 import tps.hilfen.Regeln;
 import tps.kompiler.objekte.fehler.KompilierungsLaufzeitFehler;
+import tps.kompiler.objekte.programm.sache.Sache;
 
 public class Datei implements Comparable <Datei> {
 	
 	public final String ort;
 	public final String name;
 	private final String[] braucht;
-	
+	private NavigableSet <Sache> sachen;
 	
 	
 	public static Datei erschaffe(String ort, String name, Collection <String> braucht) {
@@ -49,6 +51,11 @@ public class Datei implements Comparable <Datei> {
 		ergebnis = ergebnis == 0 ? (int) Math.signum(this.braucht.length - mit.braucht.length) : ergebnis;
 		ergebnis = ergebnis == 0 ? this.name.compareTo(mit.name) : ergebnis;
 		return ergebnis;
+	}
+	
+	public void neueSache(Sache sache) {
+		Objects.requireNonNull(sache, "Ich werde keine null-Sache hinzufügen!");
+		sachen.add(sache);
 	}
 	
 }

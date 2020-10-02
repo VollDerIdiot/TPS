@@ -33,7 +33,7 @@ public class Regeln {
 	 * @throws F
 	 *             wenn <code>name</code> ungültig ist
 	 */
-	public static <F extends Exception> void testeName(String name, F fehler, Set <String> besetzteNamen) throws F {
+	public static <F extends Exception> String testeName(String name, F fehler, Set <String> besetzteNamen) throws F {
 		Pzs8bZeichen[] zeichen;
 		Objects.requireNonNull(name, "Ich kann nicht auf null prüfen!");
 		Objects.requireNonNull(fehler, "Ich kann null nuicht werfen!");
@@ -52,6 +52,7 @@ public class Regeln {
 			fehler.setStackTrace(new Throwable().getStackTrace());
 			throw fehler;
 		}
+		return name;
 	}
 	
 	/**
