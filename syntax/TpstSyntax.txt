@@ -84,7 +84,7 @@ FertigeMethode:
 		[Box]
 
 Übergabeparameter:
-	[RohName] ist ein [Name von Sache] ( + [RohName] ist ein [Name von Sache])*
+	[RohName] ist ein [Name von Sache] (Potentiell:		( + [RohName] ist ein [Name von Sache])* und [RohName] ist ein [Name von Sache])
 
 Parameter:
 	[Wert] ( + [Wert])*
