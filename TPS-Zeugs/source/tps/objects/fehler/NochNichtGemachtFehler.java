@@ -1,4 +1,4 @@
-package tps.kompiler.objekte.fehler;
+package tps.objects.fehler;
 
 public class NochNichtGemachtFehler extends RuntimeException {
 	
@@ -6,7 +6,7 @@ public class NochNichtGemachtFehler extends RuntimeException {
 	
 	
 	public NochNichtGemachtFehler() {
-		super(Thread.currentThread().getStackTrace()[2].getMethodName() + " in " + Thread.currentThread().getStackTrace()[2].getClassName() + " wurde wohl noch nicht gemacht!");
+		super(Thread.currentThread().getStackTrace()[2].getMethodName() + " aus " + Thread.currentThread().getStackTrace()[2].getClassName() + " wurde wohl noch nicht gemacht!");
 	}
 	
 	public NochNichtGemachtFehler(String nachricht) {
