@@ -1,7 +1,6 @@
 package de.hechler.patrick.pzs8b.zeichen;
 
 import de.hechler.patrick.patischerZeichensatzt.zeichen.ZeichenInterface;
-import de.hechler.patrick.patischerZeichensatzt.zeichen.exeption.FalscheAnzahlBytesUmEinZeichenZuGenerieren;
 import de.hechler.patrick.patischerZeichensatzt.zeichen.exeption.UnbekanntesZeichen;
 
 public class Pzs8bZeichen implements ZeichenInterface {
@@ -81,32 +80,13 @@ public class Pzs8bZeichen implements ZeichenInterface {
 	}
 	
 	@Override
-	public int getNummer() {
-		return zeichen;
+	public byte[] getNummer() {
+		return new byte[] {zeichen };
 	}
 	
 	@Override
 	public String toString() {
 		return getZeichen() + "";
-	}
-	
-	public int benötigteBytesZumWissenWieVieleWeitereBenötigWerdenUmZuGenerieren() {
-		return 0;
-	}
-	
-	public int benötigteWeitereBytesZumGenerieren(byte[] bytes) {
-		return 1 - bytes.length;
-	}
-	
-	@Override
-	public Pzs8bZeichen generiereVonBytes(byte[] bytes) throws FalscheAnzahlBytesUmEinZeichenZuGenerieren {
-		if (bytes.length > 1) {
-			throw new FalscheAnzahlBytesUmEinZeichenZuGenerieren(bytes.length - 1);
-		}
-		if (bytes.length < 1) {
-			throw new FalscheAnzahlBytesUmEinZeichenZuGenerieren( -1);
-		}
-		return new Pzs8bZeichen( ((int) bytes[0]) & 0xFF);
 	}
 	
 	public static boolean isCommand(int prüfen) {
@@ -157,6 +137,10 @@ public class Pzs8bZeichen implements ZeichenInterface {
 		return new Pzs8bZeichen(zeichen);
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof ZeichenInterface) && getZeichen() == ((ZeichenInterface) obj).getZeichen();
+	}
 	
 	
 	private static void setup() {
@@ -459,7 +443,7 @@ public class Pzs8bZeichen implements ZeichenInterface {
 		}
 		int runde;
 		for (runde = 0; runde < alleZeichen.length; runde ++ ) {
-			if ((char) alleZeichen[runde] == prüfen) {
+			if (alleZeichen[runde] != null && (char) alleZeichen[runde] == prüfen) {
 				return runde;
 			}
 		}

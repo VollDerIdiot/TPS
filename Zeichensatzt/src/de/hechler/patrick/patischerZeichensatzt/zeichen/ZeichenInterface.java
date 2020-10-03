@@ -1,18 +1,10 @@
 package de.hechler.patrick.patischerZeichensatzt.zeichen;
 
-import de.hechler.patrick.patischerZeichensatzt.zeichen.exeption.FalscheAnzahlBytesUmEinZeichenZuGenerieren;
-
 public interface ZeichenInterface extends Cloneable {
 	
 	public char getZeichen();
 	
-	public int getNummer();
-	
-	public int benötigteBytesZumWissenWieVieleWeitereBenötigWerdenUmZuGenerieren();
-	
-	public int benötigteWeitereBytesZumGenerieren(byte[] bytes);
-	
-	public ZeichenInterface generiereVonBytes(byte[] bytes) throws FalscheAnzahlBytesUmEinZeichenZuGenerieren;
+	public byte[] getNummer();
 	
 	public ZeichenInterface zuGroßbuchstaben();
 	

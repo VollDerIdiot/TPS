@@ -7,16 +7,18 @@ import java.util.Objects;
 import java.util.TreeSet;
 
 import tps.hilfen.Hilfen;
+import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 
 public class UnfertigeMethode implements Comparable <UnfertigeMethode> {
 	
+	public final Sichtbarkeit sicht;
 	public final Datentyp name;
 	public final NavigableSet <Variable> parameter;
 	public final Datentyp rückgabeTyp;
 	
 	
 	
-	public UnfertigeMethode(Datentyp name, Collection <Variable> parameter, Datentyp rückgabeTyp) {
+	public UnfertigeMethode(Sichtbarkeit sicht, Datentyp name, Collection <Variable> parameter, Datentyp rückgabeTyp) {
 		Objects.requireNonNull(name, "ich weigere mich keinen namen zu haben!");
 		TreeSet <Variable> par;
 		this.name = name;
@@ -24,6 +26,7 @@ public class UnfertigeMethode implements Comparable <UnfertigeMethode> {
 		par.addAll(parameter);
 		this.parameter = parameter == null ? Collections.emptyNavigableSet() : Collections.unmodifiableNavigableSet(par);
 		this.rückgabeTyp = rückgabeTyp;
+		this.sicht = sicht == null ? Sichtbarkeit.offen : sicht;
 	}
 	
 	

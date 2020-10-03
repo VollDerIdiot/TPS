@@ -37,6 +37,9 @@ public class Datentyp implements Comparable <Datentyp> {
 		if (ergebnis != 0) {
 			return ergebnis;
 		}
+		if (zusatzsachen.isEmpty() || mit.zusatzsachen.isEmpty()) {
+			return zusatzsachen.isEmpty() ? (mit.zusatzsachen.isEmpty() ? 0 : 1) : (mit.zusatzsachen.isEmpty() ? -1 : 0); 
+		}
 		eigener = zusatzsachen.first();
 		anderer = mit.zusatzsachen.first();
 		for (runde = 0; runde < zusatzsachen.size(); runde ++ ) {

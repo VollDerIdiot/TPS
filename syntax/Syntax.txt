@@ -83,3 +83,6 @@ Zusätze:
 Zugriff:
 	[Ich]
 	[Erbe]
+
+WertPfad:
+	RohName [GeheIn] RohName ( [GeheIn] RohName)

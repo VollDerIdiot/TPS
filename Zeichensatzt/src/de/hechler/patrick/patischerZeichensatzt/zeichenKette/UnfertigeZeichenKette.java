@@ -19,6 +19,6 @@ public abstract class UnfertigeZeichenKette implements ZeichenKetteInterface {
 	}
 	
 	@Override
-	public abstract ZeichenKetteInterface clone();
+	public abstract UnfertigeZeichenKette clone();
 	
 }

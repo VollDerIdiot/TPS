@@ -86,10 +86,10 @@ UnfertigeMethode:
 
 FertigeMethode:
 	- keine Übergabeparametern:
-		Diese tolle (Potentiell:		[Konstant]) Methode heißt [Name] und ist [Sichtbarkeit]
+		Diese tolle (Potentiell:		[Konstant]) Methode heißt [Name] ist [Sichtbarkeit] und gibt [Name einer Sache oder 'nichts'] zurück!
 		[Box]
 	- mit Übergabeparametern:
-		Diese tolle (Potentiell:		[Konstant]) Methode heißt [Name] ist [Sichtbarkeit] und erhält [Übergabeparameter]
+		Diese tolle (Potentiell:		[Konstant]) Methode heißt [Name] ist [Sichtbarkeit] erhält [Übergabeparameter] und gibt [Name einer Sache oder 'nichts'] zurück!
 		[Box]
 
 Übergabeparameter:
@@ -101,6 +101,11 @@ Parameter:
 Wert:
 	- [DirekterWert]
 	- [VariablenRohName]
+	- [WertPfad] [VariablenRohName]
+
+WertPfad:
+	([RohName von Sache oder Wert][GeheIn])+
+
 DirekterWert:
 	- Zeugs mit eben diesem Wert als Rückgabe (zum Beispiel die erschaffe Methode bei einem Ding)
 	- bei zahlen kann dies auch eine [Zahl] sein.
@@ -113,9 +118,9 @@ Zusatzgedings:
 
 Methodenaufruf:
 	- Ohne Übergabeparameter:
-		Rufe die tolle Methode (Potentiell:		MethodenPfad) [Name der Methode] aus [Wert] auf!
+		Rufe die tolle Methode (Potentiell:		[Wert][GeheIn] ) [Name der Methode] aus [Wert] auf!
 	- Mit Übergabeparameter:
-		Rufe die tolle Methode (Potentiell:		MethodenPfad) [Name der Methode] aus [Wert] mit [Parameter] auf!
+		Rufe die tolle Methode (Potentiell:		[Wert][GeheIn] ) [Name der Methode] aus [Wert] mit [Parameter] auf!
 
 Schleife:
 	Wiederhohle das folgende solange [Bedingung] erfüllt ist
@@ -129,7 +134,7 @@ Falls:
 		[BOX]
 
 SetzeAuf:
-	Setzte [VariablenRohName] auf [Wert dieser muss von der VariablenRohName sein]
+	setzte [VariablenRohName] auf [Wert dieser muss von der VariablenRohName sein]
 
 IstNichts:
 	ist [Wert] nichts?
@@ -172,3 +177,6 @@ Ich:
 
 Erbe:
 	erbe
+
+GeheIn:
+	#

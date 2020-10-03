@@ -14,8 +14,10 @@ import tps.kompiler.objekte.programm.Befehl;
 import tps.kompiler.objekte.programm.Datei;
 import tps.kompiler.objekte.programm.Datentyp;
 import tps.kompiler.objekte.programm.Erschaffe;
+import tps.kompiler.objekte.programm.FertigeMethode;
 import tps.kompiler.objekte.programm.UnfertigeMethode;
 import tps.kompiler.objekte.programm.Variable;
+import tps.kompiler.objekte.programm.Wert;
 import tps.kompiler.objekte.programm.sache.Ding;
 import tps.kompiler.objekte.programm.sache.DingPlan;
 import tps.kompiler.objekte.programm.sache.FertigeSacheInterface;
@@ -243,8 +245,6 @@ public class TpstSourceLader extends TpsSourceLader {
 	
 	private void ladeUnfertigeMethoden() throws KompilierungsFehler {
 		String zwischen;
-		String varName;
-		Datentyp varDat;
 		int anfangsTabsulatoren;
 		Sichtbarkeit sicht = null;
 		Datentyp name;
@@ -307,11 +307,11 @@ public class TpstSourceLader extends TpsSourceLader {
 					}
 					teste("zurück!");
 					if (sache instanceof PlanInterface) {
-						if ( ! ((PlanInterface) sache).neueUnfertigeMethode(new UnfertigeMethode(name, parameter, methodenErgebnis))) {
+						if ( ! ((PlanInterface) sache).neueUnfertigeMethode(new UnfertigeMethode(sicht, name, parameter, methodenErgebnis))) {
 							throw new FalscheSourcenFehler("Es darf keine zwei Methoden mit gleichem Namen und Übergabeparametern geben!");
 						}
 					} else if (sache instanceof UnfertigeSacheInterface) {
-						if ( ! ((UnfertigeSacheInterface) sache).neueUnfertigeMethode(new UnfertigeMethode(name, parameter, methodenErgebnis))) {
+						if ( ! ((UnfertigeSacheInterface) sache).neueUnfertigeMethode(new UnfertigeMethode(sicht, name, parameter, methodenErgebnis))) {
 							throw new FalscheSourcenFehler("Es darf keine zwei Methoden mit gleichem Namen und Übergabeparametern geben!");
 						}
 					}
@@ -327,8 +327,6 @@ public class TpstSourceLader extends TpsSourceLader {
 			}
 		}
 	}
-	
-	
 	
 	private List <Variable> leseÜbergabeparameter() throws FalscheSourcenFehler {
 		String zwischen;
@@ -401,14 +399,84 @@ public class TpstSourceLader extends TpsSourceLader {
 	}
 	
 	private void ladeFertigeMethoden() throws KompilierungsFehler {
-		if ( ! (sache instanceof UnfertigeSacheInterface || sache instanceof FertigeSacheInterface)) {
-			throw new KompilierungsFehler("Ich kann so nicht arbeiten!");
+		String zwischen;
+		int anfangsTabsulatoren;
+		boolean konstant;
+		Sichtbarkeit sicht;
+		Datentyp name;
+		Datentyp methodenErgebnis;
+		List <Variable> parameter;
+		List <Befehl> box;
+		FertigeMethode neu;
+		if ( ! (sache instanceof FertigeSacheInterface || sache instanceof UnfertigeSacheInterface)) {
+			throw new KompilierungsFehler("Wenn du mich aufrufst, dann solltest du vorher sichherstellen, dass sache fertigeMethoden haben darf! ('" + sache + "')");
 		}
-		// TODO Auto-generated method stub
-		
-		
-		
-		throw new NochNichtGemachtFehler();
+		while (true) {
+			zwischen = sourceLeser.nächstes();
+			anfangsTabsulatoren = sourceLeser.anfangsTabsulatoren();
+			switch (zwischen) {
+			case "Diese":
+				zwischen = sourceLeser.nächstes();
+				switch (zwischen) {
+				case "tolle":
+					zwischen = sourceLeser.nächstes();
+					konstant = false;
+					switch (zwischen) {
+					case "konstant":
+						konstant = true;
+						zwischen = sourceLeser.nächstes();
+						if ( !"Methode".equals(zwischen)) {
+							throw new FalscheSourcenFehler("Methode", zwischen);
+						}
+					case "Methode":
+						teste("heißt");
+						if (anfangsTabsulatoren != 1) {
+							throw new FalscheSourcenFehler("Jede Methode muss genau einen Anfangs Tabulator besitzen!");
+						}
+						name = leseDatentyp();
+						teste("ist");
+						sicht = leseSichtbarkeit();
+						zwischen = sourceLeser.nächstes();
+						parameter = Collections.emptyList();
+						switch (zwischen) {
+						case "erhält":
+							parameter = leseÜbergabeparameter();
+							teste("und");
+						case "und":
+							teste("gibt");
+							zwischen = sourceLeser.nächstes();
+							switch (zwischen) {
+							case "nichts":
+								methodenErgebnis = null;
+								break;
+							default:
+								sourceLeser.zurück();
+								methodenErgebnis = leseDatentyp();
+							}
+							teste("zurück!");
+							box = leseBox(2);
+							neu = new FertigeMethode(new UnfertigeMethode(sicht, name, parameter, methodenErgebnis), konstant, box);
+							if (sache instanceof FertigeSacheInterface) {
+								((FertigeSacheInterface) sache).neueFertigeMethode(neu);
+							} else {
+								((UnfertigeSacheInterface) sache).neueFertigeMethode(neu);
+							}
+							break;
+						default:
+							throw new FalscheSourcenFehler("erhält' oder 'und", zwischen);
+						}
+					}
+					break;
+				default:
+					sourceLeser.zurück(2);
+					return;
+				}
+				break;
+			default:
+				sourceLeser.zurück();
+				return;
+			}
+		}
 	}
 	
 	private void ladeAnfangsMethoden() throws KompilierungsFehler {
@@ -471,18 +539,72 @@ public class TpstSourceLader extends TpsSourceLader {
 		}
 	}
 	
-	private List <Befehl> leseBox(int anfangsTabs) {
+	private List <Befehl> leseBox(int anfangsTabs) throws FalscheSourcenFehler {
 		String zwischen;
 		List <Befehl> ergebnis;
+		ergebnis = new ArrayList <Befehl>();
+		
 		zwischen = sourceLeser.nächstes();
-		// TODO
+		if (anfangsTabs != sourceLeser.anfangsTabsulatoren()) {
+			throw new FalscheSourcenFehler("Ich habe " + anfangsTabs + " anfangsTabulatoren erwartet, aber es gab " + sourceLeser.anfangsTabsulatoren() + "!");
+		}
+		switch (zwischen) {
+		case "Rufe": {
+			String[] pfad;
+			Datentyp name;
+			Wert wert;
+			teste("die", "tolle", "Methode");
+			zwischen = sourceLeser.nächstes();
+			if (zwischen.contains("#")) {
+				if ( !zwischen.endsWith("#")) {
+					throw new FalscheSourcenFehler("Ein Methodenfad endet mit '#'!('" + zwischen + "')");
+				}
+				pfad = zwischen.split("[#]+");
+				zwischen = sourceLeser.nächstes();
+			}
+			name = leseDatentyp();
+			teste("aus");
+			
+			
+			
+			break;
+		}
+		case "Wiederhohle":
+			
+			
+			break;
+		case "Mache":
+			
+			
+			break;
+		case "setzte":
+			
+			
+			break;
+		case "ist":
+			
+			
+			break;
+		case "sterbe":
+			
+			
+			break;
+		case "verschwinde":
+			
+			
+			break;
+		case "gehe":
+			
+			
+			break;
+		default:
+			throw new FalscheSourcenFehler("Rufe', 'Wiederhohle', 'Mache', 'setzte' 'ist', 'sterbe', 'verschwinde' oder 'gehe", zwischen);
+		}
 		
 		
 		
 		throw new NochNichtGemachtFehler();
 	}
-	
-	
 	
 	/**
 	 * Liest den Kopf einer {@link Sache} ein. <br>
@@ -582,10 +704,19 @@ public class TpstSourceLader extends TpsSourceLader {
 		List <Datentyp> zusatz;
 		name = Regeln.testeName(sourceLeser.nächstes(), new FalscheSourcenFehler("Dies ist kein gültiger Name!"), BESETZTE_NAMEN);
 		zwischen = sourceLeser.nächstes();
+		if (zwischen == null) {
+			return new Datentyp(name, Collections.emptyList());
+		}
 		switch (zwischen) {
 		case "von":
 			zusatz = new ArrayList <>();
 			zusatz.add(leseDatentyp());
+			zwischen = sourceLeser.nächstes();
+			if (zwischen == null || !("+".equals(zwischen) || "und".equals(zwischen))) {
+				return new Datentyp(name, zusatz);
+			}else {
+				sourceLeser.zurück();
+			}
 			while (true) {
 				zwischen = sourceLeser.nächstes();
 				switch (zwischen) {

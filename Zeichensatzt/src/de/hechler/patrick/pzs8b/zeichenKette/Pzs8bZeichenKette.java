@@ -1,5 +1,6 @@
 package de.hechler.patrick.pzs8b.zeichenKette;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -52,6 +53,14 @@ public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
 		}
 	}
 	
+	public Pzs8bZeichenKette(byte[] zeichenNummern) {
+		this.pzs8bZeichen = new Pzs8bZeichen[zeichenNummern.length];
+		int runde;
+		for (runde = 0; runde < pzs8bZeichen.length; runde ++ ) {
+			this.pzs8bZeichen[runde] = new Pzs8bZeichen(zeichenNummern[runde]);
+		}
+	}
+	
 	public Pzs8bZeichenKette(Pzs8bZeichen[] zeichen) {
 		Objects.requireNonNull(zeichen, "Ich kann nicht meine zeichen in null speihern!");
 		this.pzs8bZeichen = zeichen.clone();
@@ -74,11 +83,11 @@ public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
 	}
 	
 	@Override
-	public int[] getBytes() {
-		int[] rückgabe = new int[pzs8bZeichen.length];
+	public byte[] getBytes() {
+		byte[] rückgabe = new byte[pzs8bZeichen.length];
 		int runde;
 		for (runde = 0; runde < rückgabe.length; runde ++ ) {
-			rückgabe[runde] = pzs8bZeichen[runde].getNummer();
+			rückgabe[runde] = (byte) getNummer(runde);
 		}
 		return rückgabe;
 	}
@@ -110,10 +119,10 @@ public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
 		return false;
 	}
 	
-	@Override
 	public boolean contains(int prüfNummer) {
-		for (Pzs8bZeichen prüfer : pzs8bZeichen) {
-			if (prüfNummer == prüfer.getNummer()) {
+		int runde;
+		for (runde = 0; runde < pzs8bZeichen.length; runde ++ ) {
+			if (prüfNummer == getNummer(runde)) {
 				return true;
 			}
 		}
@@ -143,11 +152,11 @@ public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
 		return -1;
 	}
 	
-	@Override
-	public int getIndex(int prüfNummer) {
+	public int getIndex(byte[] prüfNummer) {
 		int runde;
+		int prüfen = ((int) prüfNummer[0]) & 0xFF;
 		for (runde = 0; runde < pzs8bZeichen.length; runde ++ ) {
-			if (prüfNummer == pzs8bZeichen[runde].getNummer()) {
+			if (prüfen == getNummer(runde)) {
 				return runde;
 			}
 		}
@@ -176,11 +185,10 @@ public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
 		return -1;
 	}
 	
-	@Override
 	public int getLetztenIndex(int prüfNummer) {
 		int runde;
 		for (runde = pzs8bZeichen.length - 1; runde > 0; runde -- ) {
-			if (prüfNummer == pzs8bZeichen[runde].getNummer()) {
+			if (prüfNummer == getNummer(runde)) {
 				return runde;
 			}
 		}
@@ -226,22 +234,19 @@ public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
 		return getIntArray(indexe);
 	}
 	
-	@Override
 	public int[] getAlleIndexe(int prüfNummer) {
 		ArrayList <Integer> indexe = new ArrayList <Integer>();
 		int runde;
-		
 		for (runde = 0; runde < pzs8bZeichen.length; runde ++ ) {
-			if (prüfNummer == pzs8bZeichen[runde].getNummer()) {
+			if (prüfNummer == getNummer(runde)) {
 				indexe.add(runde);
 			}
 		}
-		
 		return getIntArray(indexe);
 	}
 	
 	@Override
-	public void speichere(OutputStream schreiber) throws Exception {
+	public void speichere(OutputStream schreiber) throws IOException {
 		for (Pzs8bZeichen schreiben : pzs8bZeichen) {
 			schreiber.write(schreiben.getNummer());
 		}
@@ -280,6 +285,11 @@ public class Pzs8bZeichenKette extends UnfertigeZeichenKette {
 	@Override
 	public Pzs8bZeichenKette clone() {
 		return new Pzs8bZeichenKette(pzs8bZeichen.clone(), null);
+	}
+	
+	
+	private int getNummer(int index) {
+		return ((int) pzs8bZeichen[index].getNummer()[0]) & 0xFF;
 	}
 	
 }
