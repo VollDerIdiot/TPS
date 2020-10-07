@@ -1,10 +1,13 @@
 package tps.kompiler.objekte.kompilieren.sourcenladen;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +15,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -26,13 +31,13 @@ class TpstSourceLaderTest {
 	
 	private static TpstSourceLader sourceLader; 
 	
-	@BeforeAll
-	static void setUpAll() throws Exception {
+	@BeforeEach
+	void setUpAll() throws Exception {
 		sourceLader = new TpstSourceLader(); 
 	}
 	
-	@AfterAll
-	static void tearDownAll() throws Exception {
+	@AfterEach
+	void tearDownAll() throws Exception {
 		sourceLader = null;
 	}
 	
@@ -87,6 +92,7 @@ class TpstSourceLaderTest {
 	
 	@Test
 	void testLeseSichtbarkeit() throws FalscheSourcenFehler {
+		
 		List<String> sichtbarkeitenKeywords = Arrays.asList("offen", "vererbe", "datei", "eigen");
 		for (String keyword:sichtbarkeitenKeywords) {
 			sourceLader.sourceLeser = new Leser(new Scanner(keyword));
@@ -95,36 +101,53 @@ class TpstSourceLaderTest {
 			assertEquals(keyword, sichtbarkeit.name());
 		}
 		
+		assertThrows(FalscheSourcenFehler.class, () -> {
+			sourceLader.sourceLeser = new Leser(new Scanner("irgendwas"));
+			sourceLader.leseSichtbarkeit();
+		});
+		
 	}
 	
 	@Test
-	@Disabled
-	void testTpstSourceLader() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	@Disabled
-	void testTpsSourceLader() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	@Disabled
-	void testZeichensatzCharset() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	@Disabled
 	void testZeichensatz() {
-		fail("Not yet implemented");
+		assertNull(sourceLader.zeichensatz());
+		
+		sourceLader.zeichensatz(StandardCharsets.ISO_8859_1);
+		assertEquals(StandardCharsets.ISO_8859_1, sourceLader.zeichensatz());
+
+		sourceLader.zeichensatz(StandardCharsets.UTF_8);
+		assertEquals(StandardCharsets.UTF_8, sourceLader.zeichensatz());
+
+		assertThrows(NullPointerException.class, () -> {
+			sourceLader.zeichensatz(null);
+		});
+
 	}
 	
 	@Test
-	@Disabled
-	void testTeste() {
-		fail("Not yet implemented");
+	void testTeste() throws FalscheSourcenFehler {
+		sourceLader.sourceLeser = new Leser(new Scanner("eins zwei drei"));
+		sourceLader.teste("eins", "zwei");
+		sourceLader.teste("drei");
+
+		sourceLader.sourceLeser = new Leser(new Scanner("eins  \t\t  \tzwei\tdrei"));
+		sourceLader.teste("eins", "zwei", "drei");
+
+		assertThrows(FalscheSourcenFehler.class, () -> {
+			sourceLader.sourceLeser = new Leser(new Scanner("eins 2 drei"));
+			sourceLader.teste("eins", "zwei");
+		});
+
+		sourceLader.sourceLeser = new Leser(new Scanner("eins"));
+		sourceLader.teste("eins");
+
+		sourceLader.sourceLeser = new Leser(new Scanner(""));
+		sourceLader.teste();
+		
+		sourceLader.sourceLeser = new Leser(new Scanner("eins"));
+		sourceLader.teste("eins", "zwei");
+
+
 	}
 	
 	@Test
@@ -132,5 +155,5 @@ class TpstSourceLaderTest {
 	void testLesePfad() {
 		fail("Not yet implemented");
 	}
-	
+
 }
