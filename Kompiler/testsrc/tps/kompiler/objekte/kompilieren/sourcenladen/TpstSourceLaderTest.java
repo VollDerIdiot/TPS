@@ -144,16 +144,19 @@ class TpstSourceLaderTest {
 		sourceLader.sourceLeser = new Leser(new Scanner(""));
 		sourceLader.teste();
 		
-		sourceLader.sourceLeser = new Leser(new Scanner("eins"));
-		sourceLader.teste("eins", "zwei");
+		assertThrows(FalscheSourcenFehler.class, () -> {
+			sourceLader.sourceLeser = new Leser(new Scanner("eins"));
+			sourceLader.teste("eins", "zwei");
+		});
 
 
 	}
 	
 	@Test
-	@Disabled
-	void testLesePfad() {
-		fail("Not yet implemented");
+	void testLesePfad() throws FalscheSourcenFehler {
+		sourceLader.sourceLeser = new Leser(new Scanner("|:das/ist/ein/Pfad:>"));
+		String pfad = sourceLader.lesePfad();
+		assertNotNull(pfad);
 	}
 
 }
