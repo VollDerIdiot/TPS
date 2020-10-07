@@ -14,14 +14,13 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
+import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.hilfen.Leser;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datentyp;
@@ -53,9 +52,11 @@ class TpstSourceLaderTest {
 	}
 	
 	@Test
-	@Disabled
-	void testLade() {
-		fail("Not yet implemented");
+	void testLade() throws KompilierungsFehler {
+		sourceLader.sourceLeser = new Leser(new Scanner("Diese tolle Datei liegt in: |:pfad:>"));
+		sourceLader.lade("name");
+		
+		// TODO: continue this test if error is fixed
 	}
 	
 	@Test
@@ -93,6 +94,11 @@ class TpstSourceLaderTest {
 	@Test
 	void testLeseSichtbarkeit() throws FalscheSourcenFehler {
 		
+		assertThrows(FalscheSourcenFehler.class, () -> {
+			sourceLader.sourceLeser = new Leser(new Scanner("irgendwas"));
+			sourceLader.leseSichtbarkeit();
+		});
+		
 		List<String> sichtbarkeitenKeywords = Arrays.asList("offen", "vererbe", "datei", "eigen");
 		for (String keyword:sichtbarkeitenKeywords) {
 			sourceLader.sourceLeser = new Leser(new Scanner(keyword));
@@ -101,11 +107,8 @@ class TpstSourceLaderTest {
 			assertEquals(keyword, sichtbarkeit.name());
 		}
 		
-		assertThrows(FalscheSourcenFehler.class, () -> {
-			sourceLader.sourceLeser = new Leser(new Scanner("irgendwas"));
-			sourceLader.leseSichtbarkeit();
-		});
-		
+		// TODO: continue this test if error is fixed
+
 	}
 	
 	@Test
@@ -149,6 +152,7 @@ class TpstSourceLaderTest {
 			sourceLader.teste("eins", "zwei");
 		});
 
+		// TODO: continue this test if error is fixed
 
 	}
 	
@@ -157,6 +161,9 @@ class TpstSourceLaderTest {
 		sourceLader.sourceLeser = new Leser(new Scanner("|:das/ist/ein/Pfad:>"));
 		String pfad = sourceLader.lesePfad();
 		assertNotNull(pfad);
+		
+		// TODO: continue this test if error is fixed
+
 	}
 
 }
