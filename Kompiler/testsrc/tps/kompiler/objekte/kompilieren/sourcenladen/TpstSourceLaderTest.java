@@ -98,31 +98,37 @@ class TpstSourceLaderTest {
 	}
 	
 	@Test
+	@Disabled
 	void testTpstSourceLader() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
+	@Disabled
 	void testTpsSourceLader() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
+	@Disabled
 	void testZeichensatzCharset() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
+	@Disabled
 	void testZeichensatz() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
+	@Disabled
 	void testTeste() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
+	@Disabled
 	void testLesePfad() {
 		fail("Not yet implemented");
 	}
