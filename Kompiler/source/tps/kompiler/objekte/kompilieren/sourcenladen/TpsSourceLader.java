@@ -1,5 +1,9 @@
 package tps.kompiler.objekte.kompilieren.sourcenladen;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Objects;
 import java.util.Set;
@@ -62,6 +66,22 @@ public abstract class TpsSourceLader {
 	
 	
 	
+	public Datei ladeDatei(File datei) throws FileNotFoundException, KompilierungsFehler {
+		Objects.requireNonNull(datei, "Ich kann keine null Datei laden!");
+		return ladeDatei(new FileInputStream(datei), datei.getName());
+	}
+	
+	private Datei ladeDatei(InputStream eingag, String dateiName) throws KompilierungsFehler {
+		Objects.requireNonNull(eingag, "Ich kann keine Datei aus einem null-Stream laden!");
+		sourceLeser = new Leser(eingag, zeichensatz);
+		datei = null;
+		sache = null;
+		lade(dateiName);
+		return datei;
+	}
+	
+	
+	
 	/**
 	 * Gibt alle Namen die in dieser TPS-Sprache nicht verwendet werden dürfen zurück
 	 * 
@@ -80,7 +100,8 @@ public abstract class TpsSourceLader {
 	public abstract String endung();
 	
 	/**
-	 * Lädt die aktuelle Datei
+	 * Lädt die aktuelle Datei aus dem {@link #sourceLeser} ein. <br>
+	 * {@link #datei} und {@link #sache} sind auf {@code null} gesetzt, wenn diese Methode aufgerufen wird.
 	 * 
 	 * @param name
 	 *            Der name der Datei. Wird benötigt, wenn die {@link #datei} initialisiert wird, um ihren name zu setzen.
