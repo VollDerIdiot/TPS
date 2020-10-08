@@ -145,7 +145,7 @@ public abstract class TpsSourceLader {
 		String zwischen;
 		for (String dieser : testen) {
 			zwischen = sourceLeser.nächstes();
-			if ( !zwischen.equals(dieser)) {
+			if ( !dieser.equals(zwischen)) {
 				throw new FalscheSourcenFehler(dieser, zwischen);
 			}
 		}
