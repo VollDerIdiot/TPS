@@ -46,8 +46,8 @@ Zahl:
 		[PosZahl]
 
 PosZahl:
-	- Decimal:
-		DEC:(0-9)+
+	- Dezimal:
+		DEZ:(0-9)+
 	- Hexadecimal:
 		HEX:(0-9|A-F)+
 	- Binär:
@@ -56,7 +56,15 @@ PosZahl:
 Pfad:
 	startet mit '|:' 
 	pfad mit '/' als Trennzeichen für Ordner
-	endet mit ':>[ZEILENUMBRUCH]' (es sollte das letzte vor Zeilenende genommen werden)
+	endet mit ':>'
+
+Zeichenkette:
+	startet mit 'ZK:'
+	endet mit '>E>' ('\>E>', um '>E>' in der Zeichenkette zu haben)
+
+Zeichen:
+	startet mit 'Z:'
+	endet mit '>E>'
 
 Box:
 	[Befehl]+

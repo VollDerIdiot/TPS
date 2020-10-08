@@ -11,11 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
@@ -26,11 +22,11 @@ import tps.kompiler.objekte.programm.Datentyp;
 
 class TpstSourceLaderTest {
 	
-	private static TpstSourceLader sourceLader; 
+	private static TpstSourceLader sourceLader;
 	
 	@BeforeEach
 	void setUpAll() throws Exception {
-		sourceLader = new TpstSourceLader(); 
+		sourceLader = new TpstSourceLader();
 	}
 	
 	@AfterEach
@@ -58,6 +54,11 @@ class TpstSourceLaderTest {
 	}
 	
 	@Test
+	void testZeichenKette() throws FalscheSourcenFehler {
+		fail("Not yet implemented!");
+	}
+	
+	@Test
 	void testLeseDatentyp() throws FalscheSourcenFehler {
 		sourceLader.sourceLeser = new Leser(new Scanner("variableEins"));
 		Datentyp dat = sourceLader.leseDatentyp();
@@ -67,16 +68,16 @@ class TpstSourceLaderTest {
 		assertTrue(dat.zusatzsachen.isEmpty());
 		
 		// Zusatzgedings:
-		//   von [Name] (Potentiell: ( + [Name])* und [Name])
+		// von [Name] (Potentiell: ( + [Name])* und [Name])
 		sourceLader.sourceLeser = new Leser(new Scanner("variableEins von Zeichenkette"));
 		dat = sourceLader.leseDatentyp();
 		assertNotNull(dat);
 		assertEquals("variableEins", dat.name);
 		assertNotNull(dat.zusatzsachen);
-		Set<String> names = dat.zusatzsachen.stream().map(dt -> dt.name).collect(Collectors.toSet());
+		Set <String> names = dat.zusatzsachen.stream().map(dt -> dt.name).collect(Collectors.toSet());
 		assertEquals(1, names.size());
 		assertTrue(names.contains("Zeichenkette"));
-
+		
 		sourceLader.sourceLeser = new Leser(new Scanner("variableEins von Zeichenkette + variableZwei und Zahl"));
 		dat = sourceLader.leseDatentyp();
 		assertNotNull(dat);
@@ -97,8 +98,8 @@ class TpstSourceLaderTest {
 			sourceLader.leseSichtbarkeit();
 		});
 		
-		List<String> sichtbarkeitenKeywords = Arrays.asList("offen", "vererbe", "datei", "eigen");
-		for (String keyword:sichtbarkeitenKeywords) {
+		List <String> sichtbarkeitenKeywords = Arrays.asList("offen", "vererbe", "datei", "eigen");
+		for (String keyword : sichtbarkeitenKeywords) {
 			sourceLader.sourceLeser = new Leser(new Scanner(keyword));
 			Sichtbarkeit sichtbarkeit = sourceLader.leseSichtbarkeit();
 			assertNotNull(sichtbarkeit);
@@ -106,7 +107,7 @@ class TpstSourceLaderTest {
 		}
 		
 		// TODO: continue this test if error is fixed
-
+		
 	}
 	
 	@Test
@@ -115,14 +116,14 @@ class TpstSourceLaderTest {
 		
 		sourceLader.zeichensatz(StandardCharsets.ISO_8859_1);
 		assertEquals(StandardCharsets.ISO_8859_1, sourceLader.zeichensatz());
-
+		
 		sourceLader.zeichensatz(StandardCharsets.UTF_8);
 		assertEquals(StandardCharsets.UTF_8, sourceLader.zeichensatz());
-
+		
 		assertThrows(NullPointerException.class, () -> {
 			sourceLader.zeichensatz(null);
 		});
-
+		
 	}
 	
 	@Test
@@ -130,18 +131,18 @@ class TpstSourceLaderTest {
 		sourceLader.sourceLeser = new Leser(new Scanner("eins zwei drei"));
 		sourceLader.teste("eins", "zwei");
 		sourceLader.teste("drei");
-
+		
 		sourceLader.sourceLeser = new Leser(new Scanner("eins  \t\t  \tzwei\tdrei"));
 		sourceLader.teste("eins", "zwei", "drei");
-
+		
 		assertThrows(FalscheSourcenFehler.class, () -> {
 			sourceLader.sourceLeser = new Leser(new Scanner("eins 2 drei"));
 			sourceLader.teste("eins", "zwei");
 		});
-
+		
 		sourceLader.sourceLeser = new Leser(new Scanner("eins"));
 		sourceLader.teste("eins");
-
+		
 		sourceLader.sourceLeser = new Leser(new Scanner(""));
 		sourceLader.teste();
 		
@@ -149,9 +150,9 @@ class TpstSourceLaderTest {
 			sourceLader.sourceLeser = new Leser(new Scanner("eins"));
 			sourceLader.teste("eins", "zwei");
 		});
-
+		
 		// TODO: continue this test if error is fixed
-
+		
 	}
 	
 	@Test
@@ -161,7 +162,7 @@ class TpstSourceLaderTest {
 		assertNotNull(pfad);
 		
 		// TODO: continue this test if error is fixed
-
+		
 	}
-
+	
 }
