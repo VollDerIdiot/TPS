@@ -1,5 +1,7 @@
 package tps.kompiler.objekte.hilfen;
 
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -31,8 +33,12 @@ public class Leser {
 		this.skiped = new ArrayList <String>();
 	}
 	
-	
-	
+	public Leser(InputStream eingag, Charset zeichensatz) {
+		this(new Scanner(eingag, zeichensatz));
+	}
+
+
+
 	/**
 	 * Geht einen Schritt zurück. Dies bedeutet, dass man genau den stand hat, den man vor dem letzten veränderndem Befehl hatte ({@link #nächstes()} oder {@link #nächsteZeile()}).
 	 * 
