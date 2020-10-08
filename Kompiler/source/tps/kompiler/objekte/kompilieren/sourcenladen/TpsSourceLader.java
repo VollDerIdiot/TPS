@@ -17,8 +17,25 @@ import tps.kompiler.objekte.programm.Datei;
 import tps.kompiler.objekte.programm.Datentyp;
 import tps.kompiler.objekte.programm.sache.Sache;
 
+/**
+ * Eine Abstrakte Klasse, welche jeweils einen TPS-Code in einen einheitlichen Zwischencode Dateiweise umwandelt, diese Dateien wurden allerdings noch nicht auf Zeugs geprüft,
+ * welches Wissen aus anderen Dateien erfordert.
+ * 
+ * @author Patrick
+ *
+ */
 public abstract class TpsSourceLader {
 	
+	private static final String ZEICHENKETTE_START;
+	private static final String ZEICHENKETTE_ENDE;
+	private static final String ZEICHENKETTE_ENDE_ESCAPER;
+	private static final Object ZEICHENKETTE_ENDE_SPRING;
+	private static final String ZEICHEN_START;
+	private static final String ZEICHEN_ENDE;
+	private static final String NEGATIVE_ZAHL_START;
+	private static final String HEXADEZIMAL_ZAHL_START;
+	private static final String DEZIMAL_ZAHL_START;
+	private static final String BINÄR_ZAHL_START;
 	/**
 	 * Das Startsymbol für einen Pfad
 	 */
@@ -31,6 +48,16 @@ public abstract class TpsSourceLader {
 	
 	
 	static {
+		ZEICHENKETTE_START = "ZK:";
+		ZEICHENKETTE_ENDE = ">E>";
+		ZEICHENKETTE_ENDE_ESCAPER = "\\>E>";
+		ZEICHENKETTE_ENDE_SPRING = ".*\\\\>E>";
+		ZEICHEN_START = "Z:";
+		ZEICHEN_ENDE = ">E>";
+		NEGATIVE_ZAHL_START = "NEG:";
+		HEXADEZIMAL_ZAHL_START = "HEX:";
+		DEZIMAL_ZAHL_START = "DEC:";
+		BINÄR_ZAHL_START = "BIN:";
 		PFAD_ANFANG = "|:";
 		PFAD_ENDE = ":>";
 	}
@@ -151,9 +178,47 @@ public abstract class TpsSourceLader {
 		}
 	}
 	
+	protected String leseZeichenKette() throws FalscheSourcenFehler {
+		String ergebnis;
+		StringBuilder spring;
+		int anzahlEscapes = 0;
+		int start;
+		int ende;
+		int index;
+		ergebnis = sourceLeser.nächsteZeile();
+		if (ergebnis == null) {
+			throw new FalscheSourcenFehler("Ich habe eine Zeichenkette erwartet, aber nichts erhalten, da der sourceLeser fertig gelesen hat.");
+		}
+		start = ergebnis.indexOf(ZEICHENKETTE_START) + ZEICHEN_START.length();
+		index = ergebnis.indexOf(ZEICHENKETTE_ENDE_ESCAPER);
+		if ( -1 != index) {
+			String zwischen = ergebnis.substring(index + ZEICHENKETTE_ENDE_ESCAPER.length());
+			ende = 0;
+			anzahlEscapes ++ ;
+			index = zwischen.indexOf(ZEICHENKETTE_ENDE_ESCAPER);
+			while ( -1 != index) {
+				anzahlEscapes ++ ;
+				ende += index + ZEICHENKETTE_ENDE_ESCAPER.length();
+				zwischen = ergebnis.substring(index + ZEICHENKETTE_ENDE_ESCAPER.length());
+				index = zwischen.indexOf(ZEICHENKETTE_ENDE_ESCAPER);
+			}
+			ende += zwischen.indexOf(ZEICHENKETTE_ENDE_ESCAPER);
+		} else {
+			ende = ergebnis.indexOf(ZEICHENKETTE_ENDE);
+		}
+		ergebnis = ergebnis.substring(start, ende);
+		spring = new StringBuilder();
+		for (; anzahlEscapes > 0; anzahlEscapes -- ) {
+			spring.append(ZEICHENKETTE_ENDE_SPRING);
+		}
+		sourceLeser.zurück();
+		sourceLeser.überspringe(spring.append(ZEICHENKETTE_ENDE).toString());
+		return ergebnis;
+	}
+	
 	/**
 	 * Gibt alles von {@link #PFAD_ANFANG} bis zu {@link #PFAD_ENDE} in der gleichen Zeile zurück. <br>
-	 * Wenn dies nicht möglich ist wird ein <code>FalscheSourcenFehler</code> geworfen.
+	 * Wenn dies nicht möglich ist oder vor dem {@link #PFAD_ANFANG} etwas steht, wird ein <code>FalscheSourcenFehler</code> geworfen.
 	 * 
 	 * @return den nächsten Pfad
 	 * @throws FalscheSourcenFehler
@@ -173,14 +238,15 @@ public abstract class TpsSourceLader {
 		}
 		ende = ergebnis.lastIndexOf(PFAD_ENDE);
 		if (ende == -1) {
-			throw new FalscheSourcenFehler("Ein Pfad muss das EndZeichen'"+PFAD_ENDE+"' enthalten!");
+			throw new FalscheSourcenFehler("Ein Pfad muss das EndZeichen'" + PFAD_ENDE + "' enthalten!");
 		}
 		if ( !ergebnis.substring(0, anfang).isBlank()) {
 			throw new FalscheSourcenFehler("Vor dem Pfad sollte nichts mehr stehen, wenn diese Methode aufgerufen wird! ('" + ergebnis.substring(0, anfang)
 					+ "' steht vor dem StartZeichen'" + PFAD_ANFANG + "')");
 		}
 		if (ergebnis.length() > ende + 1 && !ergebnis.substring(ende + 2).isBlank()) {
-			throw new FalscheSourcenFehler("Nach dem Pfad darf nichts stehen ('" + ergebnis.substring(ende + 2) + "' steht nach dem EndZeichen'" + PFAD_ENDE + "')");
+			sourceLeser.zurück();
+			sourceLeser.überspringe(".*" + PFAD_ENDE);
 		}
 		ergebnis = ergebnis.substring(anfang + 2, ende);
 		return Regeln.testePfad(ergebnis, new FalscheSourcenFehler("'" + ergebnis + "' ist kein Pfad! Ein Pfad darf keine ungüligen Zeichen enthalten!"));
