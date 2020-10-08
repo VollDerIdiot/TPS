@@ -2,7 +2,6 @@ package tps.kompiler.objekte.kompilieren.sourcenladen;
 
 import java.nio.charset.Charset;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.Set;
 
 import tps.hilfen.Regeln;
