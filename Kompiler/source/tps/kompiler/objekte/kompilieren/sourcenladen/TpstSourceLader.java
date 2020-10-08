@@ -123,15 +123,8 @@ public class TpstSourceLader extends TpsSourceLader {
 		String zwischen;
 		String ort;
 		List <String> braucht;
-		teste("Diese", "tolle", "Datei", "liegt");
-		zwischen = sourceLeser.nächstes();
-		switch (zwischen) {
-		case "in:":
-			ort = lesePfad();
-			break;
-		default:
-			throw new FalscheSourcenFehler("in:", zwischen);
-		}
+		teste("Diese", "tolle", "Datei", "liegt", "in:");
+		ort = lesePfad();
 		teste("Diese", "tolle", "Datei");
 		zwischen = sourceLeser.nächstes();
 		switch (zwischen) {
@@ -168,6 +161,9 @@ public class TpstSourceLader extends TpsSourceLader {
 		while (true) {
 			ladeSache();
 			datei.neueSache(sache);
+			if (!sourceLeser.hatNächstes()) {
+				return;
+			}
 		}
 	}
 	
@@ -712,9 +708,9 @@ public class TpstSourceLader extends TpsSourceLader {
 			zusatz = new ArrayList <>();
 			zusatz.add(leseDatentyp());
 			zwischen = sourceLeser.nächstes();
-			if (zwischen == null || !("+".equals(zwischen) || "und".equals(zwischen))) {
+			if (zwischen == null || ! ("+".equals(zwischen) || "und".equals(zwischen))) {
 				return new Datentyp(name, zusatz);
-			}else {
+			} else {
 				sourceLeser.zurück();
 			}
 			while (true) {
