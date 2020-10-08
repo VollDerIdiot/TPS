@@ -16,6 +16,7 @@ import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datei;
 import tps.kompiler.objekte.programm.Datentyp;
 import tps.kompiler.objekte.programm.sache.Sache;
+import tps.objects.fehler.NochNichtGemachtFehler;
 
 /**
  * Eine Abstrakte Klasse, welche jeweils einen TPS-Code in einen einheitlichen Zwischencode Dateiweise umwandelt, diese Dateien wurden allerdings noch nicht auf Zeugs geprüft,
@@ -176,6 +177,18 @@ public abstract class TpsSourceLader {
 				throw new FalscheSourcenFehler(dieser, zwischen);
 			}
 		}
+	}
+	
+	protected char leseZeichen() throws FalscheSourcenFehler {
+		char ergebnis;
+		String zwischen;
+		zwischen = sourceLeser.nächstes();
+		if (zwischen == null || zwischen.startsWith(ZEICHEN_START)) {
+			throw new FalscheSourcenFehler("Ich habe ein zeichen erwartet! (Dieses begint mit '" + ZEICHEN_START + "'! Dies tut " + zwischen + " nicht!");
+		}
+		
+		
+		throw new NochNichtGemachtFehler();
 	}
 	
 	protected String leseZeichenKette() throws FalscheSourcenFehler {

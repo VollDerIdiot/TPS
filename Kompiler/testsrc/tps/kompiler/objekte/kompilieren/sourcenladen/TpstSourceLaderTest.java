@@ -54,6 +54,11 @@ class TpstSourceLaderTest {
 	}
 	
 	@Test
+	void testZeichen() throws FalscheSourcenFehler {
+		fail("Not yet implemented!");
+	}
+	
+	@Test
 	void testZeichenKette() throws FalscheSourcenFehler {
 		fail("Not yet implemented!");
 	}
