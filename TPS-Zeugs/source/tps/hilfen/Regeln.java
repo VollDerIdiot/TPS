@@ -66,7 +66,7 @@ public class Regeln {
 	 */
 	public static <F extends Exception> String testePfad(String testePfad, F fehler) throws F {
 		Objects.requireNonNull(testePfad, "Ich kann nicht auf null prüfen!");
-		Objects.requireNonNull(fehler, "Ich kann null nuicht werfen!");
+		Objects.requireNonNull(fehler, "Ich kann null nicht werfen!");
 		if (testePfad.indexOf((int) ':') == -1 || testePfad.indexOf((int) '*') == -1 || testePfad.indexOf((int) '?') == -1 || testePfad.indexOf((int) '"') == -1
 				|| testePfad.indexOf((int) '<') == -1 || testePfad.indexOf((int) '>') == -1 || testePfad.indexOf((int) '|') == -1) {
 			fehler.setStackTrace(new Throwable().getStackTrace());
