@@ -173,8 +173,13 @@ public abstract class TpsSourceLader {
 		}
 		ende = ergebnis.lastIndexOf(PFAD_ENDE);
 		ergebnis = ergebnis.substring(anfang + 2, ende);
-		sourceLeser.zurück();
-		sourceLeser.überspringe(".*" + PFAD_ENDE);
+		if ( !ergebnis.substring(0, anfang).isBlank()) {
+			throw new FalscheSourcenFehler("Vor dem Pfad sollte nichts mehr stehen, wenn diese Methode aufgerufen wird! ('" + ergebnis.substring(0, anfang)
+					+ "' steht vor dem StartZeichen'" + PFAD_ANFANG + "')");
+		}
+		if ( !ergebnis.substring(ende + 2).isBlank()) {
+			throw new FalscheSourcenFehler("Nach dem Pfad darf nichts stehen ('" + ergebnis.substring(ende + 2) + "' steht nach dem EndZeichen'" + PFAD_ENDE + "')");
+		}
 		return Regeln.testePfad(ergebnis, new FalscheSourcenFehler("'" + ergebnis + "' ist kein Pfad! Ein Pfad darf keine ungüligen Zeichen enthalten!"));
 	}
 	
