@@ -2,6 +2,7 @@ package tps.kompiler.objekte.kompilieren.sourcenladen;
 
 import java.nio.charset.Charset;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.Set;
 
 import tps.hilfen.Regeln;
@@ -151,7 +152,9 @@ public abstract class TpsSourceLader {
 			return lesePfad();
 		}
 		ende = ergebnis.lastIndexOf(PFAD_ENDE);
-		ergebnis = ergebnis.substring(anfang, ende);
+		ergebnis = ergebnis.substring(anfang + 2, ende);
+		sourceLeser.zurück();
+		sourceLeser.überspringe(".*" + PFAD_ENDE);
 		return Regeln.testePfad(ergebnis, new FalscheSourcenFehler("'" + ergebnis + "' ist kein Pfad! Ein Pfad darf keine ungüligen Zeichen enthalten!"));
 	}
 	
