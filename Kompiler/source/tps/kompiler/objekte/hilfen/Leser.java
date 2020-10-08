@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Scanner;
 
 import tps.kompiler.objekte.fehler.KompilierungsLaufzeitFehler;
@@ -15,7 +16,7 @@ public class Leser {
 	private static final int NÄCHSTE_ZEILE = 2;
 	private static final int NEUE_ZEILE = 3;
 	private static final int SKIP = 4;
-	private Scanner scnner;
+	private Scanner scanner;
 	private List <String> zeilen;
 	private int index;
 	private List <Integer> log;
@@ -24,21 +25,43 @@ public class Leser {
 	
 	
 	public Leser(Scanner scanner) {
+		Objects.requireNonNull(scanner, "Ich kann nicht aus dem null-scanner lesen!");
 		this.zeilen = new ArrayList <>();
 		while (scanner.hasNextLine()) {
 			this.zeilen.add(scanner.nextLine());
 		}
-		this.scnner = new Scanner(zeilen.size() == 0 ? "" : this.zeilen.get(0));
+		this.scanner = new Scanner(zeilen.size() == 0 ? "" : this.zeilen.get(0));
+		this.log = new ArrayList <Integer>();
+		this.skiped = new ArrayList <String>();
+	}
+	
+	public Leser(String einlesen) {
+		Objects.requireNonNull(einlesen, "Ich weigere mich den null-String zu lesen!");
+		scanner = new Scanner(einlesen);
+		this.zeilen = new ArrayList <>();
+		while (scanner.hasNextLine()) {
+			this.zeilen.add(scanner.nextLine());
+		}
+		this.scanner = new Scanner(zeilen.size() == 0 ? "" : this.zeilen.get(0));
 		this.log = new ArrayList <Integer>();
 		this.skiped = new ArrayList <String>();
 	}
 	
 	public Leser(InputStream eingag, Charset zeichensatz) {
-		this(new Scanner(eingag, zeichensatz));
+		Objects.requireNonNull(eingag, "Ich kann nicht aus einem null-Stream Lesen!");
+		Objects.requireNonNull(zeichensatz, "Ich kann nicht mit einem null-Charset/Zeichensatz lesen!");
+		scanner = new Scanner(eingag, zeichensatz);
+		this.zeilen = new ArrayList <>();
+		while (scanner.hasNextLine()) {
+			this.zeilen.add(scanner.nextLine());
+		}
+		this.scanner = new Scanner(zeilen.size() == 0 ? "" : this.zeilen.get(0));
+		this.log = new ArrayList <Integer>();
+		this.skiped = new ArrayList <String>();
 	}
-
-
-
+	
+	
+	
 	/**
 	 * Geht einen Schritt zurück. Dies bedeutet, dass man genau den stand hat, den man vor dem letzten veränderndem Befehl hatte ({@link #nächstes()} oder {@link #nächsteZeile()}).
 	 * 
@@ -81,7 +104,8 @@ public class Leser {
 	
 	
 	/**
-	 * Es wird alles zurückgesetzt, was den aktuellen status speichert ({@link #log}, {@link #index} und {@link #scnner}), bevor dem <code>nachlaufen</code> nachgelaufen wird. <br>
+	 * Es wird alles zurückgesetzt, was den aktuellen status speichert ({@link #log}, {@link #index} und {@link #scanner}), bevor dem <code>nachlaufen</code> nachgelaufen wird.
+	 * <br>
 	 * Macht alles, was in der nachlaufen liste steht. <br>
 	 * Danach wird der {@link #log} genauso sein, wie <code>nachlaufen</code> <br>
 	 * 
@@ -94,7 +118,7 @@ public class Leser {
 		skiped = new ArrayList <String>();
 		index = 0;
 		skipIndex = 0;
-		scnner = new Scanner(zeilen.size() == 0 ? "" : zeilen.get(0));
+		scanner = new Scanner(zeilen.size() == 0 ? "" : zeilen.get(0));
 		for (Integer aktion : nachlaufen) {
 			switch (aktion) {
 			case NÄCHSTES:
@@ -121,7 +145,7 @@ public class Leser {
 	}
 	
 	public boolean hatNächstes() {
-		return hatNächstes(scnner, index + 1);
+		return hatNächstes(scanner, index + 1);
 	}
 	
 	private boolean hatNächstes(Scanner scnner, int index) {
@@ -144,12 +168,12 @@ public class Leser {
 	
 	public String nächstes() {
 		synchronized (this) {
-			if (scnner.hasNext()) {
+			if (scanner.hasNext()) {
 				log.add(NÄCHSTES);
-				return scnner.next();
+				return scanner.next();
 			} else {
 				if ( (index + 1) < zeilen.size()) {
-					scnner = new Scanner(zeilen.get( ++ index));
+					scanner = new Scanner(zeilen.get( ++ index));
 					log.add(NEUE_ZEILE);
 					return nächstes();
 				} else {
@@ -160,17 +184,17 @@ public class Leser {
 	}
 	
 	public boolean hatNächsteZeile() {
-		return index < (zeilen.size() - 1) || scnner.hasNextLine();
+		return index < (zeilen.size() - 1) || scanner.hasNextLine();
 	}
 	
 	public String nächsteZeile() {
 		synchronized (this) {
-			if (scnner.hasNextLine()) {
+			if (scanner.hasNextLine()) {
 				log.add(NÄCHSTE_ZEILE);
-				return scnner.nextLine();
+				return scanner.nextLine();
 			} else {
 				if (index + 1 < zeilen.size()) {
-					scnner = new Scanner(zeilen.get( ++ index));
+					scanner = new Scanner(zeilen.get( ++ index));
 					log.add(NEUE_ZEILE);
 					return nächsteZeile();
 				} else {
@@ -202,7 +226,7 @@ public class Leser {
 	 */
 	public void überspringe(String überspringen) throws NoSuchElementException {
 		synchronized (this) {
-			scnner.skip(überspringen);
+			scanner.skip(überspringen);
 			log.add(SKIP);
 			skiped.add(überspringen);
 		}
