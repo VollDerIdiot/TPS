@@ -39,7 +39,7 @@ class LeserTest {
 	
 	@Test
 	void testLeser() {
-		assertThrows(NullPointerException.class, () -> new Leser(null));
+		assertThrows(NullPointerException.class, () -> new Leser((Scanner) null));
 
 		leser = new Leser(new Scanner(""));
 		assertFalse(leser.hatNächstes());
