@@ -4,7 +4,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import tps.hilfen.Regeln;
+import de.hechler.patrick.tps.hilfen.Regeln;
 import tps.kompiler.objekte.code.Datei;
 import tps.kompiler.objekte.code.Datentyp;
 import tps.kompiler.objekte.code.SacheVariable;

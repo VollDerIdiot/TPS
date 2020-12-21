@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import tps.hilfen.Regeln;
+import de.hechler.patrick.tps.hilfen.Regeln;
+import de.hechler.patrick.tps.objects.fehler.NochNichtGemachtFehler;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
@@ -28,7 +29,6 @@ import tps.kompiler.objekte.programm.sache.Sache;
 import tps.kompiler.objekte.programm.sache.UnfertigeKlasse;
 import tps.kompiler.objekte.programm.sache.UnfertigeSacheInterface;
 import tps.kompiler.objekte.programm.sache.UnfertigesDing;
-import tps.objects.fehler.NochNichtGemachtFehler;
 
 public class TpstSourceLader extends TpsSourceLader {
 	

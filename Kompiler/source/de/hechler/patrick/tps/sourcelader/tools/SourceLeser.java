@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import de.hechler.patrick.tps.tools.Stapel;
+import de.hechler.patrick.tps.hilfen.Stapel;
 
 public class SourceLeser {
 	

@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import tps.hilfen.Hilfen;
+import de.hechler.patrick.tps.hilfen.Hilfen;
 import tps.kompiler.objekte.fehler.KompilierungsLaufzeitFehler;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Befehl;

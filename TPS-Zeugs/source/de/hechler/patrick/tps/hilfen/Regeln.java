@@ -1,4 +1,4 @@
-package tps.hilfen;
+package de.hechler.patrick.tps.hilfen;
 
 import java.util.Objects;
 import java.util.Set;

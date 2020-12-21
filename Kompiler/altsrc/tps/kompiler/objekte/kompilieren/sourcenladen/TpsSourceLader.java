@@ -8,7 +8,8 @@ import java.nio.charset.Charset;
 import java.util.Objects;
 import java.util.Set;
 
-import tps.hilfen.Regeln;
+import de.hechler.patrick.tps.hilfen.Regeln;
+import de.hechler.patrick.tps.objects.fehler.NochNichtGemachtFehler;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;
 import tps.kompiler.objekte.fehler.KompilierungsFehler;
 import tps.kompiler.objekte.hilfen.Leser;
@@ -16,7 +17,6 @@ import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 import tps.kompiler.objekte.programm.Datei;
 import tps.kompiler.objekte.programm.Datentyp;
 import tps.kompiler.objekte.programm.sache.Sache;
-import tps.objects.fehler.NochNichtGemachtFehler;
 
 /**
  * Eine Abstrakte Klasse, welche jeweils einen TPS-Code in einen einheitlichen Zwischencode Dateiweise umwandelt, diese Dateien wurden allerdings noch nicht auf Zeugs geprüft,

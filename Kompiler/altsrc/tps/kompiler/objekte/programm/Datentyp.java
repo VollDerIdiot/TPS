@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 
-import tps.hilfen.Hilfen;
-import tps.hilfen.Regeln;
+import de.hechler.patrick.tps.hilfen.Hilfen;
+import de.hechler.patrick.tps.hilfen.Regeln;
 import tps.kompiler.objekte.fehler.KompilierungsLaufzeitFehler;
 
 public class Datentyp implements Comparable <Datentyp> {

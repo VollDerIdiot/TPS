@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import de.hechler.patrick.pzs8b.Pzs8bCharset;
-import tps.hilfen.Regeln;
+import de.hechler.patrick.tps.hilfen.Regeln;
 import tps.kompiler.objekte.code.Datei;
 import tps.kompiler.objekte.code.sache.Sache;
 import tps.kompiler.objekte.fehler.FalscheSourcenFehler;

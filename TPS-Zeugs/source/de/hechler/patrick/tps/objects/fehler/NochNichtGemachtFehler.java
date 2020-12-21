@@ -1,4 +1,4 @@
-package tps.objects.fehler;
+package de.hechler.patrick.tps.objects.fehler;
 
 public class NochNichtGemachtFehler extends RuntimeException {
 	

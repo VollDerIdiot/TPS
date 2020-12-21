@@ -7,8 +7,8 @@ import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeSet;
 
-import tps.hilfen.Hilfen;
-import tps.hilfen.Regeln;
+import de.hechler.patrick.tps.hilfen.Hilfen;
+import de.hechler.patrick.tps.hilfen.Regeln;
 import tps.kompiler.objekte.fehler.KompilierungsLaufzeitFehler;
 import tps.kompiler.objekte.programm.sache.Sache;
 

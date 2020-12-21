@@ -1,4 +1,4 @@
-package de.hechler.patrick.tps.tools;
+package de.hechler.patrick.tps.hilfen;
 
 import java.lang.reflect.Array;
 

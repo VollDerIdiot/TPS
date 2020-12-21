@@ -6,7 +6,7 @@ import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeSet;
 
-import tps.hilfen.Hilfen;
+import de.hechler.patrick.tps.hilfen.Hilfen;
 import tps.kompiler.objekte.konstanten.Sichtbarkeit;
 
 public class UnfertigeMethode implements Comparable <UnfertigeMethode> {
