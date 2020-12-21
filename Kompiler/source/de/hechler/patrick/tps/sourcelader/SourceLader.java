@@ -8,21 +8,41 @@ import de.hechler.patrick.tps.sourcelader.tools.SourceLeser;
 
 public abstract class SourceLader {
 	
+	/**
+	 * Die Dateiendung des {@link SourceLader}s
+	 */
 	public final String endung;
-	private Charset charset;
+	/**
+	 * Wird benutzt, um die Sourcen einzulesen.
+	 */
 	protected SourceLeser leser;
 	
 	
 	
+	/**
+	 * Erstellt einen neuen {@link SourceLader} mit der {@link #endung} {@code dateiEndung}
+	 * 
+	 * @param dateiEndung
+	 *            die {@link #endung} des {@link SourceLader}s
+	 */
 	public SourceLader(String dateiEndung) {
 		this.endung = dateiEndung.contains(".") ? dateiEndung.substring(dateiEndung.lastIndexOf('.') + 1) : dateiEndung;
 	}
 	
 	
 	
-	public void prepare(Charset charset, File datei) throws FileNotFoundException {
-		this.charset = charset;
-		leser = new SourceLeser(charset, datei);
+	/**
+	 * Bereitet den {@link SourceLader} darauf vor die {@link File} {@code datei} mit dem {@link Charset} {@code charset} zu laden.
+	 * 
+	 * @param charset
+	 *            der {@link Charset} der {@code datei}
+	 * @param datei
+	 *            die zu ladende Datei
+	 * @throws FileNotFoundException
+	 *             falls die {@code datei} auf keine existierende Datei verweist
+	 */
+	public void vorbereiten(Charset charset, File datei) throws FileNotFoundException {
+		this.leser = new SourceLeser(charset, datei);
 	}
 	
 	

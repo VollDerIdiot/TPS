@@ -10,6 +10,9 @@ import java.util.Objects;
 
 public class SourceLaderFabrik {
 	
+	/**
+	 * speichert alle bekannten {@link SourceLader} in einer {@link Map}. Der key ist dabei {@link SourceLader#endung}
+	 */
 	private static Map <String, SourceLader> lader;
 	
 	
@@ -20,6 +23,15 @@ public class SourceLaderFabrik {
 	}
 	
 	
+	
+	/**
+	 * fügt den {@link SourceLader} {@code neuerLader} zu den {@link #lader}n hinzu, sofern noch kein {@link SourceLader} mit gleicher {@link SourceLader#endung} vorhanden ist.
+	 * 
+	 * @param neuerLader
+	 *            Der hinzuzufügende {@link SourceLader}
+	 * @return <code>true</code>, wenn der lader erfolgreich hinzugefügt wurde <br>
+	 *         <code>false</code> wenn es bereits einen {@link SourceLader} mit gleicher {@link SourceLader#endung} gibt.
+	 */
 	public static boolean neu(SourceLader neuerLader) {
 		Objects.requireNonNull(neuerLader, "SourceLader neuerLader");
 		if (lader.containsKey(neuerLader.endung)) {
@@ -29,13 +41,23 @@ public class SourceLaderFabrik {
 		return true;
 	}
 	
-	public static SourceLader lader(String endung, Charset charset, File datei) throws NoSuchElementException, FileNotFoundException {
-		Objects.requireNonNull(endung, "endung");
-		if (!lader.containsKey(endung)) {
+	/**
+	 * 
+	 * @param charset
+	 * @param datei
+	 * @return
+	 * @throws NoSuchElementException
+	 * @throws FileNotFoundException
+	 */
+	public static SourceLader lader(Charset charset, File datei) throws NoSuchElementException, FileNotFoundException {
+		Objects.requireNonNull(datei, "datei");
+		String endung = datei.getName();
+		endung = endung.substring(endung.lastIndexOf('.')+1);
+		if ( !lader.containsKey(endung)) {
 			throw new NoSuchElementException();
 		}
 		SourceLader erg = lader.get(endung);
-		erg.prepare(charset, datei);
+		erg.vorbereiten(charset, datei);
 		return erg;
 	}
 	
