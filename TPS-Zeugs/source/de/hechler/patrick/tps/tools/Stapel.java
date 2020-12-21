@@ -12,7 +12,7 @@ public class Stapel <W> {
 	private int wachsen;
 	private int schrunpfen;
 	private int schrunpfenAuf;
-	private int index;
+	private int anz;
 	
 	
 	
@@ -24,7 +24,7 @@ public class Stapel <W> {
 		this.wachsen = wachsen;
 		this.schrunpfen = schrumpfen;
 		this.schrunpfenAuf = schrumpfenAuf;
-		this.index = 0;
+		this.anz = 0;
 		this.werte = neuesFeld(start, von, bis, wachsen);
 	}
 	
@@ -40,23 +40,27 @@ public class Stapel <W> {
 	
 	
 	public void push(W push) {
-		if (index == werte.length - 1) {
+		if (anz == werte.length - 1) {
 			werte = neuesFeld(werte, 0, werte.length, wachsen);
 		}
-		werte[index ++ ] = push;
+		werte[anz ++ ] = push;
 	}
 	
 	public W pop() {
-		if (index == werte.length - schrunpfen) {
-			werte = neuesFeld(werte, 0, index, schrunpfenAuf);
+		if (anz == werte.length - schrunpfen) {
+			werte = neuesFeld(werte, 0, anz, schrunpfenAuf);
 		}
-		W erg = werte[index];
-		werte[index--] = null;
+		W erg = werte[ -- anz];
+		werte[anz] = null;
 		return erg;
 	}
 	
 	public int anzahl() {
-		return index + 1;
+		return anz;
+	}
+	
+	public boolean istLeer() {
+		return anz == 0;
 	}
 	
 	public void allesWeg() {
