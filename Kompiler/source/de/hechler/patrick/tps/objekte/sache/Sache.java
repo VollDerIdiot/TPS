@@ -16,6 +16,17 @@ public abstract class Sache implements Comparable <Sache> {
 		this.name = Objects.requireNonNull(name, "name");
 	}
 	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		return compareTo((Sache) obj) == 0;
+	}
+	
+	
 	/**
 	 * Vergleicht nur die Sachenart <br>
 	 * Es ist stark empfohlen diese Methode zu überladen und als erstes {@code super.compareTo(o)} aufzurufen, wenn dies 0 ist dann ist gesichert, dass entweder beide eine

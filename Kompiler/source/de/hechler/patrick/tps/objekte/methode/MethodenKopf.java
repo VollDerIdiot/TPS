@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MethodenKopf implements Comparable <MethodenKopf> {
+	
 	/**
 	 * Der name der Methode
 	 */
@@ -22,14 +23,18 @@ public class MethodenKopf implements Comparable <MethodenKopf> {
 		this.parameter = Collections.unmodifiableList(new ArrayList <>(Objects.requireNonNull(parameter, "parameter")));
 	}
 	
+	
+	
 	@Override
 	public int compareTo(MethodenKopf o) {
 		int erg = name.compareTo(o.name);
 		return erg == 0 ? Parameter.compare(parameter, o.parameter) : erg;
 	}
 	
-	public int compareTo(Methode o) {
-		return compareTo(o.kopf);
+	@Override
+	public boolean equals(Object obj) {
+		if ( ! (obj instanceof MethodenKopf)) return false;
+		return compareTo((MethodenKopf) obj) == 0;
 	}
 	
 }
