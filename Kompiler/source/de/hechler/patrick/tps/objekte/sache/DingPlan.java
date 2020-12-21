@@ -6,5 +6,9 @@ package de.hechler.patrick.tps.objekte.sache;
  * @author Patrick
  */
 public class DingPlan extends Ding implements SachenPlan {
+
+	public DingPlan(String name) {
+		super(name);
+	}
 	
 }

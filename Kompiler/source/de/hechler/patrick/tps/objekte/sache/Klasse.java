@@ -6,5 +6,9 @@ package de.hechler.patrick.tps.objekte.sache;
  * @author Patrick
  */
 public abstract class Klasse extends Sache {
+
+	public Klasse(String name) {
+		super(name);
+	}
 	
 }

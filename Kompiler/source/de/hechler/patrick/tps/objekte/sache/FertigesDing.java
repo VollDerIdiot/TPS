@@ -6,5 +6,9 @@ package de.hechler.patrick.tps.objekte.sache;
  * @author Patrick
  */
 public class FertigesDing extends Ding implements FertigeSache {
+
+	public FertigesDing(String name) {
+		super(name);
+	}
 	
 }

@@ -6,5 +6,9 @@ package de.hechler.patrick.tps.objekte.sache;
  * @author Patrick
  */
 public class KlassenPlan extends Klasse implements SachenPlan {
+
+	public KlassenPlan(String name) {
+		super(name);
+	}
 	
 }
