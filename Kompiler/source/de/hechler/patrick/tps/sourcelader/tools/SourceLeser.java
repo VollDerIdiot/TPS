@@ -109,10 +109,11 @@ public class SourceLeser {
 		}
 		StringBuilder bau = new StringBuilder();
 		alle.forEach(add -> bau.append(add));
-		Element neu = new Element(bau.toString(), this.index);
+		String erg = bau.toString();
+		Element neu = new Element(erg, this.index);
 		log.push(neu);
 		input.seek(neu.bis());
-		return neu.wert;
+		return erg.trim();
 	}
 	
 	public String nächsteZeile() throws IOException, NoSuchElementException {
@@ -159,15 +160,16 @@ public class SourceLeser {
 		}
 		StringBuilder bau = new StringBuilder();
 		alle.forEach(add -> bau.append(add));
-		Element neu = new Element(bau.toString(), this.index);
+		String erg = bau.toString();
+		Element neu = new Element(erg, this.index);
 		log.push(neu);
 		input.seek(neu.bis());
-		return neu.wert;
+		return erg.trim();
 	}
 	
 	private class Element {
 		
-		private String wert;
+//		private String wert;
 		private long startIndex;
 		private int len;
 		
@@ -186,7 +188,7 @@ public class SourceLeser {
 		}
 		
 		private Element(String wert, long start) {
-			this.wert = wert.trim();
+//			this.wert = wert.trim();
 			this.startIndex = start;
 			this.len = wert.getBytes(charset).length;
 		}
