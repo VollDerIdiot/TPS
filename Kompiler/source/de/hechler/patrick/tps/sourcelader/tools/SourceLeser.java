@@ -67,7 +67,7 @@ public class SourceLeser {
 			throw new IllegalArgumentException("Soll zurück: " + anzahl + " bei " + log.anzahl() + " gegangenen Schritten!");
 		}
 		for (; anzahl > 0; anzahl -- ) {
-			Element weg = log.pop();
+			Element weg = log.runter();
 			index = weg.startIndex;
 		}
 		input.seek(index);
@@ -87,7 +87,7 @@ public class SourceLeser {
 		if (log.istLeer()) {
 			throw new IllegalArgumentException("Soll zurück bin aber noch keinen Schritt gegangenen!");
 		}
-		Element weg = log.pop();
+		Element weg = log.runter();
 		index = weg.startIndex;
 		input.seek(index);
 	}
@@ -109,6 +109,12 @@ public class SourceLeser {
 		return true;
 	}
 	
+	/**
+	 * prüft, ob es ein Nächstes gibt.
+	 * 
+	 * @return <code>true</code>, wenn es ein Nächstes gibt.
+	 * @throws IOException
+	 */
 	public boolean hatNächstes() throws IOException {
 		long i = index;
 		try {
@@ -120,6 +126,14 @@ public class SourceLeser {
 		return true;
 	}
 	
+	/**
+	 * Liest den nächsten Abschnitt ein und gibt ebendiesen zurück
+	 * 
+	 * @return den nächsten abschnitt
+	 * @throws IOException
+	 * @throws NoSuchElementException
+	 *             Falls es keinen weiteren Abschnitt gibt
+	 */
 	public String nächstes() throws IOException, NoSuchElementException {
 		byte[] bytes = new byte[64];
 		int index = -1;
@@ -165,12 +179,20 @@ public class SourceLeser {
 		alle.forEach(add -> bau.append(add));
 		String erg = bau.toString();
 		Element neu = new Element(erg, this.index);
-		log.push(neu);
+		log.drauf(neu);
 		input.seek(neu.bis());
 		this.index = neu.bis();
 		return erg.trim();
 	}
 	
+	/**
+	 * Liest die nächste Zeile ein und gibt ebendiese zurück
+	 * 
+	 * @return die nächste Zeile
+	 * @throws IOException
+	 * @throws NoSuchElementException
+	 *             Falls es keine weitere Zeile gibt
+	 */
 	public String nächsteZeile() throws IOException, NoSuchElementException {
 		byte[] bytes = new byte[64];
 		int index = -1;
@@ -216,41 +238,49 @@ public class SourceLeser {
 		alle.forEach(add -> bau.append(add));
 		String erg = bau.toString();
 		Element neu = new Element(erg, this.index);
-		log.push(neu);
+		log.drauf(neu);
 		input.seek(neu.bis());
 		return erg.trim();
 	}
 	
+	/**
+	 * Speicherklasse für die {@link SourceLeser#zurück()} und {@link SourceLeser#zurück(int)} Funktionen
+	 */
 	private class Element {
 		
-		// private String wert;
+		/**
+		 * Speichert den index von wo aus dieses {@link Element} startet
+		 */
 		private long startIndex;
-		private int len;
+		/**
+		 * Speichert die anzahl an bytes die dieses {@link Element} belegt
+		 */
+		private int anz;
 		
 		
-		
-		private Element() {
-			this(null, 0);
-		}
-		
-		private Element(String wert) {
-			this(wert, 0);
-		}
-		
-		private Element(long start) {
-			this(null, start);
-		}
-		
+		/**
+		 * Erzeugt ein neues {@link Element} mit dem {@link #startIndex} von {@code start} und einer Größe {@link #anz} von {@code wert} in bytes mit dem {@link Charset}
+		 * {@link SourceLeser#charset}
+		 * 
+		 * @param wert
+		 *            das was in dem {@link Element} steht
+		 * @param start
+		 *            Der Startpunkt des {@link Element}s
+		 */
 		private Element(String wert, long start) {
-			// this.wert = wert.trim();
 			this.startIndex = start;
-			this.len = wert.getBytes(charset).length;
+			this.anz = wert.getBytes(charset).length;
 		}
 		
 		
 		
+		/**
+		 * Gibt den Endpunkt dieses {@link Element}s zurück.
+		 * 
+		 * @return Der Endpunkt des {@link Element}s
+		 */
 		private long bis() {
-			return startIndex + len;
+			return startIndex + anz;
 		}
 		
 	}
