@@ -44,20 +44,24 @@ public class SourceLeser {
 	}
 	
 	public boolean hatNächsteZeile() throws IOException {
+		long i = index;
 		try {
 			nächsteZeile();
 		} catch (NoSuchElementException e) {
 			return false;
 		}
+		input.seek(i);
 		return true;
 	}
 	
 	public boolean hatNächstes() throws IOException {
+		long i = index;
 		try {
 			nächstes();
 		} catch (NoSuchElementException e) {
 			return false;
 		}
+		input.seek(i);
 		return true;
 	}
 	
