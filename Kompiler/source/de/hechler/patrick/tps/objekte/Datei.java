@@ -1,4 +1,4 @@
-package de.hechler.patrick.tps.objekte.datei;
+package de.hechler.patrick.tps.objekte;
 
 /**
  * Eine Datei ist eine Ansammlung von mindestens einer Sache
