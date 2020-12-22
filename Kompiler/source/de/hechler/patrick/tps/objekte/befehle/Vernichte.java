@@ -2,7 +2,7 @@ package de.hechler.patrick.tps.objekte.befehle;
 
 /**
  * Vernichtet das Ding welches diesen Befehl aufruft und wirft einen TodesFehler <br>
- * Nur möglich wenn in einem Ding
+ * Kann nur von einem Ding ausgeführt werden
  * 
  * @author Patrick
  */

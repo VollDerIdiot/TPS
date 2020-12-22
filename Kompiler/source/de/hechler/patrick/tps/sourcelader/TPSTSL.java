@@ -117,9 +117,9 @@ public class TPSTSL extends SourceLader {
 			Sichtbarkeit sicht;
 			String zw = leser.nächstes();
 			boolean art;
+			erwarte(new FalscheSourcenFehler(), "tolle");
 			switch (zw) {
 			case "Dieser":
-				erwarte(new FalscheSourcenFehler(), "tolle");
 				zw = leser.nächstes();
 				erwarte(new FalscheSourcenFehler(), "heißt");
 				switch (zw) {
@@ -148,7 +148,7 @@ public class TPSTSL extends SourceLader {
 				sicht = sichtbarkeit(zw);
 				sache.sichtbarkeit(sicht);
 				zw = leser.nächstes();
-				if (!"Es".equals(zw)) {
+				if ( !"Es".equals(zw)) {
 					leser.zurück();
 					return;
 				}
@@ -163,10 +163,44 @@ public class TPSTSL extends SourceLader {
 				}
 				return;
 			case "Dieses":
-//				TODO machen
+				zw = leser.nächstes();
+				boolean konst = false;
+				switch (zw) {
+				case KONSTANT:
+					konst = true;
+					erwarte(new FalscheSourcenFehler("habe 'Ding' erwartet!"), "Ding");
+				case "Ding":
+					art = true;
+					break;
+				case "unfertige":
+					erwarte(new FalscheSourcenFehler("habe 'Ding' erwartet!"), "Ding");
+					art = false;
+				default:
+					throw new FalscheSourcenFehler("habe 'Ding' oder 'unfertige' erwartet und '" + zw + "' erhalten!");
+				}
+				erwarte(new FalscheSourcenFehler(), "heißt");
+				zw = testeName(leser.nächstes());
+				if (art) {
+					sache = new FertigesDing(zw, konst);
+				} else {
+					sache = new UnfertigesDing(zw);
+				}
+				erwarte(new FalscheSourcenFehler(), "und", "ist");
+				zw = leser.nächstes();
+				if ('.' != zw.charAt(zw.length() - 1)) {
+					throw new FalscheSourcenFehler("Direkt hinter der Sichtbarkeit muss ein '.' sein! '" + zw + "' hatte dies nicht!");
+				}
+				sicht = sichtbarkeit(zw.substring(0, zw.length() - 1));
+				zw = leser.nächstes();
+				if (!"Es".equals(zw)) {
+					leser.zurück();
+					return;
+				}
+//				TODO weitermachen: (bessert)? und (macht)*
+				
 				return;
 			case "Diese":
-//				TODO machen
+				// TODO machen Unfertige Klasse / Fertige Klasse
 				return;
 			default:
 				throw new FalscheSourcenFehler("erwartet: 'Dieser', 'Dieses' oder 'Diese' erhalten: '" + zw + "'");

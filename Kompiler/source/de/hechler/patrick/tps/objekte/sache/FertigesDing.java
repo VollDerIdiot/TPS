@@ -6,9 +6,17 @@ package de.hechler.patrick.tps.objekte.sache;
  * @author Patrick
  */
 public class FertigesDing extends Ding implements FertigeSache {
-
-	public FertigesDing(String name) {
+	
+	private boolean konst;
+	
+	public FertigesDing(String name, boolean konstant) {
 		super(name);
+		this.konst = konstant;
+	}
+	
+	@Override
+	public boolean konstant() {
+		return konst;
 	}
 	
 }
