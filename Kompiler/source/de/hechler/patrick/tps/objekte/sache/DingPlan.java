@@ -15,10 +15,12 @@ import de.hechler.patrick.tps.objekte.methode.MethodenKopf;
 public class DingPlan extends Ding implements SachenPlan, Iterable <MethodenKopf> {
 	
 	private Set <MethodenKopf> methoden;
+	private Set <String> bessert;
 	
 	public DingPlan(String name) {
 		super(name);
 		this.methoden = new HashSet <>();
+		this.bessert = new HashSet <>();
 	}
 	
 	
@@ -38,6 +40,13 @@ public class DingPlan extends Ding implements SachenPlan, Iterable <MethodenKopf
 	
 	public int anzahl() {
 		return methoden.size();
+	}
+	
+	
+	
+	@Override
+	public void dazuBessert(String name) {
+		bessert.add(name);
 	}
 	
 }

@@ -7,4 +7,8 @@ package de.hechler.patrick.tps.objekte.sache;
  */
 public interface UnfertigeSache {
 	
+	void bessert(String name);
+
+	void dazuMacht(String name);
+	
 }

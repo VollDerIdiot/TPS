@@ -17,12 +17,10 @@ public abstract class Sache implements Comparable <Sache> {
 	
 	public final String name;
 	private Sichtbarkeit sicht;
-	private Set <String> bessert;
 	
 	
 	public Sache(String name) {
 		this.name = Objects.requireNonNull(name, "name");
-		bessert = new HashSet <String>();
 	}
 	
 	
@@ -76,10 +74,6 @@ public abstract class Sache implements Comparable <Sache> {
 	
 	public void sichtbarkeit(Sichtbarkeit sicht) {
 		this.sicht = Objects.requireNonNull(sicht, "sicht");
-	}
-	
-	public void dazuBessert(String name) {
-		bessert.add(Regeln.testeName(name, new RuntimeException("darf hier eigentlich nicht mehr passieren!"), Collections.emptySet()));
 	}
 	
 }

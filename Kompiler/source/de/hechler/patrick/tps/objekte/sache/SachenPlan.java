@@ -6,5 +6,7 @@ package de.hechler.patrick.tps.objekte.sache;
  * @author Patrick
  */
 public interface SachenPlan {
+
+	void dazuBessert(String name);
 	
 }

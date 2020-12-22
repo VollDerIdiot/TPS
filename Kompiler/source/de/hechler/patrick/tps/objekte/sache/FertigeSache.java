@@ -9,4 +9,8 @@ public interface FertigeSache {
 	
 	boolean konstant();
 	
+	void bessert(String name);
+
+	void dazuMacht(String name);
+	
 }

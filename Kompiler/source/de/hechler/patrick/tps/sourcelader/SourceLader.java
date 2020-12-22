@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.NoSuchElementException;
 
+import de.hechler.patrick.tps.objects.fehler.Fehler;
 import de.hechler.patrick.tps.objekte.Datei;
 import de.hechler.patrick.tps.objekte.fehler.FalscheSourcenFehler;
 import de.hechler.patrick.tps.objekte.sache.Sache;
@@ -49,7 +50,8 @@ public abstract class SourceLader {
 	 * @return Die geladene Datei, welche in {@link #datei} gespeichert wurde
 	 * @throws IOException
 	 *             Wenn es einen Fehler beim laden der Datei gibt.
-	 * @throws FalscheSourcenFehler wenn die Sourcen fehlerhaft waren.
+	 * @throws FalscheSourcenFehler
+	 *             wenn die Sourcen fehlerhaft waren.
 	 * @see #datei
 	 * @see #vorbereiten(Charset, File)
 	 */
@@ -62,7 +64,8 @@ public abstract class SourceLader {
 	
 	/**
 	 * Lädt die datei, welche beim {@link #vorbereiten(Charset, File)} übergeben wurde und im {@link #leser} gespeichert wurde.
-	 * @throws FalscheSourcenFehler 
+	 * 
+	 * @throws FalscheSourcenFehler
 	 */
 	protected abstract void ladeDatei() throws IOException, FalscheSourcenFehler;
 	
@@ -81,13 +84,19 @@ public abstract class SourceLader {
 	}
 	
 	
-	protected <F extends Exception> void erwarte(F fehler, String... erwartungen) throws F, NoSuchElementException, IOException {
+	protected <F extends Throwable> void erwarte(F fehler, String... erwartungen) throws F, NoSuchElementException, IOException {
 		for (String erwarten : erwartungen) {
 			String erhalten = leser.nächstes();
 			if ( !erhalten.equals(erwarten)) {
-				System.err.println("erwartet: '" + erwarten + "' erhalten: '" + erhalten + "'");
 				StackTraceElement[] zw = new Throwable().getStackTrace();
 				fehler.setStackTrace(zw);
+				if (fehler instanceof Fehler) {
+					String msg = fehler.getMessage() == null ? "" : fehler.getMessage();
+					msg += "erwartet: '" + erwarten + "' erhalten: '" + erhalten + "'";
+					((Fehler) fehler).setMessage(msg);
+				} else {
+					System.err.println("erwartet: '" + erwarten + "' erhalten: '" + erhalten + "'");
+				}
 				throw fehler;
 			}
 		}

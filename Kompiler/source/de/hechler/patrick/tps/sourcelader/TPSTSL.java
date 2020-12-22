@@ -24,6 +24,8 @@ public class TPSTSL extends SourceLader {
 	
 	private static final String KONSTANT = "konstante";
 	private static final Set <String> BESETZTE_NAMEN = null;
+	private static final String BESSERT = "bessert";
+	private static final String MACHT = "macht";
 	
 	public TPSTSL() {
 		super("tpst");
@@ -154,11 +156,11 @@ public class TPSTSL extends SourceLader {
 				}
 				erwarte(new FalscheSourcenFehler("habe 'bessert' erwartet!"), "bessert");
 				zw = testeName(leser.nächstes());
-				sache.dazuBessert(zw);
+				((SachenPlan) sache).dazuBessert(zw);
 				zw = leser.nächstes();
 				while ("+".equals(zw)) {
 					zw = testeName(leser.nächstes());
-					sache.dazuBessert(zw);
+					((SachenPlan) sache).dazuBessert(zw);
 					zw = leser.nächstes();
 				}
 				return;
@@ -192,16 +194,115 @@ public class TPSTSL extends SourceLader {
 				}
 				sicht = sichtbarkeit(zw.substring(0, zw.length() - 1));
 				zw = leser.nächstes();
-				if (!"Es".equals(zw)) {
+				if ( !"Es".equals(zw)) {
 					leser.zurück();
 					return;
 				}
-//				TODO weitermachen: (bessert)? und (macht)*
-				
-				return;
+				zw = leser.nächstes();
+				switch (zw) {
+				case BESSERT:
+					zw = testeName(leser.nächstes());
+					if (art) {
+						((UnfertigesDing) sache).bessert(zw);
+					} else {
+						((FertigesDing) sache).bessert(zw);
+					}
+					if ( !"Es".equals(leser.nächstes())) {
+						leser.zurück();
+						return;
+					}
+					erwarte(new FalscheSourcenFehler(), MACHT);
+				case MACHT:
+					zw = testeName(leser.nächstes());
+					if (art) {
+						((UnfertigesDing) sache).dazuMacht(zw);
+					} else {
+						((FertigesDing) sache).dazuMacht(zw);
+					}
+					do {
+						zw = testeName(leser.nächstes());
+						if (art) {
+							((UnfertigesDing) sache).dazuMacht(zw);
+						} else {
+							((FertigesDing) sache).dazuMacht(zw);
+						}
+					} while ("+".equals(leser.nächstes()));
+					leser.zurück();
+					return;
+				default:
+					throw new FalscheSourcenFehler("erwartet: '" + BESSERT + "' oder '" + MACHT + "' erhalten: '" + zw + "'");
+				}
 			case "Diese":
 				// TODO machen Unfertige Klasse / Fertige Klasse
-				return;
+				zw = leser.nächstes();
+				konst = false;
+				switch (zw) {
+				case KONSTANT:
+					konst = true;
+					erwarte(new FalscheSourcenFehler(), "Klasse");
+				case "Klasse":
+					art = true;
+					break;
+				case "unfertige":
+					art = false;
+					erwarte(new FalscheSourcenFehler(), "Klasse");
+					break;
+				default:
+					throw new FalscheSourcenFehler("erwartet: 'Klasse' oder 'unfertige' erhalten: '" + zw + "'");
+				}
+				erwarte(new FalscheSourcenFehler(), "heißt");
+				zw = testeName(leser.nächstes());
+				if (art) {
+					sache = new FertigeKlasse(zw, konst);
+				} else {
+					sache = new UnfertigeKlasse(zw);
+				}
+				erwarte(new FalscheSourcenFehler(), "und", "ist");
+				zw = leser.nächstes();
+				if ('.' != zw.charAt(zw.length() - 1)) {
+					throw new FalscheSourcenFehler("Direkt hinter der Sichtbarkeit muss ein '.' sein! '" + zw + "' hatte dies nicht!");
+				}
+				sicht = sichtbarkeit(zw.substring(0, zw.length() - 1));
+				sache.sichtbarkeit(sicht);
+				
+				if ( !"Es".equals(zw)) {
+					leser.zurück();
+					return;
+				}
+				zw = leser.nächstes();
+				switch (zw) {
+				case BESSERT:
+					zw = testeName(leser.nächstes());
+					if (art) {
+						((FertigeKlasse) sache).bessert(zw);
+					} else {
+						((UnfertigeKlasse) sache).bessert(zw);
+					}
+					if ( !"Es".equals(leser.nächstes())) {
+						leser.zurück();
+						return;
+					}
+					erwarte(new FalscheSourcenFehler(), MACHT);
+				case MACHT:
+					zw = testeName(leser.nächstes());
+					if (art) {
+						((FertigeKlasse) sache).dazuMacht(zw);
+					} else {
+						((UnfertigeKlasse) sache).dazuMacht(zw);
+					}
+					do {
+						zw = testeName(leser.nächstes());
+						if (art) {
+							((FertigeKlasse) sache).dazuMacht(zw);
+						} else {
+							((UnfertigeKlasse) sache).dazuMacht(zw);
+						}
+					} while ("+".equals(leser.nächstes()));
+					leser.zurück();
+					return;
+				default:
+					throw new FalscheSourcenFehler("erwartet: '" + BESSERT + "' oder '" + MACHT + "' erhalten: '" + zw + "'");
+				}
 			default:
 				throw new FalscheSourcenFehler("erwartet: 'Dieser', 'Dieses' oder 'Diese' erhalten: '" + zw + "'");
 			}
