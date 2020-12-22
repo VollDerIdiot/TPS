@@ -284,5 +284,11 @@ public class SourceLeser {
 		}
 		
 	}
+
+	public void neustart() throws IOException {
+		input.seek(0l);
+		index = 0l;
+		log.leeren();
+	}
 	
 }

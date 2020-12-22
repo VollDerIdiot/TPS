@@ -122,14 +122,10 @@ public class Stapel <W> {
 	public boolean istLeer() {
 		return anz == 0;
 	}
-	
-	/**
-	 * Entfernt alle Werte des {@link Stapel}s. <br>
-	 * Danach wird {@link #istLeer()} <code>true</code> zurückgeben.
-	 */
-	public void allesWeg() {
-		werte = neuesFeld(werte, 0, 0, wachsen);
+
+	public void leeren() {
 		anz = 0;
+		werte = neuesFeld(werte, 0, 0, wachsen);
 	}
 	
 }
