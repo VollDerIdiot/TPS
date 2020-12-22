@@ -2,7 +2,10 @@ package de.hechler.patrick.tps.sourcelader;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
+import de.hechler.patrick.tps.hilfen.Regeln;
+import de.hechler.patrick.tps.konstanten.Sichtbarkeit;
 import de.hechler.patrick.tps.objekte.Datei;
 import de.hechler.patrick.tps.objekte.fehler.FalscheSourcenFehler;
 import de.hechler.patrick.tps.objekte.methode.Methode;
@@ -18,6 +21,9 @@ import de.hechler.patrick.tps.objekte.sache.UnfertigeSache;
 import de.hechler.patrick.tps.objekte.sache.UnfertigesDing;
 
 public class TPSTSL extends SourceLader {
+	
+	private static final String KONSTANT = "konstante";
+	private static final Set <String> BESETZTE_NAMEN = null;
 	
 	public TPSTSL() {
 		super("tpst");
@@ -89,8 +95,11 @@ public class TPSTSL extends SourceLader {
 	
 	/**
 	 * Lädt die {@link Sache}n der {@link Datei}
+	 * 
+	 * @throws IOException
+	 * @throws FalscheSourcenFehler
 	 */
-	private void ladeSachen() {
+	private void ladeSachen() throws FalscheSourcenFehler, IOException {
 		ladeSachenKopf();
 		while (ladeSachenInhalt()) {
 			ladeSachenKopf();
@@ -99,11 +108,94 @@ public class TPSTSL extends SourceLader {
 	
 	/**
 	 * Lädt den Sachenkopf einer Sache
+	 * 
+	 * @throws IOException
+	 * @throws FalscheSourcenFehler
 	 */
-	private void ladeSachenKopf() {
-		// TODO Auto-generated method stub
-		
+	private void ladeSachenKopf() throws FalscheSourcenFehler, IOException {
+		try {
+			Sichtbarkeit sicht;
+			String zw = leser.nächstes();
+			boolean art;
+			switch (zw) {
+			case "Dieser":
+				erwarte(new FalscheSourcenFehler(), "tolle");
+				zw = leser.nächstes();
+				erwarte(new FalscheSourcenFehler(), "heißt");
+				switch (zw) {
+				case "DingPlan":
+					art = true;
+					break;
+				case "KlassenPlan":
+					art = false;
+					break;
+				default:
+					throw new FalscheSourcenFehler("erwartet: 'DingPlan' oder 'KlassenPlan' erhalten: '" + zw + "'");
+				}
+				zw = leser.nächstes();
+				testeName(zw);
+				if (art) {
+					sache = new DingPlan(zw);
+				} else {
+					sache = new KlassenPlan(zw);
+				}
+				erwarte(new FalscheSourcenFehler(), "und", "ist");
+				zw = leser.nächstes();
+				if ('.' != zw.charAt(zw.length() - 1)) {
+					throw new FalscheSourcenFehler("Direkt hinter dem sSachennamen hätte ein '.' sein müssen! " + zw);
+				}
+				zw = zw.substring(0, zw.length() - 1);
+				sicht = sichtbarkeit(zw);
+				sache.sichtbarkeit(sicht);
+				zw = leser.nächstes();
+				if (!"Es".equals(zw)) {
+					leser.zurück();
+					return;
+				}
+				erwarte(new FalscheSourcenFehler("habe 'bessert' erwartet!"), "bessert");
+				zw = testeName(leser.nächstes());
+				sache.dazuBessert(zw);
+				zw = leser.nächstes();
+				while ("+".equals(zw)) {
+					zw = testeName(leser.nächstes());
+					sache.dazuBessert(zw);
+					zw = leser.nächstes();
+				}
+				return;
+			case "Dieses":
+//				TODO machen
+				return;
+			case "Diese":
+//				TODO machen
+				return;
+			default:
+				throw new FalscheSourcenFehler("erwartet: 'Dieser', 'Dieses' oder 'Diese' erhalten: '" + zw + "'");
+			}
+		} catch (NoSuchElementException e) {
+			throw new FalscheSourcenFehler("Zu frühes Dateiende, konnte den Sachenkopf nicht einlesen!");
+		}
 	}
+	
+	private static String testeName(String name) throws FalscheSourcenFehler {
+		return Regeln.testeName(name, new FalscheSourcenFehler("ungültiger name: '" + name + "'"), BESETZTE_NAMEN);
+	}
+	
+	
+	private Sichtbarkeit sichtbarkeit(String sicht) {
+		switch (sicht) {
+		case "offen":
+			return Sichtbarkeit.offen;
+		case "vererbe":
+			return Sichtbarkeit.vererben;
+		case "datei":
+			return Sichtbarkeit.datei;
+		case "eigen":
+			return Sichtbarkeit.eigen;
+		default:
+			throw new IllegalArgumentException("unbekannte Sichtbarkeit: '" + sicht + "'");
+		}
+	}
+	
 	
 	/**
 	 * Lädt den Inhalt einer Sache, dies ist alles, was sich nicht im Kopf beinhaltet und Sachenartspezifich

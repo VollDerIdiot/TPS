@@ -1,6 +1,12 @@
 package de.hechler.patrick.tps.objekte.sache;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import de.hechler.patrick.tps.hilfen.Regeln;
+import de.hechler.patrick.tps.konstanten.Sichtbarkeit;
 
 /**
  * Eine Sache kann quasi alles sein
@@ -10,10 +16,13 @@ import java.util.Objects;
 public abstract class Sache implements Comparable <Sache> {
 	
 	public final String name;
+	private Sichtbarkeit sicht;
+	private Set <String> bessert;
 	
 	
 	public Sache(String name) {
 		this.name = Objects.requireNonNull(name, "name");
+		bessert = new HashSet <String>();
 	}
 	
 	
@@ -63,6 +72,14 @@ public abstract class Sache implements Comparable <Sache> {
 			else if (o instanceof FertigesDing) a = 7;
 		}
 		return Integer.compare(i, a);
+	}
+	
+	public void sichtbarkeit(Sichtbarkeit sicht) {
+		this.sicht = Objects.requireNonNull(sicht, "sicht");
+	}
+	
+	public void dazuBessert(String name) {
+		bessert.add(Regeln.testeName(name, new RuntimeException("darf hier eigentlich nicht mehr passieren!"), Collections.emptySet()));
 	}
 	
 }

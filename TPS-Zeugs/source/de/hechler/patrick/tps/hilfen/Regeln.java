@@ -33,11 +33,14 @@ public class Regeln {
 	 * @throws F
 	 *             wenn <code>name</code> ungültig ist
 	 */
-	public static <F extends Exception> String testeName(String name, F fehler, Set <String> besetzteNamen) throws F {
+	public static <F extends Exception, S extends CharSequence> S testeName(S name, F fehler, Set <String> besetzteNamen) throws F {
 		Pzs8bZeichen[] zeichen;
 		Objects.requireNonNull(name, "Ich kann nicht auf null prüfen!");
 		Objects.requireNonNull(fehler, "Ich kann null nuicht werfen!");
-		zeichen = new Pzs8bZeichenKette(name).getZeichen();
+		if (name instanceof Pzs8bZeichenKette) {
+			zeichen = ((Pzs8bZeichenKette) name).getZeichen();
+		}
+		zeichen = new Pzs8bZeichenKette(name.toString()).getZeichen();
 		if (zeichen.length < 2) {
 			fehler.setStackTrace(new Throwable().getStackTrace());
 			throw fehler;
