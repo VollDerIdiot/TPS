@@ -18,7 +18,7 @@ public class BefehlsBox {
 	
 	
 	public void neu(Befehl befehl) {
-		Objects.requireNonNull(befehl, "neuer Befehl");
+		Objects.requireNonNull(befehl, "neuer null Befehl");
 		befehle.add(befehl);
 	}
 	
@@ -28,6 +28,10 @@ public class BefehlsBox {
 	
 	public int anzahl() {
 		return befehle.size();
+	}
+	
+	public boolean istLeer() {
+		return befehle.isEmpty();
 	}
 	
 }

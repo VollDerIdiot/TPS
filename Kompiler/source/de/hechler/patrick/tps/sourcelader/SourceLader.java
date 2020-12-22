@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.charset.Charset;
 
+import de.hechler.patrick.tps.objekte.Datei;
+import de.hechler.patrick.tps.objekte.sache.Sache;
 import de.hechler.patrick.tps.sourcelader.tools.SourceLeser;
 
 public abstract class SourceLader {
@@ -16,7 +18,14 @@ public abstract class SourceLader {
 	 * Wird benutzt, um die Sourcen einzulesen.
 	 */
 	protected SourceLeser leser;
-	
+	/**
+	 * Die {@link Datei}, welche aktuell geladen wird
+	 */
+	protected Datei datei;
+	/**
+	 * Die {@link Sache}, welche noch gebaut wird, bevor sie zu {@link #datei} hinzugefügt wird.
+	 */
+	protected Sache sache;
 	
 	
 	/**

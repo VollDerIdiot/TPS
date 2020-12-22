@@ -36,4 +36,8 @@ public class DingPlan extends Ding implements SachenPlan, Iterable <MethodenKopf
 		return methoden.isEmpty();
 	}
 	
+	public int anzahl() {
+		return methoden.size();
+	}
+	
 }
