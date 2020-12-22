@@ -147,7 +147,7 @@ public class TPSTSL extends SourceLader {
 					throw new FalscheSourcenFehler("Direkt hinter dem sSachennamen hätte ein '.' sein müssen! " + zw);
 				}
 				zw = zw.substring(0, zw.length() - 1);
-				sicht = sichtbarkeit(zw);
+				sicht = erhalteSicht(zw);
 				sache.sichtbarkeit(sicht);
 				zw = leser.nächstes();
 				if ( !"Es".equals(zw)) {
@@ -192,7 +192,7 @@ public class TPSTSL extends SourceLader {
 				if ('.' != zw.charAt(zw.length() - 1)) {
 					throw new FalscheSourcenFehler("Direkt hinter der Sichtbarkeit muss ein '.' sein! '" + zw + "' hatte dies nicht!");
 				}
-				sicht = sichtbarkeit(zw.substring(0, zw.length() - 1));
+				sicht = erhalteSicht(zw.substring(0, zw.length() - 1));
 				zw = leser.nächstes();
 				if ( !"Es".equals(zw)) {
 					leser.zurück();
@@ -262,7 +262,7 @@ public class TPSTSL extends SourceLader {
 				if ('.' != zw.charAt(zw.length() - 1)) {
 					throw new FalscheSourcenFehler("Direkt hinter der Sichtbarkeit muss ein '.' sein! '" + zw + "' hatte dies nicht!");
 				}
-				sicht = sichtbarkeit(zw.substring(0, zw.length() - 1));
+				sicht = erhalteSicht(zw.substring(0, zw.length() - 1));
 				sache.sichtbarkeit(sicht);
 				
 				if ( !"Es".equals(zw)) {
@@ -315,8 +315,7 @@ public class TPSTSL extends SourceLader {
 		return Regeln.testeName(name, new FalscheSourcenFehler("ungültiger name: '" + name + "'"), BESETZTE_NAMEN);
 	}
 	
-	
-	private Sichtbarkeit sichtbarkeit(String sicht) {
+	private Sichtbarkeit erhalteSicht(String sicht) {
 		switch (sicht) {
 		case "offen":
 			return Sichtbarkeit.offen;
@@ -330,7 +329,6 @@ public class TPSTSL extends SourceLader {
 			throw new IllegalArgumentException("unbekannte Sichtbarkeit: '" + sicht + "'");
 		}
 	}
-	
 	
 	/**
 	 * Lädt den Inhalt einer Sache, dies ist alles, was sich nicht im Kopf beinhaltet und Sachenartspezifich
