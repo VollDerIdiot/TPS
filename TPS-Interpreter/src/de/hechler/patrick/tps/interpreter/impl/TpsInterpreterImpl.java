@@ -4,17 +4,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
-import de.hechler.patrick.tps.interpreter.Befehl;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Version;
+import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 import de.hechler.patrick.tps.interpreter.hilfen.SatzLeser;
 
-@Version(version = 1)
+@Version(value = 1)
 public class TpsInterpreterImpl implements Interpreter {
 	
 	private static TpsInterpreterImpl instanz = new TpsInterpreterImpl();
@@ -69,17 +70,17 @@ public class TpsInterpreterImpl implements Interpreter {
 		try (SatzLeser leser = new SatzLeser(new Scanner(eingang, zeichensatz))) {
 			while (leser.hasNext()) {
 				String befehlsteil = leser.next();
-				Set <Befehl> befehle = Befehl.get(befehlsteil);
+				Set <BefehlEnum> befehle = BefehlEnum.get(befehlsteil);
 				int index = 1;
 				List <String> befehl = new ArrayList <String>();
-				Befehl bef = null;
+				BefehlEnum bef = null;
 				befehl.add(befehlsteil);
 				while (leser.hasNext() && !befehle.isEmpty()) {
 					befehlsteil = leser.next();
 					befehl.add(befehlsteil);
-					Befehl.teste(befehlsteil, index ++ , befehle);
+					BefehlEnum.teste(befehlsteil, index ++ , befehle);
 					if (befehle.size() == 1) {
-						Befehl zw = befehle.iterator().next();
+						BefehlEnum zw = befehle.iterator().next();
 						if (zw.kann(befehl) && leser.satzende()) {
 							bef = zw;
 							break;
@@ -91,8 +92,55 @@ public class TpsInterpreterImpl implements Interpreter {
 					throw new InterpretierungsFehler(befehl.toString());
 				}
 				leser.erwarteSatztende();
-				bef.run(befehl, this);
+				run(befehl, bef);
 			}
+		}
+	}
+	
+	public void run(List <String> befehl, BefehlEnum bef) {
+		switch (bef) {
+		case addiere:
+			int a = BefehlEnum.zahl(befehl.get(1), this);
+			int b = BefehlEnum.zahl(befehl.get(3), this);
+			this.ergebnis(a + b);
+			break;
+		case ausgabe:
+			Iterator <String> iter = befehl.listIterator(3);
+			while (iter.hasNext()) {
+				System.out.print(iter.next());
+				System.out.print(' ');
+			}
+			break;
+		case dividiere:
+			a = BefehlEnum.zahl(befehl.get(1), this);
+			b = BefehlEnum.zahl(befehl.get(3), this);
+			this.ergebnis(a / b);
+			break;
+		case ergebnisausgebe:
+			this.zeilenumbruch();
+			break;
+		case leerzeile:
+			System.out.println();
+			break;
+		case multipliziere:
+			a = BefehlEnum.zahl(befehl.get(1), this);
+			b = BefehlEnum.zahl(befehl.get(3), this);
+			this.ergebnis(a * b);
+			break;
+		case subtrahiere:
+			a = BefehlEnum.zahl(befehl.get(1), this);
+			b = BefehlEnum.zahl(befehl.get(3), this);
+			this.ergebnis(a - b);
+			break;
+		case zwischenisausgebe:
+			this.ausgeben(this.zwischenspeicher());
+			break;
+		case zwischenspeicher:
+			this.zwischenspeicher(this.ergebnis());
+			break;
+		default:
+			
+			break;
 		}
 	}
 	
