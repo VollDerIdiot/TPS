@@ -16,4 +16,16 @@ public interface Interpreter {
 	
 	void interpretiere(InputStream eingang, Charset zeichensatz) throws IOException, InterpretierungsFehler;
 	
+	int ergebnis();
+	
+	int zwischenspeicher();
+	
+	void ergebnis(int neu);
+	
+	void zwischenspeicher(int neu);
+	
+	void ausgeben(Object ausgeben);
+	
+	void zeilenumbruch();
+	
 }
