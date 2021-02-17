@@ -39,6 +39,9 @@ public enum BefehlEnum {
 	
 	@Version(2) stelle("hier", "ist", "die", "stelle:", "[STELLE]"),
 	
+	@Version(3) leseZahlEinErg("lese", "eine", "zahl", "ein"),
+	@Version(3) leseZahlEinZwischen("lese", "eine", "zahl", "in", "den" ,"zwischenspeicher", "ein"),
+	
 	;
 	
 	private final String[] folge;

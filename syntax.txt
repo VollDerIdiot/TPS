@@ -24,7 +24,7 @@ Version(2)
 		vergleiche:				"vergleiche" [ZAHL] "mit" [ZAHL]
 
 
-		springe:				"gehe" "zur" "stelle" [STELLE]
+		springe:				"springe" "zur" "stelle:" [STELLE]
 
 		geheWennNichtGleich:	"wenn" "es" "nicht" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
 		geheWennGleich:			"wenn" "es" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
