@@ -1,0 +1,12 @@
+ort tps/standard/ding
+
+DingPlan offen Dingplan
+	
+	offen jaNö gleich:Ding testen}
+	
+	offen ZeicheKette zuZeichenKette:}
+	
+	offen Zahl zuZahl:}
+	
+	offen SacheArt sache:}
+	

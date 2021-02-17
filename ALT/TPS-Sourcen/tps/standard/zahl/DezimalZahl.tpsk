@@ -1,0 +1,85 @@
+ort tps/standard/zahl
+
+DezimalZahl offen Ding macht Zahl
+	
+	eigen Liste[Unterzahl] zahlen
+	
+	offen erschaffe:Zahl wert}
+		ZeichenKette zeichen
+		Zahl runde
+		zeichen <- wert#zuDezimal:}
+		zahlen <- ListeStandard#erschaffe:zeichen#länge:}}
+		runde <- 0
+		mache zeichen#länge:}#kleiner:runde}
+			falls zeichen#erhalte:runde}#gleich:'0'}
+				zahlen#setze: Unterzahl#erschaffe: Null } }
+			sonst falls zeichen#erhalte:runde}#gleich:'1'}
+				zahlen#setze: Unterzahl#erschaffe: Eins } }
+			sonst falls zeichen#erhalte:runde}#gleich:'2'}
+				zahlen#setze: Unterzahl#erschaffe: Zwei } }
+			sonst falls zeichen#erhalte:runde}#gleich:'3'}
+				zahlen#setze: Unterzahl#erschaffe: Drei } }
+			sonst falls zeichen#erhalte:runde}#gleich:'4'}
+				zahlen#setze: Unterzahl#erschaffe: Vier } }
+			sonst falls zeichen#erhalte:runde}#gleich:'5'}
+				zahlen#setze: Unterzahl#erschaffe: Fünf } }
+			sonst falls zeichen#erhalte:runde}#gleich:'6'}
+				zahlen#setze: Unterzahl#erschaffe: Sechs } }
+			sonst falls zeichen#erhalte:runde}#gleich:'7'}
+				zahlen#setze: Unterzahl#erschaffe: Sieben } }
+			sonst falls zeichen#erhalte:runde}#gleich:'8'}
+				zahlen#setze: Unterzahl#erschaffe: Acht } }
+			sonst falls zeichen#erhalte:runde}#gleich:'9'}
+				zahlen#setze: Unterzahl#erschaffe: Neun } }
+			sonst
+				wirf UngültigeUmwandlungFehler:zeichen}
+			runde <- runde#plus:1}
+	
+	offen plus:Zahl add}
+		falls add istVon DezimalZahl
+			DezimalZahl addieren
+			addieren <- |DezimalZahl> add
+			
+	
+
+Unterzahl datei Ding
+	
+	datei Wert wert
+	
+	datei erschaffe:Wert wert}
+		ich#wert <- wert
+	
+
+Wert datei Klassenplan
+	
+
+Null datei Klasse macht Wert
+	
+
+Eins datei Klasse macht Wert
+	
+
+Zwei datei Klasse macht Wert
+	
+
+Drei datei Klasse macht Wert
+	
+
+Vier datei Klasse macht Wert
+	
+
+Fünf datei Klasse macht Wert
+	
+
+Sechs datei Klasse macht Wert
+	
+
+Sieben datei Klasse macht Wert
+	
+
+Acht datei Klasse macht Wert
+	
+
+Neun datei Klasse macht Wert
+	
+

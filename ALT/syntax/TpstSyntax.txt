@@ -1,0 +1,182 @@
+TPST: Toller ProgrammierSprachenText
+
+Informationen:
+	[Einrückung um ein TAB pro BOX und pro Sache, in welcher man sich befindet (bei Sache ist dies aktuell max. 1)]
+
+ort:
+	Diese tolle Datei liegt in: [Pfad]
+
+braucht:
+	- braucht etwas:
+		Diese tolle Datei benötigt: [Pfad] ( und [Pfad])*
+	- braucht nichts:
+		Diese tolle Datei kommt alleine super zurecht!
+
+Sachenkopf:
+	- DingPlan:
+		Dieser tolle (Potentiell:		[Konstant]) DingPlan heißt [Name] und ist [Sichtbarkeit].
+			Potentiell:
+				Es bessert [Name von anderen DingPLans] ( + [Name von anderen DingPLans])*
+	- UnfertigesDing:
+		Dieses tolle (Potentiell:		[Konstant]) unfertige Ding heißt [Name] und ist [Sichtbarkeit].
+			Potentiell:
+				Es bessert [Name von Ding/UnfertigesDing]
+			Potentiell:
+				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
+	- Ding:
+		Dieses tolle (Potentiell:		[Konstant]) Ding heißt [Name] und ist [Sichtbarkeit].
+			Potentiell:
+				Es bessert [Name von Ding/UnfertigesDing]
+			Potentiell:
+				Es macht [Name von DingPlan] ( + [Name von DingPlan])*
+	- KlassenPlan:
+		Dieser tolle (Potentiell:		[Konstant]) KlassenPlan heißt [Name] und ist [Sichtbarkeit].
+			Potentiell:
+				Es bessert [Name von anderen KlassenPLans] ( + [Name von anderen KlassenPLans])*
+	- UnfertigeKlasse:
+		Diese tolle (Potentiell:		[Konstant]) unfertige Klasse heißt [Name] und ist [Sichtbarkeit].
+			Potentiell:
+				Es bessert [Name von Klasse/UnfertigeKlasse]
+			Potentiell:
+				Es macht [Name von KlassenPlan] ( + [Name von KlassenPlan])*
+	- Klasse:
+		Diese tolle (Potentiell:		[Konstant]) Klasse heißt [Name] und ist [Sichtbarkeit].
+			Potentiell:
+				Es bessert [Name von Klasse/UnfertigeKlasse]
+			Potentiell:
+				Es macht [Name von KlassenPLan] ( + [Name von KlassenPLan])*
+
+Sacheninhalt:
+	- DingPlan:
+		[UnfertigeMethode]*
+	- UnfertigesDing:
+		[SachenVariable]*
+		[erschaffeMethode]*					(Muss immer einzigartige Übergabeparameter haben)
+		[FertigeMethode]*
+		[UnfertigeMethode]*					(Es darf nicht mehrere Methoden mit gleichem Namen und Übergabeparameter geben)
+	- Ding:
+		[SachenVariable]*
+		[erschaffeMethode]*					(Muss immer einzigartige Übergabeparameter haben)
+		[FertigeMethode]*					(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
+	- KlassenPlan:
+		[UnfertigeMethode]*
+	- UnfertigeKlasse:
+		[SachenVariable]*
+		(Potentiell:		[erstesMethode])
+		[Methode]*							(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
+	- Klasse:
+		[SachenVariable]*
+		(Potentiell:		[erstesMethode])
+		[FertigeMethode]*					(Darf nicht mehrere mit gleichem Namen und Übergabeparameter geben)
+
+SachenVariable:
+	[RohName] ist [Sichtbarkeit] und von [Name der dazugehöhrigen Sache]
+
+erstesMethode:
+	Zuerst:
+
+erschaffeMethode:
+	Dieses erschaffe ist [Sichtbarkeit] und braucht [Übergabeparameter oder 'nichts']
+
+UnfertigeMethode:
+	- keine Übergabeparametern:
+		Diese unfertige Methode ist [Sichtbarkeit] und heißt [Name]. Hier gibt es [Name einer Sache oder 'nichts'] zurück!
+	- mit Übergabeparametern:
+		Diese unfertige Methode ist [Sichtbarkeit], heißt [Name] und erhält [Übergabeparameter]. Hier gibt es [Name einer Sache oder 'nichts'] zurück!
+
+FertigeMethode:
+	- keine Übergabeparametern:
+		Diese tolle (Potentiell:		[Konstant]) Methode heißt [Name] ist [Sichtbarkeit] und gibt [Name einer Sache oder 'nichts'] zurück!
+		[Box]
+	- mit Übergabeparametern:
+		Diese tolle (Potentiell:		[Konstant]) Methode heißt [Name] ist [Sichtbarkeit] erhält [Übergabeparameter] und gibt [Name einer Sache oder 'nichts'] zurück!
+		[Box]
+
+Übergabeparameter:
+	[RohName] ist ein [Name von Sache] (Potentiell:		( + [RohName] ist ein [Name von Sache])* und [RohName] ist ein [Name von Sache])
+
+Parameter:
+	[Wert] ( + [Wert])*
+
+Wert:
+	- [DirekterWert]
+	- [VariablenRohName]
+	- [WertPfad] [VariablenRohName]
+
+WertPfad:
+	([RohName von Sache oder Wert][GeheIn])+
+
+DirekterWert:
+	- Zeugs mit eben diesem Wert als Rückgabe (zum Beispiel die erschaffe Methode bei einem Ding)
+	- bei zahlen kann dies auch eine [Zahl] sein.
+
+Bedingung:
+	[Wert Dieser Wert muss von JaNö abstammen]
+
+Zusatzgedings:
+	von [Name] (Potentiell:		( + [Name])* und [Name])
+
+Methodenaufruf:
+	- Ohne Übergabeparameter:
+		Rufe die tolle Methode (Potentiell:		[Wert][GeheIn] ) [Name der Methode] aus [Wert] auf!
+	- Mit Übergabeparameter:
+		Rufe die tolle Methode (Potentiell:		[Wert][GeheIn] ) [Name der Methode] aus [Wert] mit [Parameter] auf!
+
+Schleife:
+	Wiederhohle das folgende solange [Bedingung] erfüllt ist
+	[BOX]
+
+Falls:
+	Mache das folgende wenn [Bedingung] erfüllt ist
+	[BOX]
+	- Potentiell:
+		Ansonsten mache dies:
+		[BOX]
+
+SetzeAuf:
+	setzte [VariablenRohName] auf [Wert dieser muss von der VariablenRohName sein]
+
+IstNichts:
+	ist [Wert] nichts?
+
+IstVon:
+	ist [Wert] von [Wert/Sache]
+
+IstSelbe:
+	ist [Wert] und [Wert] das selbe?
+
+stirb:
+	sterbe mit [Zahl]
+
+verschwinde:
+	verschwinde mit [Wert]
+
+geheAusXBoxen:
+	gehe aus [Zahl] Boxen!
+
+Nichts:
+	nichts
+
+Konstant:
+	konstante
+
+offen:
+	offen
+
+vererben:
+	vererbe
+
+datei:
+	datei
+
+eigen:
+	eigen
+
+Ich:
+	ich
+
+Erbe:
+	erbe
+
+GeheIn:
+	#

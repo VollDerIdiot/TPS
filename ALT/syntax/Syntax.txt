@@ -1,0 +1,96 @@
+TPS: Tolle Programmier Sprache
+
+Datei:
+	[Dateikopf]
+	[Sache]+
+Dateikopf:
+	[ort]
+	[braucht]
+Sache:
+	[Sachenkopf]
+	[Sacheninhalt]
+
+Sachenart:
+	[DingArt]
+	[DingPlanArt]
+	[UnfertigesDingArt]
+	[KlassenArt]
+	[KlassenPlanArt]
+	[UnfertigeKlasseArt]
+
+Sichtbarkeit:
+	[offen]
+	[vererben]
+	[datei]
+	[eigen]
+
+Name:
+	[RohName] (Potentiell:		[Zusatzgedings])
+
+RohName:
+	[Buchstabe][Buchstabe]+ 		(Immer mindestens 2 Buchstaben)
+
+Buchstabe:
+	[Großbuchstabe / Kleinbuchstabe]
+
+Kleinbuchstabe:
+	a-z, ö, ä, ü, ß
+
+Großbuchstabe:
+	A-Z, Ö, Ä, Ü, ẞ
+
+Zahl:
+	- Negativezahl:
+		NEG-[PosZahl]
+	- Positivezahl:
+		[PosZahl]
+
+PosZahl:
+	- Dezimal:
+		DEZ:(0-9)+
+	- Hexadecimal:
+		HEX:(0-9|A-F)+
+	- Binär:
+		BIN:(0-1)+
+
+Pfad:
+	startet mit '|:' 
+	pfad mit '/' als Trennzeichen für Ordner
+	endet mit ':>'
+
+Zeichenkette:
+	startet mit 'ZK:'
+	endet mit '>E>' ('\>E>', um '>E>' in der Zeichenkette zu haben)
+
+Zeichen:
+	startet mit 'Z:'
+	endet mit '>E>'
+
+Box:
+	[Befehl]+
+
+Befehl:
+	- [Methodenaufruf]
+	- [Schleife]
+	- [Falls]
+	- [SetzeAuf]
+	- [IstNichts]
+	- [IstVon]
+	- [IstSelbe]
+	- [stirb]
+	- [verschwinde]
+	- [geheAusXBoxen]
+	- 
+
+Besondere Werte:
+	[Nichts]
+
+Zusätze:
+	[Konstant]
+
+Zugriff:
+	[Ich]
+	[Erbe]
+
+WertPfad:
+	RohName [GeheIn] RohName ( [GeheIn] RohName)
