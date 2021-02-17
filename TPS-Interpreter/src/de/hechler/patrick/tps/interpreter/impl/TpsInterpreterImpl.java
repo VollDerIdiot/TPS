@@ -106,9 +106,10 @@ public class TpsInterpreterImpl implements Interpreter {
 			break;
 		case ausgabe:
 			Iterator <String> iter = befehl.listIterator(3);
-			while (iter.hasNext()) {
+			while (true) {
 				System.out.print(iter.next());
-				System.out.print(' ');
+				if (iter.hasNext()) System.out.print(' ');
+				else break;
 			}
 			break;
 		case dividiere:
@@ -117,7 +118,7 @@ public class TpsInterpreterImpl implements Interpreter {
 			this.ergebnis(a / b);
 			break;
 		case ergebnisausgebe:
-			this.zeilenumbruch();
+			this.ausgeben(this.ergebnis());
 			break;
 		case leerzeile:
 			System.out.println();

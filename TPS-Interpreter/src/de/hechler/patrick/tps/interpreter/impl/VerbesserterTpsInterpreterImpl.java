@@ -5,60 +5,175 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
-import de.hechler.patrick.tps.hilfen.objects.fehler.NochNichtGemachtFehler;
+import de.hechler.patrick.tps.fehler.UnbekannteStellenFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
+import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.Anordnung;
 import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 
+@Version(2)
 public class VerbesserterTpsInterpreterImpl implements Interpreter {
 	
+	private int status;
 	private int ergebnis;
 	private int zwischen;
 	private PrintStream aus;
 	
+	private Map <String, Integer> stellen;
+	private Anordnung[] sätzte;
 	
 	public VerbesserterTpsInterpreterImpl(PrintStream ausgang) {
 		aus = ausgang;
+		stellen = new HashMap <String, Integer>();
 	}
 	
 	@Override
 	public void interpretiere(InputStream eingang, Charset zeichensatz) throws IOException, InterpretierungsFehler {
 		List <List <String>> sätze = lese(eingang, zeichensatz);
 		baue(sätze);
-		
-		
-		
-		throw new NochNichtGemachtFehler();
+		ausführen();
 	}
 	
-	private void baue(List <List <String>> sätze) {
-		Anordnung[] anordnungen = new Anordnung[sätze.size()];
-		int index = 0;
+	public void ausführen() {
+		int satz;
+		boolean minDrei = false;
+		if ( (status & STATUS_LÄUFT) != 0) {
+			if ( (status & STATUS_LÄUFT_MEHRFACH) != 0) {
+				minDrei = true;
+			} else {
+				status |= STATUS_LÄUFT_MEHRFACH;
+			}
+		} else {
+			status |= STATUS_LÄUFT;
+		}
+		for (satz = 0; satz < sätzte.length; satz ++ ) {
+			Anordnung anord = sätzte[satz];
+			switch (anord.befehl()) {
+			case addiere:
+				ergebnis = anord.param(0).zahl(this) + anord.param(1).zahl(this);
+				break;
+			case ausgabe:
+				aus.print(anord.param(0).string());
+				break;
+			case dividiere:
+				ergebnis = anord.param(0).zahl(this) / anord.param(1).zahl(this);
+				break;
+			case ergebnisausgebe:
+				aus.print(ergebnis);
+				break;
+			case geheWennGleich:
+				if ( (status & STATUS_GLEICH) != 0) {
+					satz = stellen.get(anord.param(0).string());
+				}
+				break;
+			case geheWennNichtGleich:
+				if ( (status & STATUS_GLEICH) == 0) {
+					satz = stellen.get(anord.param(0).string());
+				}
+				break;
+			case geheWennGrößer:
+				if ( (status & STATUS_GRÖẞER) != 0) {
+					satz = stellen.get(anord.param(0).string());
+				}
+				break;
+			case geheWennGrößerGleich:
+				if ( (status & (STATUS_GRÖẞER | STATUS_GLEICH)) != 0) {
+					satz = stellen.get(anord.param(0).string());
+				}
+				break;
+			case geheWennKleiner:
+				if ( (status & STATUS_KLEINER) != 0) {
+					satz = stellen.get(anord.param(0).string());
+				}
+				break;
+			case geheWennKleinerGleich:
+				if ( (status & (STATUS_KLEINER | STATUS_GLEICH)) != 0) {
+					satz = stellen.get(anord.param(0).string());
+				}
+				break;
+			case leerzeile:
+				aus.println();
+				break;
+			case multipliziere:
+				ergebnis = anord.param(0).zahl(this) * anord.param(1).zahl(this);
+				break;
+			case springe:
+				satz = stellen.get(anord.param(0).string());
+				break;
+			case stelle:
+				// nothing to do
+				break;
+			case subtrahiere:
+				ergebnis = anord.param(0).zahl(this) * anord.param(1).zahl(this);
+				break;
+			case vergleiche:
+				int a = anord.param(0).zahl(this);
+				int b = anord.param(1).zahl(this);
+				if (a == b) {
+					status &= ~ (STATUS_GRÖẞER | STATUS_KLEINER);
+					status |= STATUS_GLEICH;
+				} else if (a > b) {
+					status &= ~ (STATUS_GLEICH | STATUS_KLEINER);
+					status |= STATUS_GRÖẞER;
+				} else {
+					status &= ~ (STATUS_GLEICH | STATUS_GRÖẞER);
+					status |= STATUS_KLEINER;
+				}
+				break;
+			case zwischenisausgebe:
+				aus.print(zwischen);
+				break;
+			case zwischenspeicher:
+				zwischen = ergebnis;
+				break;
+			}
+		}
+		if ( (status & STATUS_LÄUFT_MEHRFACH) != 0) {
+			if ( !minDrei) {
+				status &= ~STATUS_LÄUFT_MEHRFACH;
+			}
+		} else {
+			status ^= status;
+		}
+	}
+	
+	public void baue(List <List <String>> sätze) throws InterpretierungsFehler {
+		Set <String> benötigteStellen = new HashSet <String>();
+		sätzte = new Anordnung[sätze.size()];
+		int init = 0;
 		for (List <String> satz : sätze) {
-			anordnungen[index] = new Anordnung();
-			Anordnung anordnung = anordnungen[index ++ ];
-			
 			Iterator <String> iter = satz.iterator();
 			String zw = iter.next();
 			Set <BefehlEnum> befs = BefehlEnum.get(zw);
+			int index = 1;
 			while (iter.hasNext()) {
 				zw = iter.next();
-				BefehlEnum.teste(zw, index, befs);
+				BefehlEnum.teste(zw, index ++ , befs);
 			}
-//			TODO Befehl nehmen
-//			TODO weitermachen
-			
+			if (befs.size() != 1) {
+				throw new InterpretierungsFehler("satz: " + satz + " befehle: " + befs);
+			}
+			BefehlEnum bef = befs.iterator().next();
+			Anordnung anord = new Anordnung();
+			anord.befehl(bef);
+			anord.fülleParam(satz, benötigteStellen, stellen, init);
+			sätzte[init ++ ] = anord;
 		}
-		throw new NochNichtGemachtFehler();
+		if ( !stellen.keySet().containsAll(benötigteStellen)) {
+			throw new UnbekannteStellenFehler(stellen , benötigteStellen);
+		}
 	}
 	
-	private List <List <String>> lese(InputStream eingang, Charset zeichensatz) {
+	public List <List <String>> lese(InputStream eingang, Charset zeichensatz) {
 		try (Scanner leser = new Scanner(eingang, zeichensatz)) {
 			List <List <String>> sätze;
 			sätze = new ArrayList <List <String>>();

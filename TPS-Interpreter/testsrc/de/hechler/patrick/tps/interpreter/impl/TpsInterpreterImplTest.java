@@ -22,7 +22,7 @@ class TpsInterpreterImplTest {
 	private static final String TEST_1_1 = "addiere      3 \r\n" + "   mit 4.\r\n" + "multipliziere ergebnis mit 2. gebe das ergebnis aus.   \r\n" + "  ";
 	private static final String TEST_1_2 = "";
 	private static final String TEST_1_3 = "gebe das ergebnis AUS.";
-	private static final String TEST_2 = "addiere 4 mit 3. multipliziere 5 mit ergebnis. gebe folgendes aus: das ergebnis ist. gebe das ergebnis aus.";
+	private static final String TEST_2 = "addiere 4 mit 3. multipliziere 5 mit ergebnis. gebe folgendes aus: das ergebnis ist:. gebe das ergebnis aus.";
 	private static final String TEST_3 = "addiere ergebnis mit 3.\r\n" + "speichere das ergebnis im zwischenspeicher.\r\n" + "mache einen zeilenumbruch.\r\n"
 			+ "multipliziere 5 mit ergebnis.\r\n" + "gebe den zwischenspeicher aus.\r\n" + "dividiere ergebnis mit zwischen. "
 			+ "mache einen zeilenumbruch. gebe das ergebnis aus.";
@@ -50,7 +50,7 @@ class TpsInterpreterImplTest {
 		System.setOut(new PrintStream(out));
 		TpsInterpreterImpl.instanz().interpretiere(new ByteArrayInputStream(TEST_2.getBytes(new Pzs8bCharset())), new Pzs8bCharset());
 		String printed = new String(out.toByteArray());
-		assertEquals("das ergebnis ist 35", printed);
+		assertEquals("das ergebnis ist:35", printed);
 	}
 	
 	@Test

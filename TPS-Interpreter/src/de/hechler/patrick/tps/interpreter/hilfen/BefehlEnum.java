@@ -28,13 +28,14 @@ public enum BefehlEnum {
 	@Version(2) vergleiche("vergleiche", "[ZAHL]", "mit", "[ZAHL]"),
 	
 	
-	@Version(2) springe("gehe", "zur", "stelle", "[STELLE]"),
+	@Version(2) springe("springe", "zur", "stelle:", "[STELLE]"),
 	
-	@Version(2) geheWennGleich("wenn", "es", "gleich", "ist", "springe", "zur", "stelle", "[STELLE]"),
-	@Version(2) geheWennKleiner("wenn", "es", "kleiner", "ist", "springe", "zur", "stelle", "[STELLE]"),
-	@Version(2) geheWennGrößer("wenn", "es", "größer", "ist", "springe", "zur", "stelle", "[STELLE]"),
-	@Version(2) geheWennKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "springe", "zur", "stelle", "[STELLE]"),
-	@Version(2) geheWennGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "springe", "zur", "stelle", "[STELLE]"),
+	@Version(2) geheWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "springe", "zur", "stelle:", "[STELLE]"),
+	@Version(2) geheWennGleich("wenn", "es", "gleich", "ist", "springe", "zur", "stelle:", "[STELLE]"),
+	@Version(2) geheWennKleiner("wenn", "es", "kleiner", "ist", "springe", "zur", "stelle:", "[STELLE]"),
+	@Version(2) geheWennGrößer("wenn", "es", "größer", "ist", "springe", "zur", "stelle:", "[STELLE]"),
+	@Version(2) geheWennKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "springe", "zur", "stelle:", "[STELLE]"),
+	@Version(2) geheWennGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "springe", "zur", "stelle:", "[STELLE]"),
 	
 	@Version(2) stelle("hier", "ist", "die", "stelle:", "[STELLE]"),
 	
@@ -87,6 +88,17 @@ public enum BefehlEnum {
 		}
 	}
 	
+	public static Param zahl(String konvertiere) {
+		switch (konvertiere) {
+		case "zwischen":
+			return new Param(false);
+		case "ergebnis":
+			return new Param(true);
+		default:
+			return new Param(Integer.parseInt(konvertiere));
+		}
+	}
+	
 	public static Set <BefehlEnum> get(String first) {
 		Set <BefehlEnum> erg = new HashSet <>();
 		for (BefehlEnum teste : values()) {
@@ -128,6 +140,8 @@ public enum BefehlEnum {
 			}
 		case "[...]":
 			return true;
+		case "[STELLE]":
+			return !befehlsteil.isEmpty() && befehlsteil != befehlsteil.replaceFirst("^[A-Z]+$", "");
 		default:
 			throw new RuntimeException("unbekannte folge!");
 		}

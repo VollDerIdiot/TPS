@@ -1,0 +1,39 @@
+Version(1)
+	BEFEHLE:
+		addiere:				"addiere" [ZAHL] "mit" [ZAHL]
+		subtrahiere:			"subtrahiere" [ZAHL] "von" [ZAHL]
+		multipliziere:			"multipliziere" [ZAHL] "mit" [ZAHL]
+		dividiere:				"dividiere" [ZAHL] "mit" [ZAHL]
+
+		ergebnisausgabe:		"gebe" "das" "ergebnis" "aus"
+		zwischenisausgebe:		"gebe" "den" "zwischenspeicher" "aus"
+
+		leerzeile:				"mache" "einen" "zeilenumbruch"
+		ausgabe:				"gebe" "folgendes" "aus:" [...]
+		zwischenspeicher:		"speichere" "das" "ergebnis" "im" "zwischenspeicher"
+	
+	KASTENWÖRTER:
+		[ZAHL]:					(-)?[0-9]+
+								"ergebnis"
+								"zwischen"
+		
+		[...]:					(WORT )+[.]
+
+Version(2)
+	BEFEHLE:
+		vergleiche:				"vergleiche" [ZAHL] "mit" [ZAHL]
+
+
+		springe:				"gehe" "zur" "stelle" [STELLE]
+
+		geheWennNichtGleich:	"wenn" "es" "nicht" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennGleich:			"wenn" "es" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennKleiner:		"wenn" "es" "kleiner" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennGrößer:			"wenn" "es" "größer" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennKleinerGleich:	"wenn" "es" "kleiner" "oder" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennGrößerGleich:	"wenn" "es" "größer" "oder" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
+
+		stelle:					"hier" "ist" "die" "stelle:" [STELLE]
+
+	KASTENWÖRTER:
+		[STELLE]:				[A-Z]+
