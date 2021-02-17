@@ -18,8 +18,9 @@ import de.hechler.patrick.tps.interpreter.Interpreter;
 
 public class TpsInterpreterImpl implements Interpreter {
 	
-	private static TpsInterpreterImpl instanz = new TpsInterpreterImpl();
+	public static final int VERSION = 1;
 	
+	private static TpsInterpreterImpl instanz = new TpsInterpreterImpl();
 	
 	
 	private static int ergebnis;
