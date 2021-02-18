@@ -9,8 +9,9 @@ import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.fehler.NegativerRegisterIndexFehler;
 import de.hechler.patrick.tps.interpreter.Version;
 
-@Version(5)
-public class Anordnung {
+@Deprecated
+@Version(4)
+public class Anordnung implements AnordnungInterface {
 	
 	private BefehlEnum bef;
 	private Param[] args;
@@ -18,18 +19,22 @@ public class Anordnung {
 	public Anordnung() {
 	}
 	
+	@Override
 	public void befehl(BefehlEnum neu) {
 		bef = neu;
 	}
 	
+	@Override
 	public BefehlEnum befehl() {
 		return bef;
 	}
 	
+	@Override
 	public Param param(int index) {
 		return args[index];
 	}
 	
+	@Override
 	public void fülleParam(List <String> satz, Collection <String> benötigteStellen, Map <String, Integer> stellen, int index) throws InterpretierungsFehler {
 		switch (bef) {
 		case addiere:

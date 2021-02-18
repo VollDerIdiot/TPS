@@ -19,8 +19,10 @@ import de.hechler.patrick.tps.fehler.UnbekannterBefehlFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.Anordnung;
+import de.hechler.patrick.tps.interpreter.hilfen.AnordnungInterface;
 import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 
+@Deprecated
 @Version(2)
 public class VerbesserterTpsInterpreterImpl implements Interpreter {
 	
@@ -30,7 +32,7 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 	private PrintStream aus;
 	
 	private Map <String, Integer> stellen;
-	private Anordnung[] sätzte;
+	private AnordnungInterface[] sätzte;
 	
 	public VerbesserterTpsInterpreterImpl(PrintStream ausgang) {
 		aus = ausgang;
@@ -53,7 +55,7 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 			status |= STATUS_LÄUFT;
 		}
 		for (satz = 0; satz < sätzte.length; satz ++ ) {
-			Anordnung anord = sätzte[satz];
+			AnordnungInterface anord = sätzte[satz];
 			switch (anord.befehl()) {
 			default:
 				throw new UnbekannterBefehlFehler(anord.befehl());
@@ -144,7 +146,7 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 	
 	public void baue(List <List <String>> sätze) throws InterpretierungsFehler {
 		Set <String> benötigteStellen = new HashSet <String>();
-		sätzte = new Anordnung[sätze.size()];
+		sätzte = new AnordnungInterface[sätze.size()];
 		int init = 0;
 		for (List <String> satz : sätze) {
 			Iterator <String> iter = satz.iterator();
@@ -159,7 +161,7 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 				throw new InterpretierungsFehler("satz: " + satz + " befehle: " + befs);
 			}
 			BefehlEnum bef = befs.iterator().next();
-			Anordnung anord = new Anordnung();
+			AnordnungInterface anord = new Anordnung();
 			anord.befehl(bef);
 			anord.fülleParam(satz, benötigteStellen, stellen, init);
 			sätzte[init ++ ] = anord;

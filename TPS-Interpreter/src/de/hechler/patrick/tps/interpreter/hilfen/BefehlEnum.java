@@ -9,36 +9,36 @@ import java.util.Set;
 
 import de.hechler.patrick.tps.hilfen.objects.fehler.NochNichtGemachtFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
+import de.hechler.patrick.tps.interpreter.Stelle;
 import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.Änderung;
 
 public enum BefehlEnum {
 	
-	@Version(1) addiere("addiere", "[ZAHL]", "mit", "[ZAHL]"), @Version(1) subtrahiere("subtrahiere", "[ZAHL]", "mit", "[ZAHL]"),
+	@Version(1) addiere("addiere", Interpreter.ZAHL, "mit", Interpreter.ZAHL), @Version(1) subtrahiere("subtrahiere", Interpreter.ZAHL, "mit", Interpreter.ZAHL),
 	
-	@Version(1) multipliziere("multipliziere", "[ZAHL]", "mit", "[ZAHL]"), @Änderung(4)@Version(1) dividiere("dividiere", "[ZAHL]", "mit", "[ZAHL]"),
+	@Version(1) multipliziere("multipliziere", Interpreter.ZAHL, "mit", Interpreter.ZAHL), @Änderung(4) @Version(1) dividiere("dividiere", Interpreter.ZAHL, "mit", Interpreter.ZAHL),
 	
 	
 	@Version(1) ergebnisausgebe("gebe", "das", "ergebnis", "aus"), @Version(1) zwischenisausgebe("gebe", "den", "zwischenspeicher", "aus"),
 	
-	@Version(1) leerzeichen("gebe", "ein", "leerzeichen", "aus"), @Version(1) leerzeile("mache", "einen", "zeilenumbruch"), @Version(1) ausgabe("gebe", "folgendes", "aus:", "[...]"),
+	@Version(1) leerzeichen("gebe", "ein", "leerzeichen", "aus"), @Version(1) leerzeile("mache", "einen", "zeilenumbruch"), @Version(1) ausgabe("gebe", "folgendes", "aus:", Interpreter.WORTFOLGE),
 	@Version(1) zwischenspeicher("speichere", "das", "ergebnis", "im", "zwischenspeicher"),
 	
 	
 	
-	@Version(2) vergleiche("vergleiche", "[ZAHL]", "mit", "[ZAHL]"),
+	@Version(2) vergleiche("vergleiche", Interpreter.ZAHL, "mit", Interpreter.ZAHL),
 	
+	@Stelle(brauchtStelle = true) @Version(2) springe("springe", "zur", "stelle:", Interpreter.STELLE),
 	
-	@Version(2) springe("springe", "zur", "stelle:", "[STELLE]"),
+	@Stelle(brauchtStelle = true) @Version(2) geheWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(brauchtStelle = true) @Version(2) geheWennGleich("wenn", "es", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(brauchtStelle = true) @Version(2) geheWennKleiner("wenn", "es", "kleiner", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(brauchtStelle = true) @Version(2) geheWennGrößer("wenn", "es", "größer", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(brauchtStelle = true) @Version(2) geheWennKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(brauchtStelle = true) @Version(2) geheWennGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
 	
-	@Version(2) geheWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "springe", "zur", "stelle:", "[STELLE]"),
-	@Version(2) geheWennGleich("wenn", "es", "gleich", "ist", "springe", "zur", "stelle:", "[STELLE]"),
-	@Version(2) geheWennKleiner("wenn", "es", "kleiner", "ist", "springe", "zur", "stelle:", "[STELLE]"),
-	@Version(2) geheWennGrößer("wenn", "es", "größer", "ist", "springe", "zur", "stelle:", "[STELLE]"),
-	@Version(2) geheWennKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "springe", "zur", "stelle:", "[STELLE]"),
-	@Version(2) geheWennGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "springe", "zur", "stelle:", "[STELLE]"),
-	
-	@Version(2) stelle("hier", "ist", "die", "stelle:", "[STELLE]"),
+	@Stelle(brauchtStelle = false) @Version(2) stelle("hier", "ist", "die", "stelle:", Interpreter.STELLE),
 	
 	
 	
@@ -46,68 +46,68 @@ public enum BefehlEnum {
 	
 	
 	
-	@Version(4) ladeInRegister("lade", "die", "[ZAHL]", "in", "das", "register", "[ZAHL]"),
+	@Version(4) ladeInRegister("lade", "die", Interpreter.ZAHL, "in", "das", "register", Interpreter.POS_ZAHL),
 	
-	@Version(4) ladeVomRegisterErg("lade", "die", "zahl", "aus", "dem", "register", "[ZAHL]"),
-	@Version(4) ladeVomRegisterZw("lade", "die", "zahl", "aus", "dem", "register", "[ZAHL]", "in", "den", "zwischenspeicher"),
+	@Version(4) ladeVomRegisterErg("lade", "die", "zahl", "aus", "dem", "register", Interpreter.ZAHL, "in", "den", "ergebnisspeicher"),
+	@Version(4) ladeVomRegisterZw("lade", "die", "zahl", "aus", "dem", "register", Interpreter.ZAHL, "in", "den", "zwischenspeicher"),
 	
 	@Version(4) ladeRegisterAnzahlErg("lade", "die", "anzahl", "der", "register", "in", "den", "ergebnisspeicher"),
 	@Version(4) ladeRegisterAnzahlZw("lade", "die", "anzahl", "der", "register", "in", "den", "zwischenspeicher"),
 	
 	
-	@Version(4) registerausgabe("gebe", "die", "register", "von", "[ZAHL]", "bis", "[ZAHL]", "aus"),
+	@Version(4) registerausgabe("gebe", "die", "register", "von", Interpreter.POS_ZAHL, "bis", Interpreter.POS_ZAHL, "aus"),
 	
-	@Version(4) registerWortEinlesen("lese", "das", "nächste", "wort", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
-	@Version(4) registerZeichenEinlesen("lese", "die", "nächsten", "[ZAHL]", "zeichen", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
+	@Version(4) registerWortEinlesen("lese", "das", "nächste", "wort", "des", "benutzers", "in", "die", "register", "ab", Interpreter.POS_ZAHL, "ein"),
+	@Version(4) registerZeichenEinlesen("lese", "die", "nächsten", Interpreter.POS_ZAHL, "zeichen", "des", "benutzers", "in", "die", "register", "ab", Interpreter.POS_ZAHL, "ein"),
 	
-	@Version(4) geheWennFalsch("wenn", "es", "einen", "fehler", "gab", "springe", "zur", "stelle:", "[STELLE]"),
+	@Version(4) geheWennFalsch("wenn", "es", "einen", "fehler", "gab", "springe", "zur", "stelle:", Interpreter.STELLE),
 	
 	
 	
-	@Version(5) versionErg("schreibe", "die", "version", "in", "den", "ergebnisspeicher"), 
-	@Version(5) versionZw("schreibe", "die", "version", "in", "den", "zwischenspeicher"),
-	@Version(5) versionReg("schreibe", "die", "version", "in", "das", "register", "[ZAHL]"),
+	@Version(5) versionErg("schreibe", "die", "version", "in", "den", "ergebnisspeicher"), @Version(5) versionZw("schreibe", "die", "version", "in", "den", "zwischenspeicher"),
+	@Version(5) versionReg("schreibe", "die", "version", "in", "das", "register", Interpreter.POS_ZAHL),
 	
 	@Version(5) stapelMaxGrößeErg("schreibe", "die", "maximale", "größe", "des", "Stapels", "im", "ergebnisspeicher"),
 	@Version(5) stapelMaxGrößeZw("schreibe", "die", "maximale", "größe", "des", "Stapels", "im", "zwischenspeicher"),
-	@Version(5) stapelMaxGrößeReg("schreibe", "die", "maximale", "größe", "des", "Stapels", "in", "das", "register", "[ZAHL]"),
+	@Version(5) stapelMaxGrößeReg("schreibe", "die", "maximale", "größe", "des", "Stapels", "in", "das", "register", Interpreter.POS_ZAHL),
 	
 	@Version(5) stapelGrößeErg("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "im", "ergebnisspeicher"),
 	@Version(5) stapelGrößeZw("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "im", "zwischenspeicher"),
-	@Version(5) stapelGrößeReg("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "in", "das", "register", "[ZAHL]"),
+	@Version(5) stapelGrößeReg("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "in", "das", "register", Interpreter.POS_ZAHL),
 	
-	@Version(5) vergleicheRegister("vergleiche", "die", "register", "von", "[ZAHL]", "bis", "[ZAHL]", "mit", "den", "registern", "von", "[ZAHL]", "bis", "[ZAHL]"),
-	@Version(5) vergleicheRegisterText("vergleiche", "die", "register", "von", "[ZAHL]", "bis", "[ZAHL]", "mit", "dem", "text:", "[...]"),
+	@Version(5) vergleicheRegister("vergleiche", "die", "register", "von", Interpreter.POS_ZAHL, "bis", Interpreter.POS_ZAHL, "mit", "den", "registern", "von", Interpreter.POS_ZAHL, "bis",
+			Interpreter.POS_ZAHL),
+	@Version(5) vergleicheRegisterText("vergleiche", "die", "register", "von", Interpreter.POS_ZAHL, "bis", Interpreter.POS_ZAHL, "mit", "dem", "text:", Interpreter.WORTFOLGE),
 	
-	@Version(5) rufeAuf("mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
-	@Version(5) rufeAufWennGleich("wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
-	@Version(5) rufeAufWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
-	@Version(5) rufeAufWennKleiner("wenn", "es", "kleiner", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
-	@Version(5) rufeAufGrößer("wenn", "es", "größer", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
-	@Version(5) rufeAufKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
-	@Version(5) rufeAufGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
-	@Version(5) geheZurück("gehe", "zurück"), 
+	@Version(5) rufeAuf("mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Version(5) rufeAufWennGleich("wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Version(5) rufeAufWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Version(5) rufeAufWennKleiner("wenn", "es", "kleiner", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Version(5) rufeAufGrößer("wenn", "es", "größer", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Version(5) rufeAufKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Version(5) rufeAufGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Version(5) geheZurück("gehe", "zurück"),
 	
-	@Version(5) stapelSchreiben("lege", "die", "[ZAHL]", "auf", "den", "stapel"),
+	@Version(5) stapelSchreiben("lege", "die", Interpreter.ZAHL, "auf", "den", "stapel"),
 	@Version(5) stapelLesenErg("nehme", "die", "oberste", "zahl", "vom", "stapel", "herunter", "und", "speichere", "sie", "im", "ergebnisspeicher"),
 	@Version(5) stapelLesenZw("nehme", "die", "oberste", "zahl", "vom", "stapel", "herunter", "und", "speichere", "sie", "im", "zwischenspeicher"),
-	@Version(5) stapelLesenReg("nehme", "die", "oberste", "zahl", "vom", "stapel", "herunter", "und", "speichere", "sie", "im", "register", "[ZAHL]"),
+	@Version(5) stapelLesenReg("nehme", "die", "oberste", "zahl", "vom", "stapel", "herunter", "und", "speichere", "sie", "im", "register", Interpreter.POS_ZAHL),
 	
-	@Version(5) addiereRegReg("addiere", "das", "register", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"), 
-	@Version(5) addiereRegZ("addiere", "das", "register", "[ZAHL]", "mit", "[ZAHL]"),
-	@Version(5) addiereZReg("addiere", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"), 
+	@Version(5) addiereRegReg("addiere", "das", "register", Interpreter.POS_ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
+	@Version(5) addiereRegZ("addiere", "das", "register", Interpreter.POS_ZAHL, "mit", Interpreter.ZAHL),
+	@Version(5) addiereZReg("addiere", Interpreter.ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
 	
-	@Version(5) subtrahiereRegReg("subtrahiere", "das", "register", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"),
-	@Version(5) subtrahiereRegZ("subtrahiere", "das", "register", "[ZAHL]", "mit", "[ZAHL]"), 
-	@Version(5) subtrahiereZReg("subtrahiere", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"),
+	@Version(5) subtrahiereRegReg("subtrahiere", "das", "register", Interpreter.POS_ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
+	@Version(5) subtrahiereRegZ("subtrahiere", "das", "register", Interpreter.POS_ZAHL, "mit", Interpreter.ZAHL),
+	@Version(5) subtrahiereZReg("subtrahiere", Interpreter.ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
 	
-	@Version(5) multipliziereRegReg("multipliziere", "das", "register", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"),
-	@Version(5) multipliziereRegZ("multipliziere", "das", "register", "[ZAHL]", "mit", "[ZAHL]"), 
-	@Version(5) multipliziereZReg("multipliziere", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"),
+	@Version(5) multipliziereRegReg("multipliziere", "das", "register", Interpreter.POS_ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
+	@Version(5) multipliziereRegZ("multipliziere", "das", "register", Interpreter.POS_ZAHL, "mit", Interpreter.ZAHL),
+	@Version(5) multipliziereZReg("multipliziere", Interpreter.ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
 	
-	@Version(5) dividiereRegReg("dividiere", "das", "register", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"), 
-	@Version(5) dividiereRegZ("dividiere", "das", "register", "[ZAHL]", "mit", "[ZAHL]"),
-	@Version(5) dividiereZReg("dividiere", "[ZAHL]", "mit", "dem", "register", "[ZAHL]")
+	@Version(5) dividiereRegReg("dividiere", "das", "register", Interpreter.POS_ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
+	@Version(5) dividiereRegZ("dividiere", "das", "register", Interpreter.POS_ZAHL, "mit", Interpreter.ZAHL),
+	@Version(5) dividiereZReg("dividiere", Interpreter.ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL)
 	
 	
 	
@@ -119,13 +119,17 @@ public enum BefehlEnum {
 		this.folge = folge;
 	}
 	
+	public String[] folge() {
+		return folge.clone();
+	}
+	
 	public boolean kann(List <String> befehl) {
 		Iterator <String> iter = befehl.iterator();
 		for (String teste : folge) {
 			if ( !iter.hasNext()) return false;
 			String anderes = iter.next();
 			switch (teste) {
-			case "[ZAHL]":
+			case Interpreter.ZAHL:
 				if ("zwischen".equals(anderes) || "ergebnis".equals(anderes)) {
 					break;
 				} else {
@@ -136,9 +140,9 @@ public enum BefehlEnum {
 						return false;
 					}
 				}
-			case "[...]":
+			case Interpreter.WORTFOLGE:
 				return true;
-			case "[STELLE]":
+			case Interpreter.STELLE:
 				throw new NochNichtGemachtFehler();
 			default:
 				if ( !teste.equals(anderes)) {
@@ -184,7 +188,7 @@ public enum BefehlEnum {
 	public static void teste(String befehlsteil, int index, Collection <BefehlEnum> frei) {
 		List <BefehlEnum> rem = new ArrayList <>();
 		for (BefehlEnum check : frei) {
-			if (index >= check.folge.length - 1 && "[...]".equals(check.folge[check.folge.length - 1])) {
+			if (index >= check.folge.length - 1 && Interpreter.WORTFOLGE.equals(check.folge[check.folge.length - 1])) {
 				continue;
 			}
 			if (check.folge.length <= index || !check.passt(befehlsteil, index)) {
@@ -199,7 +203,7 @@ public enum BefehlEnum {
 			return this.folge[index].equals(befehlsteil);
 		}
 		switch (this.folge[index]) {
-		case "[ZAHL]":
+		case Interpreter.ZAHL:
 			if ("zwischen".equals(befehlsteil) || "ergebnis".equals(befehlsteil)) {
 				return true;
 			} else {
@@ -210,13 +214,13 @@ public enum BefehlEnum {
 					return false;
 				}
 			}
-		case "[...]":
+		case Interpreter.WORTFOLGE:
 			return true;
-		case "[STELLE]":
+		case Interpreter.STELLE:
 			return !befehlsteil.isEmpty() && befehlsteil != befehlsteil.replaceFirst("^[A-Z]+$", "");
 		default:
 			throw new RuntimeException("unbekannte folge!");
 		}
 	}
-	
+
 }

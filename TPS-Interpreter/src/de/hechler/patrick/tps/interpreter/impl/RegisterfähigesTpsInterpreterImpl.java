@@ -20,8 +20,10 @@ import de.hechler.patrick.tps.fehler.UnbekannterBefehlFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.Anordnung;
+import de.hechler.patrick.tps.interpreter.hilfen.AnordnungInterface;
 import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 
+@Deprecated
 @Version(4)
 public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 	
@@ -33,7 +35,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 	private Scanner ein;
 	
 	private Map <String, Integer> stellen;
-	private Anordnung[] sätzte;
+	private AnordnungInterface[] sätzte;
 	
 	public RegisterfähigesTpsInterpreterImpl(PrintStream ausgang, Scanner eingang, int registerAnzahl) {
 		aus = ausgang;
@@ -64,7 +66,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 			status = STATUS_LÄUFT; // zurücksetzten
 		}
 		for (satz = 0; satz < sätzte.length; satz ++ ) {
-			Anordnung anord = sätzte[satz];
+			AnordnungInterface anord = sätzte[satz];
 			try {
 				switch (anord.befehl()) {
 				default: 
@@ -234,7 +236,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 	
 	public void baue(List <List <String>> sätze) throws InterpretierungsFehler {
 		Set <String> benötigteStellen = new HashSet <String>();
-		sätzte = new Anordnung[sätze.size()];
+		sätzte = new AnordnungInterface[sätze.size()];
 		int init = 0;
 		for (List <String> satz : sätze) {
 			Iterator <String> iter = satz.iterator();
@@ -249,7 +251,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 				throw new InterpretierungsFehler("satz: " + satz + " befehle: " + befs);
 			}
 			BefehlEnum bef = befs.iterator().next();
-			Anordnung anord = new Anordnung();
+			AnordnungInterface anord = new Anordnung();
 			anord.befehl(bef);
 			anord.fülleParam(satz, benötigteStellen, stellen, init);
 			sätzte[init ++ ] = anord;

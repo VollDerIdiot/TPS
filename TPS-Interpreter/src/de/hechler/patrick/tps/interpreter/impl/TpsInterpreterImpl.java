@@ -15,6 +15,7 @@ import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 import de.hechler.patrick.tps.interpreter.hilfen.SatzLeser;
 
+@Deprecated
 @Version(value = 1)
 public class TpsInterpreterImpl implements Interpreter {
 	
