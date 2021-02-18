@@ -128,7 +128,7 @@ Version 5:
 		multipliziereRegReg:					"multipliziere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
 		multipliziereRegZ:						"multipliziere" "das" "register" [ZAHL] "mit" [ZAHL]
 		multipliziereZReg:						"multipliziere" [ZAHL] "mit" "dem" "register" [ZAHL]
-		dividiereRegReg:						"dividiere" "das" "register" [ZAHL] "mit" "dem" register" [ZAHL]
+		dividiereRegReg:						"dividiere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
 		dividiereRegZ:							"dividiere" "das" "register" [ZAHL] "mit" [ZAHL]
 		dividiereZReg:							"dividiere" [ZAHL] "mit" "dem" "register" [ZAHL]
 		
