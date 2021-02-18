@@ -74,8 +74,8 @@ Version 4:
 		registerausgabe:						"gebe" "die" "register" "von" [ZAHL] "bis" [ZAHL] "aus"
 		registerWortEinlesen:					"lese" "das" "nächste" "wort" "des" "benutzers" "in" "die" "register" "ab" [ZAHL] "ein"
 		registerZeichenEinlesen:				"lese" "die" "nächsten" [ZAHL] "zeichen" "des" "benutzers" "in" "die" "register" "ab" [ZAHL] "ein"
-		geheWennFalsch:							"springe" "zur" "stelle:" [STELLE] "wenn" "es" "einen" "fehler" "gab"
-		geheWennMehrfachAn						"Wenn" "es" "noch" "mehr" "befehlsgeber" "gibt" "gehe" "zur" "stelle:" [STELLE]
+		geheWennFalsch:							"wenn" "es" "einen" "fehler" "gab" "springe" "zur" "stelle:" [STELLE]
+		geheWennMehrfachAn						"wenn" "es" "noch" "mehr" "befehlsgeber" "gibt" "gehe" "zur" "stelle:" [STELLE]
 		
 	ERKLÄRUNG:
 		ladeInRegister:							schreibt in das register P-2 die zahl P-1
