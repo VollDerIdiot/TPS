@@ -13,7 +13,7 @@ import de.hechler.patrick.tps.interpreter.Version;
 
 public enum BefehlEnum {
 	
-	@Version(1) addiere("addiere", "[ZAHL]", "mit", "[ZAHL]"), @Version(1) subtrahiere("subtrahiere", "[ZAHL]", "von", "[ZAHL]"),
+	@Version(1) addiere("addiere", "[ZAHL]", "mit", "[ZAHL]"), @Version(1) subtrahiere("subtrahiere", "[ZAHL]", "mit", "[ZAHL]"),
 	
 	@Version(1) multipliziere("multipliziere", "[ZAHL]", "mit", "[ZAHL]"), @Version(1) dividiere("dividiere", "[ZAHL]", "mit", "[ZAHL]"),
 	
@@ -58,6 +58,9 @@ public enum BefehlEnum {
 	
 	@Version(4) registerWortEinlesen("lese", "das", "nächste", "wort", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
 	@Version(4) registerZeichenEinlesen("lese", "die", "nächsten", "[ZAHL]", "zeichen", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
+	
+	@Version(4) geheWennFalsch("springe", "zur", "stelle:", "[STELLE]", "wenn", "es", "einen", "fehler", "gab"),
+	@Version(4) geheWennMehrfachAn("Wenn", "es", "noch", "mehr", "befehlsgeber", "gibt", "gehe", "zur", "stelle:", "[STELLE]"),
 	
 	
 	;

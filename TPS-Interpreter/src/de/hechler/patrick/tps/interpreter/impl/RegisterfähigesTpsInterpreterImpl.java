@@ -66,146 +66,164 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 				status |= STATUS_LÄUFT_MEHRFACH;
 			}
 		} else {
-			status |= STATUS_LÄUFT;
+			status = STATUS_LÄUFT;
 		}
 		for (satz = 0; satz < sätzte.length; satz ++ ) {
 			Anordnung anord = sätzte[satz];
-			switch (anord.befehl()) {
-			case addiere:
-				ergebnis = anord.param(0).zahl(this) + anord.param(1).zahl(this);
-				break;
-			case ausgabe:
-				aus.print(anord.param(0).string());
-				break;
-			case dividiere:
-				ergebnis = anord.param(0).zahl(this) / anord.param(1).zahl(this);
-				break;
-			case ergebnisausgebe:
-				aus.print(ergebnis);
-				break;
-			case geheWennGleich:
-				if ( (status & STATUS_GLEICH) != 0) {
+			try {
+				switch (anord.befehl()) {
+				case addiere:
+					ergebnis = anord.param(0).zahl(this) + anord.param(1).zahl(this);
+					break;
+				case ausgabe:
+					aus.print(anord.param(0).string());
+					break;
+				case dividiere:
+					int zahl = anord.param(1).zahl(this);
+					if (zahl != 0) {
+						ergebnis = anord.param(0).zahl(this) / zahl;
+					} else {
+						status |= STATUS_FEHLER;
+					}
+					break;
+				case ergebnisausgebe:
+					aus.print(ergebnis);
+					break;
+				case geheWennGleich:
+					if ( (status & STATUS_GLEICH) != 0) {
+						satz = stellen.get(anord.param(0).string());
+					}
+					break;
+				case geheWennNichtGleich:
+					if ( (status & STATUS_GLEICH) == 0) {
+						satz = stellen.get(anord.param(0).string());
+					}
+					break;
+				case geheWennGrößer:
+					if ( (status & STATUS_GRÖẞER) != 0) {
+						satz = stellen.get(anord.param(0).string());
+					}
+					break;
+				case geheWennGrößerGleich:
+					if ( (status & (STATUS_GRÖẞER | STATUS_GLEICH)) != 0) {
+						satz = stellen.get(anord.param(0).string());
+					}
+					break;
+				case geheWennKleiner:
+					if ( (status & STATUS_KLEINER) != 0) {
+						satz = stellen.get(anord.param(0).string());
+					}
+					break;
+				case geheWennKleinerGleich:
+					if ( (status & (STATUS_KLEINER | STATUS_GLEICH)) != 0) {
+						satz = stellen.get(anord.param(0).string());
+					}
+					break;
+				case leerzeile:
+					aus.println();
+					break;
+				case leerzeichen:
+					aus.print(' ');
+					break;
+				case multipliziere:
+					ergebnis = anord.param(0).zahl(this) * anord.param(1).zahl(this);
+					break;
+				case springe:
 					satz = stellen.get(anord.param(0).string());
+					break;
+				case stelle:
+					// nothing to do
+					break;
+				case subtrahiere:
+					ergebnis = anord.param(0).zahl(this) * anord.param(1).zahl(this);
+					break;
+				case vergleiche:
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(1).zahl(this);
+					if (a == b) {
+						status &= ~ (STATUS_GRÖẞER | STATUS_KLEINER);
+						status |= STATUS_GLEICH;
+					} else if (a > b) {
+						status &= ~ (STATUS_GLEICH | STATUS_KLEINER);
+						status |= STATUS_GRÖẞER;
+					} else {
+						status &= ~ (STATUS_GLEICH | STATUS_GRÖẞER);
+						status |= STATUS_KLEINER;
+					}
+					break;
+				case zwischenisausgebe:
+					aus.print(zwischen);
+					break;
+				case zwischenspeicher:
+					zwischen = ergebnis;
+					break;
+				case leseZahlEinErg:
+					ergebnis = ein.nextInt();
+					break;
+				case leseZahlEinZwischen:
+					zwischen = ein.nextInt();
+					break;
+				case ladeInRegister:
+					int i = anord.param(0).zahl(this);
+					register[i] = anord.param(1).zahl(this);
+					break;
+				case ladeVomRegisterErg:
+					i = anord.param(0).zahl(this);
+					ergebnis = register[i];
+					break;
+				case ladeVomRegisterZw:
+					i = anord.param(0).zahl(this);
+					zwischen = register[i];
+					break;
+				case ladeRegisterAnzahlErg:
+					ergebnis = register.length;
+					break;
+				case ladeRegisterAnzahlZw:
+					zwischen = register.length;
+					break;
+				case registerausgabe: {
+					int index = anord.param(0).zahl(this);
+					int ende = anord.param(1).zahl(this);
+					if (ende < index || ende > register.length || index < 0) {
+						throw new FalscheRegisterZahlFehler("ende < start oder ende > registerAnzahl oder index < 0 ende=" + ende + ", start=" + index + ", registerAnzahl=" + register.length);
+					}
+					StringBuilder str = new StringBuilder();
+					for (; index < ende; index ++ ) {
+						str.append((char) register[index]);
+					}
+					aus.print(str.toString());
+					break;
 				}
-				break;
-			case geheWennNichtGleich:
-				if ( (status & STATUS_GLEICH) == 0) {
-					satz = stellen.get(anord.param(0).string());
+				case registerWortEinlesen: {
+					int start = anord.param(0).zahl(this);
+					char[] chars = ein.next().toCharArray();
+					register[start] = chars.length;
+					for (int zusatz = 0; zusatz < chars.length; zusatz ++ ) {
+						register[start + zusatz + 1] = chars[zusatz];
+					}
+					break;
 				}
-				break;
-			case geheWennGrößer:
-				if ( (status & STATUS_GRÖẞER) != 0) {
-					satz = stellen.get(anord.param(0).string());
+				case registerZeichenEinlesen: {
+					int start = anord.param(0).zahl(this);
+					int anzahl = anord.param(1).zahl(this);
+					char[] chars = ein.next("(\\w{" + anzahl + "," + anzahl + "})").toCharArray();
+					register[start] = chars.length;
+					for (int zusatz = 0; zusatz < chars.length; zusatz ++ ) {
+						register[start + zusatz + 1] = chars[zusatz];
+					}
+					break;
 				}
-				break;
-			case geheWennGrößerGleich:
-				if ( (status & (STATUS_GRÖẞER | STATUS_GLEICH)) != 0) {
-					satz = stellen.get(anord.param(0).string());
+				case geheWennFalsch:
+					if ( (status & STATUS_FEHLER) != 0) {
+						satz = stellen.get(anord.param(0).string());
+					}
+					break;
+				case geheWennMehrfachAn:
+					break;
 				}
-				break;
-			case geheWennKleiner:
-				if ( (status & STATUS_KLEINER) != 0) {
-					satz = stellen.get(anord.param(0).string());
-				}
-				break;
-			case geheWennKleinerGleich:
-				if ( (status & (STATUS_KLEINER | STATUS_GLEICH)) != 0) {
-					satz = stellen.get(anord.param(0).string());
-				}
-				break;
-			case leerzeile:
-				aus.println();
-				break;
-			case leerzeichen:
-				aus.print(' ');
-				break;
-			case multipliziere:
-				ergebnis = anord.param(0).zahl(this) * anord.param(1).zahl(this);
-				break;
-			case springe:
-				satz = stellen.get(anord.param(0).string());
-				break;
-			case stelle:
-				// nothing to do
-				break;
-			case subtrahiere:
-				ergebnis = anord.param(0).zahl(this) * anord.param(1).zahl(this);
-				break;
-			case vergleiche:
-				int a = anord.param(0).zahl(this);
-				int b = anord.param(1).zahl(this);
-				if (a == b) {
-					status &= ~ (STATUS_GRÖẞER | STATUS_KLEINER);
-					status |= STATUS_GLEICH;
-				} else if (a > b) {
-					status &= ~ (STATUS_GLEICH | STATUS_KLEINER);
-					status |= STATUS_GRÖẞER;
-				} else {
-					status &= ~ (STATUS_GLEICH | STATUS_GRÖẞER);
-					status |= STATUS_KLEINER;
-				}
-				break;
-			case zwischenisausgebe:
-				aus.print(zwischen);
-				break;
-			case zwischenspeicher:
-				zwischen = ergebnis;
-				break;
-			case leseZahlEinErg:
-				ergebnis = ein.nextInt();
-				break;
-			case leseZahlEinZwischen:
-				zwischen = ein.nextInt();
-				break;
-			case ladeInRegister:
-				int i = anord.param(0).zahl(this);
-				register[i] = anord.param(1).zahl(this);
-				break;
-			case ladeVomRegisterErg:
-				i = anord.param(0).zahl(this);
-				ergebnis = register[i];
-				break;
-			case ladeVomRegisterZw:
-				i = anord.param(0).zahl(this);
-				zwischen = register[i];
-				break;
-			case ladeRegisterAnzahlErg:
-				ergebnis = register.length;
-				break;
-			case ladeRegisterAnzahlZw:
-				zwischen = register.length;
-				break;
-			case registerausgabe: {
-				int index = anord.param(0).zahl(this);
-				int ende = anord.param(1).zahl(this);
-				if (ende < index || ende > register.length || index < 0) {
-					throw new FalscheRegisterZahlFehler("ende < start oder ende > registerAnzahl oder index < 0 ende=" + ende + ", start=" + index + ", registerAnzahl=" + register.length);
-				}
-				StringBuilder str = new StringBuilder();
-				for (; index < ende; index ++ ) {
-					str.append((char) register[index]);
-				}
-				aus.print(str.toString());
-				break;
-			}
-			case registerWortEinlesen: {
-				int start = anord.param(0).zahl(this);
-				char[] chars = ein.next().toCharArray();
-				register[start] = chars.length;
-				for (int zusatz = 0; zusatz < chars.length; zusatz ++ ) {
-					register[start + zusatz + 1] = chars[zusatz];
-				}
-				break;
-			}
-			case registerZeichenEinlesen: {
-				int start = anord.param(0).zahl(this);
-				char[] chars = ein.next("(\\w{10,10})").toCharArray();
-				register[start] = chars.length;
-				for (int zusatz = 0; zusatz < chars.length; zusatz ++ ) {
-					register[start + zusatz + 1] = chars[zusatz];
-				}
-				break;
-			}
+			} catch (Exception e) {
+				e.printStackTrace();
+				status |= STATUS_FEHLER;
 			}
 		}
 		if ( (status & STATUS_LÄUFT_MEHRFACH) != 0) {
@@ -213,7 +231,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 				status &= ~STATUS_LÄUFT_MEHRFACH;
 			}
 		} else {
-			status ^= status;
+			status ^= status; // lösche status
 		}
 	}
 	

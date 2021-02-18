@@ -1,39 +1,94 @@
-Version(1)
+Version 1:
 	BEFEHLE:
-		addiere:				"addiere" [ZAHL] "mit" [ZAHL]
-		subtrahiere:			"subtrahiere" [ZAHL] "von" [ZAHL]
-		multipliziere:			"multipliziere" [ZAHL] "mit" [ZAHL]
-		dividiere:				"dividiere" [ZAHL] "mit" [ZAHL]
-
-		ergebnisausgabe:		"gebe" "das" "ergebnis" "aus"
-		zwischenisausgebe:		"gebe" "den" "zwischenspeicher" "aus"
-
-		leerzeile:				"mache" "einen" "zeilenumbruch"
-		ausgabe:				"gebe" "folgendes" "aus:" [...]
-		zwischenspeicher:		"speichere" "das" "ergebnis" "im" "zwischenspeicher"
-	
-	KASTENWÖRTER:
-		[ZAHL]:					(-)?[0-9]+
-								"ergebnis"
-								"zwischen"
+		addiere:								"addiere" [ZAHL] "mit" [ZAHL]
+		subtrahiere:							"subtrahiere" [ZAHL] "mit" [ZAHL]
+		multipliziere:							"multipliziere" [ZAHL] "mit" [ZAHL]
+		dividiere:								"dividiere" [ZAHL] "mit" [ZAHL]
+		ergebnisausgebe:						"gebe" "das" "ergebnis" "aus"
+		zwischenisausgebe:						"gebe" "den" "zwischenspeicher" "aus"
+		leerzeichen:							"gebe" "ein" "leerzeichen" "aus"
+		leerzeile:								"mache" "einen" "zeilenumbruch"
+		ausgabe:								"gebe" "folgendes" "aus:" [...]
+		zwischenspeicher:						"speichere" "das" "ergebnis" "im" "zwischenspeicher"
 		
-		[...]:					(WORT )+[.]
-
-Version(2)
-	BEFEHLE:
-		vergleiche:				"vergleiche" [ZAHL] "mit" [ZAHL]
-
-
-		springe:				"springe" "zur" "stelle:" [STELLE]
-
-		geheWennNichtGleich:	"wenn" "es" "nicht" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
-		geheWennGleich:			"wenn" "es" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
-		geheWennKleiner:		"wenn" "es" "kleiner" "ist" "springe" "zur" "stelle:" [STELLE]
-		geheWennGrößer:			"wenn" "es" "größer" "ist" "springe" "zur" "stelle:" [STELLE]
-		geheWennKleinerGleich:	"wenn" "es" "kleiner" "oder" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
-		geheWennGrößerGleich:	"wenn" "es" "größer" "oder" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
-
-		stelle:					"hier" "ist" "die" "stelle:" [STELLE]
-
 	KASTENWÖRTER:
-		[STELLE]:				[A-Z]+
+		[ZAHL]: 								"ergebnis", "zwischen", (-)?[0-9]+
+		[...]:									WORTFOLGE (min. 1 WORT)
+		
+	ERKLÄRUNG:
+		addiere:								addiert P-1 mit P-2 und speichert die summe der berechnung im ergebnisspeicher
+		subtrahiere:							zieht von P-1 P2 ab und speichert das ergebnis der berechnung im ergebnisspeicher
+		multipliziere:							multipliziert P-1 mit P-2 und speichert das Produkt im ergebnisspeicher
+		dividiere:								teilt P-1 durch P-2. das ergebnis wird im ergebnisspeicher gespeichert.
+		ergebnisausgebe:						gibt das ergebnis und sonst nichts aus.
+		zwischenisausgebe:						gibt den zwischenspeicher und sonst nichts aus.
+		leerzeichen:							gibt ein leerzeichen und sonst nichts aus.
+		leerzeile:								macht einen zeilenumbruch.
+		ausgabe:								gibt die WORTFOLGE aus. dabei wird weder am anfang noch am ende ein leerzeichen eingefügt, zwischen den wörtern der WORTFOLGE allerdings schon.
+		zwischenspeicher:						kopiert den ergebnisspeicher in den zwischenspeicher. so wird der alte zwischenspeicher gelöscht.
+		
+	
+Version 2:
+	BEFEHLE:
+		vergleiche:								"vergleiche" [ZAHL] "mit" [ZAHL]
+		springe:								"springe" "zur" "stelle:" [STELLE]
+		geheWennNichtGleich:					"wenn" "es" "nicht" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennGleich:							"wenn" "es" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennKleiner:						"wenn" "es" "kleiner" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennGrößer:							"wenn" "es" "größer" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennKleinerGleich:					"wenn" "es" "kleiner" "oder" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
+		geheWennGrößerGleich:					"wenn" "es" "größer" "oder" "gleich" "ist" "springe" "zur" "stelle:" [STELLE]
+		stelle:									"hier" "ist" "die" "stelle:" [STELLE]
+		
+	KASTENWÖRTER:
+		[STELLE]:								[A-Z]+
+		
+	ERKLÄRUNG:
+		vergleiche:								vergleiche P-1 mit P-2 und speichert das ergebnis des vergleiches im status.
+		springe:								springt immer zur stelle P-1
+		geheWennNichtGleich:					springt immer zur stelle P-1, wenn im status das kein gleich gespeichert ist.
+		geheWennGleich:							springt immer zur stelle P-1, wenn im status das ein gleich gespeichert ist.
+		geheWennKleiner:						springt immer zur stelle P-1, wenn im status das ein kleiner gespeichert ist.
+		geheWennGrößer:							springt immer zur stelle P-1, wenn im status das ein größer gespeichert ist.
+		geheWennKleinerGleich:					springt immer zur stelle P-1, wenn im status das ein gleich oder kleiner gespeichert ist.
+		geheWennGrößerGleich:					springt immer zur stelle P-1, wenn im status das ein gleich oder größer gespeichert ist.
+		stelle:									markiert hier die stelle P-1. wenn ein sprungbefehl ausgeführt wird, welcher zu ebendieser stelle zeigt, wird ein sprung zu dieser stelle durchgeführt.
+	
+Version 3:
+	BEFEHLE:
+		leseZahlEinErg:							"lese" "eine" "zahl" "ein"
+		leseZahlEinZwischen:					"lese" "eine" "zahl" "in" "den" "zwischenspeicher" "ein"
+	
+	ERKLÄRUNG:
+		leseZahlEinErg:							lässt eine zahl vom benutzer eingeben und speichert diese im ergebnisspeicher.
+		leseZahlEinZwischen:					lässt eine zahl vom benutzer eingeben und speichert diese im zwischenspeicher.
+		
+	
+Version 4:
+	BEFEHLE:
+		ladeInRegister:							"lade" "die" [ZAHL] "in" "das" "register" [ZAHL]
+		ladeVomRegisterErg:						"lade" "die" "zahl" "aus" "dem" "register" [ZAHL]
+		ladeVomRegisterZw:						"lade" "die" "zahl" "aus" "dem" "register" [ZAHL] "in" "den" "zwischenspeicher"
+		ladeRegisterAnzahlErg:					"lade" "die" "anzahl" "der" "register" "in" "den" "ergebnisspeicher"
+		ladeRegisterAnzahlZw:					"lade" "die" "anzahl" "der" "register" "in" "den" "zwischenspeicher"
+		registerausgabe:						"gebe" "die" "register" "von" [ZAHL] "bis" [ZAHL] "aus"
+		registerWortEinlesen:					"lese" "das" "nächste" "wort" "des" "benutzers" "in" "die" "register" "ab" [ZAHL] "ein"
+		registerZeichenEinlesen:				"lese" "die" "nächsten" [ZAHL] "zeichen" "des" "benutzers" "in" "die" "register" "ab" [ZAHL] "ein"
+		geheWennFalsch:							"springe" "zur" "stelle:" [STELLE] "wenn" "es" "einen" "fehler" "gab"
+		geheWennMehrfachAn						"Wenn" "es" "noch" "mehr" "befehlsgeber" "gibt" "gehe" "zur" "stelle:" [STELLE]
+		
+	ERKLÄRUNG:
+		ladeInRegister:							schreibt in das register P-2 die zahl P-1
+		ladeVomRegisterErg:						schreibt in das ergebnis die zahl von dem register P-1
+		ladeVomRegisterZw:						schreibt in den zwischenspeicher die zahl von dem register P-1
+		ladeRegisterAnzahlErg:					schreibt die anzahl an registern in das ergebnis
+		ladeRegisterAnzahlZw:					schreibt die anzahl an registern in den zwischenspeicher
+		registerausgabe:						gibt die register von P-1 bis P-2 aus, wobei jedes register hier ein UTF-16 zeichen darstellt
+		registerWortEinlesen:					lässt den benutzer ein wort eingeben und schreibt dann das eingebene wort in die register. begonnen wird bei (P1 + 1), da in das register P-1 die länge des wortes geschrieben wird. wenn das wort zu lang ist, wird trozdem die originale länge in P-1 geschrieben, allerdings wird dann nur der angfang des wortes gespeichert (bis das register von (registeranzahl - 1) erreicht wird)
+		registerZeichenEinlesen:				liest P-2 viele zeichen ein und schreibt diese dann ab register P-1 in die register (einschließlich register P-1)
+		geheWennFalsch:							springt zur stelle P-1 wenn im status FALSCH gespeichert wird und löscht vom status FALSCH. d.h. dannach ist im status kein FALSCH gespeichert (entweder weil es vorher nicht so war, oder weil es soeben gelöscht wurde)
+		
+	VERÄNDERUNG:
+		leseZahlEinErg:							lässt eine zahl vom benutzer eingeben und speichert diese im ergebnisspeicher. wenn der benutzer keine zahl eingibt, wird dem status FEHLER hinzugefügt und das ergebnis bleibt unverändert.
+		leseZahlEinZwischen:					lässt eine zahl vom benutzer eingeben und speichert diese im zwischenspeicher. wenn der benutzer keine zahl eingibt, wird dem status FEHLER hinzugefügt und der zwischenspeicher bleibt unverändert.
+		dividiere:								teilt P-1 durch P-2. das ergebnis wird im ergebnisspeicher gespeichert. das modulo ergebnis wird im zwischenspeicher gespeichert. wenn durch 0 geteilt wird, wird dem status FEHLER hinzugefügt. ergebnis und zwischen sind danach auf unverändert.

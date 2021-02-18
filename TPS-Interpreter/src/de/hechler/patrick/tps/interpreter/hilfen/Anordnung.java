@@ -59,37 +59,37 @@ public class Anordnung {
 		case geheWennNichtGleich:
 			args = new Param[1];
 			String zw = satz.get(8);
-			args[0] = testStelle(zw);
+			args[0] = paramStelle(zw);
 			benötigteStellen.add(zw);
 			break;
 		case geheWennGleich:
 			args = new Param[1];
 			zw = satz.get(7);
-			args[0] = testStelle(zw);
+			args[0] = paramStelle(zw);
 			benötigteStellen.add(zw);
 			break;
 		case geheWennGrößer:
 			args = new Param[1];
 			zw = satz.get(7);
-			args[0] = testStelle(zw);
+			args[0] = paramStelle(zw);
 			benötigteStellen.add(zw);
 			break;
 		case geheWennGrößerGleich:
 			args = new Param[1];
 			zw = satz.get(9);
-			args[0] = testStelle(zw);
+			args[0] = paramStelle(zw);
 			benötigteStellen.add(zw);
 			break;
 		case geheWennKleiner:
 			args = new Param[1];
 			zw = satz.get(7);
-			args[0] = testStelle(zw);
+			args[0] = paramStelle(zw);
 			benötigteStellen.add(zw);
 			break;
 		case geheWennKleinerGleich:
 			args = new Param[1];
 			zw = satz.get(9);
-			args[0] = testStelle(zw);
+			args[0] = paramStelle(zw);
 			benötigteStellen.add(zw);
 			break;
 		case leerzeile:
@@ -103,13 +103,13 @@ public class Anordnung {
 		case springe:
 			args = new Param[1];
 			zw = satz.get(3);
-			args[0] = testStelle(zw);
+			args[0] = paramStelle(zw);
 			benötigteStellen.add(zw);
 			break;
 		case stelle:
 			args = new Param[1];
 			zw = satz.get(4);
-			args[0] = testStelle(zw);
+			args[0] = paramStelle(zw);
 			Integer old = stellen.put(zw, index);
 			if (old != null) throw new InterpretierungsFehler("doppelt besetzte stelle: " + zw + " Satz:" + old + "," + index);
 			break;
@@ -171,10 +171,18 @@ public class Anordnung {
 			args[0] = paramRegisterZahl(satz.get(3));
 			args[1] = paramRegisterZahl(satz.get(11));
 			break;
+		case geheWennFalsch:
+			args = new Param[1];
+			args[0] = paramStelle(satz.get(3));
+			break;
+		case geheWennMehrfachAn:
+			args = new Param[1];
+			args[0] = paramStelle(satz.get(9));
+			break;
 		}
 	}
 	
-	private Param testStelle(String stelle) throws InterpretierungsFehler {
+	private Param paramStelle(String stelle) throws InterpretierungsFehler {
 		char[] chars = stelle.toCharArray();
 		for (char test : chars) {
 			if (test < 'A' || test > 'Z') throw new InterpretierungsFehler(stelle + " ist keine gültige stelle! (" + test + ")");
