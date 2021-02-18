@@ -9,7 +9,7 @@ import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.fehler.NegativerRegisterIndexFehler;
 import de.hechler.patrick.tps.interpreter.Version;
 
-@Version(4)
+@Version(5)
 public class Anordnung {
 	
 	private BefehlEnum bef;
@@ -175,9 +175,140 @@ public class Anordnung {
 			args = new Param[1];
 			args[0] = paramStelle(satz.get(8));
 			break;
-		case geheWennMehrfachAn:
-			args = new Param[1];
-			args[0] = paramStelle(satz.get(9));
+		case addiereRegReg:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(3));
+			args[1] = paramRegisterZahl(satz.get(7));
+			break;
+		case addiereRegZ:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(3));
+			args[1] = paramZahl(satz.get(5));
+			break;
+		case addiereZReg:
+			args = new Param[2];
+			args[0] = paramZahl(satz.get(1));
+			args[1] = paramRegisterZahl(satz.get(5));
+			break;
+		case dividiereRegReg:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(3));
+			args[1] = paramRegisterZahl(satz.get(7));
+			break;
+		case dividiereRegZ:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(3));
+			args[1] = paramZahl(satz.get(5));
+			break;
+		case dividiereZReg:
+			args = new Param[2];
+			args[0] = paramZahl(satz.get(1));
+			args[1] = paramRegisterZahl(satz.get(5));
+			break;
+		case multipliziereRegReg:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(3));
+			args[1] = paramRegisterZahl(satz.get(7));
+			break;
+		case multipliziereRegZ:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(3));
+			args[1] = paramZahl(satz.get(5));
+			break;
+		case multipliziereZReg:
+			args = new Param[2];
+			args[0] = paramZahl(satz.get(1));
+			args[1] = paramRegisterZahl(satz.get(5));
+			break;
+		case rufeAuf:
+			args = new Param[1];args[0] = paramStelle(satz.get(6));
+			break;
+		case rufeAufGrößer:
+			args = new Param[1];args[0] = paramStelle(satz.get(10));
+			break;
+		case rufeAufGrößerGleich:
+			args = new Param[1];args[0] = paramStelle(satz.get(12));
+			break;
+		case rufeAufKleinerGleich:
+			args = new Param[1];args[0] = paramStelle(satz.get(12));
+			break;
+		case rufeAufWennGleich:
+			args = new Param[1];args[0] = paramStelle(satz.get(10));
+			break;
+		case rufeAufWennKleiner:
+			args = new Param[1];args[0] = paramStelle(satz.get(10));
+			break;
+		case rufeAufWennNichtGleich:
+			args = new Param[1];args[0] = paramStelle(satz.get(11));
+			break;
+		case stapelGrößeErg:
+			args = new Param[0];
+			break;
+		case stapelGrößeReg:
+			args = new Param[1];args[0] = paramRegisterZahl(satz.get(9));
+			break;
+		case stapelGrößeZw:
+			args = new Param[0];
+			break;
+		case stapelLesenErg:
+			args = new Param[0];
+			break;
+		case stapelLesenReg:
+			args = new Param[1];args[0] = paramRegisterZahl(satz.get(12));
+			break;
+		case stapelLesenZw:
+			args = new Param[0];
+			break;
+		case stapelMaxGrößeErg:
+			args = new Param[0];
+			break;
+		case stapelMaxGrößeReg:
+			args = new Param[1]; args[0] = paramRegisterZahl(satz.get(9));
+			break;
+		case stapelMaxGrößeZw:
+			args = new Param[0];
+			break;
+		case stapelSchreiben:
+			args = new Param[1];args[0] = paramZahl(satz.get(2));
+			break;
+		case subtrahiereRegReg:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(3));
+			args[0] = paramRegisterZahl(satz.get(7));
+			break;
+		case subtrahiereRegZ:
+			args = new Param[2];
+			args[0] = paramZahl(satz.get(5));
+			break;
+		case subtrahiereZReg:
+			args = new Param[2];
+			args[0] = paramZahl(satz.get(1));
+			args[0] = paramRegisterZahl(satz.get(5));
+			break;
+		case vergleicheRegister:
+			args = new Param[4];
+			args[0] = paramRegisterZahl(satz.get(4));
+			args[1] = paramRegisterZahl(satz.get(6));
+			args[2] = paramRegisterZahl(satz.get(11));
+			args[3] = paramRegisterZahl(satz.get(13));
+			break;
+		case vergleicheRegisterText:
+			args = new Param[3];
+			args[0] = paramRegisterZahl(satz.get(4));
+			args[1] = paramRegisterZahl(satz.get(6));
+			args[1] = new Param(satz.get(10));
+			break;
+		case versionErg:
+			args = new Param[0];
+			break;
+		case versionReg:
+			args = new Param[0];
+			break;
+		case versionZw:
+			args = new Param[0];
+			break;
+		case geheZurück:
+			args = new Param[0];
 			break;
 		}
 	}

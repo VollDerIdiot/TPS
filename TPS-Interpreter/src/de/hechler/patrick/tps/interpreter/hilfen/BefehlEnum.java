@@ -61,7 +61,6 @@ public enum BefehlEnum {
 	@Version(4) registerZeichenEinlesen("lese", "die", "nächsten", "[ZAHL]", "zeichen", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
 	
 	@Version(4) geheWennFalsch("wenn", "es", "einen", "fehler", "gab", "springe", "zur", "stelle:", "[STELLE]"),
-	@Version(4) geheWennMehrfachAn("wenn", "es", "noch", "mehr", "befehlsgeber", "gibt", "springe", "zur", "stelle:", "[STELLE]"),
 	
 	
 	
@@ -81,7 +80,7 @@ public enum BefehlEnum {
 	@Version(5) vergleicheRegisterText("vergleiche", "die", "register", "von", "[ZAHL]", "bis", "[ZAHL]", "mit", "dem", "text:", "[...]"),
 	
 	@Version(5) rufeAuf("mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
-	@Version(5) rufeAufWennGle("wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
+	@Version(5) rufeAufWennGleich("wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
 	@Version(5) rufeAufWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
 	@Version(5) rufeAufWennKleiner("wenn", "es", "kleiner", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
 	@Version(5) rufeAufGrößer("wenn", "es", "größer", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),

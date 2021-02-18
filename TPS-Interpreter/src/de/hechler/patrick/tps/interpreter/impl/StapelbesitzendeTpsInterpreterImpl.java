@@ -22,31 +22,31 @@ import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.Anordnung;
 import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 
-@Version(4)
-public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
+@Version(5)
+public class StapelbesitzendeTpsInterpreterImpl implements Interpreter {
 	
 	private int status;
 	private int ergebnis;
 	private int zwischen;
 	private int[] register;
+	private int[] stapel;
+	private int stapelZeiger;
 	private PrintStream aus;
 	private Scanner ein;
 	
 	private Map <String, Integer> stellen;
 	private Anordnung[] sätzte;
 	
-	public RegisterfähigesTpsInterpreterImpl(PrintStream ausgang, Scanner eingang, int registerAnzahl) {
+	public StapelbesitzendeTpsInterpreterImpl(PrintStream ausgang, Scanner eingang, int registerAnzahl, int stapelMaxGräße) {
 		aus = ausgang;
 		ein = eingang;
 		stellen = new HashMap <String, Integer>();
 		register = new int[registerAnzahl];
+		stapel = new int[stapelMaxGräße];
 	}
 	
-	public RegisterfähigesTpsInterpreterImpl(PrintStream ausgang, InputStream eingang, Charset zeichensatz, int registerAnzahl) {
-		aus = ausgang;
-		ein = new Scanner(eingang, zeichensatz);
-		stellen = new HashMap <String, Integer>();
-		register = new int[registerAnzahl];
+	public StapelbesitzendeTpsInterpreterImpl(PrintStream ausgang, InputStream eingang, Charset zeichensatz, int registerAnzahl, int stapelMaxGräße) {
+		this(ausgang, new Scanner(eingang, zeichensatz), registerAnzahl, stapelMaxGräße);
 	}
 	
 	@Override
@@ -67,8 +67,6 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 			Anordnung anord = sätzte[satz];
 			try {
 				switch (anord.befehl()) {
-				default: 
-					throw new UnbekannterBefehlFehler(anord.befehl());
 				case addiere:
 					ergebnis = anord.param(0).zahl(this) + anord.param(1).zahl(this);
 					break;
@@ -136,7 +134,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 				case subtrahiere:
 					ergebnis = anord.param(0).zahl(this) - anord.param(1).zahl(this);
 					break;
-				case vergleiche:
+				case vergleiche: {
 					int a = anord.param(0).zahl(this);
 					int b = anord.param(1).zahl(this);
 					if (a == b) {
@@ -150,6 +148,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 						status |= STATUS_KLEINER;
 					}
 					break;
+				}
 				case zwischenisausgebe:
 					aus.print(zwischen);
 					break;
@@ -162,19 +161,22 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 				case leseZahlEinZwischen:
 					zwischen = ein.nextInt();
 					break;
-				case ladeInRegister:
+				case ladeInRegister: {
 					int neuRegWert = anord.param(0).zahl(this);
 					int i = anord.param(1).zahl(this);
 					register[i] = neuRegWert;
 					break;
-				case ladeVomRegisterErg:
-					i = anord.param(0).zahl(this);
+				}
+				case ladeVomRegisterErg: {
+					int i = anord.param(0).zahl(this);
 					ergebnis = register[i];
 					break;
-				case ladeVomRegisterZw:
-					i = anord.param(0).zahl(this);
+				}
+				case ladeVomRegisterZw: {
+					int i = anord.param(0).zahl(this);
 					zwischen = register[i];
 					break;
+				}
 				case ladeRegisterAnzahlErg:
 					ergebnis = register.length;
 					break;
@@ -222,6 +224,226 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 						status &= ~STATUS_FEHLER;
 						satz = stellen.get(anord.param(0).string());
 					}
+					break;
+				case addiereRegReg: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = register[a] + register[b];
+					break;
+				}
+				case addiereRegZ: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = register[a] + b;
+					break;
+				}
+				case addiereZReg: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = a + register[b];
+					break;
+				}
+				case dividiereRegReg: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = register[a] / register[b];
+					zwischen = register[a] % register[b];
+					break;
+				}
+				case dividiereRegZ: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = register[a] / b;
+					zwischen = register[a] % b;
+					break;
+				}
+				case dividiereZReg: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = a / register[b];
+					zwischen = a % register[b];
+					break;
+				}
+				case geheZurück:
+					if (stapelZeiger == 0) {
+						status |= STATUS_FEHLER;
+					} else {
+						satz = stapel[ -- stapelZeiger];
+					}
+					break;
+				case multipliziereRegReg: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = register[a] * register[b];
+					break;
+				}
+				case multipliziereRegZ: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = register[a] * b;
+					break;
+				}
+				case multipliziereZReg: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(0).zahl(this);
+					ergebnis = a * register[b];
+					break;
+				}
+				case rufeAuf:
+					if (stapelZeiger == stapel.length) {
+						status |= STATUS_FEHLER;
+					} else {
+						stapel[stapelZeiger ++ ] = satz;
+						String zw = anord.param(0).string();
+						satz = stellen.get(zw);
+					}
+					break;
+				case rufeAufGrößer:
+					if (stapelZeiger == stapel.length) {
+						status |= STATUS_FEHLER;
+					} else if ( (status & STATUS_GRÖẞER) != 0) {
+						stapel[stapelZeiger ++ ] = satz;
+						String zw = anord.param(0).string();
+						satz = stellen.get(zw);
+					}
+					break;
+				case rufeAufGrößerGleich:
+					if (stapelZeiger == stapel.length) {
+						status |= STATUS_FEHLER;
+					} else if ( (status & (STATUS_GRÖẞER | STATUS_GLEICH)) != 0) {
+						stapel[stapelZeiger ++ ] = satz;
+						String zw = anord.param(0).string();
+						satz = stellen.get(zw);
+					}
+					break;
+				case rufeAufKleinerGleich:
+					if (stapelZeiger == stapel.length) {
+						status |= STATUS_FEHLER;
+					} else if ( (status & (STATUS_KLEINER | STATUS_GLEICH)) != 0) {
+						stapel[stapelZeiger ++ ] = satz;
+						String zw = anord.param(0).string();
+						satz = stellen.get(zw);
+					}
+					break;
+				case rufeAufWennGleich:
+					if (stapelZeiger == stapel.length) {
+						status |= STATUS_FEHLER;
+					} else if ( (status & STATUS_GLEICH) != 0) {
+						stapel[stapelZeiger ++ ] = satz;
+						String zw = anord.param(0).string();
+						satz = stellen.get(zw);
+					}
+					break;
+				case rufeAufWennKleiner:
+					if (stapelZeiger == stapel.length) {
+						status |= STATUS_FEHLER;
+					} else if ( (status & STATUS_KLEINER) != 0) {
+						stapel[stapelZeiger ++ ] = satz;
+						String zw = anord.param(0).string();
+						satz = stellen.get(zw);
+					}
+					break;
+				case rufeAufWennNichtGleich:
+					if (stapelZeiger == stapel.length) {
+						status |= STATUS_FEHLER;
+					} else if ( (status & STATUS_GLEICH) == 0) {
+						stapel[stapelZeiger ++ ] = satz;
+						String zw = anord.param(0).string();
+						satz = stellen.get(zw);
+					}
+					break;
+				case stapelGrößeErg:
+					ergebnis = stapelZeiger;
+					break;
+				case stapelGrößeReg: {
+					int reg = anord.param(0).zahl(this);
+					register[reg] = stapelZeiger;
+				}
+					break;
+				case stapelGrößeZw:
+					zwischen = stapelZeiger;
+					break;
+				case stapelLesenErg:
+					ergebnis = stapel[ -- stapelZeiger];
+					break;
+				case stapelLesenReg: {
+					int reg = anord.param(0).zahl(this);
+					register[reg] = stapel[ -- stapelZeiger];
+				}
+					break;
+				case stapelLesenZw:
+					zwischen = stapel[ -- stapelZeiger];
+					break;
+				case stapelMaxGrößeErg:
+					ergebnis = stapel.length;
+					break;
+				case stapelMaxGrößeReg: {
+					int reg = anord.param(0).zahl(this);
+					register[reg] = stapel.length;
+				}
+					break;
+				case stapelMaxGrößeZw:
+					zwischen = stapel.length;
+					break;
+				case stapelSchreiben:
+					if (stapelZeiger == stapel.length) {
+						status |= STATUS_FEHLER;
+					} else {
+						int leg = anord.param(0).zahl(this);
+						stapel[stapelZeiger ++ ] = leg;
+					}
+					break;
+				case subtrahiereRegReg: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(1).zahl(this);
+					ergebnis = register[a] - register[b];
+				}
+					break;
+				case subtrahiereRegZ: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(1).zahl(this);
+					ergebnis = register[a] - b;
+				}
+					break;
+				case subtrahiereZReg: {
+					int a = anord.param(0).zahl(this);
+					int b = anord.param(1).zahl(this);
+					ergebnis = a - register[b];
+				}
+					break;
+				case vergleicheRegister:
+					break;
+				case vergleicheRegisterText:
+					break;
+				case versionErg: {
+					Version version = this.getClass().getAnnotation(Version.class);
+					if (version == null) {
+						ergebnis = 5;
+					} else {
+						ergebnis = version.value();
+					}
+					break;
+				}
+				case versionReg: {
+					Version version = this.getClass().getAnnotation(Version.class);
+					int reg = anord.param(0).zahl(this);
+					if (version == null) {
+						register[reg] = 5;
+					} else {
+						register[reg] = version.value();
+					}
+					break;
+				}
+				case versionZw: {
+					Version version = this.getClass().getAnnotation(Version.class);
+					if (version == null) {
+						zwischen = 5;
+					} else {
+						zwischen = version.value();
+					}
+				}
+					break;
+				default:
 					break;
 				}
 			} catch (Exception e) {
