@@ -10,12 +10,13 @@ import java.util.Set;
 import de.hechler.patrick.tps.hilfen.objects.fehler.NochNichtGemachtFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Version;
+import de.hechler.patrick.tps.interpreter.Änderung;
 
 public enum BefehlEnum {
 	
 	@Version(1) addiere("addiere", "[ZAHL]", "mit", "[ZAHL]"), @Version(1) subtrahiere("subtrahiere", "[ZAHL]", "mit", "[ZAHL]"),
 	
-	@Version(1) multipliziere("multipliziere", "[ZAHL]", "mit", "[ZAHL]"), @Version(1) dividiere("dividiere", "[ZAHL]", "mit", "[ZAHL]"),
+	@Version(1) multipliziere("multipliziere", "[ZAHL]", "mit", "[ZAHL]"), @Änderung(4)@Version(1) dividiere("dividiere", "[ZAHL]", "mit", "[ZAHL]"),
 	
 	
 	@Version(1) ergebnisausgebe("gebe", "das", "ergebnis", "aus"), @Version(1) zwischenisausgebe("gebe", "den", "zwischenspeicher", "aus"),
@@ -41,7 +42,7 @@ public enum BefehlEnum {
 	
 	
 	
-	@Version(3) leseZahlEinErg("lese", "eine", "zahl", "ein"), @Version(3) leseZahlEinZwischen("lese", "eine", "zahl", "in", "den", "zwischenspeicher", "ein"),
+	@Änderung(4) @Version(3) leseZahlEinErg("lese", "eine", "zahl", "ein"), @Änderung(4) @Version(3) leseZahlEinZwischen("lese", "eine", "zahl", "in", "den", "zwischenspeicher", "ein"),
 	
 	
 	
@@ -61,6 +62,54 @@ public enum BefehlEnum {
 	
 	@Version(4) geheWennFalsch("wenn", "es", "einen", "fehler", "gab", "springe", "zur", "stelle:", "[STELLE]"),
 	@Version(4) geheWennMehrfachAn("wenn", "es", "noch", "mehr", "befehlsgeber", "gibt", "springe", "zur", "stelle:", "[STELLE]"),
+	
+	
+	
+	@Version(5) versionErg("schreibe", "die", "version", "in", "den", "ergebnisspeicher"), 
+	@Version(5) versionZw("schreibe", "die", "version", "in", "den", "zwischenspeicher"),
+	@Version(5) versionReg("schreibe", "die", "version", "in", "das", "register", "[ZAHL]"),
+	
+	@Version(5) stapelMaxGrößeErg("schreibe", "die", "maximale", "größe", "des", "Stapels", "im", "ergebnisspeicher"),
+	@Version(5) stapelMaxGrößeZw("schreibe", "die", "maximale", "größe", "des", "Stapels", "im", "zwischenspeicher"),
+	@Version(5) stapelMaxGrößeReg("schreibe", "die", "maximale", "größe", "des", "Stapels", "in", "das", "register", "[ZAHL]"),
+	
+	@Version(5) stapelGrößeErg("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "im", "ergebnisspeicher"),
+	@Version(5) stapelGrößeZw("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "im", "zwischenspeicher"),
+	@Version(5) stapelGrößeReg("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "in", "das", "register", "[ZAHL]"),
+	
+	@Version(5) vergleicheRegister("vergleiche", "die", "register", "von", "[ZAHL]", "bis", "[ZAHL]", "mit", "den", "registern", "von", "[ZAHL]", "bis", "[ZAHL]"),
+	@Version(5) vergleicheRegisterText("vergleiche", "die", "register", "von", "[ZAHL]", "bis", "[ZAHL]", "mit", "dem", "text:", "[...]"),
+	
+	@Version(5) rufeAuf("mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
+	@Version(5) rufeAufWennGle("wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
+	@Version(5) rufeAufWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
+	@Version(5) rufeAufWennKleiner("wenn", "es", "kleiner", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
+	@Version(5) rufeAufGrößer("wenn", "es", "größer", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
+	@Version(5) rufeAufKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
+	@Version(5) rufeAufGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", "[STELLE]"),
+	@Version(5) geheZurück("gehe", "zurück"), 
+	
+	@Version(5) stapelSchreiben("lege", "die", "[ZAHL]", "auf", "den", "stapel"),
+	@Version(5) stapelLesenErg("nehme", "die", "oberste", "zahl", "vom", "stapel", "herunter", "und", "speichere", "sie", "im", "ergebnisspeicher"),
+	@Version(5) stapelLesenZw("nehme", "die", "oberste", "zahl", "vom", "stapel", "herunter", "und", "speichere", "sie", "im", "zwischenspeicher"),
+	@Version(5) stapelLesenReg("nehme", "die", "oberste", "zahl", "vom", "stapel", "herunter", "und", "speichere", "sie", "im", "register", "[ZAHL]"),
+	
+	@Version(5) addiereRegReg("addiere", "das", "register", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"), 
+	@Version(5) addiereRegZ("addiere", "das", "register", "[ZAHL]", "mit", "[ZAHL]"),
+	@Version(5) addiereZReg("addiere", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"), 
+	
+	@Version(5) subtrahiereRegReg("subtrahiere", "das", "register", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"),
+	@Version(5) subtrahiereRegZ("subtrahiere", "das", "register", "[ZAHL]", "mit", "[ZAHL]"), 
+	@Version(5) subtrahiereZReg("subtrahiere", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"),
+	
+	@Version(5) multipliziereRegReg("multipliziere", "das", "register", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"),
+	@Version(5) multipliziereRegZ("multipliziere", "das", "register", "[ZAHL]", "mit", "[ZAHL]"), 
+	@Version(5) multipliziereZReg("multipliziere", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"),
+	
+	@Version(5) dividiereRegReg("dividiere", "das", "register", "[ZAHL]", "mit", "dem", "register", "[ZAHL]"), 
+	@Version(5) dividiereRegZ("dividiere", "das", "register", "[ZAHL]", "mit", "[ZAHL]"),
+	@Version(5) dividiereZReg("dividiere", "[ZAHL]", "mit", "dem", "register", "[ZAHL]")
+	
 	
 	
 	;
