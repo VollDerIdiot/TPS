@@ -1,9 +1,11 @@
 package de.hechler.patrick.tps.interpreter.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,6 +36,10 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 	
 	private Map <String, Integer> stellen;
 	private Anordnung[] sätzte;
+	
+	public static void main(String[] args) throws IOException, InterpretierungsFehler {
+		new RegisterfähigesTpsInterpreterImpl(System.out, new Scanner(System.in), 100).interpretiere(new File("C:\\Users\\Patrick\\git\\TPS\\rechner.tps"), StandardCharsets.UTF_8);
+	}
 	
 	public RegisterfähigesTpsInterpreterImpl(PrintStream ausgang, Scanner eingang, int registerAnzahl) {
 		aus = ausgang;
@@ -135,7 +141,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 					// nothing to do
 					break;
 				case subtrahiere:
-					ergebnis = anord.param(0).zahl(this) * anord.param(1).zahl(this);
+					ergebnis = anord.param(0).zahl(this) - anord.param(1).zahl(this);
 					break;
 				case vergleiche:
 					int a = anord.param(0).zahl(this);
@@ -164,8 +170,9 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 					zwischen = ein.nextInt();
 					break;
 				case ladeInRegister:
-					int i = anord.param(0).zahl(this);
-					register[i] = anord.param(1).zahl(this);
+					int neuRegWert = anord.param(0).zahl(this);
+					int i = anord.param(1).zahl(this);
+					register[i] = neuRegWert;
 					break;
 				case ladeVomRegisterErg:
 					i = anord.param(0).zahl(this);
@@ -198,7 +205,11 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 					int start = anord.param(0).zahl(this);
 					char[] chars = ein.next().toCharArray();
 					register[start] = chars.length;
-					for (int zusatz = 0; zusatz < chars.length; zusatz ++ ) {
+					int len = chars.length;
+					if (len + start + 1 >= register.length) {
+						len = register.length - start - 1;
+					}
+					for (int zusatz = 0; zusatz < len; zusatz ++ ) {
 						register[start + zusatz + 1] = chars[zusatz];
 					}
 					break;
@@ -215,6 +226,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 				}
 				case geheWennFalsch:
 					if ( (status & STATUS_FEHLER) != 0) {
+						status &= ~STATUS_FEHLER;
 						satz = stellen.get(anord.param(0).string());
 					}
 					break;
