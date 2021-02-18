@@ -85,9 +85,11 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 					aus.print(anord.param(0).string());
 					break;
 				case dividiere:
-					int zahl = anord.param(1).zahl(this);
-					if (zahl != 0) {
-						ergebnis = anord.param(0).zahl(this) / zahl;
+					int basis = anord.param(1).zahl(this);
+					if (basis != 0) {
+						int oben = anord.param(0).zahl(this);
+						ergebnis = oben / basis;
+						zwischen = oben % basis;
 					} else {
 						status |= STATUS_FEHLER;
 					}
