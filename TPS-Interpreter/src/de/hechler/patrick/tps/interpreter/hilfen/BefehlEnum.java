@@ -29,16 +29,16 @@ public enum BefehlEnum {
 	
 	@Version(2) vergleiche("vergleiche", Interpreter.ZAHL, "mit", Interpreter.ZAHL),
 	
-	@Stelle(brauchtStelle = true) @Version(2) springe("springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(2) springe("springe", "zur", "stelle:", Interpreter.STELLE),
 	
-	@Stelle(brauchtStelle = true) @Version(2) geheWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
-	@Stelle(brauchtStelle = true) @Version(2) geheWennGleich("wenn", "es", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
-	@Stelle(brauchtStelle = true) @Version(2) geheWennKleiner("wenn", "es", "kleiner", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
-	@Stelle(brauchtStelle = true) @Version(2) geheWennGrößer("wenn", "es", "größer", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
-	@Stelle(brauchtStelle = true) @Version(2) geheWennKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
-	@Stelle(brauchtStelle = true) @Version(2) geheWennGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(2) geheWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(2) geheWennGleich("wenn", "es", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(2) geheWennKleiner("wenn", "es", "kleiner", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(2) geheWennGrößer("wenn", "es", "größer", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(2) geheWennKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(2) geheWennGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "springe", "zur", "stelle:", Interpreter.STELLE),
 	
-	@Stelle(brauchtStelle = false) @Version(2) stelle("hier", "ist", "die", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = false) @Version(2) stelle("hier", "ist", "die", "stelle:", Interpreter.STELLE),
 	
 	
 	
@@ -60,6 +60,8 @@ public enum BefehlEnum {
 	@Version(4) registerWortEinlesen("lese", "das", "nächste", "wort", "des", "benutzers", "in", "die", "register", "ab", Interpreter.POS_ZAHL, "ein"),
 	@Version(4) registerZeichenEinlesen("lese", "die", "nächsten", Interpreter.POS_ZAHL, "zeichen", "des", "benutzers", "in", "die", "register", "ab", Interpreter.POS_ZAHL, "ein"),
 	
+	
+	@Stelle(braucht = true)
 	@Version(4) geheWennFalsch("wenn", "es", "einen", "fehler", "gab", "springe", "zur", "stelle:", Interpreter.STELLE),
 	
 	
@@ -79,13 +81,14 @@ public enum BefehlEnum {
 			Interpreter.POS_ZAHL),
 	@Version(5) vergleicheRegisterText("vergleiche", "die", "register", "von", Interpreter.POS_ZAHL, "bis", Interpreter.POS_ZAHL, "mit", "dem", "text:", Interpreter.WORTFOLGE),
 	
-	@Version(5) rufeAuf("mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
-	@Version(5) rufeAufWennGleich("wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
-	@Version(5) rufeAufWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
-	@Version(5) rufeAufWennKleiner("wenn", "es", "kleiner", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
-	@Version(5) rufeAufGrößer("wenn", "es", "größer", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
-	@Version(5) rufeAufKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
-	@Version(5) rufeAufGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(5) rufeAuf("mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(5) rufeAufWennGleich("wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(5) rufeAufWennNichtGleich("wenn", "es", "nicht", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(5) rufeAufWennKleiner("wenn", "es", "kleiner", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(5) rufeAufGrößer("wenn", "es", "größer", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(5) rufeAufKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(5) rufeAufGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der",
+			"stelle:", Interpreter.STELLE),
 	@Version(5) geheZurück("gehe", "zurück"),
 	
 	@Version(5) stapelSchreiben("lege", "die", Interpreter.ZAHL, "auf", "den", "stapel"),
@@ -214,13 +217,23 @@ public enum BefehlEnum {
 					return false;
 				}
 			}
+		case Interpreter.POS_ZAHL:
+			if ("zwischen".equals(befehlsteil) || "ergebnis".equals(befehlsteil)) {
+				return true;
+			} else {
+				try {
+					return Integer.parseInt(befehlsteil) >= 0;
+				} catch (NumberFormatException e) {
+					return false;
+				}
+			}
 		case Interpreter.WORTFOLGE:
 			return true;
 		case Interpreter.STELLE:
 			return !befehlsteil.isEmpty() && befehlsteil != befehlsteil.replaceFirst("^[A-Z]+$", "");
 		default:
-			throw new RuntimeException("unbekannte folge!");
+			throw new RuntimeException("unbekannte folge: " + folge[index]);
 		}
 	}
-
+	
 }

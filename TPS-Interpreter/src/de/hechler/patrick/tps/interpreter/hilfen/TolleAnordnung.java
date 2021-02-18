@@ -52,14 +52,16 @@ public class TolleAnordnung implements AnordnungInterface {
 			case Interpreter.STELLE:
 				par.add(paramStelle(zw));
 				if (stel != null) {
-					
+					throw new IllegalStateException("ich kann keine zwei stellen haben");
 				} else {
 					stel = zw;
 				}
 				break;
 			case Interpreter.WORTFOLGE:
 				StringBuilder str = new StringBuilder(zw);
-				iter.forEachRemaining(s -> str.append(s));
+				while (iter.hasNext()) {
+					str.append(' ').append(iter.next());
+				}
 				par.add(new Param(str.toString()));
 				break;
 			}
@@ -68,7 +70,7 @@ public class TolleAnordnung implements AnordnungInterface {
 		try {
 			Stelle stelle = BefehlEnum.class.getField(bef.name()).getAnnotation(Stelle.class);
 			if (stelle != null) {
-				if (stelle.brauchtStelle()) {
+				if (stelle.braucht()) {
 					benötigteStellen.add(stel);
 				} else {
 					stellen.put(stel, index);
@@ -109,6 +111,15 @@ public class TolleAnordnung implements AnordnungInterface {
 			if (teste < 0) throw new NegativerRegisterIndexFehler(teste);
 			return new Param(teste);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder erg = new StringBuilder('[').append(bef).append("]:");
+		for (Param param : parameter) {
+			erg.append(param).append(", ");
+		}
+		return erg.toString();
 	}
 	
 }
