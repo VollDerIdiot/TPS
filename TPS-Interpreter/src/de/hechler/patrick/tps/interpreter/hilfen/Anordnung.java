@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
+import de.hechler.patrick.tps.fehler.NegativerRegisterIndexFehler;
 import de.hechler.patrick.tps.interpreter.Version;
 
-@Version(2)
+@Version(4)
 public class Anordnung {
 	
 	private BefehlEnum bef;
@@ -128,8 +129,48 @@ public class Anordnung {
 		case zwischenspeicher:
 			args = new Param[0];
 			break;
-		default:
-			throw new InterpretierungsFehler("unbekannter befehl");
+		case ladeInRegister:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(2));
+			args[1] = paramZahl(satz.get(6));
+			break;
+		case ladeVomRegisterErg:
+			args = new Param[1];
+			args[0] = paramRegisterZahl(satz.get(6));
+			break;
+		case ladeVomRegisterZw:
+			args = new Param[1];
+			args[0] = paramRegisterZahl(satz.get(6));
+			break;
+		case leerzeichen:
+			args = new Param[0];
+			break;
+		case leseZahlEinErg:
+			args = new Param[0];
+			break;
+		case leseZahlEinZwischen:
+			args = new Param[0];
+			break;
+		case ladeRegisterAnzahlErg:
+			args = new Param[0];
+			break;
+		case ladeRegisterAnzahlZw:
+			args = new Param[0];
+			break;
+		case registerausgabe:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(4));
+			args[1] = paramRegisterZahl(satz.get(6));
+			break;
+		case registerWortEinlesen:
+			args = new Param[1];
+			args[0] = paramRegisterZahl(satz.get(10));
+			break;
+		case registerZeichenEinlesen:
+			args = new Param[2];
+			args[0] = paramRegisterZahl(satz.get(3));
+			args[1] = paramRegisterZahl(satz.get(11));
+			break;
 		}
 	}
 	
@@ -149,6 +190,19 @@ public class Anordnung {
 			return new Param(false);
 		default:
 			return new Param(Integer.parseInt(param));
+		}
+	}
+	
+	private Param paramRegisterZahl(String param) throws NegativerRegisterIndexFehler {
+		switch (param) {
+		case "ergebnis":
+			return new Param(true);
+		case "zwischen":
+			return new Param(false);
+		default:
+			int teste = Integer.parseInt(param);
+			if (teste < 0) throw new NegativerRegisterIndexFehler(teste);
+			return new Param(teste);
 		}
 	}
 	

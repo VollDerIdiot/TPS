@@ -21,19 +21,21 @@ import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.Anordnung;
 import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 
-@Version(2)
-public class VerbesserterTpsInterpreterImpl implements Interpreter {
+@Version(3)
+public class BenutzerfreundlicheTpsInterpreterImpl implements Interpreter {
 	
 	private int status;
 	private int ergebnis;
 	private int zwischen;
 	private PrintStream aus;
+	private Scanner ein;
 	
 	private Map <String, Integer> stellen;
 	private Anordnung[] sätzte;
 	
-	public VerbesserterTpsInterpreterImpl(PrintStream ausgang) {
+	public BenutzerfreundlicheTpsInterpreterImpl(PrintStream ausgang, InputStream eingang) {
 		aus = ausgang;
+		ein = new Scanner(eingang);
 		stellen = new HashMap <String, Integer>();
 	}
 	
@@ -140,6 +142,12 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 				break;
 			case zwischenspeicher:
 				zwischen = ergebnis;
+				break;
+			case leseZahlEinErg:
+				ergebnis = ein.nextInt(); 
+				break;
+			case leseZahlEinZwischen:
+				zwischen = ein.nextInt(); 
 				break;
 			}
 		}

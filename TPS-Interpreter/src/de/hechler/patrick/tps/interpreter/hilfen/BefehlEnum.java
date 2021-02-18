@@ -20,7 +20,7 @@ public enum BefehlEnum {
 	
 	@Version(1) ergebnisausgebe("gebe", "das", "ergebnis", "aus"), @Version(1) zwischenisausgebe("gebe", "den", "zwischenspeicher", "aus"),
 	
-	@Version(1) leerzeile("mache", "einen", "zeilenumbruch"), @Version(1) ausgabe("gebe", "folgendes", "aus:", "[...]"),
+	@Version(1) leerzeichen("gebe", "ein", "leerzeichen", "aus"), @Version(1) leerzeile("mache", "einen", "zeilenumbruch"), @Version(1) ausgabe("gebe", "folgendes", "aus:", "[...]"),
 	@Version(1) zwischenspeicher("speichere", "das", "ergebnis", "im", "zwischenspeicher"),
 	
 	
@@ -39,8 +39,26 @@ public enum BefehlEnum {
 	
 	@Version(2) stelle("hier", "ist", "die", "stelle:", "[STELLE]"),
 	
-	@Version(3) leseZahlEinErg("lese", "eine", "zahl", "ein"),
-	@Version(3) leseZahlEinZwischen("lese", "eine", "zahl", "in", "den" ,"zwischenspeicher", "ein"),
+	
+	
+	@Version(3) leseZahlEinErg("lese", "eine", "zahl", "ein"), @Version(3) leseZahlEinZwischen("lese", "eine", "zahl", "in", "den", "zwischenspeicher", "ein"),
+	
+	
+	
+	@Version(4) ladeInRegister("lade", "die", "[ZAHL]", "in", "das", "register", "[ZAHL]"),
+	
+	@Version(4) ladeVomRegisterErg("lade", "die", "zahl", "aus", "dem", "register", "[ZAHL]"),
+	@Version(4) ladeVomRegisterZw("lade", "die", "zahl", "aus", "dem", "register", "[ZAHL]", "in", "den", "zwischenspeicher"),
+	
+	@Version(4) ladeRegisterAnzahlErg("lade", "die", "anzahl", "der", "register", "in", "den", "ergebnisspeicher"),
+	@Version(4) ladeRegisterAnzahlZw("lade", "die", "anzahl", "der", "register", "in", "den", "zwischenspeicher"),
+	
+	
+	@Version(4) registerausgabe("gebe", "die", "register", "von", "[ZAHL]", "bis", "[ZAHL]", "aus"),
+	
+	@Version(4) registerWortEinlesen("lese", "das", "nächste", "wort", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
+	@Version(4) registerZeichenEinlesen("lese", "die", "nächsten", "[ZAHL]", "zeichen", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
+	
 	
 	;
 	

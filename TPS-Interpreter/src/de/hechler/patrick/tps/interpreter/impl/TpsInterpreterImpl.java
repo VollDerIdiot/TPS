@@ -123,6 +123,9 @@ public class TpsInterpreterImpl implements Interpreter {
 		case leerzeile:
 			System.out.println();
 			break;
+		case leerzeichen:
+			System.out.print(' ');
+			break;
 		case multipliziere:
 			a = BefehlEnum.zahl(befehl.get(1), this);
 			b = BefehlEnum.zahl(befehl.get(3), this);

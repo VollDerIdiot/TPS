@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import de.hechler.patrick.tps.fehler.FalscheRegisterZahlFehler;
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.fehler.UnbekannteStellenFehler;
 import de.hechler.patrick.tps.fehler.UnbekannterBefehlFehler;
@@ -21,20 +22,31 @@ import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.Anordnung;
 import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 
-@Version(2)
-public class VerbesserterTpsInterpreterImpl implements Interpreter {
+@Version(4)
+public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 	
 	private int status;
 	private int ergebnis;
 	private int zwischen;
+	private int[] register;
 	private PrintStream aus;
+	private Scanner ein;
 	
 	private Map <String, Integer> stellen;
 	private Anordnung[] sätzte;
 	
-	public VerbesserterTpsInterpreterImpl(PrintStream ausgang) {
+	public RegisterfähigesTpsInterpreterImpl(PrintStream ausgang, Scanner eingang, int registerAnzahl) {
 		aus = ausgang;
+		ein = eingang;
 		stellen = new HashMap <String, Integer>();
+		register = new int[registerAnzahl];
+	}
+	
+	public RegisterfähigesTpsInterpreterImpl(PrintStream ausgang, InputStream eingang, Charset zeichensatz, int registerAnzahl) {
+		aus = ausgang;
+		ein = new Scanner(eingang, zeichensatz);
+		stellen = new HashMap <String, Integer>();
+		register = new int[registerAnzahl];
 	}
 	
 	@Override
@@ -44,7 +56,7 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 		ausführen();
 	}
 	
-	public void ausführen() throws UnbekannterBefehlFehler {
+	public void ausführen() throws UnbekannterBefehlFehler, FalscheRegisterZahlFehler {
 		int satz;
 		boolean minDrei = false;
 		if ( (status & STATUS_LÄUFT) != 0) {
@@ -59,8 +71,6 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 		for (satz = 0; satz < sätzte.length; satz ++ ) {
 			Anordnung anord = sätzte[satz];
 			switch (anord.befehl()) {
-			default:
-				throw new UnbekannterBefehlFehler(anord.befehl());
 			case addiere:
 				ergebnis = anord.param(0).zahl(this) + anord.param(1).zahl(this);
 				break;
@@ -141,6 +151,61 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 			case zwischenspeicher:
 				zwischen = ergebnis;
 				break;
+			case leseZahlEinErg:
+				ergebnis = ein.nextInt();
+				break;
+			case leseZahlEinZwischen:
+				zwischen = ein.nextInt();
+				break;
+			case ladeInRegister:
+				int i = anord.param(0).zahl(this);
+				register[i] = anord.param(1).zahl(this);
+				break;
+			case ladeVomRegisterErg:
+				i = anord.param(0).zahl(this);
+				ergebnis = register[i];
+				break;
+			case ladeVomRegisterZw:
+				i = anord.param(0).zahl(this);
+				zwischen = register[i];
+				break;
+			case ladeRegisterAnzahlErg:
+				ergebnis = register.length;
+				break;
+			case ladeRegisterAnzahlZw:
+				zwischen = register.length;
+				break;
+			case registerausgabe: {
+				int index = anord.param(0).zahl(this);
+				int ende = anord.param(1).zahl(this);
+				if (ende < index || ende > register.length || index < 0) {
+					throw new FalscheRegisterZahlFehler("ende < start oder ende > registerAnzahl oder index < 0 ende=" + ende + ", start=" + index + ", registerAnzahl=" + register.length);
+				}
+				StringBuilder str = new StringBuilder();
+				for (; index < ende; index ++ ) {
+					str.append((char) register[index]);
+				}
+				aus.print(str.toString());
+				break;
+			}
+			case registerWortEinlesen: {
+				int start = anord.param(0).zahl(this);
+				char[] chars = ein.next().toCharArray();
+				register[start] = chars.length;
+				for (int zusatz = 0; zusatz < chars.length; zusatz ++ ) {
+					register[start + zusatz + 1] = chars[zusatz];
+				}
+				break;
+			}
+			case registerZeichenEinlesen: {
+				int start = anord.param(0).zahl(this);
+				char[] chars = ein.next("(\\w{10,10})").toCharArray();
+				register[start] = chars.length;
+				for (int zusatz = 0; zusatz < chars.length; zusatz ++ ) {
+					register[start + zusatz + 1] = chars[zusatz];
+				}
+				break;
+			}
 			}
 		}
 		if ( (status & STATUS_LÄUFT_MEHRFACH) != 0) {
@@ -175,7 +240,7 @@ public class VerbesserterTpsInterpreterImpl implements Interpreter {
 			sätzte[init ++ ] = anord;
 		}
 		if ( !stellen.keySet().containsAll(benötigteStellen)) {
-			throw new UnbekannteStellenFehler(stellen , benötigteStellen);
+			throw new UnbekannteStellenFehler(stellen, benötigteStellen);
 		}
 	}
 	
