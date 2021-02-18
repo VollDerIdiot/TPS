@@ -152,7 +152,7 @@ Version 5:
 		rufeAufKleinerGleich					wenn im status kleiner oder gleich gespeichert ist wird ein rufeAuf ausgeführt.
 		rufeAufGrößerGleich						wenn im status größer oder gleich gespeichert ist wird ein rufeAuf ausgeführt.
 		geheZurück								geht zurück zu dem staand, welcher im oben im stapel gespeichert wurde.
-		stapelSchreiben							legt P-1 ganz oben auf den stapel und vergößert ihn so um eine zahl.
+		stapelSchreiben							legt P-1 ganz oben auf den stapel und vergößert ihn so um eine zahl. wenn der stapel leer ist wird FEHLER gesetzt und der befehl ignoriert
 		stapelLesenErg							nimmt die oberste zahl 	vom stapel und schreibt diese auf den ergebnisspeicher. so wird die stapelGröße um eins reduziert.
 		stapelLesenZw							nimmt die oberste zahl 	vom stapel und schreibt diese auf den zwischenspeicher. so wird die stapelGröße um eins reduziert.
 		stapelLesenReg							nimmt die oberste zahl 	vom stapel und schreibt diese auf den register P-1. so wird die stapelGröße um eins reduziert.
@@ -165,8 +165,8 @@ Version 5:
 		multipliziereRegReg:					multipliziert den inhalt des register P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
 		multipliziereRegZ:						multipliziert den inhalt des register P-1 mit P-2. des ergebnis wird im ergebnisspeicher gespeichert
 		multipliziereZReg:						multipliziert P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
-		dividiereRegReg:						dividiert den inhalt des register P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
-		dividiereRegZ:							dividiert den inhalt des register P-1 mit P-2. des ergebnis wird im ergebnisspeicher gespeichert
-		dividiereZReg:							dividiert P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		dividiereRegReg:						dividiert den inhalt des register P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert. im zwischenspeicher wird das moduloergebnis gespeichert
+		dividiereRegZ:							dividiert den inhalt des register P-1 mit P-2. des ergebnis wird im ergebnisspeicher gespeichert. im zwischenspeicher wird das moduloergebnis gespeichert
+		dividiereZReg:							dividiert P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert. im zwischenspeicher wird das moduloergebnis gespeichert
 		
 	
