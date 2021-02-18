@@ -64,15 +64,10 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 	
 	public void ausführen() throws UnbekannterBefehlFehler, FalscheRegisterZahlFehler {
 		int satz;
-		boolean minDrei = false;
 		if ( (status & STATUS_LÄUFT) != 0) {
-			if ( (status & STATUS_LÄUFT_MEHRFACH) != 0) {
-				minDrei = true;
-			} else {
-				status |= STATUS_LÄUFT_MEHRFACH;
-			}
+			return;
 		} else {
-			status = STATUS_LÄUFT;
+			status = STATUS_LÄUFT; // zurücksetzten
 		}
 		for (satz = 0; satz < sätzte.length; satz ++ ) {
 			Anordnung anord = sätzte[satz];
@@ -240,13 +235,7 @@ public class RegisterfähigesTpsInterpreterImpl implements Interpreter {
 				status |= STATUS_FEHLER;
 			}
 		}
-		if ( (status & STATUS_LÄUFT_MEHRFACH) != 0) {
-			if ( !minDrei) {
-				status &= ~STATUS_LÄUFT_MEHRFACH;
-			}
-		} else {
-			status ^= status; // lösche status
-		}
+		status &= ~STATUS_LÄUFT;
 	}
 	
 	public void baue(List <List <String>> sätze) throws InterpretierungsFehler {

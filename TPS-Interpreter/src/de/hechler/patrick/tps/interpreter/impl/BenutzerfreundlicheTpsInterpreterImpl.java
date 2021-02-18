@@ -56,11 +56,7 @@ public class BenutzerfreundlicheTpsInterpreterImpl implements Interpreter {
 		int satz;
 		boolean minDrei = false;
 		if ( (status & STATUS_LÄUFT) != 0) {
-			if ( (status & STATUS_LÄUFT_MEHRFACH) != 0) {
-				minDrei = true;
-			} else {
-				status |= STATUS_LÄUFT_MEHRFACH;
-			}
+			return;
 		} else {
 			status |= STATUS_LÄUFT;
 		}
@@ -150,20 +146,14 @@ public class BenutzerfreundlicheTpsInterpreterImpl implements Interpreter {
 				zwischen = ergebnis;
 				break;
 			case leseZahlEinErg:
-				ergebnis = ein.nextInt(); 
+				ergebnis = ein.nextInt();
 				break;
 			case leseZahlEinZwischen:
-				zwischen = ein.nextInt(); 
+				zwischen = ein.nextInt();
 				break;
 			}
 		}
-		if ( (status & STATUS_LÄUFT_MEHRFACH) != 0) {
-			if ( !minDrei) {
-				status &= ~STATUS_LÄUFT_MEHRFACH;
-			}
-		} else {
-			status ^= status;
-		}
+		status ^= status;
 	}
 	
 	public void baue(List <List <String>> sätze) throws InterpretierungsFehler {
@@ -189,7 +179,7 @@ public class BenutzerfreundlicheTpsInterpreterImpl implements Interpreter {
 			sätzte[init ++ ] = anord;
 		}
 		if ( !stellen.keySet().containsAll(benötigteStellen)) {
-			throw new UnbekannteStellenFehler(stellen , benötigteStellen);
+			throw new UnbekannteStellenFehler(stellen, benötigteStellen);
 		}
 	}
 	

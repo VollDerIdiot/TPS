@@ -14,7 +14,7 @@ public interface Interpreter {
 	public static final int STATUS_GLEICH          = 0b00000000000000000000000000000010;
 	public static final int STATUS_GRÖẞER          = 0b00000000000000000000000000000100;
 	public static final int STATUS_LÄUFT           = 0b00000000000000000000000000001000;
-	public static final int STATUS_LÄUFT_MEHRFACH  = 0b00000000000000000000000000010000;
+	public static final int STATUS_ANGEHALTEN      = 0b00000000000000000000000000010000;
 	public static final int STATUS_FEHLER          = 0b00000000000000000000000000100000;
 	
 	default void interpretiere(File datei, Charset zeichensatz) throws IOException, InterpretierungsFehler {

@@ -92,3 +92,81 @@ Version 4:
 		leseZahlEinErg:							lässt eine zahl vom benutzer eingeben und speichert diese im ergebnisspeicher. wenn der benutzer keine zahl eingibt, wird dem status FEHLER hinzugefügt und das ergebnis bleibt unverändert.
 		leseZahlEinZwischen:					lässt eine zahl vom benutzer eingeben und speichert diese im zwischenspeicher. wenn der benutzer keine zahl eingibt, wird dem status FEHLER hinzugefügt und der zwischenspeicher bleibt unverändert.
 		dividiere:								teilt P-1 durch P-2. das ergebnis wird im ergebnisspeicher gespeichert. das modulo ergebnis wird im zwischenspeicher gespeichert. wenn durch 0 geteilt wird, wird dem status FEHLER hinzugefügt. ergebnis und zwischen sind danach auf unverändert.
+		
+	
+Version 5:
+	BEFEHLE:
+		versionErg								"schreibe" "die" "version" "in" "den" "ergebnisspeicher"
+		versionZw								"schreibe" "die" "version" "in" "den" "zwischenspeicher"
+		versionReg								"schreibe" "die" "version" "in" "das" "register" [ZAHL]
+		stapelMaxGrößeErg						"schreibe" "die" "maximale" "größe" "des" "Stapels" "im" "ergebnisspeicher"
+		stapelMaxGrößeZw						"schreibe" "die" "maximale" "größe" "des" "Stapels" "im" "zwischenspeicher"
+		stapelMaxGrößeReg						"schreibe" "die" "maximale" "größe" "des" "Stapels" "in" "das" "register" [ZAHL]
+		stapelGrößeErg							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "im" "ergebnisspeicher"
+		stapelGrößeZw							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "im" "zwischenspeicher"
+		stapelGrößeReg							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "in" "das" "register" [ZAHL]
+		vergleicheRegister:						"vergleiche" "die" "register" "von" [ZAHL] "bis" [ZAHL] "mit" "den" "registern" "von" [ZAHL] "bis" [ZAHL]
+		vergleicheRegisterText:					"vergleiche" "die" "register" "von" [ZAHL] "bis" [ZAHL] "mit" "dem" "text:" [...]
+		rufeAuf									"mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
+		rufeAufWennGleich						"wenn" "es" "gleich" "ist" "mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
+		rufeAufWennNichtGleich					"wenn" "es" "nicht" "gleich" "ist" "mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
+		rufeAufWennKleiner						"wenn" "es" "kleiner" "ist" "mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
+		rufeAufGrößer							"wenn" "es" "größer" "ist" "mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
+		rufeAufKleinerGleich					"wenn" "es" "kleiner" "oder" "gleich" "ist" "mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
+		rufeAufGrößerGleich						"wenn" "es" "größer" "oder" "gleich" "ist" "wenn" "es" "gleich" "ist" "mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
+		geheZurück								"gehe" "zurück"
+		stapelSchreiben							"lege" "die" [ZAHL] "auf" "den" "stapel"
+		stapelLesenErg							"nehme" "die" "oberste" "zahl" "vom" "stapel" "herunter" "und" "speichere" "sie" "im" "ergebnisspeicher"
+		stapelLesenZw							"nehme" "die" "oberste" "zahl" "vom" "stapel" "herunter" "und" "speichere" "sie" "im" "zwischenspeicher"
+		stapelLesenReg							"nehme" "die" "oberste" "zahl" "vom" "stapel" "herunter" "und" "speichere" "sie" "im" "register" [ZAHL]
+		addiereRegReg:							"addiere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
+		addiereRegZ:							"addiere" "das" "register" [ZAHL] "mit" [ZAHL]
+		addiereZReg:							"addiere" [ZAHL] "mit" "dem" "register" [ZAHL]
+		subtrahiereRegReg:						"subtrahiere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
+		subtrahiereRegZ:						"subtrahiere" "das" "register" [ZAHL] "mit" [ZAHL]
+		subtrahiereZReg:						"subtrahiere" [ZAHL] "mit" "dem" "register" [ZAHL]
+		multipliziereRegReg:					"multipliziere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
+		multipliziereRegZ:						"multipliziere" "das" "register" [ZAHL] "mit" [ZAHL]
+		multipliziereZReg:						"multipliziere" [ZAHL] "mit" "dem" "register" [ZAHL]
+		dividiereRegReg:						"dividiere" "das" "register" [ZAHL] "mit" "dem" register" [ZAHL]
+		dividiereRegZ:							"dividiere" "das" "register" [ZAHL] "mit" [ZAHL]
+		dividiereZReg:							"dividiere" [ZAHL] "mit" "dem" "register" [ZAHL]
+		
+	ERKLÄRUNG:
+		versionErg								schreibt die version die aktuell verwendet wird in den ergebnisspeicher
+		versionZw								schreibt die version die aktuell verwendet wird in den zwischenspeicher
+		versionReg								schreibt die version die aktuell verwendet wird in das register P-1
+		stapelMaxGrößeErg						speichert die maximale stapelgröße im ergebnisspeicher. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
+		stapelMaxGrößeZw						speichert die maximale stapelgröße im zwischenspeicher. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
+		stapelMaxGrößeReg						speichert die maximale stapelgröße im register P-1. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
+		stapelGrößeErg							speichert die aktuelle stapelgröße im ergebnisspeicher. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
+		stapelGrößeZw							speichert die aktuelle stapelgröße im zwischenspeicher. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
+		stapelGrößeReg							speichert die aktuelle stapelgröße im register P-1. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
+		vergleicheRegister:						es wird immer das nächstniedrigere register mit dem nächstniedrigerem register des anderen bereiches verglichen. Bei den erstem registerpaar, welches nicht gleich ist wird abgebrochen, wenn es gleich ist wird das nächste registerpaar verglichen. das ergebnis des vergleiches wird im status gespeichert, wenn die registeranfänge gleich sind aber die bereiche unterschiedlich groß sind werden die bereiche als gleich angesehen.
+		vergleicheRegisterText:					vergleicht die register mit dem text so wie wenn man den text vorher in einen anderen bereich geladen hätte.
+		rufeAuf									ruft die stelle P-1 auf und speichert den aktuellen stand im stapel. Der stand beinhaltet nur den aktuellen befehl.
+		rufeAufWennGleich						wenn im status gleich gespeichert ist wird ein rufeAuf ausgeführt.
+		rufeAufWennNichtGleich					wenn im status gleich nicht gespeichert ist wird ein rufeAuf ausgeführt.
+		rufeAufWennKleiner						wenn im status kleiner gespeichert ist wird ein rufeAuf ausgeführt.
+		rufeAufGrößer							wenn im status größer gespeichert ist wird ein rufeAuf ausgeführt.
+		rufeAufKleinerGleich					wenn im status kleiner oder gleich gespeichert ist wird ein rufeAuf ausgeführt.
+		rufeAufGrößerGleich						wenn im status größer oder gleich gespeichert ist wird ein rufeAuf ausgeführt.
+		geheZurück								geht zurück zu dem staand, welcher im oben im stapel gespeichert wurde.
+		stapelSchreiben							legt P-1 ganz oben auf den stapel und vergößert ihn so um eine zahl.
+		stapelLesenErg							nimmt die oberste zahl 	vom stapel und schreibt diese auf den ergebnisspeicher. so wird die stapelGröße um eins reduziert.
+		stapelLesenZw							nimmt die oberste zahl 	vom stapel und schreibt diese auf den zwischenspeicher. so wird die stapelGröße um eins reduziert.
+		stapelLesenReg							nimmt die oberste zahl 	vom stapel und schreibt diese auf den register P-1. so wird die stapelGröße um eins reduziert.
+		addiereRegReg:							addieret den inhalt des register P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		addiereRegZ:							addieret den inhalt des register P-1 mit P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		addiereZReg:							addieret P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		subtrahiereRegReg:						subtrahiert den inhalt des register P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		subtrahiereRegZ:						subtrahiert den inhalt des register P-1 mit P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		subtrahiereZReg:						subtrahiert P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		multipliziereRegReg:					multipliziert den inhalt des register P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		multipliziereRegZ:						multipliziert den inhalt des register P-1 mit P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		multipliziereZReg:						multipliziert P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		dividiereRegReg:						dividiert den inhalt des register P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		dividiereRegZ:							dividiert den inhalt des register P-1 mit P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		dividiereZReg:							dividiert P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert
+		
+	
