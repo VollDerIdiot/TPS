@@ -1,6 +1,7 @@
 package de.hechler.patrick.tps.interpreter.impl;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,7 +18,7 @@ import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.fehler.UnbekannteStellenFehler;
 
 
-class VerbesserterTpsInterpreterImplTest {
+class BenutzerfreundlicheTpsInterpreterImplTest {
 	
 	private static final String TEST_1_1_1 = "addiere      3 \r\n" + "   mit 4.\r\n" + "multipliziere ergebnis mit 2. gebe das ergebnis aus.   \r\n" + "  ";
 	private static final String TEST_1_1_2 = "";
@@ -32,14 +33,15 @@ class VerbesserterTpsInterpreterImplTest {
 			+ "multipliziere 2 mit zwischen.\r\n" + "vergleiche 0 mit zwischen.\r\n" + "wenn es nicht gleich ist springe zur stelle: ZWISCHENINITIALISIERT.\r\n" + "addiere 136 mit 1.\r\n"
 			+ "speichere das ergebnis im zwischenspeicher.\r\n" + "hier ist die stelle: ZWISCHENINITIALISIERT.\r\n" + "dividiere zwischen mit ergebnis.\r\n" + "hier ist die stelle: GLEICH.\r\n"
 			+ "gebe das ergebnis aus.\r\n" + "mache einen zeilenumbruch.\r\n" + "gebe den zwischenspeicher aus.";
-	private static final String TEST_1_4 = "gebe folgendes aus: hello world.";
 	
-	VerbesserterTpsInterpreterImpl inter;
-	ByteArrayOutputStream out = new ByteArrayOutputStream();
+	
+	BenutzerfreundlicheTpsInterpreterImpl inter;
+	ByteArrayOutputStream out ;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		inter = new VerbesserterTpsInterpreterImpl(new PrintStream(out));
+		out = new ByteArrayOutputStream();
+		inter = new BenutzerfreundlicheTpsInterpreterImpl(new PrintStream(out), System.in, StandardCharsets.UTF_8);
 	}
 	
 	@AfterEach
@@ -68,13 +70,6 @@ class VerbesserterTpsInterpreterImplTest {
 		inter.interpretiere(new ByteArrayInputStream(TEST_1_3.getBytes(new Pzs8bCharset())), new Pzs8bCharset());
 		String printed = new String(out.toByteArray());
 		assertEquals(System.lineSeparator() + "3" + System.lineSeparator() + "5", printed);
-	}
-	
-	@Test
-	void testInterpretiereV1_4() throws IOException, InterpretierungsFehler {
-		inter.interpretiere(new ByteArrayInputStream(TEST_1_4.getBytes(new Pzs8bCharset())), new Pzs8bCharset());
-		String printed = new String(out.toByteArray());
-		assertEquals("hello world", printed);
 	}
 	
 	@Test

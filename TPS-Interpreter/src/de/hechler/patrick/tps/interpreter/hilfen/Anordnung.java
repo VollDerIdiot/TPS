@@ -173,7 +173,7 @@ public class Anordnung {
 			break;
 		case geheWennFalsch:
 			args = new Param[1];
-			args[0] = paramStelle(satz.get(3));
+			args[0] = paramStelle(satz.get(8));
 			break;
 		case geheWennMehrfachAn:
 			args = new Param[1];

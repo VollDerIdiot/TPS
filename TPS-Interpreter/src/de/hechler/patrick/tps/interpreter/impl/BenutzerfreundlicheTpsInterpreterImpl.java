@@ -33,9 +33,15 @@ public class BenutzerfreundlicheTpsInterpreterImpl implements Interpreter {
 	private Map <String, Integer> stellen;
 	private Anordnung[] sätzte;
 	
-	public BenutzerfreundlicheTpsInterpreterImpl(PrintStream ausgang, InputStream eingang) {
+	public BenutzerfreundlicheTpsInterpreterImpl(PrintStream ausgang, InputStream eingang, Charset zeichensatz) {
 		aus = ausgang;
-		ein = new Scanner(eingang);
+		ein = new Scanner(eingang, zeichensatz);
+		stellen = new HashMap <String, Integer>();
+	}
+	
+	public BenutzerfreundlicheTpsInterpreterImpl(PrintStream ausgang, Scanner eingang) {
+		aus = ausgang;
+		ein = eingang;
 		stellen = new HashMap <String, Integer>();
 	}
 	

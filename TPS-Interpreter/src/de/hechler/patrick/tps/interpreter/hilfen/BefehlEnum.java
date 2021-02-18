@@ -59,8 +59,8 @@ public enum BefehlEnum {
 	@Version(4) registerWortEinlesen("lese", "das", "nächste", "wort", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
 	@Version(4) registerZeichenEinlesen("lese", "die", "nächsten", "[ZAHL]", "zeichen", "des", "benutzers", "in", "die", "register", "ab", "[ZAHL]", "ein"),
 	
-	@Version(4) geheWennFalsch("springe", "zur", "stelle:", "[STELLE]", "wenn", "es", "einen", "fehler", "gab"),
-	@Version(4) geheWennMehrfachAn("Wenn", "es", "noch", "mehr", "befehlsgeber", "gibt", "gehe", "zur", "stelle:", "[STELLE]"),
+	@Version(4) geheWennFalsch("wenn", "es", "einen", "fehler", "gab", "springe", "zur", "stelle:", "[STELLE]"),
+	@Version(4) geheWennMehrfachAn("wenn", "es", "noch", "mehr", "befehlsgeber", "gibt", "springe", "zur", "stelle:", "[STELLE]"),
 	
 	
 	;
