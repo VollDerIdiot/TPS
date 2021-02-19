@@ -265,126 +265,287 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	}
 	
 	private synchronized void mache(AnordnungInterface mache, int befehl) {
-		if (befehl == nächste) nächste ++ ;
-		switch (mache.befehl()) {
-		case addiere:
-			ergebnis = mache.param(0).zahl(this) + mache.param(1).zahl(this);
-			break;
-		case addiereRegReg: {
-			int regA, regB;
-			regA = mache.param(0).zahl(this);
-			regB = mache.param(1).zahl(this);
-			ergebnis = register[regA] + register[regB];
-			break;
-		}
-		case addiereRegZ: {
-			int regA, b;
-			regA = mache.param(0).zahl(this);
-			b = mache.param(1).zahl(this);
-			ergebnis = register[regA] + b;
-			break;
-		}
-		case addiereZReg: {
-			int a, regB;
-			a = mache.param(0).zahl(this);
-			regB = mache.param(1).zahl(this);
-			ergebnis = a + register[regB];
-			break;
-		}
-		case ausgabe:
-			aus.print(mache.param(0).string());
-			break;
-		case dividiere: {
-			int a, b;
-			a = mache.param(0).zahl(this);
-			b = mache.param(1).zahl(this);
-			ergebnis = a / b;
-			zwischen = a % b;
-			break;
-		}
-		case dividiereRegReg: {
-			int regA, regB;
-			regA = mache.param(0).zahl(this);
-			regB = mache.param(1).zahl(this);
-			if (prüfeRegister(befehl, regA) && prüfeRegister(befehl, regB)) {
-				ergebnis = register[regA] / register[regB];
-				zwischen = register[regA] % register[regB];
+		try {
+			if (befehl == nächste) nächste ++ ;
+			switch (mache.befehl()) {
+			case addiere:
+				ergebnis = mache.param(0).zahl(this) + mache.param(1).zahl(this);
+				break;
+			case addiereRegReg: {
+				int regA, regB;
+				regA = mache.param(0).zahl(this);
+				regB = mache.param(1).zahl(this);
+				ergebnis = register[regA] + register[regB];
+				break;
 			}
-			break;
-		}
-		case dividiereRegZ: {
-			int regA, b;
-			regA = mache.param(0).zahl(this);
-			if (prüfeRegister(befehl, regA)) {
+			case addiereRegZ: {
+				int regA, b;
+				regA = mache.param(0).zahl(this);
 				b = mache.param(1).zahl(this);
-				ergebnis = register[regA] / b;
-				zwischen = register[regA] % b;
+				ergebnis = register[regA] + b;
+				break;
 			}
-			break;
-		}
-		case dividiereZReg: {
-			int a, regB;
-			a = mache.param(0).zahl(this);
-			regB = mache.param(1).zahl(this);
-			if (prüfeRegister(befehl, regB)) {
-				ergebnis = a / register[regB];
-				zwischen = a % register[regB];
+			case addiereZReg: {
+				int a, regB;
+				a = mache.param(0).zahl(this);
+				regB = mache.param(1).zahl(this);
+				ergebnis = a + register[regB];
+				break;
 			}
-			break;
-		}
-		case ergebnisausgebe:
-			aus.print(ergebnis);
-			break;
-		case geheWennFalsch:
-			if ( (status & STATUS_FEHLER) != 0) {
-				status &= ~STATUS_FEHLER;
-				nächste = stellen.get(mache.param(0).string());
+			case ausgabe:
+				aus.print(mache.param(0).string());
+				break;
+			case dividiere: {
+				int a, b;
+				a = mache.param(0).zahl(this);
+				b = mache.param(1).zahl(this);
+				ergebnis = a / b;
+				zwischen = a % b;
+				break;
 			}
-			break;
-		case geheWennGleich:
-			if ( (status & STATUS_GLEICH) != 0) {
-				nächste = stellen.get(mache.param(0).string());
+			case dividiereRegReg: {
+				int regA, regB;
+				regA = mache.param(0).zahl(this);
+				regB = mache.param(1).zahl(this);
+				if (prüfeRegister(befehl, regA) && prüfeRegister(befehl, regB)) {
+					ergebnis = register[regA] / register[regB];
+					zwischen = register[regA] % register[regB];
+				}
+				break;
 			}
-			break;
-		case geheWennGrößer:
-			if ( (status & STATUS_GLEICH) != 0) {
-				nächste = stellen.get(mache.param(0).string());
+			case dividiereRegZ: {
+				int regA, b;
+				regA = mache.param(0).zahl(this);
+				if (prüfeRegister(befehl, regA)) {
+					b = mache.param(1).zahl(this);
+					ergebnis = register[regA] / b;
+					zwischen = register[regA] % b;
+				}
+				break;
 			}
-			break;
-		case geheWennGrößerGleich:
-			if ( (status & (STATUS_GLEICH | STATUS_GRÖẞER)) != 0) {
-				nächste = stellen.get(mache.param(0).string());
+			case dividiereZReg: {
+				int a, regB;
+				a = mache.param(0).zahl(this);
+				regB = mache.param(1).zahl(this);
+				if (prüfeRegister(befehl, regB)) {
+					ergebnis = a / register[regB];
+					zwischen = a % register[regB];
+				}
+				break;
 			}
-			break;
-		case geheWennKleiner:
-			if ( (status & STATUS_KLEINER) != 0) {
-				nächste = stellen.get(mache.param(0).string());
+			case ergebnisausgebe:
+				aus.print(ergebnis);
+				break;
+			case geheWennFalsch:
+				if ( (status & STATUS_FEHLER) != 0) {
+					status &= ~STATUS_FEHLER;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case geheWennGleich:
+				if ( (status & STATUS_GLEICH) != 0) {
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case geheWennGrößer:
+				if ( (status & STATUS_GLEICH) != 0) {
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case geheWennGrößerGleich:
+				if ( (status & (STATUS_GLEICH | STATUS_GRÖẞER)) != 0) {
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case geheWennKleiner:
+				if ( (status & STATUS_KLEINER) != 0) {
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case geheWennKleinerGleich:
+				if ( (status & (STATUS_GLEICH | STATUS_KLEINER)) != 0) {
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case geheWennNichtGleich:
+				if ( (status & STATUS_GLEICH) == 0) {
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case geheZuDirekt: {
+				int ziel = mache.param(0).zahl(this);
+				prüfeRegister(befehl, ziel);
+				nächste = ziel;
+				break;
 			}
-			break;
-		case geheWennKleinerGleich:
-			if ( (status & (STATUS_GLEICH | STATUS_KLEINER)) != 0) {
-				nächste = stellen.get(mache.param(0).string());
+			case geheZurück:
+				if (stapelZeiger <= 0) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = LEERER_STAPEL_SPRUNG;
+					letzterFehlerBefehl = befehl;
+				} else {
+					int ziel = stapel[ -- stapelZeiger];
+					if (ziel < 0) {
+						if (fehlerStoppen) stoppe = true;
+						status |= STATUS_FEHLER;
+						letzterFehlerArt = NEGATIVE_BEFEHL_ANSPRACHE;
+						letzterFehlerBefehl = befehl;
+						letzterFehlerZusatzInfo = ziel;
+					} else if (ziel >= anordnungen.length) {
+						if (fehlerStoppen) stoppe = true;
+						status |= STATUS_FEHLER;
+						letzterFehlerArt = Zu_WENIGE_BEFEHLE;
+						letzterFehlerBefehl = befehl;
+						letzterFehlerZusatzInfo = ziel;
+					} else {
+						nächste = ziel;
+					}
+				}
+				break;
+			case ladeInRegister: {
+				int zahl = mache.param(0).zahl(this);
+				int reg = mache.param(1).zahl(this);
+				if (prüfeRegister(befehl, reg)) {
+					register[reg] = zahl;
+				}
+				break;
 			}
-			break;
-		case geheWennNichtGleich:
-			if ( (status & STATUS_GLEICH) == 0) {
-				nächste = stellen.get(mache.param(0).string());
+			case ladeRegisterAnzahlErg:
+				ergebnis = register.length;
+				break;
+			case ladeRegisterAnzahlZw:
+				zwischen = register.length;
+				break;
+			case ladeVomRegisterErg: {
+				int reg = mache.param(0).zahl(this);
+				if (prüfeRegister(befehl, reg)) {
+					ergebnis = register[reg];
+				}
 			}
-			break;
-		case geheZuDirekt: {
-			int ziel = mache.param(0).zahl(this);
-			prüfeRegister(befehl, ziel);
-			nächste = ziel;
-			break;
-		}
-		case geheZurück:
-			if (stapelZeiger <= 0) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = LEERER_STAPEL_SPRUNG;
-				letzterFehlerBefehl = befehl;
-			} else {
-				int ziel = stapel[ -- stapelZeiger];
+				break;
+			case ladeVomRegisterZw: {
+				int reg = mache.param(0).zahl(this);
+				if (prüfeRegister(befehl, reg)) {
+					zwischen = register[reg];
+				}
+				break;
+			}
+			case leerzeichen:
+				aus.print(' ');
+				break;
+			case leerzeile:
+				aus.println();
+				break;
+			case leseZahlEinErg:
+				try {
+					ergebnis = ein.nextInt();
+				} catch (InputMismatchException imme) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = FALSCHE_BENUTZER_EINGABE;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = 1;
+				}
+				break;
+			case leseZahlEinZwischen:
+				try {
+					zwischen = ein.nextInt();
+				} catch (InputMismatchException imme) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = FALSCHE_BENUTZER_EINGABE;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = 1;
+				}
+				break;
+			case letzterFehler:
+				ergebnis = letzterFehlerBefehl;
+				zwischen = letzterFehlerArt;
+				break;
+			case multipliziere: {
+				int a, b;
+				a = mache.param(0).zahl(this);
+				b = mache.param(1).zahl(this);
+				ergebnis = a * b;
+				break;
+			}
+			case multipliziereRegReg: {
+				int regA, regB;
+				regA = mache.param(0).zahl(this);
+				regB = mache.param(1).zahl(this);
+				ergebnis = register[regA] * register[regB];
+			}
+				break;
+			case multipliziereRegZ: {
+				int regA, b;
+				regA = mache.param(0).zahl(this);
+				b = mache.param(1).zahl(this);
+				ergebnis = register[regA] * b;
+			}
+				break;
+			case multipliziereZReg: {
+				int a, regB;
+				a = mache.param(0).zahl(this);
+				regB = mache.param(1).zahl(this);
+				ergebnis = a * register[regB];
+			}
+				break;
+			case registerWortEinlesen: {
+				int reg = mache.param(0).zahl(this);
+				if (prüfeRegister(befehl, reg)) {
+					char[] wort = ein.next().toCharArray();
+					register[reg] = wort.length;
+					for (int i = 0; reg + i + 1 < wort.length; i ++ ) {
+						register[reg + i + 1] = wort[i];
+					}
+				}
+				break;
+			}
+			case registerZeichenEinlesen: {
+				int anz = mache.param(0).zahl(this);
+				int reg = mache.param(1).zahl(this);
+				if (prüfeRegister(befehl, reg)) {
+					char[] wort = ein.next("\\w(" + anz + "," + anz + ")").toCharArray();
+					register[reg] = wort.length;
+					for (int i = 0; reg + i + 1 < wort.length; i ++ ) {
+						register[reg + i + 1] = wort[i];
+					}
+				}
+				break;
+			}
+			case registerausgabe: {
+				int regA = mache.param(0).zahl(this);
+				int regB = mache.param(1).zahl(this);
+				if (regA > regB) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = regB - regA;
+				} else if (prüfeRegister(befehl, regA) && prüfeRegister(befehl, regB)) {
+					StringBuilder bau = new StringBuilder(regB - regA);
+					for (; regA < regB; regA ++ ) {
+						bau.append((char) register[regA]);
+					}
+					aus.print(bau);
+				}
+				break;
+			}
+			case rufeAuf:
+				if (stapelZeiger >= stapel.length) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
+				} else {
+					stapel[stapelZeiger ++ ] = nächste;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case rufeAufDirekt: {
+				int ziel = mache.param(0).zahl(this);
 				if (ziel < 0) {
 					if (fehlerStoppen) stoppe = true;
 					status |= STATUS_FEHLER;
@@ -397,485 +558,332 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 					letzterFehlerArt = Zu_WENIGE_BEFEHLE;
 					letzterFehlerBefehl = befehl;
 					letzterFehlerZusatzInfo = ziel;
-				} else {
-					nächste = ziel;
-				}
-			}
-			break;
-		case ladeInRegister: {
-			int zahl = mache.param(0).zahl(this);
-			int reg = mache.param(1).zahl(this);
-			if (prüfeRegister(befehl, reg)) {
-				register[reg] = zahl;
-			}
-			break;
-		}
-		case ladeRegisterAnzahlErg:
-			ergebnis = register.length;
-			break;
-		case ladeRegisterAnzahlZw:
-			zwischen = register.length;
-			break;
-		case ladeVomRegisterErg: {
-			int reg = mache.param(0).zahl(this);
-			if (prüfeRegister(befehl, reg)) {
-				ergebnis = register[reg];
-			}
-		}
-			break;
-		case ladeVomRegisterZw: {
-			int reg = mache.param(0).zahl(this);
-			if (prüfeRegister(befehl, reg)) {
-				zwischen = register[reg];
-			}
-			break;
-		}
-		case leerzeichen:
-			aus.print(' ');
-			break;
-		case leerzeile:
-			aus.println();
-			break;
-		case leseZahlEinErg:
-			try {
-				ergebnis = ein.nextInt();
-			} catch (InputMismatchException imme) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = FALSCHE_BENUTZER_EINGABE;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = 1;
-			}
-			break;
-		case leseZahlEinZwischen:
-			try {
-				zwischen = ein.nextInt();
-			} catch (InputMismatchException imme) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = FALSCHE_BENUTZER_EINGABE;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = 1;
-			}
-			break;
-		case letzterFehler:
-			ergebnis = letzterFehlerBefehl;
-			zwischen = letzterFehlerArt;
-			break;
-		case multipliziere: {
-			int a, b;
-			a = mache.param(0).zahl(this);
-			b = mache.param(1).zahl(this);
-			ergebnis = a * b;
-			break;
-		}
-		case multipliziereRegReg: {
-			int regA, regB;
-			regA = mache.param(0).zahl(this);
-			regB = mache.param(1).zahl(this);
-			ergebnis = register[regA] * register[regB];
-		}
-			break;
-		case multipliziereRegZ: {
-			int regA, b;
-			regA = mache.param(0).zahl(this);
-			b = mache.param(1).zahl(this);
-			ergebnis = register[regA] * b;
-		}
-			break;
-		case multipliziereZReg: {
-			int a, regB;
-			a = mache.param(0).zahl(this);
-			regB = mache.param(1).zahl(this);
-			ergebnis = a * register[regB];
-		}
-			break;
-		case registerWortEinlesen: {
-			int reg = mache.param(0).zahl(this);
-			if (prüfeRegister(befehl, reg)) {
-				char[] wort = ein.next().toCharArray();
-				register[reg] = wort.length;
-				for (int i = 0; reg + i + 1 < wort.length; i ++ ) {
-					register[reg + i + 1] = wort[i];
-				}
-			}
-			break;
-		}
-		case registerZeichenEinlesen: {
-			int anz = mache.param(0).zahl(this);
-			int reg = mache.param(1).zahl(this);
-			if (prüfeRegister(befehl, reg)) {
-				char[] wort = ein.next("\\w(" + anz + "," + anz + ")").toCharArray();
-				register[reg] = wort.length;
-				for (int i = 0; reg + i + 1 < wort.length; i ++ ) {
-					register[reg + i + 1] = wort[i];
-				}
-			}
-			break;
-		}
-		case registerausgabe: {
-			int regA = mache.param(0).zahl(this);
-			int regB = mache.param(1).zahl(this);
-			if (regA > regB) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = regB - regA;
-			} else if (prüfeRegister(befehl, regA) && prüfeRegister(befehl, regB)) {
-				StringBuilder bau = new StringBuilder(regB - regA);
-				for (; regA < regB; regA ++ ) {
-					bau.append((char) register[regA]);
-				}
-				aus.print(bau);
-			}
-			break;
-		}
-		case rufeAuf:
-			if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
-			} else {
-				stapel[stapelZeiger ++ ] = nächste;
-				nächste = stellen.get(mache.param(0).string());
-			}
-			break;
-		case rufeAufDirekt: {
-			int ziel = mache.param(0).zahl(this);
-			if (ziel < 0) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = NEGATIVE_BEFEHL_ANSPRACHE;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = ziel;
-			} else if (ziel >= anordnungen.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = Zu_WENIGE_BEFEHLE;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = ziel;
-			} else if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = ziel;
-			}
-		}
-			break;
-		case rufeAufGrößer:
-			if ( (status & STATUS_GRÖẞER) == 0) break;
-			if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
-			} else {
-				stapel[stapelZeiger ++ ] = nächste;
-				nächste = stellen.get(mache.param(0).string());
-			}
-			break;
-		case rufeAufGrößerGleich:
-			if ( (status & (STATUS_GRÖẞER | STATUS_GLEICH)) == 0) break;
-			if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
-			} else {
-				stapel[stapelZeiger ++ ] = nächste;
-				nächste = stellen.get(mache.param(0).string());
-			}
-			break;
-		case rufeAufKleinerGleich:
-			if ( (status & (STATUS_GLEICH | STATUS_KLEINER)) == 0) break;
-			if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
-			} else {
-				stapel[stapelZeiger ++ ] = nächste;
-				nächste = stellen.get(mache.param(0).string());
-			}
-			break;
-		case rufeAufWennFalsch:
-			if ( (status & STATUS_FEHLER) == 0) break;
-			if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
-			} else {
-				stapel[stapelZeiger ++ ] = nächste;
-				nächste = stellen.get(mache.param(0).string());
-			}
-			break;
-		case rufeAufWennGleich:
-			if ( (status & STATUS_GLEICH) == 0) break;
-			if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
-			} else {
-				stapel[stapelZeiger ++ ] = nächste;
-				nächste = stellen.get(mache.param(0).string());
-			}
-			break;
-		case rufeAufWennKleiner:
-			if ( (status & STATUS_KLEINER) == 0) break;
-			if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
-			} else {
-				stapel[stapelZeiger ++ ] = nächste;
-				nächste = stellen.get(mache.param(0).string());
-			}
-			break;
-		case rufeAufWennNichtGleich:
-			if ( (status & STATUS_GLEICH) != 0) break;
-			if (stapelZeiger >= stapel.length) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
-			} else {
-				stapel[stapelZeiger ++ ] = nächste;
-				nächste = stellen.get(mache.param(0).string());
-			}
-			break;
-		case springe:
-			nächste = stellen.get(mache.param(0).string());
-			break;
-		case stapelGrößeErg:
-			ergebnis = stapelZeiger;
-			break;
-		case stapelGrößeReg: {
-			int reg = mache.param(0).zahl(this);
-			if (prüfeRegister(befehl, reg)) {
-				register[reg] = stapelZeiger;
-			}
-			break;
-		}
-		case stapelGrößeZw:
-			zwischen = stapelZeiger;
-			break;
-		case stapelLesenErg: {
-			if (stapelZeiger <= 0) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = LEERER_STAPEL_SPRUNG;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = 0;
-			} else {
-				ergebnis = stapel[ -- stapelZeiger];
-			}
-			break;
-		}
-		case stapelLesenReg: {
-			int reg = mache.param(0).zahl(this);
-			if (stapelZeiger <= 0) {
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = LEERER_STAPEL_SPRUNG;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = reg;
-			} else {
-				if (prüfeRegister(befehl, reg)) {
-					register[reg] = stapel[ -- stapelZeiger];
-				}
-			}
-			break;
-		}
-		case stapelLesenZw: {
-			int reg = mache.param(0).zahl(this);
-			if (stapelZeiger <= 0) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = LEERER_STAPEL_SPRUNG;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = 0;
-			} else {
-				if (prüfeRegister(befehl, reg)) {
-					zwischen = stapel[ -- stapelZeiger];
-				}
-			}
-			break;
-		}
-		case stapelMaxGrößeErg:
-			ergebnis = stapel.length;
-			break;
-		case stapelMaxGrößeReg: {
-			int reg = mache.param(0).zahl(this);
-			if (prüfeRegister(befehl, reg)) {
-				register[reg] = stapel.length;
-			}
-			break;
-		}
-		case stapelMaxGrößeZw:
-			zwischen = stapel.length;
-			break;
-		case stapelSchreiben: {
-			int legen = mache.param(0).zahl(this);
-			if (stapel.length <= stapelZeiger) {
-				if (fehlerStoppen) stoppe = true;
-				status |= STATUS_FEHLER;
-				letzterFehlerArt = ZU_GROẞER_STAPEL;
-				letzterFehlerBefehl = befehl;
-				letzterFehlerZusatzInfo = legen;
-			} else {
-				stapel[stapelZeiger ++ ] = legen;
-			}
-			break;
-		}
-		case stelle:
-			// nichts zu tun
-			break;
-		case subtrahiere: {
-			int a, b;
-			a = mache.param(0).zahl(this);
-			b = mache.param(1).zahl(this);
-			ergebnis = a - b;
-			break;
-		}
-		case subtrahiereRegReg: {
-			int regA, regB;
-			regA = mache.param(0).zahl(this);
-			regB = mache.param(1).zahl(this);
-			ergebnis = register[regA] - register[regB];
-			break;
-		}
-		case subtrahiereRegZ: {
-			int regA, b;
-			regA = mache.param(0).zahl(this);
-			b = mache.param(1).zahl(this);
-			ergebnis = register[regA] - b;
-			break;
-		}
-		case subtrahiereZReg: {
-			int a, regB;
-			a = mache.param(0).zahl(this);
-			regB = mache.param(1).zahl(this);
-			ergebnis = a - register[regB];
-			break;
-		}
-		case vergleiche: {
-			int a = mache.param(0).zahl(this);
-			int b = mache.param(0).zahl(this);
-			if (a == b) {
-				status &= STATUS_GRÖẞER | STATUS_KLEINER;
-				status |= STATUS_GLEICH;
-			} else if (a > b) {
-				status &= STATUS_GLEICH | STATUS_KLEINER;
-				status |= STATUS_GRÖẞER;
-			} else {
-				status &= STATUS_GLEICH | STATUS_GRÖẞER;
-				status |= STATUS_KLEINER;
-			}
-			break;
-		}
-		case vergleicheRegister: {
-			int as = mache.param(0).zahl(this);
-			int ae = mache.param(1).zahl(this);
-			int bs = mache.param(2).zahl(this);
-			int be = mache.param(3).zahl(this);
-			if (prüfeRegister(befehl, as) && prüfeRegister(befehl, ae) && prüfeRegister(befehl, bs) && prüfeRegister(befehl, be)) {
-				if (ae >= as) {
+				} else if (stapelZeiger >= stapel.length) {
 					if (fehlerStoppen) stoppe = true;
 					status |= STATUS_FEHLER;
-					letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
 					letzterFehlerBefehl = befehl;
-					letzterFehlerZusatzInfo = 1;
-				} else if (be >= bs) {
+					letzterFehlerZusatzInfo = ziel;
+				}
+			}
+				break;
+			case rufeAufGrößer:
+				if ( (status & STATUS_GRÖẞER) == 0) break;
+				if (stapelZeiger >= stapel.length) {
+					if (fehlerStoppen) stoppe = true;
 					status |= STATUS_FEHLER;
-					letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
 					letzterFehlerBefehl = befehl;
-					letzterFehlerZusatzInfo = 2;
+					letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
 				} else {
-					ae -= as;
-					be -= bs;
+					stapel[stapelZeiger ++ ] = nächste;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case rufeAufGrößerGleich:
+				if ( (status & (STATUS_GRÖẞER | STATUS_GLEICH)) == 0) break;
+				if (stapelZeiger >= stapel.length) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
+				} else {
+					stapel[stapelZeiger ++ ] = nächste;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case rufeAufKleinerGleich:
+				if ( (status & (STATUS_GLEICH | STATUS_KLEINER)) == 0) break;
+				if (stapelZeiger >= stapel.length) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
+				} else {
+					stapel[stapelZeiger ++ ] = nächste;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case rufeAufWennFalsch:
+				if ( (status & STATUS_FEHLER) == 0) break;
+				if (stapelZeiger >= stapel.length) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
+				} else {
+					stapel[stapelZeiger ++ ] = nächste;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case rufeAufWennGleich:
+				if ( (status & STATUS_GLEICH) == 0) break;
+				if (stapelZeiger >= stapel.length) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
+				} else {
+					stapel[stapelZeiger ++ ] = nächste;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case rufeAufWennKleiner:
+				if ( (status & STATUS_KLEINER) == 0) break;
+				if (stapelZeiger >= stapel.length) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
+				} else {
+					stapel[stapelZeiger ++ ] = nächste;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case rufeAufWennNichtGleich:
+				if ( (status & STATUS_GLEICH) != 0) break;
+				if (stapelZeiger >= stapel.length) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = stellen.get(mache.param(0).string());
+				} else {
+					stapel[stapelZeiger ++ ] = nächste;
+					nächste = stellen.get(mache.param(0).string());
+				}
+				break;
+			case springe:
+				nächste = stellen.get(mache.param(0).string());
+				break;
+			case stapelGrößeErg:
+				ergebnis = stapelZeiger;
+				break;
+			case stapelGrößeReg: {
+				int reg = mache.param(0).zahl(this);
+				if (prüfeRegister(befehl, reg)) {
+					register[reg] = stapelZeiger;
+				}
+				break;
+			}
+			case stapelGrößeZw:
+				zwischen = stapelZeiger;
+				break;
+			case stapelLesenErg: {
+				if (stapelZeiger <= 0) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = LEERER_STAPEL_SPRUNG;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = 0;
+				} else {
+					ergebnis = stapel[ -- stapelZeiger];
+				}
+				break;
+			}
+			case stapelLesenReg: {
+				int reg = mache.param(0).zahl(this);
+				if (stapelZeiger <= 0) {
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = LEERER_STAPEL_SPRUNG;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = reg;
+				} else {
+					if (prüfeRegister(befehl, reg)) {
+						register[reg] = stapel[ -- stapelZeiger];
+					}
+				}
+				break;
+			}
+			case stapelLesenZw: {
+				int reg = mache.param(0).zahl(this);
+				if (stapelZeiger <= 0) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = LEERER_STAPEL_SPRUNG;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = 0;
+				} else {
+					if (prüfeRegister(befehl, reg)) {
+						zwischen = stapel[ -- stapelZeiger];
+					}
+				}
+				break;
+			}
+			case stapelMaxGrößeErg:
+				ergebnis = stapel.length;
+				break;
+			case stapelMaxGrößeReg: {
+				int reg = mache.param(0).zahl(this);
+				if (prüfeRegister(befehl, reg)) {
+					register[reg] = stapel.length;
+				}
+				break;
+			}
+			case stapelMaxGrößeZw:
+				zwischen = stapel.length;
+				break;
+			case stapelSchreiben: {
+				int legen = mache.param(0).zahl(this);
+				if (stapel.length <= stapelZeiger) {
+					if (fehlerStoppen) stoppe = true;
+					status |= STATUS_FEHLER;
+					letzterFehlerArt = ZU_GROẞER_STAPEL;
+					letzterFehlerBefehl = befehl;
+					letzterFehlerZusatzInfo = legen;
+				} else {
+					stapel[stapelZeiger ++ ] = legen;
+				}
+				break;
+			}
+			case stelle:
+				// nichts zu tun
+				break;
+			case subtrahiere: {
+				int a, b;
+				a = mache.param(0).zahl(this);
+				b = mache.param(1).zahl(this);
+				ergebnis = a - b;
+				break;
+			}
+			case subtrahiereRegReg: {
+				int regA, regB;
+				regA = mache.param(0).zahl(this);
+				regB = mache.param(1).zahl(this);
+				ergebnis = register[regA] - register[regB];
+				break;
+			}
+			case subtrahiereRegZ: {
+				int regA, b;
+				regA = mache.param(0).zahl(this);
+				b = mache.param(1).zahl(this);
+				ergebnis = register[regA] - b;
+				break;
+			}
+			case subtrahiereZReg: {
+				int a, regB;
+				a = mache.param(0).zahl(this);
+				regB = mache.param(1).zahl(this);
+				ergebnis = a - register[regB];
+				break;
+			}
+			case vergleiche: {
+				int a = mache.param(0).zahl(this);
+				int b = mache.param(0).zahl(this);
+				if (a == b) {
 					status &= STATUS_GRÖẞER | STATUS_KLEINER;
 					status |= STATUS_GLEICH;
-					for (int i = 0; i < ae && i < be; i ++ ) {
-						if (register[as + i] != register[bs + i]) {
-							if (register[as + i] > register[bs + i]) {
-								status &= STATUS_GLEICH;
-								status |= STATUS_GRÖẞER;
-								break;
-							} else {
-								status &= STATUS_GLEICH;
-								status |= STATUS_KLEINER;
-								break;
+				} else if (a > b) {
+					status &= STATUS_GLEICH | STATUS_KLEINER;
+					status |= STATUS_GRÖẞER;
+				} else {
+					status &= STATUS_GLEICH | STATUS_GRÖẞER;
+					status |= STATUS_KLEINER;
+				}
+				break;
+			}
+			case vergleicheRegister: {
+				int as = mache.param(0).zahl(this);
+				int ae = mache.param(1).zahl(this);
+				int bs = mache.param(2).zahl(this);
+				int be = mache.param(3).zahl(this);
+				if (prüfeRegister(befehl, as) && prüfeRegister(befehl, ae) && prüfeRegister(befehl, bs) && prüfeRegister(befehl, be)) {
+					if (ae >= as) {
+						if (fehlerStoppen) stoppe = true;
+						status |= STATUS_FEHLER;
+						letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
+						letzterFehlerBefehl = befehl;
+						letzterFehlerZusatzInfo = 1;
+					} else if (be >= bs) {
+						status |= STATUS_FEHLER;
+						letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
+						letzterFehlerBefehl = befehl;
+						letzterFehlerZusatzInfo = 2;
+					} else {
+						ae -= as;
+						be -= bs;
+						status &= STATUS_GRÖẞER | STATUS_KLEINER;
+						status |= STATUS_GLEICH;
+						for (int i = 0; i < ae && i < be; i ++ ) {
+							if (register[as + i] != register[bs + i]) {
+								if (register[as + i] > register[bs + i]) {
+									status &= STATUS_GLEICH;
+									status |= STATUS_GRÖẞER;
+									break;
+								} else {
+									status &= STATUS_GLEICH;
+									status |= STATUS_KLEINER;
+									break;
+								}
 							}
 						}
 					}
 				}
+				break;
 			}
-			break;
-		}
-		case vergleicheRegisterText: {
-			int as = mache.param(0).zahl(this);
-			int ae = mache.param(1).zahl(this);
-			char[] text = mache.param(3).string().toCharArray();
-			if (prüfeRegister(befehl, as) && prüfeRegister(befehl, ae)) {
-				if (ae >= as) {
-					if (fehlerStoppen) stoppe = true;
-					status |= STATUS_FEHLER;
-					letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
-					letzterFehlerBefehl = befehl;
-					letzterFehlerZusatzInfo = 1;
-				} else {
-					ae -= as;
-					status &= STATUS_GRÖẞER | STATUS_KLEINER;
-					status |= STATUS_GLEICH;
-					for (int i = 0; i < ae && i < text.length; i ++ ) {
-						if (register[as + i] != (int) text[i]) {
-							if (register[as + i] > (int) text[i]) {
-								status &= STATUS_GLEICH;
-								status |= STATUS_GRÖẞER;
-								break;
-							} else {
-								status &= STATUS_GLEICH;
-								status |= STATUS_KLEINER;
-								break;
+			case vergleicheRegisterText: {
+				int as = mache.param(0).zahl(this);
+				int ae = mache.param(1).zahl(this);
+				char[] text = mache.param(3).string().toCharArray();
+				if (prüfeRegister(befehl, as) && prüfeRegister(befehl, ae)) {
+					if (ae >= as) {
+						if (fehlerStoppen) stoppe = true;
+						status |= STATUS_FEHLER;
+						letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
+						letzterFehlerBefehl = befehl;
+						letzterFehlerZusatzInfo = 1;
+					} else {
+						ae -= as;
+						status &= STATUS_GRÖẞER | STATUS_KLEINER;
+						status |= STATUS_GLEICH;
+						for (int i = 0; i < ae && i < text.length; i ++ ) {
+							if (register[as + i] != (int) text[i]) {
+								if (register[as + i] > (int) text[i]) {
+									status &= STATUS_GLEICH;
+									status |= STATUS_GRÖẞER;
+									break;
+								} else {
+									status &= STATUS_GLEICH;
+									status |= STATUS_KLEINER;
+									break;
+								}
 							}
 						}
 					}
 				}
+				break;
 			}
-			break;
-		}
-		case versionErg:
-			ergebnis = version();
-			break;
-		case versionReg: {
-			int reg = mache.param(0).zahl(this);
-			if (prüfeRegister(befehl, reg)) {
-				register[reg] = version();
+			case versionErg:
+				ergebnis = version();
+				break;
+			case versionReg: {
+				int reg = mache.param(0).zahl(this);
+				if (prüfeRegister(befehl, reg)) {
+					register[reg] = version();
+				}
+				break;
 			}
-			break;
-		}
-		case versionZw:
-			zwischen = version();
-			break;
-		case zwischenisausgebe:
-			aus.print(zwischen);
-			break;
-		case zwischenspeicher:
-			zwischen = ergebnis;
-			break;
+			case versionZw:
+				zwischen = version();
+				break;
+			case zwischenisausgebe:
+				aus.print(zwischen);
+				break;
+			case zwischenspeicher:
+				zwischen = ergebnis;
+				break;
+			}
+		} catch (Exception e) {
+			if (fehlerStoppen) stoppe = true;
+			status |= STATUS_FEHLER;
+			letzterFehlerArt = UNBBEKANNT;
+			letzterFehlerBefehl = befehl;
+			letzterFehlerZusatzInfo = e.hashCode();
 		}
 	}
 	
