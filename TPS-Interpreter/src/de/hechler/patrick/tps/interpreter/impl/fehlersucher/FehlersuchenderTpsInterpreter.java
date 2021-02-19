@@ -16,7 +16,7 @@ import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.AnordnungInterface;
 import de.hechler.patrick.tps.interpreter.hilfen.Helfer;
 
-@Version(5)
+@Version(6)
 public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	
 	private volatile int letzterFehlerZusatzInfo;
