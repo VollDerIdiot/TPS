@@ -66,9 +66,9 @@ Version 3:
 	
 Version 4:
 	BEFEHLE:
-		ladeInRegister:							"lade" "die" [ZAHL] "in" "das" "register" [ZAHL]
-		ladeVomRegisterErg:						"lade" "die" "zahl" "aus" "dem" "register" [ZAHL]
-		ladeVomRegisterZw:						"lade" "die" "zahl" "aus" "dem" "register" [ZAHL] "in" "den" "zwischenspeicher"
+		ladeInRegister:							"lade" "die" [ZAHL] "in" "das" "register" [POS-ZAHL]
+		ladeVomRegisterErg:						"lade" "die" "zahl" "aus" "dem" "register" [POS-ZAHL] "in" "den" "ergebnisspeicher"
+		ladeVomRegisterZw:						"lade" "die" "zahl" "aus" "dem" "register" [POS-ZAHL] "in" "den" "zwischenspeicher"
 		ladeRegisterAnzahlErg:					"lade" "die" "anzahl" "der" "register" "in" "den" "ergebnisspeicher"
 		ladeRegisterAnzahlZw:					"lade" "die" "anzahl" "der" "register" "in" "den" "zwischenspeicher"
 		registerausgabe:						"gebe" "die" "register" "von" [ZAHL] "bis" [ZAHL] "aus"
@@ -98,15 +98,15 @@ Version 5:
 	BEFEHLE:
 		versionErg								"schreibe" "die" "version" "in" "den" "ergebnisspeicher"
 		versionZw								"schreibe" "die" "version" "in" "den" "zwischenspeicher"
-		versionReg								"schreibe" "die" "version" "in" "das" "register" [ZAHL]
+		versionReg								"schreibe" "die" "version" "in" "das" "register" [POS-ZAHL]
 		stapelMaxGrößeErg						"schreibe" "die" "maximale" "größe" "des" "Stapels" "im" "ergebnisspeicher"
 		stapelMaxGrößeZw						"schreibe" "die" "maximale" "größe" "des" "Stapels" "im" "zwischenspeicher"
-		stapelMaxGrößeReg						"schreibe" "die" "maximale" "größe" "des" "Stapels" "in" "das" "register" [ZAHL]
+		stapelMaxGrößeReg						"schreibe" "die" "maximale" "größe" "des" "Stapels" "in" "das" "register" [POS-ZAHL]
 		stapelGrößeErg							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "im" "ergebnisspeicher"
 		stapelGrößeZw							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "im" "zwischenspeicher"
-		stapelGrößeReg							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "in" "das" "register" [ZAHL]
-		vergleicheRegister:						"vergleiche" "die" "register" "von" [ZAHL] "bis" [ZAHL] "mit" "den" "registern" "von" [ZAHL] "bis" [ZAHL]
-		vergleicheRegisterText:					"vergleiche" "die" "register" "von" [ZAHL] "bis" [ZAHL] "mit" "dem" "text:" [...]
+		stapelGrößeReg							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "in" "das" "register" [POS-ZAHL]
+		vergleicheRegister:						"vergleiche" "die" "register" "von" [POS-ZAHL] "bis" [POS-ZAHL] "mit" "den" "registern" "von" [POS-ZAHL] "bis" [POS-ZAHL]
+		vergleicheRegisterText:					"vergleiche" "die" "register" "von" [POS-ZAHL] "bis" [POS-ZAHL] "mit" "dem" "text:" [...]
 		rufeAuf									"mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
 		rufeAufWennGleich						"wenn" "es" "gleich" "ist" "mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
 		rufeAufWennNichtGleich					"wenn" "es" "nicht" "gleich" "ist" "mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
@@ -119,18 +119,18 @@ Version 5:
 		stapelLesenErg							"nehme" "die" "oberste" "zahl" "vom" "stapel" "herunter" "und" "speichere" "sie" "im" "ergebnisspeicher"
 		stapelLesenZw							"nehme" "die" "oberste" "zahl" "vom" "stapel" "herunter" "und" "speichere" "sie" "im" "zwischenspeicher"
 		stapelLesenReg							"nehme" "die" "oberste" "zahl" "vom" "stapel" "herunter" "und" "speichere" "sie" "im" "register" [ZAHL]
-		addiereRegReg:							"addiere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
-		addiereRegZ:							"addiere" "das" "register" [ZAHL] "mit" [ZAHL]
-		addiereZReg:							"addiere" [ZAHL] "mit" "dem" "register" [ZAHL]
-		subtrahiereRegReg:						"subtrahiere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
-		subtrahiereRegZ:						"subtrahiere" "das" "register" [ZAHL] "mit" [ZAHL]
-		subtrahiereZReg:						"subtrahiere" [ZAHL] "mit" "dem" "register" [ZAHL]
-		multipliziereRegReg:					"multipliziere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
-		multipliziereRegZ:						"multipliziere" "das" "register" [ZAHL] "mit" [ZAHL]
-		multipliziereZReg:						"multipliziere" [ZAHL] "mit" "dem" "register" [ZAHL]
-		dividiereRegReg:						"dividiere" "das" "register" [ZAHL] "mit" "dem" "register" [ZAHL]
-		dividiereRegZ:							"dividiere" "das" "register" [ZAHL] "mit" [ZAHL]
-		dividiereZReg:							"dividiere" [ZAHL] "mit" "dem" "register" [ZAHL]
+		addiereRegReg:							"addiere" "das" "register" [POS-ZAHL] "mit" "dem" "register" [ZAHL]
+		addiereRegZ:							"addiere" "das" "register" [POS-ZAHL] "mit" [ZAHL]
+		addiereZReg:							"addiere" [ZAHL] "mit" "dem" "register" [POS-ZAHL]
+		subtrahiereRegReg:						"subtrahiere" "das" "register" [POS-ZAHL] "mit" "dem" "register" [POS-ZAHL]
+		subtrahiereRegZ:						"subtrahiere" "das" "register" [POS-ZAHL] "mit" [ZAHL]
+		subtrahiereZReg:						"subtrahiere" [ZAHL] "mit" "dem" "register" [POS-ZAHL]
+		multipliziereRegReg:					"multipliziere" "das" "register" [POS-ZAHL] "mit" "dem" "register" [POS-ZAHL]
+		multipliziereRegZ:						"multipliziere" "das" "register" [POS-ZAHL] "mit" [ZAHL]
+		multipliziereZReg:						"multipliziere" [ZAHL] "mit" "dem" "register" [POS-ZAHL]
+		dividiereRegReg:						"dividiere" "das" "register" [POS-ZAHL] "mit" "dem" "register" [POS-ZAHL]
+		dividiereRegZ:							"dividiere" "das" "register" [POS-ZAHL] "mit" [ZAHL]
+		dividiereZReg:							"dividiere" [ZAHL] "mit" "dem" "register" [POS-ZAHL]
 		
 	ERKLÄRUNG:
 		versionErg								schreibt die version die aktuell verwendet wird in den ergebnisspeicher
@@ -142,8 +142,8 @@ Version 5:
 		stapelGrößeErg							speichert die aktuelle stapelgröße im ergebnisspeicher. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
 		stapelGrößeZw							speichert die aktuelle stapelgröße im zwischenspeicher. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
 		stapelGrößeReg							speichert die aktuelle stapelgröße im register P-1. wenn der stapel voll ist und ein rufeAuf befohlen wird, wird dem status FEHLER hinzugefügt und der befehl wird ignorier.
-		vergleicheRegister:						es wird immer das nächstniedrigere register mit dem nächstniedrigerem register des anderen bereiches verglichen. Bei den erstem registerpaar, welches nicht gleich ist wird abgebrochen, wenn es gleich ist wird das nächste registerpaar verglichen. das ergebnis des vergleiches wird im status gespeichert, wenn die registeranfänge gleich sind aber die bereiche unterschiedlich groß sind werden die bereiche als gleich angesehen.
-		vergleicheRegisterText:					vergleicht die register mit dem text so wie wenn man den text vorher in einen anderen bereich geladen hätte.
+		vergleicheRegister:						es wird immer das nächstniedrigere register mit dem nächstniedrigerem register des anderen bereiches verglichen. Bei den erstem registerpaar, welches nicht gleich ist wird abgebrochen, wenn es gleich ist wird das nächste registerpaar verglichen. das ergebnis des vergleiches wird im status gespeichert, wenn die registeranfänge gleich sind aber die BEREICHE unterschiedlich groß sind werden die BEREICHE als gleich angesehen.
+		vergleicheRegisterText:					vergleicht die register mit dem text so wie wenn man den text vorher in einen anderen BEREICH geladen hätte.
 		rufeAuf									ruft die stelle P-1 auf und speichert den aktuellen stand im stapel. Der stand beinhaltet nur den aktuellen befehl.
 		rufeAufWennGleich						wenn im status gleich gespeichert ist wird ein rufeAuf ausgeführt.
 		rufeAufWennNichtGleich					wenn im status gleich nicht gespeichert ist wird ein rufeAuf ausgeführt.
@@ -168,5 +168,43 @@ Version 5:
 		dividiereRegReg:						dividiert den inhalt des register P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert. im zwischenspeicher wird das moduloergebnis gespeichert
 		dividiereRegZ:							dividiert den inhalt des register P-1 mit P-2. des ergebnis wird im ergebnisspeicher gespeichert. im zwischenspeicher wird das moduloergebnis gespeichert
 		dividiereZReg:							dividiert P-1 mit dem inhalt des registers P-2. des ergebnis wird im ergebnisspeicher gespeichert. im zwischenspeicher wird das moduloergebnis gespeichert
+		
+	BEREICH:
+		hat einen start-punkt und einen endpunkt
+		der stratpunkt und alle punkte bis zum andpunkt gehöhren zum BEREICH, dazu gehört allerdings nicht der endpunkt selbst.
+	
+Version 6:
+	BEFEHLE:
+		rufeAufWennFalsch						"wenn" "es" "einen" "fehler" "gab" "rufe" "die" "folgende" "stelle" "auf:" [STELLE]
+		letzterFehler							"gib" "mir" "den" "letzten" "fehler"
+		rufeAufDirekt							"rufe" "den" "befehl" [POS-ZAHL] "auf"
+		geheZuDirekt							"springe" "zum" "befehl" [POS-ZAHL]
+		VorgekommeneFehlerErg					"speichere" "alle" "vorgekommenen" "fehler" "im" "ergebnisspeicher"
+		VorgekommeneFehlerZW					"speichere" "alle" "vorgekommenen" "fehler" "im" "zwischenspeicher"
+		VorgekommeneFehlerReg					"speichere" "alle" "vorgekommenen" "fehler" "im" "register" [POS-ZAHL]
+		
+	ERKLÄRUNG:
+		rufeAufWennFalsch						wenn im status FEHLER gespeichert ist wird ein rufeAuf zur stelle P-1 gemacht und vom status FEHLER entfernt.
+		letzterFehler							speichert den letzten fehler ab: im ergebnisspeicher wird der satz gespeichert und im zwischenspeicher wird die fehlerart gespeichert
+		rufeAufDirekt							führt ein rufeAuf zu dem befehl durch. Wenn P-1 größer ist als die nummer des größten Befehls, wird im status FEHLER gesetzt und der befehl ignorier.
+		geheZuDirekt							springt zu dem befehl. Wenn P-1 größer ist als die nummer des größten Befehls, wird im status FEHLER gesetzt und der befehl ignorier.
+		
+	KASTENWÖRTER:
+		[ZAHL]									VORHER oder FEHLERARTEN
+		[POS-ZAHL]								VORHER oder FEHLERARTEN
+	
+	FEHLERARTEN:
+		UNBBEKANNT								= BIN: 00000000000000000000000000000001
+		GETEILT_DURCH_NULL						= BIN: 00000000000000000000000000000010
+		FALSCHE_BENUTZER_EINGABE				= BIN: 00000000000000000000000000000100
+		NEGATIVE_REGISTER_ANSPRACHE				= BIN: 00000000000000000000000000001000
+		NEGATIVE_BEFEHL_ANSPRACHE				= BIN: 00000000000000000000000000010000
+		Zu_WENIGE_BEFEHLE						= BIN: 00000000000000000000000000100000
+		ZU_WENIGE_REGISTER						= BIN: 00000000000000000000000001000000
+		ZU_KLEINES_REGISTER						= BIN: 00000000000000000000000010000000
+		LEERER_STAPEL_SPRUNG					= BIN: 00000000000000000000000100000000
+		ZU_GROẞER_STAPEL						= BIN: 00000000000000000000001000000000
+		BEREICHSENDE_KLEINER_BEREICHSSTART		= BIN: 00000000000000000000010000000000
+		KEIN_FEHLER								= BIN: 10000000000000000000000000000000
 		
 	

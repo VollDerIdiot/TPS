@@ -61,8 +61,7 @@ public enum BefehlEnum {
 	@Version(4) registerZeichenEinlesen("lese", "die", "nächsten", Interpreter.POS_ZAHL, "zeichen", "des", "benutzers", "in", "die", "register", "ab", Interpreter.POS_ZAHL, "ein"),
 	
 	
-	@Stelle(braucht = true)
-	@Version(4) geheWennFalsch("wenn", "es", "einen", "fehler", "gab", "springe", "zur", "stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(4) geheWennFalsch("wenn", "es", "einen", "fehler", "gab", "springe", "zur", "stelle:", Interpreter.STELLE),
 	
 	
 	
@@ -87,8 +86,8 @@ public enum BefehlEnum {
 	@Stelle(braucht = true) @Version(5) rufeAufWennKleiner("wenn", "es", "kleiner", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
 	@Stelle(braucht = true) @Version(5) rufeAufGrößer("wenn", "es", "größer", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
 	@Stelle(braucht = true) @Version(5) rufeAufKleinerGleich("wenn", "es", "kleiner", "oder", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:", Interpreter.STELLE),
-	@Stelle(braucht = true) @Version(5) rufeAufGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der",
-			"stelle:", Interpreter.STELLE),
+	@Stelle(braucht = true) @Version(5) rufeAufGrößerGleich("wenn", "es", "größer", "oder", "gleich", "ist", "wenn", "es", "gleich", "ist", "mache", "einen", "stellenaufruf", "bei", "der", "stelle:",
+			Interpreter.STELLE),
 	@Version(5) geheZurück("gehe", "zurück"),
 	
 	@Version(5) stapelSchreiben("lege", "die", Interpreter.ZAHL, "auf", "den", "stapel"),
@@ -110,8 +109,16 @@ public enum BefehlEnum {
 	
 	@Version(5) dividiereRegReg("dividiere", "das", "register", Interpreter.POS_ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
 	@Version(5) dividiereRegZ("dividiere", "das", "register", Interpreter.POS_ZAHL, "mit", Interpreter.ZAHL),
-	@Version(5) dividiereZReg("dividiere", Interpreter.ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL)
+	@Version(5) dividiereZReg("dividiere", Interpreter.ZAHL, "mit", "dem", "register", Interpreter.POS_ZAHL),
 	
+	
+	
+	@Version(6) letzterFehler("gib", "mir", "den", "letzten", "fehler"), 
+	
+	@Version(6) @Stelle(braucht = true) rufeAufWennFalsch("wenn", "es", "einen", "fehler", "gab", "rufe", "die", "folgende", "stelle", "auf:", "[STELLE]"),
+	
+	@Version(6) rufeAufDirekt("rufe", "den", "befehl", "[POS-ZAHL]", "auf"),
+	@Version(6) geheZuDirekt("springe", "zum", "befehl", "[POS-ZAHL]"),
 	
 	
 	;
@@ -124,6 +131,7 @@ public enum BefehlEnum {
 	
 	public String[] folge() {
 		return folge.clone();
+		
 	}
 	
 	public boolean kann(List <String> befehl) {
