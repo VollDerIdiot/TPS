@@ -1,4 +1,4 @@
-package de.hechler.patrick.tps.interpreter.impl.fehlersucher;
+package de.hechler.patrick.tps.interpreter.fehlersucherimpl;
 
 import java.io.IOException;
 import java.io.InputStream;
