@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -36,6 +38,7 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	private PrintStream           aus;
 	private Scanner               ein;
 	private Map <String, Integer> stellen;
+	private HashSet <String>      benötigteStellen;
 	
 	private volatile boolean stoppe;
 	private boolean          stopperBeiGeheRaus;
@@ -53,11 +56,13 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 		letzterFehlerArt = KEIN_FEHLER;
 		letzterFehlerBefehl = -1;
 		letzterFehlerZusatzInfo = 0;
+		stellen = new HashMap <>();
+		benötigteStellen = new HashSet <>();
 	}
 	
 	@Override
 	public void lade(InputStream eingang, Charset zeichensatz) throws IOException, InterpretierungsFehler {
-		anordnungen = Helfer.lade(eingang, zeichensatz);
+		anordnungen = Helfer.lade(eingang, zeichensatz, stellen, benötigteStellen);
 	}
 	
 	@Override
