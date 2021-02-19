@@ -17,6 +17,7 @@ import de.hechler.patrick.pzs8b.Pzs8bCharset;
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 
 
+@SuppressWarnings("deprecation")
 class TpsInterpreterImplTest {
 	
 	private static final String TEST_1_1 = "addiere      3 \r\n" + "   mit 4.\r\n" + "multipliziere ergebnis mit 2. gebe das ergebnis aus.   \r\n" + "  ";

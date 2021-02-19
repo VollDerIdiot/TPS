@@ -37,6 +37,8 @@ public class Anordnung implements AnordnungInterface {
 	@Override
 	public void fülleParam(List <String> satz, Collection <String> benötigteStellen, Map <String, Integer> stellen, int index) throws InterpretierungsFehler {
 		switch (bef) {
+		default:
+			throw new InterpretierungsFehler("unbekannter befehl " + bef);
 		case addiere:
 			args = new Param[2];
 			args[0] = paramZahl(satz.get(1));

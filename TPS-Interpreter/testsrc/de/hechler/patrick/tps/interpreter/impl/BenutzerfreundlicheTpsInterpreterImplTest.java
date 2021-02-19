@@ -18,6 +18,7 @@ import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.fehler.UnbekannteStellenFehler;
 
 
+@SuppressWarnings("deprecation")
 class BenutzerfreundlicheTpsInterpreterImplTest {
 	
 	private static final String TEST_1_1_1 = "addiere      3 \r\n" + "   mit 4.\r\n" + "multipliziere ergebnis mit 2. gebe das ergebnis aus.   \r\n" + "  ";
