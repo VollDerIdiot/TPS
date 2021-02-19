@@ -27,8 +27,8 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	private volatile int zwischen;
 	private volatile int stapelZeiger;
 	
-	private volatile int[] stapel;
-	private volatile int[] register;
+	private final int[] stapel;
+	private final int[] register;
 	
 	private volatile int         nächste;
 	private AnordnungInterface[] anordnungen;
