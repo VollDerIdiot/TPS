@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
-import de.hechler.patrick.tps.fehler.NegativerRegisterIndexFehler;
+import de.hechler.patrick.tps.fehler.NegativeZahlFehler;
 import de.hechler.patrick.tps.interpreter.FehlersuchenInterpreter;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Stelle;
@@ -96,7 +96,7 @@ public class TolleAnordnung implements AnordnungInterface {
 			return new Param(true);
 		case "zwischen":
 			return new Param(false);
-			
+		
 		case "UNBBEKANNT":
 			return new Param(FehlersuchenInterpreter.UNBBEKANNT);
 		case "GETEILT_DURCH_NULL":
@@ -119,13 +119,13 @@ public class TolleAnordnung implements AnordnungInterface {
 			return new Param(FehlersuchenInterpreter.BEREICHSENDE_KLEINER_BEREICHSSTART);
 		case "KEIN_FEHLER":
 			return new Param(FehlersuchenInterpreter.KEIN_FEHLER);
-			
+		
 		default:
 			return new Param(Integer.parseInt(param));
 		}
 	}
 	
-	private Param paramPosZahl(String param) throws NegativerRegisterIndexFehler {
+	private Param paramPosZahl(String param) throws NegativeZahlFehler {
 		switch (param) {
 		case "ergebnis":
 			return new Param(true);
@@ -144,16 +144,20 @@ public class TolleAnordnung implements AnordnungInterface {
 			return new Param(FehlersuchenInterpreter.NEGATIVE_BEFEHL_ANSPRACHE);
 		case "ZU_WENIGE_REGISTER":
 			return new Param(FehlersuchenInterpreter.ZU_WENIGE_REGISTER);
+		case "ZU_KLEINES_REGISTER":
+			return new Param(FehlersuchenInterpreter.ZU_KLEINES_REGISTER);
 		case "LEERER_STAPEL_SPRUNG":
 			return new Param(FehlersuchenInterpreter.LEERER_STAPEL_SPRUNG);
 		case "ZU_GROẞER_STAPEL":
 			return new Param(FehlersuchenInterpreter.ZU_GROẞER_STAPEL);
 		case "BEREICHSENDE_KLEINER_BEREICHSSTART":
 			return new Param(FehlersuchenInterpreter.BEREICHSENDE_KLEINER_BEREICHSSTART);
+		case "KEIN_FEHLER":
+			return new Param(FehlersuchenInterpreter.KEIN_FEHLER);
 		
 		default:
 			int teste = Integer.parseInt(param);
-			if (teste < 0) throw new NegativerRegisterIndexFehler(teste);
+			if (teste < 0) throw new NegativeZahlFehler(teste);
 			return new Param(teste);
 		}
 	}
@@ -161,10 +165,11 @@ public class TolleAnordnung implements AnordnungInterface {
 	@Override
 	public String toString() {
 		StringBuilder erg = new StringBuilder('[').append(bef).append("]:");
-		for (Param param : parameter) {
-			erg.append(param).append(", ");
+		int i;
+		for (i = 0; i < parameter.length - 1; i ++ ) {
+			erg.append(parameter[i]).append(", ");
 		}
-		return erg.toString();
+		return erg.append(parameter[i]).toString();
 	}
 	
 }

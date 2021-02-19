@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
-import de.hechler.patrick.tps.fehler.NegativerRegisterIndexFehler;
+import de.hechler.patrick.tps.fehler.NegativeZahlFehler;
 import de.hechler.patrick.tps.interpreter.Version;
 
 @Deprecated
@@ -337,7 +337,7 @@ public class Anordnung implements AnordnungInterface {
 		}
 	}
 	
-	private Param paramRegisterZahl(String param) throws NegativerRegisterIndexFehler {
+	private Param paramRegisterZahl(String param) throws NegativeZahlFehler {
 		switch (param) {
 		case "ergebnis":
 			return new Param(true);
@@ -345,7 +345,7 @@ public class Anordnung implements AnordnungInterface {
 			return new Param(false);
 		default:
 			int teste = Integer.parseInt(param);
-			if (teste < 0) throw new NegativerRegisterIndexFehler(teste);
+			if (teste < 0) throw new NegativeZahlFehler(teste);
 			return new Param(teste);
 		}
 	}
