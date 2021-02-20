@@ -20,8 +20,8 @@ import de.hechler.patrick.tps.fehler.UnbekannterBefehlFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.AnordnungInterface;
-import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 import de.hechler.patrick.tps.interpreter.hilfen.TolleAnordnung;
+import de.hechler.patrick.tps.interpreter.hilfen.befehl.BefehlEnum;
 
 @Version(5)
 public class StapelbesitzendeTpsInterpreterImpl implements Interpreter {

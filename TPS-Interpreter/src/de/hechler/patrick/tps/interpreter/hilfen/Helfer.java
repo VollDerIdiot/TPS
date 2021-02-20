@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
+import de.hechler.patrick.tps.interpreter.hilfen.befehl.BefehlEnum;
 
 public class Helfer {
 	

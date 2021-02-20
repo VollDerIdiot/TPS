@@ -20,7 +20,7 @@ import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.Anordnung;
 import de.hechler.patrick.tps.interpreter.hilfen.AnordnungInterface;
-import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
+import de.hechler.patrick.tps.interpreter.hilfen.befehl.BefehlEnum;
 
 @Deprecated
 @Version(3)

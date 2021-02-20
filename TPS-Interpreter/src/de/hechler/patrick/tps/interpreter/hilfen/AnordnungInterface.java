@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
+import de.hechler.patrick.tps.interpreter.hilfen.befehl.BefehlEnum;
 
 
 public interface AnordnungInterface {

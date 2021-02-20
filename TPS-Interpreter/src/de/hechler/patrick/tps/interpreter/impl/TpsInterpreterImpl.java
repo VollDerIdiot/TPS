@@ -12,8 +12,8 @@ import java.util.Set;
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Version;
-import de.hechler.patrick.tps.interpreter.hilfen.BefehlEnum;
 import de.hechler.patrick.tps.interpreter.hilfen.SatzLeser;
+import de.hechler.patrick.tps.interpreter.hilfen.befehl.BefehlEnum;
 
 @Deprecated
 @Version(value = 1)

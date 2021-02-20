@@ -1,4 +1,4 @@
-package de.hechler.patrick.tps.interpreter.hilfen;
+package de.hechler.patrick.tps.interpreter.hilfen.befehl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,8 +12,9 @@ import de.hechler.patrick.tps.interpreter.Interpreter;
 import de.hechler.patrick.tps.interpreter.Stelle;
 import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.Änderung;
+import de.hechler.patrick.tps.interpreter.hilfen.Param;
 
-public enum BefehlEnum {
+public enum BefehlEnum  {
 	
 	@Version(1) addiere("addiere", Interpreter.ZAHL, "mit", Interpreter.ZAHL), @Version(1) subtrahiere("subtrahiere", Interpreter.ZAHL, "mit", Interpreter.ZAHL),
 	
