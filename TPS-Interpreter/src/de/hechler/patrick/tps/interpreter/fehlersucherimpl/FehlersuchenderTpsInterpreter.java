@@ -1,12 +1,9 @@
 package de.hechler.patrick.tps.interpreter.fehlersucherimpl;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.InputMismatchException;
@@ -48,60 +45,6 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	private boolean          ignoriereStopper;
 	private Set <Integer>    stopper;
 	private boolean          fehlerStoppen;
-	
-	public static void main(String[] args) throws FileNotFoundException, IOException, InterpretierungsFehler {
-		FehlersuchenInterpreter inter = new FehlersuchenderTpsInterpreter(System.out, System.in, 15, 1000);
-		inter.lade(new File("../rechner-2.tps"), StandardCharsets.UTF_8);
-		inter.fehlerStoppen(true);
-		inter.ignoriereStoppPunkte(false);
-		while (inter.nächstesOderNull() != null) {
-			inter.macheSchritt();
-			if (inter.stoppt()) {
-				System.err.println("FEHLER: satz[" + inter.satz() + ']' + inter.nächstesOderNull());
-				System.err.println("    STATUS: " + inter.statusString());
-				System.err.println("    ERG=: " + inter.ergebnis() + " ZW=" + inter.zwischenspeicher());
-				switch (inter.letzterFehlerArt()) {
-				case BEREICHSENDE_KLEINER_BEREICHSSTART:
-					System.err.println("breichsende kleiner bereichsstart");
-					break;
-				case FALSCHE_BENUTZER_EINGABE:
-					System.err.println("falsche benutzer eingabe");
-					break;
-				case GETEILT_DURCH_NULL:
-					System.err.println("geteilt durch 0");
-					break;
-				case KEIN_FEHLER:
-					System.err.println("kein fehler");
-					break;
-				case LEERER_STAPEL_SPRUNG:
-					System.err.println("leerer stapel sprung");
-					break;
-				case NEGATIVE_BEFEHL_ANSPRACHE:
-					System.err.println("negative befehl ansprache");
-					break;
-				case NEGATIVE_REGISTER_ANSPRACHE:
-					System.err.println("negative register ansprache");
-					break;
-				case UNBBEKANNT:
-					System.err.println("ubnbekannt");
-					break;
-				case ZU_GROẞER_STAPEL:
-					System.err.println("zu großer stapel");
-					break;
-				case ZU_KLEINES_REGISTER:
-					System.err.println("zu kleine registerangabe");
-					break;
-				case Zu_WENIGE_BEFEHLE:
-					System.err.println("zu wenige befehler");
-					break;
-				case ZU_WENIGE_REGISTER:
-					System.err.println("zu wenige register");
-					break;
-				}
-				inter.stoppen(false);
-			}
-		}
-	}
 	
 	public String statusString() {
 		return ( (STATUS_ANGEHALTEN & status) != 0 ? "angehalten " : "") + ( (STATUS_LÄUFT & status) != 0 ? "läuft " : "") + ( (STATUS_FEHLER & status) != 0 ? "fehler " : "")
