@@ -68,13 +68,13 @@ public enum BefehlEnum {
 	@Version(5) versionErg("schreibe", "die", "version", "in", "den", "ergebnisspeicher"), @Version(5) versionZw("schreibe", "die", "version", "in", "den", "zwischenspeicher"),
 	@Version(5) versionReg("schreibe", "die", "version", "in", "das", "register", Interpreter.POS_ZAHL),
 	
-	@Version(5) stapelMaxGrößeErg("schreibe", "die", "maximale", "größe", "des", "Stapels", "im", "ergebnisspeicher"),
-	@Version(5) stapelMaxGrößeZw("schreibe", "die", "maximale", "größe", "des", "Stapels", "im", "zwischenspeicher"),
-	@Version(5) stapelMaxGrößeReg("schreibe", "die", "maximale", "größe", "des", "Stapels", "in", "das", "register", Interpreter.POS_ZAHL),
+	@Version(5) stapelMaxGrößeErg("schreibe", "die", "maximale", "größe", "des", "stapels", "in", "den", "ergebnisspeicher"),
+	@Version(5) stapelMaxGrößeZw("schreibe", "die", "maximale", "größe", "des", "stapels", "in", "den", "zwischenspeicher"),
+	@Version(5) stapelMaxGrößeReg("schreibe", "die", "maximale", "größe", "des", "stapels", "in", "das", "register", Interpreter.POS_ZAHL),
 	
-	@Version(5) stapelGrößeErg("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "im", "ergebnisspeicher"),
-	@Version(5) stapelGrößeZw("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "im", "zwischenspeicher"),
-	@Version(5) stapelGrößeReg("schreibe", "die", "aktuelle", "größe", "des", "Stapels", "in", "das", "register", Interpreter.POS_ZAHL),
+	@Version(5) stapelGrößeErg("schreibe", "die", "aktuelle", "größe", "des", "stapels", "in", "den", "ergebnisspeicher"),
+	@Version(5) stapelGrößeZw("schreibe", "die", "aktuelle", "größe", "des", "stapels", "in", "den", "zwischenspeicher"),
+	@Version(5) stapelGrößeReg("schreibe", "die", "aktuelle", "größe", "des", "stapels", "in", "das", "register", Interpreter.POS_ZAHL),
 	
 	@Version(5) vergleicheRegister("vergleiche", "die", "register", "von", Interpreter.POS_ZAHL, "bis", Interpreter.POS_ZAHL, "mit", "den", "registern", "von", Interpreter.POS_ZAHL, "bis",
 			Interpreter.POS_ZAHL),
@@ -113,12 +113,11 @@ public enum BefehlEnum {
 	
 	
 	
-	@Version(6) letzterFehler("gib", "mir", "den", "letzten", "fehler"), 
+	@Version(6) letzterFehler("gib", "mir", "den", "letzten", "fehler"),
 	
 	@Version(6) @Stelle(braucht = true) rufeAufWennFalsch("wenn", "es", "einen", "fehler", "gab", "rufe", "die", "folgende", "stelle", "auf:", "[STELLE]"),
 	
-	@Version(6) rufeAufDirekt("rufe", "den", "befehl", "[POS-ZAHL]", "auf"),
-	@Version(6) geheZuDirekt("springe", "zum", "befehl", "[POS-ZAHL]"),
+	@Version(6) rufeAufDirekt("rufe", "den", "befehl", "[POS-ZAHL]", "auf"), @Version(6) geheZuDirekt("springe", "zum", "befehl", "[POS-ZAHL]"),
 	
 	
 	;
@@ -238,7 +237,7 @@ public enum BefehlEnum {
 		case Interpreter.WORTFOLGE:
 			return true;
 		case Interpreter.STELLE:
-			return !befehlsteil.isEmpty() && befehlsteil != befehlsteil.replaceFirst("^[A-Z]+$", "");
+			return !befehlsteil.isEmpty() && befehlsteil != befehlsteil.replaceFirst("^[A-Z_]+$", "");
 		default:
 			throw new RuntimeException("unbekannte folge: " + folge[index]);
 		}

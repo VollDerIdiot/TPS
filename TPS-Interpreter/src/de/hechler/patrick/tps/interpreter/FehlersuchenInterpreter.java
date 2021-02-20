@@ -12,7 +12,7 @@ import java.util.Set;
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.interpreter.hilfen.AnordnungInterface;
 
-public interface FehlersuchenInterpreter extends Interpreter {
+public interface FehlersuchenInterpreter extends Interpreter, Runnable {
 	
 	public static final int UNBBEKANNT                         = 0b00000000000000000000000000000001;
 	public static final int GETEILT_DURCH_NULL                 = 0b00000000000000000000000000000010;
@@ -75,6 +75,10 @@ public interface FehlersuchenInterpreter extends Interpreter {
 	
 	void stoppe();
 	
+	void stoppen(boolean stopp);
+	
+	boolean stoppt();
+	
 	boolean gestoppt();
 	
 	/**
@@ -90,8 +94,10 @@ public interface FehlersuchenInterpreter extends Interpreter {
 	 * führt sofort einen geheZurück Befehl aus und gibt die {@link AnordnungInterface} zurück, zu welcher zurückgesprungen wurde.
 	 * 
 	 * @return die Anordnung zu welcher zu zurückgesprungen wurde.
+	 * @throws IllegalStateException
+	 *             wenn der Stapel leer ist.
 	 */
-	AnordnungInterface erzwingeZurückgehen();
+	AnordnungInterface geheZurück() throws IllegalStateException;
 	
 	/**
 	 * gibt die Anordnung, welche als nächstes ausgeführt wird zurück.
@@ -103,18 +109,32 @@ public interface FehlersuchenInterpreter extends Interpreter {
 	AnordnungInterface nächstes() throws NoSuchElementException;
 	
 	/**
+	 * gibt die Anordnung, welche als nächstes ausgeführt wird zurück.
+	 * 
+	 * @return die Anordnung, welche als nächstes ausgeführt wird oder <code>null</code>, wenn es keine weitere Anordnung mehr gibt.
+	 */
+	AnordnungInterface nächstesOderNull();
+	
+	/**
 	 * führt eine Anordnung aus und gibt die {@link #nächstes()} Anordnung zurück.
 	 * 
 	 * @return die Anordnung, welche als nächstes ausgeführt wird
 	 * @throws IllegalStateException
-	 *             wenn bereits alles ausgeführt wurde.
+	 *             wenn bereits alles ausgeführt wurde oder <code>null</code> wenn es keine gibt.
 	 */
 	AnordnungInterface macheSchritt() throws IllegalStateException;
 	
 	/**
+	 * Gibt die Zahl des nächsten Satzes zurück oder -1 wenn es keinen nächsten Satz gibt.
+	 * 
+	 * @return Die Zahl des nächsten Satzes zurück oder -1 wenn es keinen nächsten Satz gibt.
+	 */
+	int satz();
+	
+	/**
 	 * führt so lange alle Anordnungen durch, bis ein gehe zurück durchgeführt wird oder ein Stopper aktiviert wird. Dann wird getoppt und die {@link #nächstes()} Anordnung wird zurückgegeben.
 	 * 
-	 * @return die Anordnung, welche als nächstes ausgeführt wird
+	 * @return die Anordnung, welche als nächstes ausgeführt wird oder <code>null</code> wenn es keine gibt.
 	 * @throws IllegalStateException
 	 *             wenn bereits alles ausgeführt wurde.
 	 */
@@ -123,7 +143,7 @@ public interface FehlersuchenInterpreter extends Interpreter {
 	/**
 	 * führt so lange alle Anordnungen durch, bis ein Stopper aktiviert wird. Dann wird getoppt und die {@link #nächstes()} Anordnung wird zurückgegeben.
 	 * 
-	 * @return die Anordnung, welche als nächstes ausgeführt wird
+	 * @return die Anordnung, welche als nächstes ausgeführt wird oder <code>null</code> wenn es keine gibt.
 	 * @throws IllegalStateException
 	 *             wenn bereits alles ausgeführt wurde.
 	 */
@@ -150,5 +170,7 @@ public interface FehlersuchenInterpreter extends Interpreter {
 	default void lade(File datei, Charset zeichensatz) throws FileNotFoundException, IOException, InterpretierungsFehler {
 		lade(new FileInputStream(datei), zeichensatz);
 	}
+	
+	String statusString();
 	
 }

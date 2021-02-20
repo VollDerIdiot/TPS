@@ -13,7 +13,7 @@ Version 1:
 		
 	KASTENWÖRTER:
 		[ZAHL]: 								"ergebnis", "zwischen", (-)?[0-9]+
-		[...]:									WORTFOLGE (min. 1 WORT)
+		[...]:									WORTFOLGE (min. 1 WORT), WORTE werden durch ' ' getrennt
 		
 	ERKLÄRUNG:
 		addiere:								addiert P-1 mit P-2 und speichert die summe der berechnung im ergebnisspeicher
@@ -75,7 +75,6 @@ Version 4:
 		registerWortEinlesen:					"lese" "das" "nächste" "wort" "des" "benutzers" "in" "die" "register" "ab" [ZAHL] "ein"
 		registerZeichenEinlesen:				"lese" "die" "nächsten" [ZAHL] "zeichen" "des" "benutzers" "in" "die" "register" "ab" [ZAHL] "ein"
 		geheWennFalsch:							"wenn" "es" "einen" "fehler" "gab" "springe" "zur" "stelle:" [STELLE]
-		geheWennMehrfachAn						"wenn" "es" "noch" "mehr" "befehlsgeber" "gibt" "gehe" "zur" "stelle:" [STELLE]
 		
 	ERKLÄRUNG:
 		ladeInRegister:							schreibt in das register P-2 die zahl P-1
@@ -99,12 +98,12 @@ Version 5:
 		versionErg								"schreibe" "die" "version" "in" "den" "ergebnisspeicher"
 		versionZw								"schreibe" "die" "version" "in" "den" "zwischenspeicher"
 		versionReg								"schreibe" "die" "version" "in" "das" "register" [POS-ZAHL]
-		stapelMaxGrößeErg						"schreibe" "die" "maximale" "größe" "des" "Stapels" "im" "ergebnisspeicher"
-		stapelMaxGrößeZw						"schreibe" "die" "maximale" "größe" "des" "Stapels" "im" "zwischenspeicher"
-		stapelMaxGrößeReg						"schreibe" "die" "maximale" "größe" "des" "Stapels" "in" "das" "register" [POS-ZAHL]
-		stapelGrößeErg							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "im" "ergebnisspeicher"
-		stapelGrößeZw							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "im" "zwischenspeicher"
-		stapelGrößeReg							"schreibe" "die" "aktuelle" "größe" "des" "Stapels" "in" "das" "register" [POS-ZAHL]
+		stapelMaxGrößeErg						"schreibe" "die" "maximale" "größe" "des" "stapels" "in" "den" "ergebnisspeicher"
+		stapelMaxGrößeZw						"schreibe" "die" "maximale" "größe" "des" "stapels" "in" "den" "zwischenspeicher"
+		stapelMaxGrößeReg						"schreibe" "die" "maximale" "größe" "des" "stapels" "in" "das" "register" [POS-ZAHL]
+		stapelGrößeErg							"schreibe" "die" "aktuelle" "größe" "des" "stapels" "in" "den" "ergebnisspeicher"
+		stapelGrößeZw							"schreibe" "die" "aktuelle" "größe" "des" "stapels" "in" "den" "zwischenspeicher"
+		stapelGrößeReg							"schreibe" "die" "aktuelle" "größe" "des" "stapels" "in" "das" "register" [POS-ZAHL]
 		vergleicheRegister:						"vergleiche" "die" "register" "von" [POS-ZAHL] "bis" [POS-ZAHL] "mit" "den" "registern" "von" [POS-ZAHL] "bis" [POS-ZAHL]
 		vergleicheRegisterText:					"vergleiche" "die" "register" "von" [POS-ZAHL] "bis" [POS-ZAHL] "mit" "dem" "text:" [...]
 		rufeAuf									"mache" "einen" "stellenaufruf" "bei" "der" "stelle:" [STELLE]
@@ -179,9 +178,6 @@ Version 6:
 		letzterFehler							"gib" "mir" "den" "letzten" "fehler"
 		rufeAufDirekt							"rufe" "den" "befehl" [POS-ZAHL] "auf"
 		geheZuDirekt							"springe" "zum" "befehl" [POS-ZAHL]
-		VorgekommeneFehlerErg					"speichere" "alle" "vorgekommenen" "fehler" "im" "ergebnisspeicher"
-		VorgekommeneFehlerZW					"speichere" "alle" "vorgekommenen" "fehler" "im" "zwischenspeicher"
-		VorgekommeneFehlerReg					"speichere" "alle" "vorgekommenen" "fehler" "im" "register" [POS-ZAHL]
 		
 	ERKLÄRUNG:
 		rufeAufWennFalsch						wenn im status FEHLER gespeichert ist wird ein rufeAuf zur stelle P-1 gemacht und vom status FEHLER entfernt.

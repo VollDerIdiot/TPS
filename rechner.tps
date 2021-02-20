@@ -29,7 +29,7 @@ wenn es gleich ist springe zur stelle: ADDIEREN.
 lade die zahl aus dem register 0 in den zwischenspeicher.
 subtrahiere zwischen mit ergebnis.
 hier ist die stelle: ABSCHLUSS.
-gebe folgendes aus: das ergebnis ist:. gebe ein leerzeichen aus. gebe das ergebnis aus. gebe ein leerzeichen aus. mache einen zeilenumbruch.
+gebe folgendes aus: das ergebnis ist:. gebe ein leerzeichen aus. gebe das ergebnis aus. mache einen zeilenumbruch.
 gebe folgendes aus: soll ich noch etwas berechnen? (NE=0|ja=1). mache einen zeilenumbruch.
 lese eine zahl ein.
 wenn es einen fehler gab springe zur stelle: ENDE.

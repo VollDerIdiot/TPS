@@ -1,9 +1,12 @@
 package de.hechler.patrick.tps.interpreter.fehlersucherimpl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.InputMismatchException;
@@ -24,9 +27,9 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	private volatile int letzterFehlerZusatzInfo;
 	private volatile int letzterFehlerBefehl;
 	private volatile int letzterFehlerArt;
-	private volatile int status;
 	private volatile int ergebnis;
 	private volatile int zwischen;
+	private volatile int status;
 	private volatile int stapelZeiger;
 	
 	private final int[] stapel;
@@ -46,32 +49,121 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	private Set <Integer>    stopper;
 	private boolean          fehlerStoppen;
 	
+	public static void main(String[] args) throws FileNotFoundException, IOException, InterpretierungsFehler {
+		FehlersuchenInterpreter inter = new FehlersuchenderTpsInterpreter(System.out, System.in, 15, 1000);
+		inter.lade(new File("../rechner-2.tps"), StandardCharsets.UTF_8);
+		inter.fehlerStoppen(true);
+		inter.ignoriereStoppPunkte(false);
+		while (inter.nächstesOderNull() != null) {
+			inter.macheSchritt();
+			if (inter.stoppt()) {
+				System.err.println("FEHLER: satz[" + inter.satz() + ']' + inter.nächstesOderNull());
+				System.err.println("    STATUS: " + inter.statusString());
+				System.err.println("    ERG=: " + inter.ergebnis() + " ZW=" + inter.zwischenspeicher());
+				switch (inter.letzterFehlerArt()) {
+				case BEREICHSENDE_KLEINER_BEREICHSSTART:
+					System.err.println("breichsende kleiner bereichsstart");
+					break;
+				case FALSCHE_BENUTZER_EINGABE:
+					System.err.println("falsche benutzer eingabe");
+					break;
+				case GETEILT_DURCH_NULL:
+					System.err.println("geteilt durch 0");
+					break;
+				case KEIN_FEHLER:
+					System.err.println("kein fehler");
+					break;
+				case LEERER_STAPEL_SPRUNG:
+					System.err.println("leerer stapel sprung");
+					break;
+				case NEGATIVE_BEFEHL_ANSPRACHE:
+					System.err.println("negative befehl ansprache");
+					break;
+				case NEGATIVE_REGISTER_ANSPRACHE:
+					System.err.println("negative register ansprache");
+					break;
+				case UNBBEKANNT:
+					System.err.println("ubnbekannt");
+					break;
+				case ZU_GROẞER_STAPEL:
+					System.err.println("zu großer stapel");
+					break;
+				case ZU_KLEINES_REGISTER:
+					System.err.println("zu kleine registerangabe");
+					break;
+				case Zu_WENIGE_BEFEHLE:
+					System.err.println("zu wenige befehler");
+					break;
+				case ZU_WENIGE_REGISTER:
+					System.err.println("zu wenige register");
+					break;
+				}
+				inter.stoppen(false);
+			}
+		}
+	}
 	
+	public String statusString() {
+		return ( (STATUS_ANGEHALTEN & status) != 0 ? "angehalten " : "") + ( (STATUS_LÄUFT & status) != 0 ? "läuft " : "") + ( (STATUS_FEHLER & status) != 0 ? "fehler " : "")
+				+ ( (STATUS_GLEICH & status) != 0 ? "gleich " : "") + ( (STATUS_GRÖẞER & status) != 0 ? "größer " : "") + ( (STATUS_KLEINER & status) != 0 ? "kleiner " : "");
+	}
+	
+	
+	
+	public FehlersuchenderTpsInterpreter(PrintStream ausgang, InputStream eingabe, int registerAnzahl, int maximaleStapelGröße) {
+		this(ausgang, new Scanner(eingabe), registerAnzahl, maximaleStapelGröße);
+	}
 	
 	public FehlersuchenderTpsInterpreter(PrintStream ausgang, Scanner eingabe, int registerAnzahl, int maximaleStapelGröße) {
-		ein = eingabe;
-		aus = ausgang;
-		register = new int[registerAnzahl];
-		stapel = new int[maximaleStapelGröße];
 		letzterFehlerArt = KEIN_FEHLER;
 		letzterFehlerBefehl = -1;
 		letzterFehlerZusatzInfo = 0;
+		
+		status = 0;
+		stapelZeiger = 0;
+		
+		register = new int[registerAnzahl];
+		stapel = new int[maximaleStapelGröße];
+		
+		nächste = -1;
+		anordnungen = null;
+		
+		ein = eingabe;
+		aus = ausgang;
 		stellen = new HashMap <>();
 		benötigteStellen = new HashSet <>();
+		
+		stoppe = false;
+		stopperBeiGeheRaus = false;
+		stopper = new HashSet <Integer>();
+		fehlerStoppen = false;
 	}
+	
+	
 	
 	@Override
 	public void lade(InputStream eingang, Charset zeichensatz) throws IOException, InterpretierungsFehler {
 		anordnungen = Helfer.lade(eingang, zeichensatz, stellen, benötigteStellen);
+		benötigteStellen.removeAll(stellen.keySet());
+		if ( !benötigteStellen.isEmpty()) {
+			throw new InterpretierungsFehler("Es fehlen einige stellen: " + benötigteStellen);
+		}
+		nächste = 0;
 	}
+	
+	
 	
 	@Override
 	public void interpretiere(InputStream eingang, Charset zeichensatz) throws IOException, InterpretierungsFehler {
 		lade(eingang, zeichensatz);
 		status |= STATUS_LÄUFT;
-		mache();
 		status &= ~STATUS_ANGEHALTEN;
+		mache();
+		status &= ~STATUS_LÄUFT;
+		status |= STATUS_ANGEHALTEN;
 	}
+	
+	
 	
 	@Override
 	public int ergebnis() {
@@ -117,13 +209,15 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	public int[] stoppPunkte() {
 		Integer[] zw = stopper.toArray(new Integer[stopper.size()]);
 		int[] erg = new int[zw.length];
-		System.arraycopy(zw, 0, erg, 0, zw.length);
+		for (int i = 0; i < erg.length; i ++ ) {
+			erg[i] = zw[i];
+		}
 		return erg;
 	}
 	
 	@Override
 	public Set <Integer> stoppPunkteSet() {
-		return stopper;
+		return new HashSet <>(stopper);
 	}
 	
 	@Override
@@ -224,10 +318,15 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	
 	@Override
 	public void zwischendurch(AnordnungInterface einfachMalSo) {
+		status &= ~STATUS_ANGEHALTEN;
+		status |= STATUS_LÄUFT;
+		mache();
+		status &= ~STATUS_LÄUFT;
+		status |= STATUS_ANGEHALTEN;
 	}
 	
 	@Override
-	public AnordnungInterface erzwingeZurückgehen() throws IllegalStateException {
+	public AnordnungInterface geheZurück() throws IllegalStateException {
 		if (stapelZeiger <= 0) throw new IllegalStateException("leerer stapel");
 		nächste = stapel[ -- stapelZeiger];
 		return anordnungen[nächste];
@@ -236,15 +335,28 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	@Override
 	public AnordnungInterface nächstes() throws NoSuchElementException {
 		if (nächste >= anordnungen.length) throw new NoSuchElementException();
-		return anordnungen[nächste];
+		else return anordnungen[nächste];
+	}
+	
+	@Override
+	public AnordnungInterface nächstesOderNull() {
+		if (nächste >= anordnungen.length) return null;
+		else return anordnungen[nächste];
+	}
+	
+	public int satz() {
+		if (nächste >= anordnungen.length) return -1;
+		else return nächste;
 	}
 	
 	@Override
 	public AnordnungInterface macheSchritt() throws IllegalStateException {
 		status |= STATUS_LÄUFT;
-		mache(anordnungen[nächste], nächste);
 		status &= ~STATUS_ANGEHALTEN;
-		return nächstes();
+		mache(anordnungen[nächste], nächste);
+		status &= ~STATUS_LÄUFT;
+		status |= STATUS_ANGEHALTEN;
+		return nächstesOderNull();
 	}
 	
 	@Override
@@ -252,10 +364,12 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 		boolean old = stopperBeiGeheRaus;
 		stopperBeiGeheRaus = true;
 		status |= STATUS_LÄUFT;
-		mache();
 		status &= ~STATUS_ANGEHALTEN;
+		mache();
+		status &= ~STATUS_LÄUFT;
+		status |= STATUS_ANGEHALTEN;
 		stopperBeiGeheRaus = old;
-		return nächstes();
+		return nächstesOderNull();
 	}
 	
 	@Override
@@ -263,14 +377,21 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 		boolean old = ignoriereStopper;
 		ignoriereStopper = false;
 		status |= STATUS_LÄUFT;
-		mache();
 		status &= ~STATUS_ANGEHALTEN;
+		mache();
+		status &= ~STATUS_LÄUFT;
+		status |= STATUS_ANGEHALTEN;
 		ignoriereStopper = old;
-		return nächstes();
+		return nächstesOderNull();
 	}
 	
 	private synchronized void mache(AnordnungInterface mache, int befehl) {
 		try {
+			if (stoppe) return;
+			if (stopper.contains(befehl) && !ignoriereStopper) {
+				stoppe = true;
+				return;
+			}
 			if (befehl == nächste) nächste ++ ;
 			switch (mache.befehl()) {
 			case addiere:
@@ -353,7 +474,7 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 				}
 				break;
 			case geheWennGrößer:
-				if ( (status & STATUS_GLEICH) != 0) {
+				if ( (status & STATUS_GRÖẞER) != 0) {
 					nächste = stellen.get(mache.param(0).string());
 				}
 				break;
@@ -501,7 +622,7 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 				if (prüfeRegister(befehl, reg)) {
 					char[] wort = ein.next().toCharArray();
 					register[reg] = wort.length;
-					for (int i = 0; reg + i + 1 < wort.length; i ++ ) {
+					for (int i = 0; i < wort.length && reg + i + 1 < register.length; i ++ ) {
 						register[reg + i + 1] = wort[i];
 					}
 				}
@@ -779,15 +900,15 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 			}
 			case vergleiche: {
 				int a = mache.param(0).zahl(this);
-				int b = mache.param(0).zahl(this);
+				int b = mache.param(1).zahl(this);
 				if (a == b) {
-					status &= STATUS_GRÖẞER | STATUS_KLEINER;
+					status &= ~ (STATUS_GRÖẞER | STATUS_KLEINER);
 					status |= STATUS_GLEICH;
 				} else if (a > b) {
-					status &= STATUS_GLEICH | STATUS_KLEINER;
+					status &= ~ (STATUS_GLEICH | STATUS_KLEINER);
 					status |= STATUS_GRÖẞER;
 				} else {
-					status &= STATUS_GLEICH | STATUS_GRÖẞER;
+					status &= ~ (STATUS_GLEICH | STATUS_GRÖẞER);
 					status |= STATUS_KLEINER;
 				}
 				break;
@@ -797,7 +918,7 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 				int ae = mache.param(1).zahl(this);
 				int bs = mache.param(2).zahl(this);
 				int be = mache.param(3).zahl(this);
-				if (prüfeRegister(befehl, as) && prüfeRegister(befehl, ae) && prüfeRegister(befehl, bs) && prüfeRegister(befehl, be)) {
+				if (prüfeRegister(befehl, as) && prüfeRegister(befehl, ae - 1) && prüfeRegister(befehl, bs) && prüfeRegister(befehl, be - 1)) {
 					if (ae >= as) {
 						if (fehlerStoppen) stoppe = true;
 						status |= STATUS_FEHLER;
@@ -812,16 +933,16 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 					} else {
 						ae -= as;
 						be -= bs;
-						status &= STATUS_GRÖẞER | STATUS_KLEINER;
+						status &= ~ (STATUS_GRÖẞER | STATUS_KLEINER);
 						status |= STATUS_GLEICH;
 						for (int i = 0; i < ae && i < be; i ++ ) {
 							if (register[as + i] != register[bs + i]) {
 								if (register[as + i] > register[bs + i]) {
-									status &= STATUS_GLEICH;
+									status &= ~STATUS_GLEICH;
 									status |= STATUS_GRÖẞER;
 									break;
 								} else {
-									status &= STATUS_GLEICH;
+									status &= ~STATUS_GLEICH;
 									status |= STATUS_KLEINER;
 									break;
 								}
@@ -834,9 +955,9 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 			case vergleicheRegisterText: {
 				int as = mache.param(0).zahl(this);
 				int ae = mache.param(1).zahl(this);
-				char[] text = mache.param(3).string().toCharArray();
-				if (prüfeRegister(befehl, as) && prüfeRegister(befehl, ae)) {
-					if (ae >= as) {
+				char[] text = mache.param(2).string().toCharArray();
+				if (prüfeRegister(befehl, as) && prüfeRegister(befehl, ae - 1)) {
+					if (as > ae) {
 						if (fehlerStoppen) stoppe = true;
 						status |= STATUS_FEHLER;
 						letzterFehlerArt = BEREICHSENDE_KLEINER_BEREICHSSTART;
@@ -844,16 +965,16 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 						letzterFehlerZusatzInfo = 1;
 					} else {
 						ae -= as;
-						status &= STATUS_GRÖẞER | STATUS_KLEINER;
+						status &= ~ (STATUS_GRÖẞER | STATUS_KLEINER);
 						status |= STATUS_GLEICH;
 						for (int i = 0; i < ae && i < text.length; i ++ ) {
 							if (register[as + i] != (int) text[i]) {
 								if (register[as + i] > (int) text[i]) {
-									status &= STATUS_GLEICH;
+									status &= ~STATUS_GLEICH;
 									status |= STATUS_GRÖẞER;
 									break;
 								} else {
-									status &= STATUS_GLEICH;
+									status &= ~STATUS_GLEICH;
 									status |= STATUS_KLEINER;
 									break;
 								}
@@ -914,9 +1035,8 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	private void mache() {
 		status |= STATUS_LÄUFT;
 		status &= ~STATUS_ANGEHALTEN;
-		while ( !stoppe && nächste >= anordnungen.length) {
+		while ( !stoppe && nächste < anordnungen.length) {
 			mache(anordnungen[nächste], nächste);
-			nächste ++ ;
 		}
 		status &= ~STATUS_LÄUFT;
 		status |= STATUS_ANGEHALTEN;
@@ -928,8 +1048,23 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	}
 	
 	@Override
+	public void stoppen(boolean stopp) {
+		stoppe = stopp;
+	}
+	
+	@Override
+	public boolean stoppt() {
+		return stoppe;
+	}
+	
+	@Override
 	public boolean gestoppt() {
 		return (status & STATUS_ANGEHALTEN) != 0;
+	}
+	
+	@Override
+	public void run() {
+		mache();
 	}
 	
 }

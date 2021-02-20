@@ -85,7 +85,7 @@ public class TolleAnordnung implements AnordnungInterface {
 	private Param paramStelle(String stelle) throws InterpretierungsFehler {
 		char[] chars = stelle.toCharArray();
 		for (char test : chars) {
-			if (test < 'A' || test > 'Z') throw new InterpretierungsFehler(stelle + " ist keine gültige stelle! (" + test + ")");
+			if (test < 'A' || test > 'Z' && test != '_') throw new InterpretierungsFehler(stelle + " ist keine gültige stelle! (" + test + ")");
 		}
 		return new Param(stelle);
 	}
@@ -164,12 +164,12 @@ public class TolleAnordnung implements AnordnungInterface {
 	
 	@Override
 	public String toString() {
-		StringBuilder erg = new StringBuilder('[').append(bef).append("]:");
+		StringBuilder erg = new StringBuilder().append('[').append(bef.name()).append("]:{");
 		int i;
 		for (i = 0; i < parameter.length - 1; i ++ ) {
 			erg.append(parameter[i]).append(", ");
 		}
-		return erg.append(parameter[i]).toString();
+		return erg.append(i < parameter.length ? parameter[i] : "").append('}').toString();
 	}
 	
 }
