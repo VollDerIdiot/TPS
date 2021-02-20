@@ -46,11 +46,6 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 	private Set <Integer>    stopper;
 	private boolean          fehlerStoppen;
 	
-	public String statusString() {
-		return ( (STATUS_ANGEHALTEN & status) != 0 ? "angehalten " : "") + ( (STATUS_LÄUFT & status) != 0 ? "läuft " : "") + ( (STATUS_FEHLER & status) != 0 ? "fehler " : "")
-				+ ( (STATUS_GLEICH & status) != 0 ? "gleich " : "") + ( (STATUS_GRÖẞER & status) != 0 ? "größer " : "") + ( (STATUS_KLEINER & status) != 0 ? "kleiner " : "");
-	}
-	
 	
 	
 	public FehlersuchenderTpsInterpreter(PrintStream ausgang, InputStream eingabe, int registerAnzahl, int maximaleStapelGröße) {
@@ -232,6 +227,52 @@ public class FehlersuchenderTpsInterpreter implements FehlersuchenInterpreter {
 		if (ziel < 0 || ziel >= anordnungen.length) throw new IllegalArgumentException("außerhalb der grenzen: ziel=" + ziel + " größe=" + anordnungen.length);
 		stapel[stapelZeiger ++ ] = nächste;
 		nächste = ziel;
+	}
+	
+	@Override
+	public String statusString() {
+		StringBuilder erg = new StringBuilder("status[");
+		boolean gabSchon = false;
+		if ( (status & STATUS_FEHLER) != 0) {
+			gabSchon = true;
+			erg.append("fehler");
+		}
+		if ( (status & STATUS_ANGEHALTEN) != 0) {
+			if (gabSchon) {
+				erg.append(", ");
+			}
+			gabSchon = true;
+			erg.append("angehalten");
+		}
+		if ( (status & STATUS_LÄUFT) != 0) {
+			if (gabSchon) {
+				erg.append(", ");
+			}
+			gabSchon = true;
+			erg.append("läuft");
+		}
+		if ( (status & STATUS_GRÖẞER) != 0) {
+			if (gabSchon) {
+				erg.append(", ");
+			}
+			gabSchon = true;
+			erg.append("größer");
+		}
+		if ( (status & STATUS_GLEICH) != 0) {
+			if (gabSchon) {
+				erg.append(", ");
+			}
+			gabSchon = true;
+			erg.append("gleich");
+		}
+		if ( (status & STATUS_KLEINER) != 0) {
+			if (gabSchon) {
+				erg.append(", ");
+			}
+			gabSchon = true;
+			erg.append("kleiner");
+		}
+		return erg.append(']').toString();
 	}
 	
 	@Override
