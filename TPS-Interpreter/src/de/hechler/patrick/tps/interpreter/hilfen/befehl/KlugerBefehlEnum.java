@@ -29,7 +29,7 @@ public enum KlugerBefehlEnum {
 	
 	leseZahlEinErg(BefehlsTeil.einlesen, BefehlsTeil.zahl_, BefehlsTeil.ergebnis), leseZahlEinZwischen(BefehlsTeil.einlesen, BefehlsTeil.zahl_, BefehlsTeil.zwischen),
 	
-	ladeInRegister(BefehlsTeil.speichere, BefehlsTeil.zahl, BefehlsTeil.register),
+	ladeInRegister(BefehlsTeil.speichere, BefehlsTeil.zahl, BefehlsTeil.zu, BefehlsTeil.register),
 	
 	ladeVomRegisterErg(BefehlsTeil.speichere, BefehlsTeil.register, BefehlsTeil.zu, BefehlsTeil.ergebnis),
 	ladeVomRegisterZw(BefehlsTeil.speichere, BefehlsTeil.register, BefehlsTeil.zu, BefehlsTeil.zwischen),
@@ -52,7 +52,7 @@ public enum KlugerBefehlEnum {
 	stapelMaxGrößeReg(BefehlsTeil.speichere, BefehlsTeil.stapelMaxGr, BefehlsTeil.zu, BefehlsTeil.register),
 	
 	stapelGrößeErg(BefehlsTeil.speichere, BefehlsTeil.stapelGr, BefehlsTeil.zu, BefehlsTeil.ergebnis), stapelGrößeZw(BefehlsTeil.speichere, BefehlsTeil.stapelGr, BefehlsTeil.zu, BefehlsTeil.zwischen),
-	stapelGrößeReg(BefehlsTeil.speichere, BefehlsTeil.stapelGr, BefehlsTeil.register),
+	stapelGrößeReg(BefehlsTeil.speichere, BefehlsTeil.stapelGr, BefehlsTeil.zu, BefehlsTeil.register),
 	
 	vergleicheRegister(BefehlsTeil.vergleich, BefehlsTeil.bereich, BefehlsTeil.mit, BefehlsTeil.bereich),
 	vergleicheRegisterText(BefehlsTeil.vergleich, BefehlsTeil.bereich, BefehlsTeil.mit, BefehlsTeil.wortfolge),
@@ -76,7 +76,7 @@ public enum KlugerBefehlEnum {
 	
 	rufeAufWennFalsch(BefehlsTeil.wenn, BefehlsTeil.fehler, BefehlsTeil.gab, BefehlsTeil.aufruf, BefehlsTeil.zu, BefehlsTeil.stelle),
 	
-	letzterFehler(BefehlsTeil.nehme, BefehlsTeil.letztenFehler), 
+	letzterFehler(BefehlsTeil.nehme, BefehlsTeil.letztenFehler),
 	
 	;
 	
@@ -85,8 +85,6 @@ public enum KlugerBefehlEnum {
 	
 	
 	public static KlugerBefehlEnum erhalte() {
-		// TODO Auto-generated method stub
-		
 		throw new NochNichtGemachtFehler();
 	}
 	
@@ -151,7 +149,7 @@ public enum KlugerBefehlEnum {
 		
 		anzahl,
 		
-		wort, zeichen, 
+		wort, zeichen,
 		
 		letztenFehler,
 	

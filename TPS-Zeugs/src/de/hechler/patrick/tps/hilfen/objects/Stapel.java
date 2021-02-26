@@ -71,7 +71,7 @@ public class Stapel <W> {
 	 */
 	private final W[] neuesFeld(W[] ursprung, int von, int bis, int zusatz) {
 		@SuppressWarnings("unchecked")
-		W[] erg = (W[]) Array.newInstance(ursprung.getClass().componentType(), bis - von + zusatz);
+		W[] erg = (W[]) Array.newInstance(ursprung.getClass().getComponentType(), bis - von + zusatz);
 		System.arraycopy(ursprung, von, erg, 0, bis - von);
 		return erg;
 	}
