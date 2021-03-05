@@ -7,19 +7,13 @@ package genearatedsources.antlr;
 datei
 :
 	(
-		satz
-		(
-			WS
-		)?
+		satz WS?
 	)+
 ;
 
 satz
 :
-	satzWert
-	(
-		WS
-	)? PUNKT
+	satzWert WS? PUNKT
 ;
 
 satzWert
@@ -403,7 +397,7 @@ vonST
 
 folgendesST
 :
-	FOLGENDES
+	FOLGENDES DP?
 ;
 
 ausgebenST
@@ -518,6 +512,7 @@ registerST returns [int reg]
 		VON WS
 	)? POS_ZAHL
 	{$reg = Integer.parseInt($POS_ZAHL.getText());}
+
 ;
 
 bereichST returns [int regA, int regB]
@@ -605,95 +600,123 @@ derST
 	DER
 ;
 
-wortfolgeST
+wft returns [String teil]
 :
 	(
-		WORTFOLGE_WORT
-		| WORTKETTE_WORT
-		| WORTREIHE_WORT
+		tok = STELLE_WORT
+		| tok = DER
+		| tok = WORTREIHE_WORT
+		| tok = WORTKETTE_WORT
+		| tok = WORTFOLGE_WORT
+		| tok = LETZTEN
+		| tok = ZEICHEN
+		| tok = ZEICHENFOLGE
+		| tok = ZEICHENKETTE
+		| tok = WORT_WORT
+		| tok = MENGE
+		| tok = ANZAHL
+		| tok = ZAHL_WORT
+		| tok = EINESEN
+		| tok = EIN
+		| tok = LESE
+		| tok = ODER
+		| tok = KLEINER
+		| tok = GRÖẞER
+		| tok = UNGLEICH
+		| tok = NICHT
+		| tok = GLEICH
+		| tok = FALLS
+		| tok = WENN
+		| tok = DES
+		| tok = STAPELS
+		| tok = VOM
+		| tok = MAXIMALE
+		| tok = GRÖẞE
+		| tok = MAXIMUM
+		| tok = VERSION
+		| tok = FEHLER
+		| tok = FALSCH
+		| tok = NAGATION
+		| tok = NEHME
+		| tok = STAPEL
+		| tok = POS_ZAHL
+		| tok = REGISTER
+		| tok = BIS
+		| tok = ERGEBNISSPEICHER
+		| tok = ERGEBNIS
+		| tok = ZWISCHEN
+		| tok = ZWISCHENSPEICHER
+		| tok = SPEICHERE
+		| tok = GEHE
+		| tok = ZURÜCKGEHEN
+		| tok = ZURÜCK
+		| tok = AUF
+		| tok = AUFRUF
+		| tok = MACHE
+		| tok = RUFE
+		| tok = DP
+		| tok = SPRINGE
+		| tok = VERGLEICHE
+		| tok = DIVIDIERE
+		| tok = MULTIPLIZIERE
+		| tok = SUBTRAHIERE
+		| tok = ADDIERE
+		| tok = ZEILENUMBRUCH
+		| tok = LEERZEILE
+		| tok = LEERTASTE
+		| tok = LEERZEICHEN
+		| tok = AUS
+		| tok = AUSGEBEN
+		| tok = GEBE
+		| tok = FOLGENDES
+		| tok = VON
+		| tok = ZU
+		| tok = GAB
+		| tok = WAR
+		| tok = MIT
+		| tok = IST
+		| tok = HIER
+		| tok = STELLE
+		| tok = REST
+		| tok = REST_2
 	)
+	{$teil = $tok.getText();}
+
+;
+
+wortfolgeSTALT returns [String wortfolge]
+@init {StringBuilder wf = new StringBuilder();}
+:
 	(
-		WS
 		(
-			STELLE_WORT
-			| DER
-			| WORTREIHE_WORT
-			| WORTKETTE_WORT
-			| WORTFOLGE_WORT
-			| LETZTEN
-			| ZEICHEN
-			| ZEICHENFOLGE
-			| ZEICHENKETTE
-			| WORT_WORT
-			| MENGE
-			| ANZAHL
-			| ZAHL_WORT
-			| EINESEN
-			| EIN
-			| LESE
-			| ODER
-			| KLEINER
-			| GRÖẞER
-			| UNGLEICH
-			| NICHT
-			| GLEICH
-			| FALLS
-			| WENN
-			| DES
-			| STAPELS
-			| VOM
-			| MAXIMALE
-			| GRÖẞE
-			| MAXIMUM
-			| VERSION
-			| FEHLER
-			| FALSCH
-			| NAGATION
-			| NEHME
-			| STAPEL
-			| POS_ZAHL
-			| REGISTER
-			| BIS
-			| ERGEBNISSPEICHER
-			| ERGEBNIS
-			| ZWISCHEN
-			| ZWISCHENSPEICHER
-			| SPEICHERE
-			| GEHE
-			| ZURÜCKGEHEN
-			| ZURÜCK
-			| AUF
-			| AUFRUF
-			| MACHE
-			| RUFE
-			| DP
-			| SPRINGE
-			| VERGLEICHE
-			| DIVIDIERE
-			| MULTIPLIZIERE
-			| SUBTRAHIERE
-			| ADDIERE
-			| ZEILENUMBRUCH
-			| LEERZEILE
-			| LEERTASTE
-			| LEERZEICHEN
-			| AUS
-			| AUSGEBEN
-			| GEBE
-			| FOLGENDES
-			| VON
-			| ZU
-			| GAB
-			| WAR
-			| MIT
-			| IST
-			| HIER
-			| PUNKT
-			| STELLE
-			| REST
-			| REST_2
-		)*
+			wft
+			{wf.append($wft.teil);}
+
+		)* WS
+		{wf.append(' ');}
+
+	)+ wft
+	{wf.append($wft.teil);}
+
+	{$wortfolge = wf.toString();}
+
+;
+
+wortfolgeST returns [String wortfolge]
+@init {StringBuilder wf = new StringBuilder();}
+:
+	(
+		wft
+		{wf.append($wft.teil);}
+
+		(
+			WS
+			{wf.append(' ');}
+
+		)?
 	)+
+	{$wortfolge = wf.toString();}
+
 ;
 
 wennST
@@ -926,7 +949,7 @@ STAPELS
 
 VOM
 :
-	'von'
+	'vom'
 ;
 
 MAXIMALE
