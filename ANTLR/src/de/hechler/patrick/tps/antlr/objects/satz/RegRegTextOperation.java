@@ -9,7 +9,11 @@ import de.hechler.patrick.tps.antlr.objects.Satz;
 import de.hechler.patrick.tps.antlr.objects.Zahl;
 import de.hechler.patrick.tps.antlr.objects.ZeichenKette;
 
+
 public class RegRegTextOperation extends Satz {
+	
+	/** UID */
+	private static final long serialVersionUID = 3514634431886310440L;
 	
 	public final Zahl         regA;
 	public final Zahl         regB;

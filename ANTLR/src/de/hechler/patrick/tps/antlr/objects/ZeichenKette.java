@@ -4,8 +4,13 @@ import de.hechler.patrick.tps.interpreter.Interpreter;
 
 public class ZeichenKette implements Parameter {
 	
-	public static final ZeichenKette LEERZEICHEN = new ZeichenKette(" ");
-	public static final ZeichenKette LEERZEILE   = new ZeichenKette("\r\n");
+	/** UID */
+	private static final long serialVersionUID = 6011897096044249326L;
+	
+	
+	
+	public static transient final ZeichenKette LEERZEICHEN = new ZeichenKette(" ");
+	public static transient final ZeichenKette LEERZEILE   = new ZeichenKette("\r\n");
 	
 	
 	

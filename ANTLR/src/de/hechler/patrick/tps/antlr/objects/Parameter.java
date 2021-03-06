@@ -1,9 +1,11 @@
 package de.hechler.patrick.tps.antlr.objects;
 
+import java.io.Serializable;
+
 import de.hechler.patrick.tps.interpreter.Interpreter;
 
 
-public interface Parameter {
+public interface Parameter extends Serializable {
 	
 	boolean istZeichenKette();
 	

@@ -10,6 +10,9 @@ import de.hechler.patrick.tps.antlr.objects.Zahl;
 
 public class Zahlenoperation extends Satz {
 	
+	/** UID */
+	private static final long serialVersionUID = 6304866678591288930L;
+	
 	public final Zahl b;
 	public final Zahl a;
 	

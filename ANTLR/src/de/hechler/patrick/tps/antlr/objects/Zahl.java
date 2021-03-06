@@ -4,6 +4,9 @@ import de.hechler.patrick.tps.interpreter.Interpreter;
 
 public class Zahl implements Parameter {
 	
+	/** UID */
+	private static final long serialVersionUID = -4057592204332834660L;
+	
 	private final long    zahl;
 	private final Boolean erg;
 	

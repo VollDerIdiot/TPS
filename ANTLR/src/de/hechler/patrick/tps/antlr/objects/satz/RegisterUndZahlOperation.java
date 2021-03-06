@@ -8,7 +8,11 @@ import de.hechler.patrick.tps.antlr.objects.Parameter;
 import de.hechler.patrick.tps.antlr.objects.Satz;
 import de.hechler.patrick.tps.antlr.objects.Zahl;
 
+
 public class RegisterUndZahlOperation extends Satz {
+	
+	/** UID */
+	private static final long serialVersionUID = 8121116768488869231L;
 	
 	public final Zahl register;
 	public final Zahl zahl;

@@ -11,9 +11,12 @@ import de.hechler.patrick.tps.antlr.objects.Zahl;
 
 public class ZweiRegisterOperation extends Satz {
 	
+	/** UID */
+	private static final long serialVersionUID = 6024391573766295965L;
+	
 	public final Zahl regA;
 	public final Zahl regB;
-
+	
 	public ZweiRegisterOperation(SatzArt art, Zahl regA, Zahl regB) {
 		super(art, list(regA, regB));
 		this.regA = regA;
@@ -32,9 +35,9 @@ public class ZweiRegisterOperation extends Satz {
 	@Override
 	public Parameter param(int index) {
 		switch (index) {
-		case 0 :
+		case 0:
 			return regA;
-		case 1 :
+		case 1:
 			return regB;
 		default:
 			throw new IndexOutOfBoundsException("len=2 i=" + index);

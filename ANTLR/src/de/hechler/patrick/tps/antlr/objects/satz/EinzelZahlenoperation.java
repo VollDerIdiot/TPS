@@ -8,7 +8,11 @@ import de.hechler.patrick.tps.antlr.objects.Parameter;
 import de.hechler.patrick.tps.antlr.objects.Satz;
 import de.hechler.patrick.tps.antlr.objects.Zahl;
 
+
 public class EinzelZahlenoperation extends Satz {
+	
+	/** UID */
+	private static final long serialVersionUID = -5884012498384168679L;
 	
 	public final Zahl zahl;
 	

@@ -11,6 +11,9 @@ import de.hechler.patrick.tps.antlr.objects.ZeichenKette;
 
 public class ZeichenKettenoperation extends Satz {
 	
+	/** UID */
+	private static final long serialVersionUID = 3640909949422818296L;
+	
 	public final ZeichenKette zk;
 	
 	

@@ -1,7 +1,8 @@
 package de.hechler.patrick.tps.antlr.enums;
 
+import java.io.Serializable;
 
-public enum SatzArt {
+public enum SatzArt implements Serializable {
 	addiere, subtrahiere, multipliziere, dividiere,
 	
 	zahlenausgabe, leerzeichen, leerzeile, ausgabe,
