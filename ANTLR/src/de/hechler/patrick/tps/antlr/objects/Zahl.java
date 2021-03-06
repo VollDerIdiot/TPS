@@ -7,8 +7,8 @@ public class Zahl implements Parameter {
 	/** UID */
 	private static final long serialVersionUID = -4057592204332834660L;
 	
-	private final long    zahl;
-	private final Boolean erg;
+	public final long    zahl;
+	public final Boolean erg;
 	
 	
 	public Zahl(long wert) {
@@ -89,7 +89,7 @@ public class Zahl implements Parameter {
 		result = prime * result + (int) (zahl ^ (zahl >>> 32));
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
@@ -102,5 +102,5 @@ public class Zahl implements Parameter {
 		if (zahl != other.zahl) return false;
 		return true;
 	}
-
+	
 }
