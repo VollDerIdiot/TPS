@@ -1,12 +1,19 @@
 package de.hechler.patrick.tps.antlr;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import de.hechler.patrick.tps.antlr.objects.Parameter;
+import de.hechler.patrick.tps.antlr.objects.ZeichenKette;
 import genearatedsources.antlr.TPS_ANTLRLexer;
 import genearatedsources.antlr.TPS_ANTLRParser;
 import genearatedsources.antlr.TPS_ANTLRParser.BereichSTContext;
-import genearatedsources.antlr.TPS_ANTLRParser.SatzContext;
 import genearatedsources.antlr.TPS_ANTLRParser.WortfolgeSTContext;
 import genearatedsources.antlr.TPS_ANTLRParser.ZahlSTContext;
 
@@ -40,14 +47,27 @@ public class TestMain {
 		System.out.println("TEXT=" + wf.getText());
 		System.out.println("TREE=" + wf.toStringTree());
 		
-		in = new ANTLRInputStream("ausgeben folgendes: \thello world this is an nice text: von register 654684864 bis register 684+/*7+\r\n4- ende");
-		lexer = new TPS_ANTLRLexer(in);
-		tokens = new CommonTokenStream(lexer);
-		parser = new TPS_ANTLRParser(tokens);
-		SatzContext satz = parser.satz();
-		System.out.println("WF  =" + ((WortfolgeSTContext) satz.getChild(0).getChild(2)).wortfolge);
-		System.out.println("TEXT=" + satz.getText());
-		System.out.println("TREE=" + satz.toStringTree());
+		try {
+			Parameter p = new ZeichenKette("hello world");
+			Parameter p2 = new ZeichenKette("hello second world");
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
+			oos.writeObject(p);
+			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+			ObjectInputStream ois = new ObjectInputStream(bais);
+			ZeichenKette zk = (ZeichenKette) ois.readObject();
+			System.out.println(p == zk);
+			System.out.println(p.equals(zk));
+			System.out.println(p.hashCode() == zk.hashCode());
+			System.out.println(p);
+			System.out.println(zk);
+			System.out.println(p2 == zk);
+			System.out.println(p2.equals(zk));
+			System.out.println(p2.hashCode() == zk.hashCode());
+			System.out.println(p2);
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
