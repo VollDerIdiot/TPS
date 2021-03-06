@@ -1,5 +1,6 @@
 package de.hechler.patrick.tps.antlr.objects;
 
+import de.hechler.patrick.tps.antlr.InterpreterInterface;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 
 public class ZeichenKette implements Parameter {
@@ -50,7 +51,7 @@ public class ZeichenKette implements Parameter {
 	}
 	
 	@Override
-	public long zahl(Interpreter interpret) {
+	public long zahl(InterpreterInterface interpret) {
 		throw new UnsupportedOperationException("Dies ist eine ZeichenKette und keine Zahl!");
 	}
 	

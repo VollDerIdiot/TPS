@@ -1017,6 +1017,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitVergleicheRegister(@NotNull TPS_ANTLRParser.VergleicheRegisterContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#ausST}.
+	 * @param ctx the parse tree
+	 */
+	void enterAusST(@NotNull TPS_ANTLRParser.AusSTContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#ausST}.
+	 * @param ctx the parse tree
+	 */
+	void exitAusST(@NotNull TPS_ANTLRParser.AusSTContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#speichereST}.
 	 * @param ctx the parse tree
 	 */

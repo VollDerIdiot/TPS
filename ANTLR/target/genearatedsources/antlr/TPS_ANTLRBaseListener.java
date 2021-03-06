@@ -1225,6 +1225,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAusST(@NotNull TPS_ANTLRParser.AusSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAusST(@NotNull TPS_ANTLRParser.AusSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSpeichereST(@NotNull TPS_ANTLRParser.SpeichereSTContext ctx) { }
 	/**
 	 * {@inheritDoc}

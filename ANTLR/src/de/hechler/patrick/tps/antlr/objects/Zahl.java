@@ -1,5 +1,6 @@
 package de.hechler.patrick.tps.antlr.objects;
 
+import de.hechler.patrick.tps.antlr.InterpreterInterface;
 import de.hechler.patrick.tps.interpreter.Interpreter;
 
 public class Zahl implements Parameter {
@@ -53,12 +54,12 @@ public class Zahl implements Parameter {
 	}
 	
 	@Override
-	public long zahl(Interpreter interpret) {
+	public long zahl(InterpreterInterface interpret) {
 		if (erg != null) {
 			if (erg) {
 				return interpret.ergebnis();
 			}
-			return interpret.zwischenspeicher();
+			return interpret.zwischen();
 		}
 		return zahl;
 	}

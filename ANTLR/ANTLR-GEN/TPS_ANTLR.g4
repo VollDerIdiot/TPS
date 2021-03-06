@@ -277,82 +277,97 @@ satzWert returns [Satz inhalt]
 	(
 		vergleicheRegisterText
 		{$inhalt = new RegRegTextOperation(SatzArt.vergleicheRegisterText, $vergleicheRegisterText.anfang, $vergleicheRegisterText.ende, $vergleicheRegisterText.wortfolge);}
-		
+
 	)
 	|
 	(
 		rufeAuf
 		{$inhalt = new Stellenoperation(SatzArt.rufeAuf, $rufeAuf.ziel);}
+
 	)
 	|
 	(
 		rufeAufWennGleich
 		{$inhalt = new Stellenoperation(SatzArt.rufeAufWennGleich, $rufeAufWennGleich.ziel);}
+
 	)
 	|
 	(
 		rufeAufWennNichtGleich
 		{$inhalt = new Stellenoperation(SatzArt.rufeAufWennNichtGleich, $rufeAufWennNichtGleich.ziel);}
+
 	)
 	|
 	(
 		rufeAufWennKleiner
 		{$inhalt = new Stellenoperation(SatzArt.rufeAufWennKleiner, $rufeAufWennKleiner.ziel);}
+
 	)
 	|
 	(
 		rufeAufGr
 		{$inhalt = new Stellenoperation(SatzArt.rufeAufGrößer, $rufeAufGr.ziel);}
+
 	)
 	|
 	(
 		rufeAufKleinerGleich
 		{$inhalt = new Stellenoperation(SatzArt.rufeAufKleinerGleich, $rufeAufKleinerGleich.ziel);}
+
 	)
 	|
 	(
 		rufeAufGrGleich
 		{$inhalt = new Stellenoperation(SatzArt.rufeAufGrößerGleich, $rufeAufGrGleich.ziel);}
+
 	)
 	|
 	(
 		geheZur
 		{$inhalt = new Satz(SatzArt.geheZurück, Collections.emptyList());}
+
 	)
 	|
 	(
 		rufeAufDirekt
 		{$inhalt = new EinzelZahlenoperation(SatzArt.rufeAufDirekt, $rufeAufDirekt.ziel);}
+
 	)
 	|
 	(
 		stapelSchreiben
 		{$inhalt = new EinzelZahlenoperation(SatzArt.stapelSchreiben, $stapelSchreiben.legen);}
+
 	)
 	|
 	(
 		stapelLesenErg
 		{$inhalt = new Satz(SatzArt.stapelLesenErg, Collections.emptyList());}
+
 	)
 	|
 	(
 		stapelLesenZw
 		{$inhalt = new Satz(SatzArt.stapelLesenZw, Collections.emptyList());}
+
 	)
 	|
 	(
 		stapelLesenReg
 		{$inhalt = new EinzelZahlenoperation(SatzArt.stapelLesenReg, $stapelLesenReg.reg);}
+
 	)
 	|
 	(
 		rufeAufWennFalsch
 		{$inhalt = new Stellenoperation(SatzArt.rufeAufWennFalsch, $rufeAufWennFalsch.ziel);}
+
 	)
 	|
 	(
 		letzterFehler
 		{$inhalt = new Satz(SatzArt.letzterFehler, Collections.emptyList());}
+
 	)
 ;
 
@@ -473,12 +488,13 @@ vergleicheRegister returns [Zahl regA, Zahl regB, Zahl regC, Zahl regD]
 		bereichST
 		{	$regA = $bereichST.anfang;
 			$regB = $bereichST.ende;}
-		
+
 	) WS mitST WS
 	(
 		bereichST
 		{	$regC = $bereichST.anfang;
 			$regD = $bereichST.ende;}
+
 	)
 ;
 
@@ -693,7 +709,10 @@ zwischenspeicher
 
 ausgabe returns [ZeichenKette wortfolge]
 :
-	ausgebenST WS folgendesST WS wortfolgeST
+	ausgebenST WS folgendesST
+	(
+		WS ausST
+	)? WS wortfolgeST
 	{$wortfolge = new ZeichenKette($wortfolgeST.wortfolge);}
 
 ;
@@ -819,10 +838,13 @@ folgendesST
 
 ausgebenST
 :
-	(
-		GEBE WS AUS
-	)
+	GEBE
 	| AUSGEBEN
+;
+
+ausST
+:
+	AUS
 ;
 
 leerzeichenST
@@ -1640,7 +1662,7 @@ STELLE
 
 REST
 :
-	[^.]+
+	[^. \t\r\n]+
 ;
 
 REST_2
