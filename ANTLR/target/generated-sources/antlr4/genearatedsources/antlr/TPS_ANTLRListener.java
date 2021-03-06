@@ -2,6 +2,12 @@
 
 package genearatedsources.antlr;
 
+import de.hechler.patrick.tps.antlr.enums.*;
+import de.hechler.patrick.tps.antlr.objects.*;
+import de.hechler.patrick.tps.antlr.objects.satz.*;
+
+import java.util.*;
+
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -91,16 +97,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitRegisterZeichenEinlesen(@NotNull TPS_ANTLRParser.RegisterZeichenEinlesenContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennGrößer}.
-	 * @param ctx the parse tree
-	 */
-	void enterSpringeWennGrößer(@NotNull TPS_ANTLRParser.SpringeWennGrößerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#springeWennGrößer}.
-	 * @param ctx the parse tree
-	 */
-	void exitSpringeWennGrößer(@NotNull TPS_ANTLRParser.SpringeWennGrößerContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#addiereST}.
 	 * @param ctx the parse tree
 	 */
@@ -161,6 +157,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitHierST(@NotNull TPS_ANTLRParser.HierSTContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennGr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSpringeWennGr(@NotNull TPS_ANTLRParser.SpringeWennGrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#springeWennGr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSpringeWennGr(@NotNull TPS_ANTLRParser.SpringeWennGrContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#größerGleichST}.
 	 * @param ctx the parse tree
 	 */
@@ -210,16 +216,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMultipliziereST(@NotNull TPS_ANTLRParser.MultipliziereSTContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrößer}.
-	 * @param ctx the parse tree
-	 */
-	void enterRufeAufGrößer(@NotNull TPS_ANTLRParser.RufeAufGrößerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrößer}.
-	 * @param ctx the parse tree
-	 */
-	void exitRufeAufGrößer(@NotNull TPS_ANTLRParser.RufeAufGrößerContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#ergebnisST}.
 	 * @param ctx the parse tree
@@ -371,6 +367,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitWortfolgeST(@NotNull TPS_ANTLRParser.WortfolgeSTContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufGr}.
+	 * @param ctx the parse tree
+	 */
+	void enterRufeAufGr(@NotNull TPS_ANTLRParser.RufeAufGrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#rufeAufGr}.
+	 * @param ctx the parse tree
+	 */
+	void exitRufeAufGr(@NotNull TPS_ANTLRParser.RufeAufGrContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrST}.
 	 * @param ctx the parse tree
 	 */
@@ -441,16 +447,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitLetztenFehlerST(@NotNull TPS_ANTLRParser.LetztenFehlerSTContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennGrößerGleich}.
-	 * @param ctx the parse tree
-	 */
-	void enterSpringeWennGrößerGleich(@NotNull TPS_ANTLRParser.SpringeWennGrößerGleichContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#springeWennGrößerGleich}.
-	 * @param ctx the parse tree
-	 */
-	void exitSpringeWennGrößerGleich(@NotNull TPS_ANTLRParser.SpringeWennGrößerGleichContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#fehlerST}.
 	 * @param ctx the parse tree
 	 */
@@ -481,16 +477,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitVergleiche(@NotNull TPS_ANTLRParser.VergleicheContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrößerGleich}.
-	 * @param ctx the parse tree
-	 */
-	void enterRufeAufGrößerGleich(@NotNull TPS_ANTLRParser.RufeAufGrößerGleichContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrößerGleich}.
-	 * @param ctx the parse tree
-	 */
-	void exitRufeAufGrößerGleich(@NotNull TPS_ANTLRParser.RufeAufGrößerGleichContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#derST}.
 	 * @param ctx the parse tree
 	 */
@@ -500,6 +486,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDerST(@NotNull TPS_ANTLRParser.DerSTContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#wft}.
+	 * @param ctx the parse tree
+	 */
+	void enterWft(@NotNull TPS_ANTLRParser.WftContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#wft}.
+	 * @param ctx the parse tree
+	 */
+	void exitWft(@NotNull TPS_ANTLRParser.WftContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufWennNichtGleich}.
 	 * @param ctx the parse tree
@@ -641,6 +637,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitPosZahlST(@NotNull TPS_ANTLRParser.PosZahlSTContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennGrGleich}.
+	 * @param ctx the parse tree
+	 */
+	void enterSpringeWennGrGleich(@NotNull TPS_ANTLRParser.SpringeWennGrGleichContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#springeWennGrGleich}.
+	 * @param ctx the parse tree
+	 */
+	void exitSpringeWennGrGleich(@NotNull TPS_ANTLRParser.SpringeWennGrGleichContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#leerzeichenST}.
 	 * @param ctx the parse tree
 	 */
@@ -680,6 +686,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBereichST(@NotNull TPS_ANTLRParser.BereichSTContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#wortfolgeSTALT}.
+	 * @param ctx the parse tree
+	 */
+	void enterWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#wortfolgeSTALT}.
+	 * @param ctx the parse tree
+	 */
+	void exitWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#dividiere}.
 	 * @param ctx the parse tree
@@ -1010,6 +1026,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSpeichereST(@NotNull TPS_ANTLRParser.SpeichereSTContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrGleich}.
+	 * @param ctx the parse tree
+	 */
+	void enterRufeAufGrGleich(@NotNull TPS_ANTLRParser.RufeAufGrGleichContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrGleich}.
+	 * @param ctx the parse tree
+	 */
+	void exitRufeAufGrGleich(@NotNull TPS_ANTLRParser.RufeAufGrGleichContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#gabST}.
 	 * @param ctx the parse tree

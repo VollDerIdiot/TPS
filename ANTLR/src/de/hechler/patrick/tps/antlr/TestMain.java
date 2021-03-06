@@ -1,4 +1,4 @@
-package de.hechler.patrick.antlrtest;
+package de.hechler.patrick.tps.antlr;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -27,8 +27,8 @@ public class TestMain {
 		tokens = new CommonTokenStream(lexer);
 		parser = new TPS_ANTLRParser(tokens);
 		BereichSTContext bereichST = parser.bereichST();
-		System.out.println("REGA=" + bereichST.regA);
-		System.out.println("REGB=" + bereichST.regB);
+		System.out.println("REGA=" + bereichST.start);
+		System.out.println("REGB=" + bereichST.ende);
 		System.out.println("TEXT=" + bereichST.getText());
 		
 		in = new ANTLRInputStream("ausgeben folgendes: \thello world this is an nice text: von register 654684864 bis register 684+/*7+\r\n4- ende");

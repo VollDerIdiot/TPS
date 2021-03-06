@@ -2,6 +2,12 @@
 
 package genearatedsources.antlr;
 
+import de.hechler.patrick.tps.antlr.enums.*;
+import de.hechler.patrick.tps.antlr.objects.*;
+import de.hechler.patrick.tps.antlr.objects.satz.*;
+
+import java.util.*;
+
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -51,6 +57,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitSpringeWennNichtGleich(@NotNull TPS_ANTLRParser.SpringeWennNichtGleichContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrErg}.
+	 * @param ctx the parse tree
+	 */
+	void enterStapelGrErg(@NotNull TPS_ANTLRParser.StapelGrErgContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelGrErg}.
+	 * @param ctx the parse tree
+	 */
+	void exitStapelGrErg(@NotNull TPS_ANTLRParser.StapelGrErgContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#zwischenspeicher}.
 	 * @param ctx the parse tree
 	 */
@@ -90,16 +106,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRegisterZeichenEinlesen(@NotNull TPS_ANTLRParser.RegisterZeichenEinlesenContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennGrößer}.
-	 * @param ctx the parse tree
-	 */
-	void enterSpringeWennGrößer(@NotNull TPS_ANTLRParser.SpringeWennGrößerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#springeWennGrößer}.
-	 * @param ctx the parse tree
-	 */
-	void exitSpringeWennGrößer(@NotNull TPS_ANTLRParser.SpringeWennGrößerContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#addiereST}.
 	 * @param ctx the parse tree
@@ -161,6 +167,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitHierST(@NotNull TPS_ANTLRParser.HierSTContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennGr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSpringeWennGr(@NotNull TPS_ANTLRParser.SpringeWennGrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#springeWennGr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSpringeWennGr(@NotNull TPS_ANTLRParser.SpringeWennGrContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#größerGleichST}.
 	 * @param ctx the parse tree
 	 */
@@ -211,16 +227,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitMultipliziereST(@NotNull TPS_ANTLRParser.MultipliziereSTContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrößer}.
-	 * @param ctx the parse tree
-	 */
-	void enterRufeAufGrößer(@NotNull TPS_ANTLRParser.RufeAufGrößerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrößer}.
-	 * @param ctx the parse tree
-	 */
-	void exitRufeAufGrößer(@NotNull TPS_ANTLRParser.RufeAufGrößerContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#ergebnisST}.
 	 * @param ctx the parse tree
 	 */
@@ -261,15 +267,15 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitWennST(@NotNull TPS_ANTLRParser.WennSTContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrößeZw}.
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrReg}.
 	 * @param ctx the parse tree
 	 */
-	void enterStapelGrößeZw(@NotNull TPS_ANTLRParser.StapelGrößeZwContext ctx);
+	void enterStapelGrReg(@NotNull TPS_ANTLRParser.StapelGrRegContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelGrößeZw}.
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelGrReg}.
 	 * @param ctx the parse tree
 	 */
-	void exitStapelGrößeZw(@NotNull TPS_ANTLRParser.StapelGrößeZwContext ctx);
+	void exitStapelGrReg(@NotNull TPS_ANTLRParser.StapelGrRegContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennFalsch}.
 	 * @param ctx the parse tree
@@ -300,16 +306,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVonST(@NotNull TPS_ANTLRParser.VonSTContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrößeZw}.
-	 * @param ctx the parse tree
-	 */
-	void enterStapelMaxGrößeZw(@NotNull TPS_ANTLRParser.StapelMaxGrößeZwContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrößeZw}.
-	 * @param ctx the parse tree
-	 */
-	void exitStapelMaxGrößeZw(@NotNull TPS_ANTLRParser.StapelMaxGrößeZwContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#gleichST}.
 	 * @param ctx the parse tree
@@ -371,6 +367,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitWortfolgeST(@NotNull TPS_ANTLRParser.WortfolgeSTContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufGr}.
+	 * @param ctx the parse tree
+	 */
+	void enterRufeAufGr(@NotNull TPS_ANTLRParser.RufeAufGrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#rufeAufGr}.
+	 * @param ctx the parse tree
+	 */
+	void exitRufeAufGr(@NotNull TPS_ANTLRParser.RufeAufGrContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrST}.
 	 * @param ctx the parse tree
 	 */
@@ -400,6 +406,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSatz(@NotNull TPS_ANTLRParser.SatzContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrZw}.
+	 * @param ctx the parse tree
+	 */
+	void enterStapelGrZw(@NotNull TPS_ANTLRParser.StapelGrZwContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelGrZw}.
+	 * @param ctx the parse tree
+	 */
+	void exitStapelGrZw(@NotNull TPS_ANTLRParser.StapelGrZwContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#ladeRegisterAnzahlErg}.
 	 * @param ctx the parse tree
@@ -441,16 +457,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitLetztenFehlerST(@NotNull TPS_ANTLRParser.LetztenFehlerSTContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennGrößerGleich}.
-	 * @param ctx the parse tree
-	 */
-	void enterSpringeWennGrößerGleich(@NotNull TPS_ANTLRParser.SpringeWennGrößerGleichContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#springeWennGrößerGleich}.
-	 * @param ctx the parse tree
-	 */
-	void exitSpringeWennGrößerGleich(@NotNull TPS_ANTLRParser.SpringeWennGrößerGleichContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#fehlerST}.
 	 * @param ctx the parse tree
 	 */
@@ -480,16 +486,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVergleiche(@NotNull TPS_ANTLRParser.VergleicheContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrößerGleich}.
-	 * @param ctx the parse tree
-	 */
-	void enterRufeAufGrößerGleich(@NotNull TPS_ANTLRParser.RufeAufGrößerGleichContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrößerGleich}.
-	 * @param ctx the parse tree
-	 */
-	void exitRufeAufGrößerGleich(@NotNull TPS_ANTLRParser.RufeAufGrößerGleichContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#derST}.
 	 * @param ctx the parse tree
@@ -530,16 +526,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMitST(@NotNull TPS_ANTLRParser.MitSTContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrößeErg}.
-	 * @param ctx the parse tree
-	 */
-	void enterStapelMaxGrößeErg(@NotNull TPS_ANTLRParser.StapelMaxGrößeErgContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrößeErg}.
-	 * @param ctx the parse tree
-	 */
-	void exitStapelMaxGrößeErg(@NotNull TPS_ANTLRParser.StapelMaxGrößeErgContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#leerzeile}.
 	 * @param ctx the parse tree
@@ -601,6 +587,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitEinlesenST(@NotNull TPS_ANTLRParser.EinlesenSTContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrErg}.
+	 * @param ctx the parse tree
+	 */
+	void enterStapelMaxGrErg(@NotNull TPS_ANTLRParser.StapelMaxGrErgContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrErg}.
+	 * @param ctx the parse tree
+	 */
+	void exitStapelMaxGrErg(@NotNull TPS_ANTLRParser.StapelMaxGrErgContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#versionReg}.
 	 * @param ctx the parse tree
 	 */
@@ -650,6 +646,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPosZahlST(@NotNull TPS_ANTLRParser.PosZahlSTContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#springeWennGrGleich}.
+	 * @param ctx the parse tree
+	 */
+	void enterSpringeWennGrGleich(@NotNull TPS_ANTLRParser.SpringeWennGrGleichContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#springeWennGrGleich}.
+	 * @param ctx the parse tree
+	 */
+	void exitSpringeWennGrGleich(@NotNull TPS_ANTLRParser.SpringeWennGrGleichContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#leerzeichenST}.
 	 * @param ctx the parse tree
@@ -701,6 +707,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrReg}.
+	 * @param ctx the parse tree
+	 */
+	void enterStapelMaxGrReg(@NotNull TPS_ANTLRParser.StapelMaxGrRegContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrReg}.
+	 * @param ctx the parse tree
+	 */
+	void exitStapelMaxGrReg(@NotNull TPS_ANTLRParser.StapelMaxGrRegContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#dividiere}.
 	 * @param ctx the parse tree
 	 */
@@ -731,15 +747,15 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitStapelLesenZw(@NotNull TPS_ANTLRParser.StapelLesenZwContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#geheZurück}.
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrZw}.
 	 * @param ctx the parse tree
 	 */
-	void enterGeheZurück(@NotNull TPS_ANTLRParser.GeheZurückContext ctx);
+	void enterStapelMaxGrZw(@NotNull TPS_ANTLRParser.StapelMaxGrZwContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#geheZurück}.
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrZw}.
 	 * @param ctx the parse tree
 	 */
-	void exitGeheZurück(@NotNull TPS_ANTLRParser.GeheZurückContext ctx);
+	void exitStapelMaxGrZw(@NotNull TPS_ANTLRParser.StapelMaxGrZwContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#subtrahiereST}.
 	 * @param ctx the parse tree
@@ -750,16 +766,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSubtrahiereST(@NotNull TPS_ANTLRParser.SubtrahiereSTContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrößeReg}.
-	 * @param ctx the parse tree
-	 */
-	void enterStapelGrößeReg(@NotNull TPS_ANTLRParser.StapelGrößeRegContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelGrößeReg}.
-	 * @param ctx the parse tree
-	 */
-	void exitStapelGrößeReg(@NotNull TPS_ANTLRParser.StapelGrößeRegContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#ausgabe}.
 	 * @param ctx the parse tree
@@ -891,26 +897,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitFolgendesST(@NotNull TPS_ANTLRParser.FolgendesSTContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrößeErg}.
-	 * @param ctx the parse tree
-	 */
-	void enterStapelGrößeErg(@NotNull TPS_ANTLRParser.StapelGrößeErgContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelGrößeErg}.
-	 * @param ctx the parse tree
-	 */
-	void exitStapelGrößeErg(@NotNull TPS_ANTLRParser.StapelGrößeErgContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrößeReg}.
-	 * @param ctx the parse tree
-	 */
-	void enterStapelMaxGrößeReg(@NotNull TPS_ANTLRParser.StapelMaxGrößeRegContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrößeReg}.
-	 * @param ctx the parse tree
-	 */
-	void exitStapelMaxGrößeReg(@NotNull TPS_ANTLRParser.StapelMaxGrößeRegContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#registerST}.
 	 * @param ctx the parse tree
 	 */
@@ -940,6 +926,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDatei(@NotNull TPS_ANTLRParser.DateiContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#geheZur}.
+	 * @param ctx the parse tree
+	 */
+	void enterGeheZur(@NotNull TPS_ANTLRParser.GeheZurContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#geheZur}.
+	 * @param ctx the parse tree
+	 */
+	void exitGeheZur(@NotNull TPS_ANTLRParser.GeheZurContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#ladeInRegister}.
 	 * @param ctx the parse tree
@@ -1030,6 +1026,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSpeichereST(@NotNull TPS_ANTLRParser.SpeichereSTContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrGleich}.
+	 * @param ctx the parse tree
+	 */
+	void enterRufeAufGrGleich(@NotNull TPS_ANTLRParser.RufeAufGrGleichContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#rufeAufGrGleich}.
+	 * @param ctx the parse tree
+	 */
+	void exitRufeAufGrGleich(@NotNull TPS_ANTLRParser.RufeAufGrGleichContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#gabST}.
 	 * @param ctx the parse tree

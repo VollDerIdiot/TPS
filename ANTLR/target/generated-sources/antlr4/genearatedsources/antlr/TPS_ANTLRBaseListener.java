@@ -2,6 +2,12 @@
 
 package genearatedsources.antlr;
 
+import de.hechler.patrick.tps.antlr.enums.*;
+import de.hechler.patrick.tps.antlr.objects.*;
+import de.hechler.patrick.tps.antlr.objects.satz.*;
+
+import java.util.*;
+
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -115,18 +121,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSpringeWennGrößer(@NotNull TPS_ANTLRParser.SpringeWennGrößerContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSpringeWennGrößer(@NotNull TPS_ANTLRParser.SpringeWennGrößerContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAddiereST(@NotNull TPS_ANTLRParser.AddiereSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -199,6 +193,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSpringeWennGr(@NotNull TPS_ANTLRParser.SpringeWennGrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSpringeWennGr(@NotNull TPS_ANTLRParser.SpringeWennGrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterGrößerGleichST(@NotNull TPS_ANTLRParser.GrößerGleichSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -254,18 +260,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMultipliziereST(@NotNull TPS_ANTLRParser.MultipliziereSTContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRufeAufGrößer(@NotNull TPS_ANTLRParser.RufeAufGrößerContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRufeAufGrößer(@NotNull TPS_ANTLRParser.RufeAufGrößerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -451,6 +445,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRufeAufGr(@NotNull TPS_ANTLRParser.RufeAufGrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRufeAufGr(@NotNull TPS_ANTLRParser.RufeAufGrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStapelGrST(@NotNull TPS_ANTLRParser.StapelGrSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -535,18 +541,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSpringeWennGrößerGleich(@NotNull TPS_ANTLRParser.SpringeWennGrößerGleichContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSpringeWennGrößerGleich(@NotNull TPS_ANTLRParser.SpringeWennGrößerGleichContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFehlerST(@NotNull TPS_ANTLRParser.FehlerSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -583,18 +577,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRufeAufGrößerGleich(@NotNull TPS_ANTLRParser.RufeAufGrößerGleichContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRufeAufGrößerGleich(@NotNull TPS_ANTLRParser.RufeAufGrößerGleichContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterDerST(@NotNull TPS_ANTLRParser.DerSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -602,6 +584,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDerST(@NotNull TPS_ANTLRParser.DerSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWft(@NotNull TPS_ANTLRParser.WftContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWft(@NotNull TPS_ANTLRParser.WftContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -775,6 +769,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSpringeWennGrGleich(@NotNull TPS_ANTLRParser.SpringeWennGrGleichContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSpringeWennGrGleich(@NotNull TPS_ANTLRParser.SpringeWennGrGleichContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLeerzeichenST(@NotNull TPS_ANTLRParser.LeerzeichenSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -818,6 +824,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBereichST(@NotNull TPS_ANTLRParser.BereichSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1214,6 +1232,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSpeichereST(@NotNull TPS_ANTLRParser.SpeichereSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRufeAufGrGleich(@NotNull TPS_ANTLRParser.RufeAufGrGleichContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRufeAufGrGleich(@NotNull TPS_ANTLRParser.RufeAufGrGleichContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -2,78 +2,358 @@ grammar TPS_ANTLR;
 
 @header {
 package genearatedsources.antlr;
+
+import de.hechler.patrick.tps.antlr.enums.*;
+import de.hechler.patrick.tps.antlr.objects.*;
+import de.hechler.patrick.tps.antlr.objects.satz.*;
+
+import java.util.*;
 }
 
-datei
+@parser::members {
+	public int line(){ return _ctx.start.getLine();}
+}
+
+datei returns [List<Satz> inhalt] @init {$inhalt = new ArrayList<>();}
 :
 	(
 		satz WS?
+		{$inhalt.add($satz.inhalt);}
+
 	)+
 ;
 
-satz
+satz returns [int zeile, Satz inhalt]
 :
+	{$zeile = line();}
+
 	satzWert WS? PUNKT
+	{$inhalt = $satzWert.inhalt;}
+
 ;
 
-satzWert
+satzWert returns [Satz inhalt]
 :
-	addiere
-	| subtrahiere
-	| multipliziere
-	| dividiere
-	| zahlenausgabe
-	| leerzeichen
-	| leerzeile
-	| ausgabe
-	| zwischenspeicher
-	| vergleiche
-	| springe
-	| springeWennNichtGleich
-	| springeWennGleich
-	| springeWennKleiner
-	| springeWennGrößer
-	| springeWennKleinerGleich
-	| springeWennGrößerGleich
-	| springeZuDirekt
-	| stelle
-	| leseZahlEinErg
-	| leseZahlEinZwischen
-	| ladeInRegister
-	| ladeVomRegisterErg
-	| ladeVomRegisterZw
-	| ladeRegisterAnzahlErg
-	| ladeRegisterAnzahlZw
-	| registerausgabe
-	| registerWortEinlesen
-	| registerZeichenEinlesen
-	| springeWennFalsch
-	| versionErg
-	| versionZw
-	| versionReg
-	| stapelMaxGrößeErg
-	| stapelMaxGrößeZw
-	| stapelMaxGrößeReg
-	| stapelGrößeErg
-	| stapelGrößeZw
-	| stapelGrößeReg
-	| vergleicheRegister
-	| vergleicheRegisterText
-	| rufeAuf
-	| rufeAufWennGleich
-	| rufeAufWennNichtGleich
-	| rufeAufWennKleiner
-	| rufeAufGrößer
-	| rufeAufKleinerGleich
-	| rufeAufGrößerGleich
-	| geheZurück
-	| rufeAufDirekt
-	| stapelSchreiben
-	| stapelLesenErg
-	| stapelLesenZw
-	| stapelLesenReg
-	| rufeAufWennFalsch
-	| letzterFehler
+	(
+		addiere
+		{$inhalt = new Zahlenoperation(SatzArt.addiere, $addiere.a, $addiere.b);}
+
+	)
+	|
+	(
+		subtrahiere
+		{$inhalt = new Zahlenoperation(SatzArt.subtrahiere, $subtrahiere.a, $subtrahiere.b);}
+
+	)
+	|
+	(
+		multipliziere
+		{$inhalt = new Zahlenoperation(SatzArt.multipliziere, $multipliziere.a, $multipliziere.b);}
+
+	)
+	|
+	(
+		dividiere
+		{$inhalt = new Zahlenoperation(SatzArt.dividiere, $dividiere.a, $dividiere.b);}
+
+	)
+	|
+	(
+		zahlenausgabe
+		{$inhalt = new Ausgabeoperation(SatzArt.zahlenausgabe, $zahlenausgabe.ausgeben);}
+
+	)
+	|
+	(
+		leerzeichen
+		{$inhalt = new Ausgabeoperation(SatzArt.leerzeichen, ZeichenKette.LEERZEICHEN);}
+
+	)
+	|
+	(
+		leerzeile
+		{$inhalt = new Ausgabeoperation(SatzArt.leerzeichen, ZeichenKette.LEERZEILE);}
+
+	)
+	|
+	(
+		ausgabe
+		{$inhalt = new Ausgabeoperation(SatzArt.leerzeichen, $ausgabe.wortfolge);}
+
+	)
+	|
+	(
+		zwischenspeicher
+		{$inhalt = new Satz(SatzArt.zwischenspeicher, Collections.emptyList());}
+
+	)
+	|
+	(
+		vergleiche
+		{$inhalt = new Zahlenoperation(SatzArt.vergleiche, $vergleiche.a, $vergleiche.b);}
+
+	)
+	|
+	(
+		springe
+		{$inhalt = new Stellenoperation(SatzArt.springe, $springe.ziel);}
+
+	)
+	|
+	(
+		springeWennNichtGleich
+		{$inhalt = new Stellenoperation(SatzArt.springeWennNichtGleich, $springeWennNichtGleich.ziel);}
+
+	)
+	|
+	(
+		springeWennGleich
+		{$inhalt = new Stellenoperation(SatzArt.springeWennGleich, $springeWennGleich.ziel);}
+
+	)
+	|
+	(
+		springeWennKleiner
+		{$inhalt = new Stellenoperation(SatzArt.springeWennKleiner, $springeWennKleiner.ziel);}
+
+	)
+	|
+	(
+		springeWennGr
+		{$inhalt = new Stellenoperation(SatzArt.springeWennGrößer, $springeWennGr.ziel);}
+
+	)
+	|
+	(
+		springeWennKleinerGleich
+		{$inhalt = new Stellenoperation(SatzArt.springeWennKleinerGleich, $springeWennKleinerGleich.ziel);}
+
+	)
+	|
+	(
+		springeWennGrGleich
+		{$inhalt = new Stellenoperation(SatzArt.springeWennGrößerGleich, $springeWennGrGleich.ziel);}
+
+	)
+	|
+	(
+		springeZuDirekt
+		{$inhalt = new EinzelZahlenoperation(SatzArt.springeZuDirekt, $springeZuDirekt.ziel);}
+
+	)
+	|
+	(
+		stelle
+		{$inhalt = new ZeichenKettenoperation(SatzArt.stelle, $stelle.name);}
+
+	)
+	|
+	(
+		leseZahlEinErg
+		{$inhalt = new Satz(SatzArt.leseZahlEinErg, Collections.emptyList());}
+
+	)
+	|
+	(
+		leseZahlEinZwischen
+		{$inhalt = new Satz(SatzArt.leseZahlEinZwischen, Collections.emptyList());}
+
+	)
+	|
+	(
+		ladeInRegister
+		{$inhalt = new RegisterUndZahlOperation(SatzArt.ladeInRegister, $ladeInRegister.reg, $ladeInRegister.wert);}
+
+	)
+	|
+	(
+		ladeVomRegisterErg
+		{$inhalt = new EinzelZahlenoperation(SatzArt.ladeVomRegisterErg, $ladeVomRegisterErg.reg);}
+
+	)
+	|
+	(
+		ladeVomRegisterZw
+		{$inhalt = new EinzelZahlenoperation(SatzArt.ladeVomRegisterZw, $ladeVomRegisterZw.reg);}
+
+	)
+	|
+	(
+		ladeRegisterAnzahlErg
+		{$inhalt = new Satz(SatzArt.ladeRegisterAnzahlErg, Collections.emptyList());}
+
+	)
+	|
+	(
+		ladeRegisterAnzahlZw
+		{$inhalt = new Satz(SatzArt.ladeRegisterAnzahlZw, Collections.emptyList());}
+
+	)
+	|
+	(
+		registerausgabe
+		{$inhalt = new ZweiRegisterOperation(SatzArt.registerausgabe, $registerausgabe.anfang, $registerausgabe.ende);}
+
+	)
+	|
+	(
+		registerWortEinlesen
+		{$inhalt = new EinzelZahlenoperation(SatzArt.registerWortEinlesen, $registerWortEinlesen.reg);}
+
+	)
+	|
+	(
+		registerZeichenEinlesen
+		{$inhalt = new RegisterUndZahlOperation(SatzArt.registerZeichenEinlesen, $registerZeichenEinlesen.reg, $registerZeichenEinlesen.anzahl);}
+
+	)
+	|
+	(
+		springeWennFalsch
+		{$inhalt = new Stellenoperation(SatzArt.springeWennFalsch, $springeWennFalsch.ziel);}
+
+	)
+	|
+	(
+		versionErg
+		{$inhalt = new Satz(SatzArt.versionErg, Collections.emptyList());}
+
+	)
+	|
+	(
+		versionZw
+		{$inhalt = new Satz(SatzArt.versionZw, Collections.emptyList());}
+
+	)
+	|
+	(
+		versionReg
+		{$inhalt = new EinzelZahlenoperation(SatzArt.versionReg, $versionReg.reg);}
+
+	)
+	|
+	(
+		stapelMaxGrErg
+		{$inhalt = new Satz(SatzArt.stapelMaxGrößeErg, Collections.emptyList());}
+
+	)
+	|
+	(
+		stapelMaxGrZw
+		{$inhalt = new Satz(SatzArt.stapelMaxGrößeZw, Collections.emptyList());}
+
+	)
+	|
+	(
+		stapelMaxGrReg
+		{$inhalt = new EinzelZahlenoperation(SatzArt.stapelMaxGrößeReg, $stapelMaxGrReg.reg);}
+
+	)
+	|
+	(
+		stapelGrErg
+		{$inhalt = new Satz(SatzArt.stapelGrößeErg, Collections.emptyList());}
+
+	)
+	|
+	(
+		stapelGrZw
+		{$inhalt = new Satz(SatzArt.stapelGrößeZw, Collections.emptyList());}
+
+	)
+	|
+	(
+		stapelGrReg
+		{$inhalt = new EinzelZahlenoperation(SatzArt.stapelGrößeReg, $stapelGrReg.reg);}
+
+	)
+	|
+	(
+		vergleicheRegister
+		{$inhalt = new VierRegisterOperation(SatzArt.vergleicheRegister, $vergleicheRegister.regA, $vergleicheRegister.regB, $vergleicheRegister.regC, $vergleicheRegister.regD);}
+
+	)
+	|
+	(
+		vergleicheRegisterText
+		{$inhalt = new RegRegTextOperation(SatzArt.vergleicheRegisterText, $vergleicheRegisterText.anfang, $vergleicheRegisterText.ende, $vergleicheRegisterText.wortfolge);}
+		
+	)
+	|
+	(
+		rufeAuf
+		{$inhalt = new Stellenoperation(SatzArt.rufeAuf, $rufeAuf.ziel);}
+	)
+	|
+	(
+		rufeAufWennGleich
+		{$inhalt = new Stellenoperation(SatzArt.rufeAufWennGleich, $rufeAufWennGleich.ziel);}
+	)
+	|
+	(
+		rufeAufWennNichtGleich
+		{$inhalt = new Stellenoperation(SatzArt.rufeAufWennNichtGleich, $rufeAufWennNichtGleich.ziel);}
+	)
+	|
+	(
+		rufeAufWennKleiner
+		{$inhalt = new Stellenoperation(SatzArt.rufeAufWennKleiner, $rufeAufWennKleiner.ziel);}
+	)
+	|
+	(
+		rufeAufGr
+		{$inhalt = new Stellenoperation(SatzArt.rufeAufGrößer, $rufeAufGr.ziel);}
+	)
+	|
+	(
+		rufeAufKleinerGleich
+		{$inhalt = new Stellenoperation(SatzArt.rufeAufKleinerGleich, $rufeAufKleinerGleich.ziel);}
+	)
+	|
+	(
+		rufeAufGrGleich
+		{$inhalt = new Stellenoperation(SatzArt.rufeAufGrößerGleich, $rufeAufGrGleich.ziel);}
+	)
+	|
+	(
+		geheZur
+		{$inhalt = new Satz(SatzArt.geheZurück, Collections.emptyList());}
+	)
+	|
+	(
+		rufeAufDirekt
+		{$inhalt = new EinzelZahlenoperation(SatzArt.rufeAufDirekt, $rufeAufDirekt.ziel);}
+	)
+	|
+	(
+		stapelSchreiben
+		{$inhalt = new EinzelZahlenoperation(SatzArt.stapelSchreiben, $stapelSchreiben.legen);}
+	)
+	|
+	(
+		stapelLesenErg
+		{$inhalt = new Satz(SatzArt.stapelLesenErg, Collections.emptyList());}
+	)
+	|
+	(
+		stapelLesenZw
+		{$inhalt = new Satz(SatzArt.stapelLesenZw, Collections.emptyList());}
+	)
+	|
+	(
+		stapelLesenReg
+		{$inhalt = new EinzelZahlenoperation(SatzArt.stapelLesenReg, $stapelLesenReg.reg);}
+	)
+	|
+	(
+		rufeAufWennFalsch
+		{$inhalt = new Stellenoperation(SatzArt.rufeAufWennFalsch, $rufeAufWennFalsch.ziel);}
+	)
+	|
+	(
+		letzterFehler
+		{$inhalt = new Satz(SatzArt.letzterFehler, Collections.emptyList());}
+	)
 ;
 
 ///////////////
@@ -85,14 +365,18 @@ letzterFehler
 	nehmeST WS letztenFehlerST
 ;
 
-rufeAufWennFalsch
+rufeAufWennFalsch returns [ZeichenKette ziel]
 :
 	wennST WS fehlerST WS gabST WS aufrufST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-stapelLesenReg
+stapelLesenReg returns [Zahl reg]
 :
 	nehmeST WS vonST WS stapelST WS zuST WS registerST
+	{$reg = $registerST.reg;}
+
 ;
 
 stapelLesenZw
@@ -105,92 +389,129 @@ stapelLesenErg
 	nehmeST WS vonST WS stapelST WS zuST WS ergebnisST
 ;
 
-stapelSchreiben
+stapelSchreiben returns [Zahl legen]
 :
 	speichereST WS zahlST WS zuST WS stapelST
+	{$legen = $zahlST.zahl;}
+
 ;
 
-rufeAufDirekt
+rufeAufDirekt returns [Zahl ziel]
 :
 	aufrufST WS zuST WS posZahlST
+	{$ziel = $posZahlST.zahl;}
+
 ;
 
-geheZurück
+geheZur
 :
 	zurückgehenST
 ;
 
-rufeAufGrößerGleich
+rufeAufGrGleich returns [ZeichenKette ziel]
 :
 	wennST WS größerGleichST WS aufrufST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-rufeAufKleinerGleich
+rufeAufKleinerGleich returns [ZeichenKette ziel]
 :
 	wennST WS kleinerGleichST WS aufrufST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-rufeAufGrößer
+rufeAufGr returns [ZeichenKette ziel]
 :
 	wennST WS größerST WS aufrufST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-rufeAufWennKleiner
+rufeAufWennKleiner returns [ZeichenKette ziel]
 :
 	wennST WS kleinerST WS aufrufST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-rufeAufWennNichtGleich
+rufeAufWennNichtGleich returns [ZeichenKette ziel]
 :
 	wennST WS ungleichST WS aufrufST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-rufeAufWennGleich
+rufeAufWennGleich returns [ZeichenKette ziel]
 :
 	wennST WS gleichST WS aufrufST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-rufeAuf
+rufeAuf returns [ZeichenKette ziel]
 :
 	aufrufST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-vergleicheRegisterText
+vergleicheRegisterText returns [Zahl anfang, Zahl ende, ZeichenKette wortfolge]
 :
 	vergleichST WS bereichST WS mitST WS derST WS wortfolgeST
+	{	$anfang = $bereichST.anfang;
+		$ende = $bereichST.ende;
+		$wortfolge = new ZeichenKette($wortfolgeST.wortfolge);}
+
 ;
 
-vergleicheRegister
+vergleicheRegister returns [Zahl regA, Zahl regB, Zahl regC, Zahl regD]
 :
-	vergleichST WS bereichST WS mitST WS bereichST
+	vergleichST WS
+	(
+		bereichST
+		{	$regA = $bereichST.anfang;
+			$regB = $bereichST.ende;}
+		
+	) WS mitST WS
+	(
+		bereichST
+		{	$regC = $bereichST.anfang;
+			$regD = $bereichST.ende;}
+	)
 ;
 
-stapelGrößeZw
+stapelGrZw
 :
 	speichereST WS stapelGrST WS zuST WS zwischenST
 ;
 
-stapelGrößeReg
+stapelGrReg returns [Zahl reg]
 :
 	speichereST WS stapelGrST WS zuST WS registerST
+	{$reg = $registerST.reg;}
+
 ;
 
-stapelGrößeErg
+stapelGrErg
 :
 	speichereST WS stapelGrST WS zuST WS ergebnisST
 ;
 
-stapelMaxGrößeReg
+stapelMaxGrReg returns [Zahl reg]
 :
 	speichereST WS stapelMaxGrST WS zuST WS registerST
+	{$reg = $registerST.reg;}
+
 ;
 
-stapelMaxGrößeZw
+stapelMaxGrZw
 :
 	speichereST WS stapelMaxGrST WS zuST WS zwischenST
 ;
 
-stapelMaxGrößeErg
+stapelMaxGrErg
 :
 	speichereST WS stapelMaxGrST WS zuST WS ergebnisST
 ;
@@ -200,9 +521,11 @@ versionZw
 	speichereST WS versionST WS zuST WS zwischenST
 ;
 
-versionReg
+versionReg returns [Zahl reg]
 :
 	speichereST WS versionST WS zuST WS registerST
+	{$reg = $registerST.reg;}
+
 ;
 
 versionErg
@@ -210,24 +533,34 @@ versionErg
 	speichereST WS versionST WS zuST WS ergebnisST
 ;
 
-springeWennFalsch
+springeWennFalsch returns [ZeichenKette ziel]
 :
 	wennST WS fehlerST WS gabST WS springeST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-registerZeichenEinlesen
+registerZeichenEinlesen returns [Zahl anzahl, Zahl reg]
 :
 	einlesenST WS posZahlST WS zeichenST WS zuST WS registerST
+	{	$anzahl = $posZahlST.zahl;
+		$reg = $registerST.reg;}
+
 ;
 
-registerWortEinlesen
+registerWortEinlesen returns [Zahl reg]
 :
 	einlesenST WS wortST WS zuST WS registerST
+	{$reg = $registerST.reg;}
+
 ;
 
-registerausgabe
+registerausgabe returns [Zahl anfang, Zahl ende]
 :
 	ausgebenST WS bereichST
+	{	$anfang = $bereichST.anfang;
+		$ende = $bereichST.ende;}
+
 ;
 
 ladeRegisterAnzahlZw
@@ -240,89 +573,129 @@ ladeRegisterAnzahlErg
 	speichereST WS anzahlST WS registerST_ WS ergebnisST
 ;
 
-ladeVomRegisterZw
+ladeVomRegisterZw returns [Zahl reg]
 :
 	speichereST WS registerST WS zuST WS zwischenST
+	{$reg = $registerST.reg;}
+
 ;
 
-ladeVomRegisterErg
+ladeVomRegisterErg returns [Zahl reg]
 :
 	speichereST WS registerST WS zuST WS ergebnisST
+	{$reg = $registerST.reg;}
+
 ;
 
-ladeInRegister
+ladeInRegister returns [Zahl wert, Zahl reg]
 :
 	speichereST WS zahlST WS zuST WS registerST
+	{	$reg = $registerST.reg;
+		$wert = $zahlST.zahl;}
+
 ;
 
 leseZahlEinZwischen
 :
-	einlesenST WS zahlST_ WS zwischenST
+	einlesenST WS zahlST_ WS zuST WS zwischenST
 ;
 
 leseZahlEinErg
 :
-	einlesenST WS zahlST_ WS ergebnisST
+	einlesenST WS zahlST_ WS zuST WS ergebnisST
 ;
 
-stelle
+stelle returns [ZeichenKette name]
 :
 	hierST WS istST WS stelleST
+	{$name = new ZeichenKette($stelleST.name);}
+
 ;
 
-springeZuDirekt
+springeZuDirekt returns [Zahl ziel]
 :
 	springeST WS zuST WS posZahlST
+	{$ziel = $posZahlST.zahl;}
+
 ;
 
-springeWennGrößerGleich
+springeWennGrGleich returns [ZeichenKette ziel]
 :
 	wennST WS größerST WS springeST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-springeWennKleinerGleich
+springeWennKleinerGleich returns [ZeichenKette ziel]
 :
 	wennST WS kleinerGleichST WS springeST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-springeWennGrößer
+springeWennGr returns [ZeichenKette ziel]
 :
 	wennST WS größerST WS springeST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-springeWennKleiner
+springeWennKleiner returns [ZeichenKette ziel]
 :
 	wennST WS kleinerST WS springeST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-springeWennNichtGleich
+springeWennNichtGleich returns [ZeichenKette ziel]
 :
 	wennST WS ungleichST WS springeST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-springeWennGleich
+springeWennGleich returns [ZeichenKette ziel]
 :
 	wennST WS gleichST WS springeST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-springe
+springe returns [ZeichenKette ziel]
 :
 	springeST WS zuST WS stelleST
+	{$ziel = new ZeichenKette($stelleST.name);}
+
 ;
 
-vergleiche
+vergleiche returns [Zahl a, Zahl b]
 :
-	vergleichST WS zahlST WS mitST WS zahlST
+	vergleichST WS
+	(
+		zahlST
+		{$a = $zahlST.zahl;}
+
+	) WS mitST WS
+	(
+		zahlST
+		{$b = $zahlST.zahl;}
+
+	)
 ;
 
 zwischenspeicher
 :
-	speichereST WS ergebnisST WS zuST WS zwischenST
+	speichereST WS ergebnisST
+	(
+		WS zuST
+	)? WS zwischenST
 ;
 
-ausgabe
+ausgabe returns [ZeichenKette wortfolge]
 :
 	ausgebenST WS folgendesST WS wortfolgeST
+	{$wortfolge = new ZeichenKette($wortfolgeST.wortfolge);}
+
 ;
 
 leerzeile
@@ -335,29 +708,71 @@ leerzeichen
 	ausgebenST WS leerzeichenST
 ;
 
-zahlenausgabe
+zahlenausgabe returns [Zahl ausgeben]
 :
 	ausgebenST WS zahlST
+	{$ausgeben = $zahlST.zahl;}
+
 ;
 
-multipliziere
+multipliziere returns [Zahl a, Zahl b]
 :
-	multipliziereST WS zahlST WS mitST WS zahlST
+	multipliziereST WS
+	(
+		zahlST
+		{$a = $zahlST.zahl;}
+
+	) WS mitST WS
+	(
+		zahlST
+		{$b = $zahlST.zahl;}
+
+	)
 ;
 
-dividiere
+dividiere returns [Zahl a, Zahl b]
 :
-	dividiereST WS zahlST WS mitST WS zahlST
+	dividiereST WS
+	(
+		zahlST
+		{$a = $zahlST.zahl;}
+
+	) WS mitST WS
+	(
+		zahlST
+		{$b = $zahlST.zahl;}
+
+	)
 ;
 
-subtrahiere
+subtrahiere returns [Zahl a, Zahl b]
 :
-	subtrahiereST WS zahlST WS mitST WS zahlST
+	subtrahiereST WS
+	(
+		zahlST
+		{$a = $zahlST.zahl;}
+
+	) WS mitST WS
+	(
+		zahlST
+		{$b = $zahlST.zahl;}
+
+	)
 ;
 
-addiere
+addiere returns [Zahl a, Zahl b]
 :
-	addiereST WS zahlST WS mitST WS zahlST
+	addiereST WS
+	(
+		zahlST
+		{$a = $zahlST.zahl;}
+
+	) WS mitST WS
+	(
+		zahlST
+		{$b = $zahlST.zahl;}
+
+	)
 ;
 
 ///////////////
@@ -388,11 +803,13 @@ gabST
 zuST
 :
 	ZU
+	| IN
 ;
 
 vonST
 :
 	VON
+	| VOM
 ;
 
 folgendesST
@@ -458,7 +875,7 @@ springeST
 	)
 ;
 
-stelleST
+stelleST returns [String name]
 :
 	STELLE_WORT
 	(
@@ -467,6 +884,8 @@ stelleST
 	(
 		DP
 	)? WS STELLE
+	{$name = $STELLE.getText();}
+
 ;
 
 aufrufST
@@ -505,27 +924,27 @@ ergebnisST
 	| ERGEBNISSPEICHER
 ;
 
-registerST returns [int reg]
+registerST returns [Zahl reg]
 :
 	REGISTER WS
 	(
 		VON WS
-	)? POS_ZAHL
-	{$reg = Integer.parseInt($POS_ZAHL.getText());}
+	)? posZahlST
+	{$reg = $posZahlST.zahl;}
 
 ;
 
-bereichST returns [int regA, int regB]
+bereichST returns [Zahl anfang, Zahl ende]
 :
 	VON WS
 	(
 		registerST
-		{$regA = $registerST.reg;}
+		{$anfang = $registerST.reg;}
 
 	) WS BIS WS
 	(
 		registerST
-		{$regB = $registerST.reg;}
+		{$ende = $registerST.reg;}
 
 	)
 ;
@@ -540,22 +959,44 @@ nehmeST
 	NEHME
 ;
 
-zahlST returns [long zahl] @init {boolean negieren = false;}
+zahlST returns [Zahl zahl] @init {boolean negieren = false;}
 :
 	(
-		NAGATION
-		{negieren = true;}
+		(
+			NAGATION
+			{negieren = true;}
 
-	)? POS_ZAHL
-	{ $zahl = (negieren ? ( - Long.parseLong($POS_ZAHL.getText()) ): ( Long.parseLong($POS_ZAHL.getText()) ) ) ;  }
+		)? POS_ZAHL
+		{$zahl = new Zahl(- Long.parseLong($POS_ZAHL.getText()));}
 
+	)
+	|
+	(
+		posZahlST
+		{$zahl = $posZahlST.zahl;}
+
+	)
 ;
 
-posZahlST returns [long zahl]
+posZahlST returns [Zahl zahl]
 :
-	POS_ZAHL
-	{$zahl = Long.parseLong($POS_ZAHL.getText());}
+	(
+		POS_ZAHL
+		{$zahl = new Zahl(Long.parseLong($POS_ZAHL.getText()));}
 
+	)
+	|
+	(
+		ergebnisST
+		{$zahl = new Zahl(true);}
+
+	)
+	|
+	(
+		zwischenST
+		{$zahl = new Zahl(false);}
+
+	)
 ;
 
 fehlerST
@@ -1155,6 +1596,11 @@ VON
 ZU
 :
 	'zu'
+;
+
+IN
+:
+	'in'
 ;
 
 GAB
