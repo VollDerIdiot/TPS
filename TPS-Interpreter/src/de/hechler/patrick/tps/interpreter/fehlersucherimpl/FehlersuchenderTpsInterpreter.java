@@ -12,9 +12,9 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
 
+import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.interpreter.FehlersuchenInterpreter;
-import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.AnordnungInterface;
 import de.hechler.patrick.tps.interpreter.hilfen.Helfer;
 

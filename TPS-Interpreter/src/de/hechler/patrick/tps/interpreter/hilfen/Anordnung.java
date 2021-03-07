@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.fehler.NegativeZahlFehler;
-import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.befehl.BefehlEnum;
 
 @Deprecated

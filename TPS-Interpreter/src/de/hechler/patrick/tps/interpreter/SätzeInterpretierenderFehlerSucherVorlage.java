@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
 
+import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.antlr.enums.SatzArt;
 import de.hechler.patrick.tps.antlr.objects.Parameter;
 import de.hechler.patrick.tps.antlr.objects.Satz;

@@ -1,4 +1,4 @@
-package de.hechler.patrick.tps.interpreter;
+package de.hechler.patrick.tps.antlr.anotatins;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

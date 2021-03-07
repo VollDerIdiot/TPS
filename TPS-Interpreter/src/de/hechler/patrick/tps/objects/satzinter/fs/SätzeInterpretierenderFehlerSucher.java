@@ -5,14 +5,24 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.antlr.objects.Satz;
 import de.hechler.patrick.tps.interpreter.SätzeInterpretierenderFehlerSucherVorlage;
 
-
+@Version(7)
 public class SätzeInterpretierenderFehlerSucher extends SätzeInterpretierenderFehlerSucherVorlage {
 	
 	public SätzeInterpretierenderFehlerSucher(Scanner eingabe, PrintStream ausgabe, int registerAnzahl, int stapelMaxGröße) {
 		super(eingabe, ausgabe, registerAnzahl, stapelMaxGröße);
+	}
+	
+	@Override
+	public int version() {
+		try {
+			return super.version();
+		} catch (UnsupportedOperationException e) {
+			return 7;
+		}
 	}
 	
 	@Override
@@ -171,8 +181,7 @@ public class SätzeInterpretierenderFehlerSucher extends SätzeInterpretierender
 				if (anzahl < 0) {
 					fehler(FEHLER_NEGATIVE_ZAHL, stelle);
 					erg = Ergebnis.fehler;
-				}
-				else				if (testRegister(reg, stelle)) {
+				} else if (testRegister(reg, stelle)) {
 					try {
 						char[] chars = eingabe.next("^(\\w{" + anzahl + "," + anzahl + "})$").toCharArray();
 						long len = chars.length;

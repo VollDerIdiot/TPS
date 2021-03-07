@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.antlr.enums.SatzArt;
 import de.hechler.patrick.tps.antlr.objects.Satz;
 import de.hechler.patrick.tps.interpreter.SatzInterpreter;
-import de.hechler.patrick.tps.interpreter.Version;
 
 
 @Version(6)

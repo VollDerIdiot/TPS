@@ -13,11 +13,11 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.fehler.UnbekannteStellenFehler;
 import de.hechler.patrick.tps.fehler.UnbekannterBefehlFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
-import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.Anordnung;
 import de.hechler.patrick.tps.interpreter.hilfen.AnordnungInterface;
 import de.hechler.patrick.tps.interpreter.hilfen.befehl.BefehlEnum;

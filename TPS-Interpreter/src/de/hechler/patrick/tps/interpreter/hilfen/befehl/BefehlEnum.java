@@ -7,13 +7,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import de.hechler.patrick.tps.antlr.anotatins.Stelle;
+import de.hechler.patrick.tps.antlr.anotatins.Version;
+import de.hechler.patrick.tps.antlr.anotatins.Änderung;
 import de.hechler.patrick.tps.hilfen.objects.fehler.NochNichtGemachtFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
-import de.hechler.patrick.tps.interpreter.Stelle;
-import de.hechler.patrick.tps.interpreter.Version;
-import de.hechler.patrick.tps.interpreter.Änderung;
 import de.hechler.patrick.tps.interpreter.hilfen.Param;
-
+@Version(6)
 public enum BefehlEnum  {
 	
 	@Version(1) addiere("addiere", Interpreter.ZAHL, "mit", Interpreter.ZAHL), @Version(1) subtrahiere("subtrahiere", Interpreter.ZAHL, "mit", Interpreter.ZAHL),

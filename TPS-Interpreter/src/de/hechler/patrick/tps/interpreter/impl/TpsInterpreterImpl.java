@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.fehler.InterpretierungsFehler;
 import de.hechler.patrick.tps.interpreter.Interpreter;
-import de.hechler.patrick.tps.interpreter.Version;
 import de.hechler.patrick.tps.interpreter.hilfen.SatzLeser;
 import de.hechler.patrick.tps.interpreter.hilfen.befehl.BefehlEnum;
 
