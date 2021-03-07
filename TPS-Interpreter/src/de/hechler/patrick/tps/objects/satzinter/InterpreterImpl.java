@@ -1,4 +1,4 @@
-package de.hechler.patrick.tps.antlr.objects;
+package de.hechler.patrick.tps.objects.satzinter;
 
 import java.io.PrintStream;
 import java.util.HashMap;
@@ -7,13 +7,14 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import de.hechler.patrick.tps.antlr.InterpreterInterface;
 import de.hechler.patrick.tps.antlr.enums.SatzArt;
+import de.hechler.patrick.tps.antlr.objects.Satz;
+import de.hechler.patrick.tps.interpreter.SatzInterpreter;
 import de.hechler.patrick.tps.interpreter.Version;
 
 
 @Version(6)
-public class InterpreterImpl implements InterpreterInterface {
+public class InterpreterImpl implements SatzInterpreter {
 	
 	private volatile Map <String, Integer> stellen;
 	
@@ -51,14 +52,14 @@ public class InterpreterImpl implements InterpreterInterface {
 				Satz mache = sätze[(int) satzZeiger ++ ];
 				switch (mache.art) {
 				case addiere:
-					ergebnis = mache.param(0).zahl(this) + mache.param(1).zahl(this);
+					ergebnis = zahl(mache.param(0)) + zahl(mache.param(1));
 					break;
 				case ausgabe:
 					ausgabe.print(mache.param(0));
 					break;
 				case dividiere: {
-					long a = mache.param(0).zahl(this);
-					long b = mache.param(1).zahl(this);
+					long a = zahl(mache.param(0));
+					long b = zahl(mache.param(1));
 					if (b == 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_TEILEN_DURCH_NULL;
@@ -90,8 +91,8 @@ public class InterpreterImpl implements InterpreterInterface {
 					}
 					break;
 				case ladeInRegister: {
-					long reg = mache.param(0).zahl(this);
-					long wert = mache.param(1).zahl(this);
+					long reg = zahl(mache.param(0));
+					long wert = zahl(mache.param(1));
 					if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -112,7 +113,7 @@ public class InterpreterImpl implements InterpreterInterface {
 					zwischen = (long) register.length;
 					break;
 				case ladeVomRegisterErg: {
-					long reg = mache.param(0).zahl(this);
+					long reg = zahl(mache.param(0));
 					if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -127,7 +128,7 @@ public class InterpreterImpl implements InterpreterInterface {
 					break;
 				}
 				case ladeVomRegisterZw: {
-					long reg = mache.param(0).zahl(this);
+					long reg = zahl(mache.param(0));
 					if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -174,13 +175,13 @@ public class InterpreterImpl implements InterpreterInterface {
 					zwischen = lfStelle;
 					break;
 				case multipliziere: {
-					long a = mache.param(0).zahl(this);
-					long b = mache.param(1).zahl(this);
+					long a = zahl(mache.param(0));
+					long b = zahl(mache.param(1));
 					ergebnis = a * b;
 					break;
 				}
 				case registerWortEinlesen: {
-					long reg = mache.param(0).zahl(this);
+					long reg = zahl(mache.param(0));
 					if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -207,14 +208,13 @@ public class InterpreterImpl implements InterpreterInterface {
 					break;
 				}
 				case registerZeichenEinlesen: {
-					long reg = mache.param(0).zahl(this);
-					long anzahl = mache.param(1).zahl(this);
+					long reg = zahl(mache.param(0));
+					long anzahl = zahl(mache.param(1));
 					if (anzahl < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_NEGATIVE_ZAHL;
 						lfStelle = satzZeiger - 1;
-					}
-					if (reg < 0) {
+					} else if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
 						lfStelle = satzZeiger - 1;
@@ -224,7 +224,7 @@ public class InterpreterImpl implements InterpreterInterface {
 						lfStelle = satzZeiger - 1;
 					} else {
 						try {
-							char[] chars = eingabe.next("\\w(" + anzahl + "," + anzahl + ")").toCharArray();
+							char[] chars = eingabe.next("^(\\w{" + anzahl + "," + anzahl + "})$").toCharArray();
 							long len = chars.length;
 							if (chars.length + reg > register.length) {
 								len = register.length - reg;
@@ -239,8 +239,8 @@ public class InterpreterImpl implements InterpreterInterface {
 					break;
 				}
 				case registerausgabe: {
-					long reg = mache.param(0).zahl(this);
-					long regB = mache.param(1).zahl(this);
+					long reg = zahl(mache.param(0));
+					long regB = zahl(mache.param(1));
 					if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -292,7 +292,7 @@ public class InterpreterImpl implements InterpreterInterface {
 					break;
 				}
 				case rufeAufDirekt: {
-					long ziel = mache.param(0).zahl(this);
+					long ziel = zahl(mache.param(0));
 					if (ziel < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_SATZANGABE;
@@ -556,7 +556,7 @@ public class InterpreterImpl implements InterpreterInterface {
 				}
 				case springeZuDirekt: {
 					if ( (status & STATUS_FEHLER) != 0) {
-						long ziel = mache.param(0).zahl(this);
+						long ziel = zahl(mache.param(0));
 						if (ziel < 0) {
 							status |= STATUS_FEHLER;
 							lfArt = FEHLER_ZU_KLEINE_SATZANGABE;
@@ -575,7 +575,7 @@ public class InterpreterImpl implements InterpreterInterface {
 					ergebnis = stapelZeiger;
 					break;
 				case stapelGrößeReg: {
-					long reg = mache.param(0).zahl(this);
+					long reg = zahl(mache.param(0));
 					if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -607,7 +607,7 @@ public class InterpreterImpl implements InterpreterInterface {
 						lfArt = FEHLER_LEERER_STAPEL;
 						lfStelle = satzZeiger - 1;
 					} else {
-						long reg = mache.param(0).zahl(this);
+						long reg = zahl(mache.param(0));
 						if (reg < 0) {
 							status |= STATUS_FEHLER;
 							lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -634,7 +634,7 @@ public class InterpreterImpl implements InterpreterInterface {
 					ergebnis = (long) stapel.length;
 					break;
 				case stapelMaxGrößeReg: {
-					long reg = mache.param(0).zahl(this);
+					long reg = zahl(mache.param(0));
 					if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -657,18 +657,18 @@ public class InterpreterImpl implements InterpreterInterface {
 						lfArt = FEHLER_STAPEL_ÜBERFÜLT;
 						lfStelle = satzZeiger - 1;
 					} else {
-						long legen = mache.param(0).zahl(this);
+						long legen = zahl(mache.param(0));
 						stapel[stapelZeiger ++ ] = legen;
 					}
 					break;
 				case stelle:
 					break;
 				case subtrahiere:
-					ergebnis = mache.param(0).zahl(this) - mache.param(1).zahl(this);
+					ergebnis = zahl(mache.param(0)) - zahl(mache.param(1));
 					break;
 				case vergleiche: {
-					long a = mache.param(0).zahl(this);
-					long b = mache.param(1).zahl(this);
+					long a = zahl(mache.param(0));
+					long b = zahl(mache.param(1));
 					status &= ~ (STATUS_KLEINER | STATUS_GLECIH | STATUS_GRÖẞER);
 					if (a < b) {
 						status |= STATUS_KLEINER;
@@ -680,10 +680,10 @@ public class InterpreterImpl implements InterpreterInterface {
 					break;
 				}
 				case vergleicheRegister: {
-					long regAa = mache.param(0).zahl(this);
-					long regAb = mache.param(1).zahl(this);
-					long regBa = mache.param(2).zahl(this);
-					long regBb = mache.param(3).zahl(this);
+					long regAa = zahl(mache.param(0));
+					long regAb = zahl(mache.param(1));
+					long regBa = zahl(mache.param(2));
+					long regBb = zahl(mache.param(3));
 					if (regAa < 0 || regAb < 0 || regBa < 0 || regBb < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -714,10 +714,12 @@ public class InterpreterImpl implements InterpreterInterface {
 								b = register[(int) (regBgr - i)];
 							}
 							if (a < b) {
+								status &= ~STATUS_GLECIH;
 								status |= STATUS_KLEINER;
 								break;
 							}
 							if (a > b) {
+								status &= ~STATUS_GLECIH;
 								status |= STATUS_GRÖẞER;
 								break;
 							}
@@ -726,8 +728,8 @@ public class InterpreterImpl implements InterpreterInterface {
 					break;
 				}
 				case vergleicheRegisterText: {
-					long regAa = mache.param(0).zahl(this);
-					long regAb = mache.param(1).zahl(this);
+					long regAa = zahl(mache.param(0));
+					long regAb = zahl(mache.param(1));
 					char[] chars = mache.param(2).toString().toCharArray();
 					if (regAa < 0 || regAb < 0) {
 						status |= STATUS_FEHLER;
@@ -752,10 +754,12 @@ public class InterpreterImpl implements InterpreterInterface {
 							}
 							b = (long) chars[i];
 							if (a < b) {
+								status &= ~STATUS_GLECIH;
 								status |= STATUS_KLEINER;
 								break;
 							}
 							if (a > b) {
+								status &= ~STATUS_GLECIH;
 								status |= STATUS_GRÖẞER;
 								break;
 							}
@@ -767,7 +771,7 @@ public class InterpreterImpl implements InterpreterInterface {
 					ergebnis = version();
 					break;
 				case versionReg: {
-					long reg = mache.param(0).zahl(this);
+					long reg = zahl(mache.param(0));
 					if (reg < 0) {
 						status |= STATUS_FEHLER;
 						lfArt = FEHLER_ZU_KLEINE_REGISTERANGABE;
@@ -785,7 +789,7 @@ public class InterpreterImpl implements InterpreterInterface {
 					zwischen = version();
 					break;
 				case zahlenausgabe:
-					ausgabe.print(mache.param(0).zahl(this));
+					ausgabe.print(zahl(mache.param(0)));
 					break;
 				case zwischenspeicher:
 					zwischen = ergebnis;
@@ -847,12 +851,12 @@ public class InterpreterImpl implements InterpreterInterface {
 	}
 	
 	@Override
-	public long StapelGröße() {
+	public long stapelGröße() {
 		return (long) stapelZeiger;
 	}
 	
 	@Override
-	public long StapelMaxGröße() {
+	public long stapelMaxGröße() {
 		return (long) stapel.length;
 	}
 	

@@ -2,12 +2,6 @@
 
 package genearatedsources.antlr;
 
-import de.hechler.patrick.tps.antlr.enums.*;
-import de.hechler.patrick.tps.antlr.objects.*;
-import de.hechler.patrick.tps.antlr.objects.satz.*;
-
-import java.util.*;
-
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -68,6 +62,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSpringeWennNichtGleich(@NotNull TPS_ANTLRParser.SpringeWennNichtGleichContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStapelGrErg(@NotNull TPS_ANTLRParser.StapelGrErgContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStapelGrErg(@NotNull TPS_ANTLRParser.StapelGrErgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -313,13 +319,13 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStapelGrößeZw(@NotNull TPS_ANTLRParser.StapelGrößeZwContext ctx) { }
+	@Override public void enterStapelGrReg(@NotNull TPS_ANTLRParser.StapelGrRegContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStapelGrößeZw(@NotNull TPS_ANTLRParser.StapelGrößeZwContext ctx) { }
+	@Override public void exitStapelGrReg(@NotNull TPS_ANTLRParser.StapelGrRegContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -356,18 +362,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVonST(@NotNull TPS_ANTLRParser.VonSTContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStapelMaxGrößeZw(@NotNull TPS_ANTLRParser.StapelMaxGrößeZwContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStapelMaxGrößeZw(@NotNull TPS_ANTLRParser.StapelMaxGrößeZwContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -488,6 +482,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSatz(@NotNull TPS_ANTLRParser.SatzContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStapelGrZw(@NotNull TPS_ANTLRParser.StapelGrZwContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStapelGrZw(@NotNull TPS_ANTLRParser.StapelGrZwContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -625,18 +631,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStapelMaxGrößeErg(@NotNull TPS_ANTLRParser.StapelMaxGrößeErgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStapelMaxGrößeErg(@NotNull TPS_ANTLRParser.StapelMaxGrößeErgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterLeerzeile(@NotNull TPS_ANTLRParser.LeerzeileContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -704,6 +698,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEinlesenST(@NotNull TPS_ANTLRParser.EinlesenSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStapelMaxGrErg(@NotNull TPS_ANTLRParser.StapelMaxGrErgContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStapelMaxGrErg(@NotNull TPS_ANTLRParser.StapelMaxGrErgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -841,6 +847,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStapelMaxGrReg(@NotNull TPS_ANTLRParser.StapelMaxGrRegContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStapelMaxGrReg(@NotNull TPS_ANTLRParser.StapelMaxGrRegContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDividiere(@NotNull TPS_ANTLRParser.DividiereContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -877,13 +895,13 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGeheZurück(@NotNull TPS_ANTLRParser.GeheZurückContext ctx) { }
+	@Override public void enterStapelMaxGrZw(@NotNull TPS_ANTLRParser.StapelMaxGrZwContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGeheZurück(@NotNull TPS_ANTLRParser.GeheZurückContext ctx) { }
+	@Override public void exitStapelMaxGrZw(@NotNull TPS_ANTLRParser.StapelMaxGrZwContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -896,18 +914,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSubtrahiereST(@NotNull TPS_ANTLRParser.SubtrahiereSTContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStapelGrößeReg(@NotNull TPS_ANTLRParser.StapelGrößeRegContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStapelGrößeReg(@NotNull TPS_ANTLRParser.StapelGrößeRegContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1069,30 +1075,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStapelGrößeErg(@NotNull TPS_ANTLRParser.StapelGrößeErgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStapelGrößeErg(@NotNull TPS_ANTLRParser.StapelGrößeErgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStapelMaxGrößeReg(@NotNull TPS_ANTLRParser.StapelMaxGrößeRegContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStapelMaxGrößeReg(@NotNull TPS_ANTLRParser.StapelMaxGrößeRegContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterRegisterST(@NotNull TPS_ANTLRParser.RegisterSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1124,6 +1106,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDatei(@NotNull TPS_ANTLRParser.DateiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGeheZur(@NotNull TPS_ANTLRParser.GeheZurContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGeheZur(@NotNull TPS_ANTLRParser.GeheZurContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1220,6 +1214,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVergleicheRegister(@NotNull TPS_ANTLRParser.VergleicheRegisterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAusST(@NotNull TPS_ANTLRParser.AusSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAusST(@NotNull TPS_ANTLRParser.AusSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

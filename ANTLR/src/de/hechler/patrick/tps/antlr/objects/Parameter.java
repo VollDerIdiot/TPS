@@ -8,9 +8,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 
-import de.hechler.patrick.tps.antlr.InterpreterInterface;
 import de.hechler.patrick.tps.antlr.fehler.WrongInputException;
-import de.hechler.patrick.tps.interpreter.Interpreter;
 
 
 public interface Parameter extends Serializable {
@@ -25,11 +23,7 @@ public interface Parameter extends Serializable {
 	
 	Long zahl();
 	
-	long zahl(InterpreterInterface interpret);
-	
-	String toString();
-	
-	String toString(Interpreter interpret);
+	String zeichenKette();
 	
 	public static Parameter lade(InputStream in) throws IOException, WrongInputException {
 		int art = in.read();

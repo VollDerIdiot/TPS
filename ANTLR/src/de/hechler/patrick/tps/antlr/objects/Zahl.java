@@ -1,8 +1,5 @@
 package de.hechler.patrick.tps.antlr.objects;
 
-import de.hechler.patrick.tps.antlr.InterpreterInterface;
-import de.hechler.patrick.tps.interpreter.Interpreter;
-
 public class Zahl implements Parameter {
 	
 	/** UID */
@@ -53,17 +50,17 @@ public class Zahl implements Parameter {
 		return zahl;
 	}
 	
-	@Override
-	public long zahl(InterpreterInterface interpret) {
-		if (erg != null) {
-			if (erg) {
-				return interpret.ergebnis();
-			}
-			return interpret.zwischen();
-		}
-		return zahl;
-	}
-	
+//	@Override
+//	public long zahl(InterpreterInterface interpret) {
+//		if (erg != null) {
+//			if (erg) {
+//				return interpret.ergebnis();
+//			}
+//			return interpret.zwischen();
+//		}
+//		return zahl;
+//	}
+//	
 	@Override
 	public String toString() {
 		if (erg != null) {
@@ -74,14 +71,19 @@ public class Zahl implements Parameter {
 	}
 	
 	@Override
-	public String toString(Interpreter interpret) {
-		if (erg != null) {
-			return String.valueOf(erg ? interpret.ergebnis() : interpret.zwischenspeicher());
-		} else {
-			return String.valueOf(zahl);
-		}
+	public String zeichenKette() {
+		return null;
 	}
 	
+//	@Override
+//	public String toString(InterpreterInterface interpret) {
+//		if (erg != null) {
+//			return String.valueOf(erg ? interpret.ergebnis() : interpret.zwischen());
+//		} else {
+//			return String.valueOf(zahl);
+//		}
+//	}
+//	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

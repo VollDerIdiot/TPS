@@ -1,8 +1,12 @@
-package de.hechler.patrick.tps.antlr;
+package de.hechler.patrick.tps.interpreter;
 
+import java.util.List;
+
+import de.hechler.patrick.tps.antlr.objects.Parameter;
 import de.hechler.patrick.tps.antlr.objects.Satz;
+import de.hechler.patrick.tps.antlr.objects.Zahl;
 
-public interface InterpreterInterface extends Runnable {
+public interface SatzInterpreter extends Runnable {
 	
 	public final static long FEHLER_UNBEKANNT                = -1l;
 	public final static long FEHLER_EINGABE_KEINE_ZAHL       = 1l;
@@ -24,6 +28,22 @@ public interface InterpreterInterface extends Runnable {
 	public final static long STATUS_ANGEHALTEN = 0b0000000000000000000000000000000000000000000000000000000000010000l;
 	public final static long STATUS_FEHLER     = 0b1000000000000000000000000000000000000000000000000000000000000000l;
 	
+	default long zahl(Parameter zahl) {
+		if (zahl.istKonstante()) return zahl.zahl();
+		else if (zahl.ergebniszahl()) return ergebnis();
+		else if (zahl.zwischenzahl()) return zwischen();
+		else throw new IllegalArgumentException("Kein Zahlenparameter: " + zahl);
+	}
+	
+	default long zahl(Zahl zahl) {
+		if (zahl.erg != null) return zahl.erg ? ergebnis() : zwischen();
+		else return zahl.zahl;
+	}
+	
+	default void lade(List <Satz> sätze) {
+		lade(sätze.toArray(new Satz[sätze.size()]));
+	}
+	
 	void lade(Satz[] sätze);
 	
 	long status();
@@ -36,16 +56,20 @@ public interface InterpreterInterface extends Runnable {
 	
 	long registerAnzahl();
 	
-	long StapelGröße();
+	default boolean leereStapel() {
+		return stapelGröße() == 0;
+	}
 	
-	long StapelMaxGröße();
+	long stapelGröße();
+	
+	long stapelMaxGröße();
 	
 	long letzterFehlerArt();
 	
 	long letzterFehlerStelle();
 	
-	boolean hatAutomatischenFehlerSprung();
-
 	int version();
+	
+	boolean hatAutomatischenFehlerSprung();
 	
 }
