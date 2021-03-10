@@ -25,33 +25,36 @@ public class TPS_ANTLRParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		WS=1, STELLE_WORT=2, DER=3, WORTREIHE_WORT=4, WORTKETTE_WORT=5, WORTFOLGE_WORT=6, 
-		LETZTEN=7, ZEICHEN=8, ZEICHENFOLGE=9, ZEICHENKETTE=10, WORT_WORT=11, MENGE=12, 
-		ANZAHL=13, ZAHL_WORT=14, EINESEN=15, EIN=16, LESE=17, ODER=18, KLEINER=19, 
-		GRÖẞER=20, UNGLEICH=21, NICHT=22, GLEICH=23, FALLS=24, WENN=25, DES=26, 
-		STAPELS=27, VOM=28, MAXIMALE=29, GRÖẞE=30, MAXIMUM=31, VERSION=32, FEHLER=33, 
-		FALSCH=34, NAGATION=35, NEHME=36, STAPEL=37, POS_ZAHL=38, REGISTER=39, 
-		BIS=40, ERGEBNISSPEICHER=41, ERGEBNIS=42, ZWISCHEN=43, ZWISCHENSPEICHER=44, 
-		SPEICHERE=45, GEHE=46, ZURÜCKGEHEN=47, ZURÜCK=48, AUF=49, AUFRUF=50, MACHE=51, 
-		RUFE=52, DP=53, SPRINGE=54, VERGLEICHE=55, DIVIDIERE=56, MULTIPLIZIERE=57, 
-		SUBTRAHIERE=58, ADDIERE=59, ZEILENUMBRUCH=60, LEERZEILE=61, LEERTASTE=62, 
-		LEERZEICHEN=63, AUS=64, AUSGEBEN=65, GEBE=66, FOLGENDES=67, VON=68, ZU=69, 
-		IN=70, GAB=71, WAR=72, MIT=73, IST=74, HIER=75, PUNKT=76, STELLE=77, REST=78, 
-		REST_2=79;
+		PUNKT=1, WS=2, STELLE_WORT_DP=3, STELLE_WORT=4, DIE=5, DER=6, DAS=7, DEM=8, 
+		DEN=9, WORTREIHE_WORT=10, WORTKETTE_WORT=11, WORTFOLGE_WORT=12, LETZTEN=13, 
+		ZEICHEN=14, ZEICHENFOLGE=15, ZEICHENKETTE=16, WORT_WORT=17, MENGE=18, 
+		ANZAHL=19, ZAHL_WORT=20, EINESEN=21, EINEN=22, EINE=23, EIN=24, LESE=25, 
+		ODER=26, KLEINER=27, GRÖẞER=28, UNGLEICH=29, NICHT=30, GLEICH=31, FALLS=32, 
+		WENN=33, ES=34, DES=35, STAPELS=36, VOM=37, MAXIMALE=38, GRÖẞE=39, MAXIMUM=40, 
+		VERSION=41, FEHLER=42, FALSCH=43, NAGATION=44, NEHME=45, STAPEL=46, POS_ZAHL=47, 
+		REGISTER=48, BIS=49, ERGEBNISSPEICHER=50, ERGEBNIS=51, ZWISCHEN=52, ZWISCHENSPEICHER=53, 
+		SCHREIBE=54, SPEICHERE=55, LADE=56, GEHE=57, ZURÜCKGEHEN=58, ZURÜCK=59, 
+		AUF=60, AUFRUF=61, MACHE=62, RUFE=63, SPRINGE=64, VERGLEICHE=65, DIVIDIERE=66, 
+		MULTIPLIZIERE=67, SUBTRAHIERE=68, ADDIERE=69, ZEILENUMBRUCH=70, LEERZEILE=71, 
+		LEERTASTE=72, LEERZEICHEN=73, AUS_DP=74, DP=75, AUS=76, AUSGEBEN=77, GEBE=78, 
+		FOLGENDES=79, VON=80, ZUR=81, ZU=82, IN=83, GAB=84, WAR=85, MIT=86, IST=87, 
+		HIER=88, STELLE=89, REST=90, REST_2=91;
 	public static final String[] tokenNames = {
-		"<INVALID>", "WS", "'stelle'", "'der'", "'wortreihe'", "'wortkette'", 
-		"'wortfolge'", "'letzten'", "'zeichen'", "'zeichenfolge'", "'zeichenkette'", 
-		"'wort'", "'menge'", "'anzahl'", "'zahl'", "'einlesen'", "'ein'", "'lese'", 
+		"<INVALID>", "'.'", "WS", "'stelle:'", "'stelle'", "'die'", "'der'", "'das'", 
+		"'dem'", "'den'", "'wortreihe'", "'wortkette'", "'wortfolge'", "'letzten'", 
+		"'zeichen'", "'zeichenfolge'", "'zeichenkette'", "'wort'", "'menge'", 
+		"'anzahl'", "'zahl'", "'einlesen'", "'einen'", "'eine'", "'ein'", "'lese'", 
 		"'oder'", "'kleiner'", "'größer'", "'ungleich'", "'nicht'", "'gleich'", 
-		"'falls'", "'wenn'", "'des'", "'stapels'", "'vom'", "'maximale'", "'größe'", 
-		"'maximum'", "'version'", "'fehler'", "'falsch'", "'-'", "'nehme'", "'stapel'", 
-		"POS_ZAHL", "'register'", "'bis'", "'ergebnisspeicher'", "'ergebnis'", 
-		"'zwischen'", "'zwischenspeicher'", "'speichere'", "'gehe'", "'zurückgehen'", 
-		"'zurück'", "'auf'", "'aufruf'", "'mache'", "'rufe'", "':'", "'springe'", 
-		"'vergleiche'", "'dividiere'", "'multipliziere'", "'subtrahiere'", "'addiere'", 
-		"'zeilenumbruch'", "'leerzeile'", "'leertaste'", "'leerzeichen'", "'aus'", 
-		"'ausgeben'", "'gebe'", "'folgendes'", "'von'", "'zu'", "'in'", "'gab'", 
-		"'war'", "'mit'", "'ist'", "'hier'", "PUNKT", "STELLE", "REST", "REST_2"
+		"'falls'", "'wenn'", "'es'", "'des'", "'stapels'", "'vom'", "'maximale'", 
+		"'größe'", "'maximum'", "'version'", "'fehler'", "'falsch'", "'-'", "'nehme'", 
+		"'stapel'", "POS_ZAHL", "'register'", "'bis'", "'ergebnisspeicher'", "'ergebnis'", 
+		"'zwischen'", "'zwischenspeicher'", "'schreibe'", "'speichere'", "'lade'", 
+		"'gehe'", "'zurückgehen'", "'zurück'", "'auf'", "'aufruf'", "'mache'", 
+		"'rufe'", "'springe'", "'vergleiche'", "'dividiere'", "'multipliziere'", 
+		"'subtrahiere'", "'addiere'", "'zeilenumbruch'", "'leerzeile'", "'leertaste'", 
+		"'leerzeichen'", "'aus:'", "':'", "'aus'", "'ausgeben'", "'gebe'", "'folgendes'", 
+		"'von'", "'zur'", "'zu'", "'in'", "'gab'", "'war'", "'mit'", "'ist'", 
+		"'hier'", "STELLE", "REST", "REST_2"
 	};
 	public static final int
 		RULE_datei = 0, RULE_satz = 1, RULE_satzWert = 2, RULE_letzterFehler = 3, 
@@ -65,27 +68,28 @@ public class TPS_ANTLRParser extends Parser {
 		RULE_stapelMaxGrErg = 25, RULE_versionZw = 26, RULE_versionReg = 27, RULE_versionErg = 28, 
 		RULE_springeWennFalsch = 29, RULE_registerZeichenEinlesen = 30, RULE_registerWortEinlesen = 31, 
 		RULE_registerausgabe = 32, RULE_ladeRegisterAnzahlZw = 33, RULE_ladeRegisterAnzahlErg = 34, 
-		RULE_ladeVomRegisterZw = 35, RULE_ladeVomRegisterErg = 36, RULE_ladeInRegister = 37, 
-		RULE_leseZahlEinZwischen = 38, RULE_leseZahlEinErg = 39, RULE_stelle = 40, 
-		RULE_springeZuDirekt = 41, RULE_springeWennGrGleich = 42, RULE_springeWennKleinerGleich = 43, 
-		RULE_springeWennGr = 44, RULE_springeWennKleiner = 45, RULE_springeWennNichtGleich = 46, 
-		RULE_springeWennGleich = 47, RULE_springe = 48, RULE_vergleiche = 49, 
-		RULE_zwischenspeicher = 50, RULE_ausgabe = 51, RULE_leerzeile = 52, RULE_leerzeichen = 53, 
-		RULE_zahlenausgabe = 54, RULE_multipliziere = 55, RULE_dividiere = 56, 
-		RULE_subtrahiere = 57, RULE_addiere = 58, RULE_mitST = 59, RULE_istST = 60, 
-		RULE_hierST = 61, RULE_gabST = 62, RULE_zuST = 63, RULE_vonST = 64, RULE_folgendesST = 65, 
-		RULE_ausgebenST = 66, RULE_ausST = 67, RULE_leerzeichenST = 68, RULE_leerzeileST = 69, 
-		RULE_addiereST = 70, RULE_subtrahiereST = 71, RULE_multipliziereST = 72, 
-		RULE_dividiereST = 73, RULE_vergleichST = 74, RULE_springeST = 75, RULE_stelleST = 76, 
-		RULE_aufrufST = 77, RULE_zurückgehenST = 78, RULE_speichereST = 79, RULE_zwischenST = 80, 
-		RULE_ergebnisST = 81, RULE_registerST = 82, RULE_bereichST = 83, RULE_stapelST = 84, 
-		RULE_nehmeST = 85, RULE_zahlST = 86, RULE_posZahlST = 87, RULE_fehlerST = 88, 
-		RULE_versionST = 89, RULE_stapelMaxGrST = 90, RULE_stapelGrST = 91, RULE_derST = 92, 
-		RULE_wft = 93, RULE_wortfolgeSTALT = 94, RULE_wortfolgeST = 95, RULE_wennST = 96, 
-		RULE_ungleichST = 97, RULE_gleichST = 98, RULE_größerST = 99, RULE_kleinerST = 100, 
-		RULE_größerGleichST = 101, RULE_kleinerGleichST = 102, RULE_einlesenST = 103, 
-		RULE_zahlST_ = 104, RULE_registerST_ = 105, RULE_anzahlST = 106, RULE_wortST = 107, 
-		RULE_zeichenST = 108, RULE_letztenFehlerST = 109;
+		RULE_direktPronomST = 35, RULE_ladeVomRegisterZw = 36, RULE_ladeVomRegisterErg = 37, 
+		RULE_ladeInRegister = 38, RULE_leseZahlEinZwischen = 39, RULE_leseZahlEinErg = 40, 
+		RULE_stelle = 41, RULE_springeZuDirekt = 42, RULE_springeWennGrGleich = 43, 
+		RULE_springeWennKleinerGleich = 44, RULE_springeWennGr = 45, RULE_springeWennKleiner = 46, 
+		RULE_springeWennNichtGleich = 47, RULE_springeWennGleich = 48, RULE_springe = 49, 
+		RULE_vergleiche = 50, RULE_zwischenspeicher = 51, RULE_ausgabe = 52, RULE_leerzeile = 53, 
+		RULE_einST = 54, RULE_macheST = 55, RULE_leerzeichen = 56, RULE_zahlenausgabe = 57, 
+		RULE_multipliziere = 58, RULE_dividiere = 59, RULE_subtrahiere = 60, RULE_addiere = 61, 
+		RULE_mitST = 62, RULE_istST = 63, RULE_hierST = 64, RULE_gabST = 65, RULE_zuST = 66, 
+		RULE_vonST = 67, RULE_folgendesST = 68, RULE_ausgebenST = 69, RULE_ausDPST = 70, 
+		RULE_ausST = 71, RULE_leerzeichenST = 72, RULE_leerzeileST = 73, RULE_addiereST = 74, 
+		RULE_subtrahiereST = 75, RULE_multipliziereST = 76, RULE_dividiereST = 77, 
+		RULE_vergleichST = 78, RULE_springeST = 79, RULE_stelleST = 80, RULE_stelleVorTextST = 81, 
+		RULE_aufrufST = 82, RULE_zurückgehenST = 83, RULE_speichereST = 84, RULE_zwischenST = 85, 
+		RULE_ergebnisST = 86, RULE_registerST = 87, RULE_bereichST = 88, RULE_stapelST = 89, 
+		RULE_nehmeST = 90, RULE_zahlST = 91, RULE_posZahlST = 92, RULE_fehlerST = 93, 
+		RULE_versionST = 94, RULE_stapelMaxGrST = 95, RULE_stapelGrST = 96, RULE_derST = 97, 
+		RULE_wft = 98, RULE_wortfolgeST = 99, RULE_wennST = 100, RULE_ungleichST = 101, 
+		RULE_gleichST = 102, RULE_größerST = 103, RULE_kleinerST = 104, RULE_größerGleichST = 105, 
+		RULE_kleinerGleichST = 106, RULE_einlesenST = 107, RULE_zahlST_ = 108, 
+		RULE_registerST_ = 109, RULE_anzahlST = 110, RULE_wortST = 111, RULE_zeichenST = 112, 
+		RULE_letztenFehlerST = 113;
 	public static final String[] ruleNames = {
 		"datei", "satz", "satzWert", "letzterFehler", "rufeAufWennFalsch", "stapelLesenReg", 
 		"stapelLesenZw", "stapelLesenErg", "stapelSchreiben", "rufeAufDirekt", 
@@ -94,21 +98,22 @@ public class TPS_ANTLRParser extends Parser {
 		"vergleicheRegister", "stapelGrZw", "stapelGrReg", "stapelGrErg", "stapelMaxGrReg", 
 		"stapelMaxGrZw", "stapelMaxGrErg", "versionZw", "versionReg", "versionErg", 
 		"springeWennFalsch", "registerZeichenEinlesen", "registerWortEinlesen", 
-		"registerausgabe", "ladeRegisterAnzahlZw", "ladeRegisterAnzahlErg", "ladeVomRegisterZw", 
-		"ladeVomRegisterErg", "ladeInRegister", "leseZahlEinZwischen", "leseZahlEinErg", 
-		"stelle", "springeZuDirekt", "springeWennGrGleich", "springeWennKleinerGleich", 
-		"springeWennGr", "springeWennKleiner", "springeWennNichtGleich", "springeWennGleich", 
-		"springe", "vergleiche", "zwischenspeicher", "ausgabe", "leerzeile", "leerzeichen", 
-		"zahlenausgabe", "multipliziere", "dividiere", "subtrahiere", "addiere", 
-		"mitST", "istST", "hierST", "gabST", "zuST", "vonST", "folgendesST", "ausgebenST", 
-		"ausST", "leerzeichenST", "leerzeileST", "addiereST", "subtrahiereST", 
-		"multipliziereST", "dividiereST", "vergleichST", "springeST", "stelleST", 
-		"aufrufST", "zurückgehenST", "speichereST", "zwischenST", "ergebnisST", 
-		"registerST", "bereichST", "stapelST", "nehmeST", "zahlST", "posZahlST", 
-		"fehlerST", "versionST", "stapelMaxGrST", "stapelGrST", "derST", "wft", 
-		"wortfolgeSTALT", "wortfolgeST", "wennST", "ungleichST", "gleichST", "größerST", 
-		"kleinerST", "größerGleichST", "kleinerGleichST", "einlesenST", "zahlST_", 
-		"registerST_", "anzahlST", "wortST", "zeichenST", "letztenFehlerST"
+		"registerausgabe", "ladeRegisterAnzahlZw", "ladeRegisterAnzahlErg", "direktPronomST", 
+		"ladeVomRegisterZw", "ladeVomRegisterErg", "ladeInRegister", "leseZahlEinZwischen", 
+		"leseZahlEinErg", "stelle", "springeZuDirekt", "springeWennGrGleich", 
+		"springeWennKleinerGleich", "springeWennGr", "springeWennKleiner", "springeWennNichtGleich", 
+		"springeWennGleich", "springe", "vergleiche", "zwischenspeicher", "ausgabe", 
+		"leerzeile", "einST", "macheST", "leerzeichen", "zahlenausgabe", "multipliziere", 
+		"dividiere", "subtrahiere", "addiere", "mitST", "istST", "hierST", "gabST", 
+		"zuST", "vonST", "folgendesST", "ausgebenST", "ausDPST", "ausST", "leerzeichenST", 
+		"leerzeileST", "addiereST", "subtrahiereST", "multipliziereST", "dividiereST", 
+		"vergleichST", "springeST", "stelleST", "stelleVorTextST", "aufrufST", 
+		"zurückgehenST", "speichereST", "zwischenST", "ergebnisST", "registerST", 
+		"bereichST", "stapelST", "nehmeST", "zahlST", "posZahlST", "fehlerST", 
+		"versionST", "stapelMaxGrST", "stapelGrST", "derST", "wft", "wortfolgeST", 
+		"wennST", "ungleichST", "gleichST", "größerST", "kleinerST", "größerGleichST", 
+		"kleinerGleichST", "einlesenST", "zahlST_", "registerST_", "anzahlST", 
+		"wortST", "zeichenST", "letztenFehlerST"
 	};
 
 	@Override
@@ -127,7 +132,7 @@ public class TPS_ANTLRParser extends Parser {
 	public ATN getATN() { return _ATN; }
 
 
-		public int line(){ return _ctx.start.getLine();}
+	public int line(){ return _ctx.start.getLine();}
 
 	public TPS_ANTLRParser(TokenStream input) {
 		super(input);
@@ -142,6 +147,7 @@ public class TPS_ANTLRParser extends Parser {
 		public SatzContext satz(int i) {
 			return getRuleContext(SatzContext.class,i);
 		}
+		public TerminalNode EOF() { return getToken(TPS_ANTLRParser.EOF, 0); }
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public List<SatzContext> satz() {
 			return getRuleContexts(SatzContext.class);
@@ -168,28 +174,29 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(226); 
+			setState(234); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(220); ((DateiContext)_localctx).satz = satz();
-				setState(222);
+				setState(228); ((DateiContext)_localctx).satz = satz();
+				setState(230);
 				_la = _input.LA(1);
 				if (_la==WS) {
 					{
-					setState(221); match(WS);
+					setState(229); match(WS);
 					}
 				}
 
 				_localctx.inhalt.add(((DateiContext)_localctx).satz.inhalt);
 				}
 				}
-				setState(228); 
+				setState(236); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( ((((_la - 15)) & ~0x3f) == 0 && ((1L << (_la - 15)) & ((1L << (EINESEN - 15)) | (1L << (LESE - 15)) | (1L << (FALLS - 15)) | (1L << (WENN - 15)) | (1L << (NEHME - 15)) | (1L << (SPEICHERE - 15)) | (1L << (GEHE - 15)) | (1L << (ZURÜCKGEHEN - 15)) | (1L << (MACHE - 15)) | (1L << (RUFE - 15)) | (1L << (SPRINGE - 15)) | (1L << (VERGLEICHE - 15)) | (1L << (DIVIDIERE - 15)) | (1L << (MULTIPLIZIERE - 15)) | (1L << (SUBTRAHIERE - 15)) | (1L << (ADDIERE - 15)) | (1L << (AUSGEBEN - 15)) | (1L << (GEBE - 15)) | (1L << (HIER - 15)))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EINESEN) | (1L << LESE) | (1L << FALLS) | (1L << WENN) | (1L << NEHME) | (1L << SCHREIBE) | (1L << SPEICHERE) | (1L << LADE) | (1L << GEHE) | (1L << ZURÜCKGEHEN) | (1L << MACHE) | (1L << RUFE))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SPRINGE - 64)) | (1L << (VERGLEICHE - 64)) | (1L << (DIVIDIERE - 64)) | (1L << (MULTIPLIZIERE - 64)) | (1L << (SUBTRAHIERE - 64)) | (1L << (ADDIERE - 64)) | (1L << (AUSGEBEN - 64)) | (1L << (GEBE - 64)) | (1L << (HIER - 64)))) != 0) );
+			setState(238); match(EOF);
 			}
 		}
 		catch (RecognitionException re) {
@@ -234,16 +241,16 @@ public class TPS_ANTLRParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			((SatzContext)_localctx).zeile =  line();
-			setState(231); ((SatzContext)_localctx).satzWert = satzWert();
-			setState(233);
+			setState(241); ((SatzContext)_localctx).satzWert = satzWert();
+			setState(243);
 			_la = _input.LA(1);
 			if (_la==WS) {
 				{
-				setState(232); match(WS);
+				setState(242); match(WS);
 				}
 			}
 
-			setState(235); match(PUNKT);
+			setState(245); match(PUNKT);
 			((SatzContext)_localctx).inhalt =  ((SatzContext)_localctx).satzWert.inhalt;
 			}
 		}
@@ -485,13 +492,13 @@ public class TPS_ANTLRParser extends Parser {
 		SatzWertContext _localctx = new SatzWertContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_satzWert);
 		try {
-			setState(406);
+			setState(416);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(238); ((SatzWertContext)_localctx).addiere = addiere();
+				setState(248); ((SatzWertContext)_localctx).addiere = addiere();
 				((SatzWertContext)_localctx).inhalt =  new Zahlenoperation(SatzArt.addiere, ((SatzWertContext)_localctx).addiere.a, ((SatzWertContext)_localctx).addiere.b);
 				}
 				}
@@ -500,7 +507,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(241); ((SatzWertContext)_localctx).subtrahiere = subtrahiere();
+				setState(251); ((SatzWertContext)_localctx).subtrahiere = subtrahiere();
 				((SatzWertContext)_localctx).inhalt =  new Zahlenoperation(SatzArt.subtrahiere, ((SatzWertContext)_localctx).subtrahiere.a, ((SatzWertContext)_localctx).subtrahiere.b);
 				}
 				}
@@ -509,7 +516,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				{
-				setState(244); ((SatzWertContext)_localctx).multipliziere = multipliziere();
+				setState(254); ((SatzWertContext)_localctx).multipliziere = multipliziere();
 				((SatzWertContext)_localctx).inhalt =  new Zahlenoperation(SatzArt.multipliziere, ((SatzWertContext)_localctx).multipliziere.a, ((SatzWertContext)_localctx).multipliziere.b);
 				}
 				}
@@ -518,7 +525,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 4);
 				{
 				{
-				setState(247); ((SatzWertContext)_localctx).dividiere = dividiere();
+				setState(257); ((SatzWertContext)_localctx).dividiere = dividiere();
 				((SatzWertContext)_localctx).inhalt =  new Zahlenoperation(SatzArt.dividiere, ((SatzWertContext)_localctx).dividiere.a, ((SatzWertContext)_localctx).dividiere.b);
 				}
 				}
@@ -527,7 +534,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 5);
 				{
 				{
-				setState(250); ((SatzWertContext)_localctx).zahlenausgabe = zahlenausgabe();
+				setState(260); ((SatzWertContext)_localctx).zahlenausgabe = zahlenausgabe();
 				((SatzWertContext)_localctx).inhalt =  new Ausgabeoperation(SatzArt.zahlenausgabe, ((SatzWertContext)_localctx).zahlenausgabe.ausgeben);
 				}
 				}
@@ -536,7 +543,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 6);
 				{
 				{
-				setState(253); leerzeichen();
+				setState(263); leerzeichen();
 				((SatzWertContext)_localctx).inhalt =  new Ausgabeoperation(SatzArt.leerzeichen, ZeichenKette.LEERZEICHEN);
 				}
 				}
@@ -545,7 +552,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 7);
 				{
 				{
-				setState(256); leerzeile();
+				setState(266); leerzeile();
 				((SatzWertContext)_localctx).inhalt =  new Ausgabeoperation(SatzArt.leerzeichen, ZeichenKette.LEERZEILE);
 				}
 				}
@@ -554,7 +561,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 8);
 				{
 				{
-				setState(259); ((SatzWertContext)_localctx).ausgabe = ausgabe();
+				setState(269); ((SatzWertContext)_localctx).ausgabe = ausgabe();
 				((SatzWertContext)_localctx).inhalt =  new Ausgabeoperation(SatzArt.leerzeichen, ((SatzWertContext)_localctx).ausgabe.wortfolge);
 				}
 				}
@@ -563,7 +570,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 9);
 				{
 				{
-				setState(262); zwischenspeicher();
+				setState(272); zwischenspeicher();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.zwischenspeicher, Collections.emptyList());
 				}
 				}
@@ -572,7 +579,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 10);
 				{
 				{
-				setState(265); ((SatzWertContext)_localctx).vergleiche = vergleiche();
+				setState(275); ((SatzWertContext)_localctx).vergleiche = vergleiche();
 				((SatzWertContext)_localctx).inhalt =  new Zahlenoperation(SatzArt.vergleiche, ((SatzWertContext)_localctx).vergleiche.a, ((SatzWertContext)_localctx).vergleiche.b);
 				}
 				}
@@ -581,7 +588,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 11);
 				{
 				{
-				setState(268); ((SatzWertContext)_localctx).springe = springe();
+				setState(278); ((SatzWertContext)_localctx).springe = springe();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.springe, ((SatzWertContext)_localctx).springe.ziel);
 				}
 				}
@@ -590,7 +597,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 12);
 				{
 				{
-				setState(271); ((SatzWertContext)_localctx).springeWennNichtGleich = springeWennNichtGleich();
+				setState(281); ((SatzWertContext)_localctx).springeWennNichtGleich = springeWennNichtGleich();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.springeWennNichtGleich, ((SatzWertContext)_localctx).springeWennNichtGleich.ziel);
 				}
 				}
@@ -599,7 +606,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 13);
 				{
 				{
-				setState(274); ((SatzWertContext)_localctx).springeWennGleich = springeWennGleich();
+				setState(284); ((SatzWertContext)_localctx).springeWennGleich = springeWennGleich();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.springeWennGleich, ((SatzWertContext)_localctx).springeWennGleich.ziel);
 				}
 				}
@@ -608,7 +615,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 14);
 				{
 				{
-				setState(277); ((SatzWertContext)_localctx).springeWennKleiner = springeWennKleiner();
+				setState(287); ((SatzWertContext)_localctx).springeWennKleiner = springeWennKleiner();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.springeWennKleiner, ((SatzWertContext)_localctx).springeWennKleiner.ziel);
 				}
 				}
@@ -617,7 +624,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 15);
 				{
 				{
-				setState(280); ((SatzWertContext)_localctx).springeWennGr = springeWennGr();
+				setState(290); ((SatzWertContext)_localctx).springeWennGr = springeWennGr();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.springeWennGrößer, ((SatzWertContext)_localctx).springeWennGr.ziel);
 				}
 				}
@@ -626,7 +633,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 16);
 				{
 				{
-				setState(283); ((SatzWertContext)_localctx).springeWennKleinerGleich = springeWennKleinerGleich();
+				setState(293); ((SatzWertContext)_localctx).springeWennKleinerGleich = springeWennKleinerGleich();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.springeWennKleinerGleich, ((SatzWertContext)_localctx).springeWennKleinerGleich.ziel);
 				}
 				}
@@ -635,7 +642,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 17);
 				{
 				{
-				setState(286); ((SatzWertContext)_localctx).springeWennGrGleich = springeWennGrGleich();
+				setState(296); ((SatzWertContext)_localctx).springeWennGrGleich = springeWennGrGleich();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.springeWennGrößerGleich, ((SatzWertContext)_localctx).springeWennGrGleich.ziel);
 				}
 				}
@@ -644,7 +651,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 18);
 				{
 				{
-				setState(289); ((SatzWertContext)_localctx).springeZuDirekt = springeZuDirekt();
+				setState(299); ((SatzWertContext)_localctx).springeZuDirekt = springeZuDirekt();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.springeZuDirekt, ((SatzWertContext)_localctx).springeZuDirekt.ziel);
 				}
 				}
@@ -653,7 +660,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 19);
 				{
 				{
-				setState(292); ((SatzWertContext)_localctx).stelle = stelle();
+				setState(302); ((SatzWertContext)_localctx).stelle = stelle();
 				((SatzWertContext)_localctx).inhalt =  new ZeichenKettenoperation(SatzArt.stelle, ((SatzWertContext)_localctx).stelle.name);
 				}
 				}
@@ -662,7 +669,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 20);
 				{
 				{
-				setState(295); leseZahlEinErg();
+				setState(305); leseZahlEinErg();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.leseZahlEinErg, Collections.emptyList());
 				}
 				}
@@ -671,7 +678,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 21);
 				{
 				{
-				setState(298); leseZahlEinZwischen();
+				setState(308); leseZahlEinZwischen();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.leseZahlEinZwischen, Collections.emptyList());
 				}
 				}
@@ -680,7 +687,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 22);
 				{
 				{
-				setState(301); ((SatzWertContext)_localctx).ladeInRegister = ladeInRegister();
+				setState(311); ((SatzWertContext)_localctx).ladeInRegister = ladeInRegister();
 				((SatzWertContext)_localctx).inhalt =  new RegisterUndZahlOperation(SatzArt.ladeInRegister, ((SatzWertContext)_localctx).ladeInRegister.reg, ((SatzWertContext)_localctx).ladeInRegister.wert);
 				}
 				}
@@ -689,7 +696,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 23);
 				{
 				{
-				setState(304); ((SatzWertContext)_localctx).ladeVomRegisterErg = ladeVomRegisterErg();
+				setState(314); ((SatzWertContext)_localctx).ladeVomRegisterErg = ladeVomRegisterErg();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.ladeVomRegisterErg, ((SatzWertContext)_localctx).ladeVomRegisterErg.reg);
 				}
 				}
@@ -698,7 +705,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 24);
 				{
 				{
-				setState(307); ((SatzWertContext)_localctx).ladeVomRegisterZw = ladeVomRegisterZw();
+				setState(317); ((SatzWertContext)_localctx).ladeVomRegisterZw = ladeVomRegisterZw();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.ladeVomRegisterZw, ((SatzWertContext)_localctx).ladeVomRegisterZw.reg);
 				}
 				}
@@ -707,7 +714,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 25);
 				{
 				{
-				setState(310); ladeRegisterAnzahlErg();
+				setState(320); ladeRegisterAnzahlErg();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.ladeRegisterAnzahlErg, Collections.emptyList());
 				}
 				}
@@ -716,7 +723,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 26);
 				{
 				{
-				setState(313); ladeRegisterAnzahlZw();
+				setState(323); ladeRegisterAnzahlZw();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.ladeRegisterAnzahlZw, Collections.emptyList());
 				}
 				}
@@ -725,7 +732,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 27);
 				{
 				{
-				setState(316); ((SatzWertContext)_localctx).registerausgabe = registerausgabe();
+				setState(326); ((SatzWertContext)_localctx).registerausgabe = registerausgabe();
 				((SatzWertContext)_localctx).inhalt =  new ZweiRegisterOperation(SatzArt.registerausgabe, ((SatzWertContext)_localctx).registerausgabe.anfang, ((SatzWertContext)_localctx).registerausgabe.ende);
 				}
 				}
@@ -734,7 +741,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 28);
 				{
 				{
-				setState(319); ((SatzWertContext)_localctx).registerWortEinlesen = registerWortEinlesen();
+				setState(329); ((SatzWertContext)_localctx).registerWortEinlesen = registerWortEinlesen();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.registerWortEinlesen, ((SatzWertContext)_localctx).registerWortEinlesen.reg);
 				}
 				}
@@ -743,7 +750,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 29);
 				{
 				{
-				setState(322); ((SatzWertContext)_localctx).registerZeichenEinlesen = registerZeichenEinlesen();
+				setState(332); ((SatzWertContext)_localctx).registerZeichenEinlesen = registerZeichenEinlesen();
 				((SatzWertContext)_localctx).inhalt =  new RegisterUndZahlOperation(SatzArt.registerZeichenEinlesen, ((SatzWertContext)_localctx).registerZeichenEinlesen.reg, ((SatzWertContext)_localctx).registerZeichenEinlesen.anzahl);
 				}
 				}
@@ -752,7 +759,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 30);
 				{
 				{
-				setState(325); ((SatzWertContext)_localctx).springeWennFalsch = springeWennFalsch();
+				setState(335); ((SatzWertContext)_localctx).springeWennFalsch = springeWennFalsch();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.springeWennFalsch, ((SatzWertContext)_localctx).springeWennFalsch.ziel);
 				}
 				}
@@ -761,7 +768,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 31);
 				{
 				{
-				setState(328); versionErg();
+				setState(338); versionErg();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.versionErg, Collections.emptyList());
 				}
 				}
@@ -770,7 +777,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 32);
 				{
 				{
-				setState(331); versionZw();
+				setState(341); versionZw();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.versionZw, Collections.emptyList());
 				}
 				}
@@ -779,7 +786,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 33);
 				{
 				{
-				setState(334); ((SatzWertContext)_localctx).versionReg = versionReg();
+				setState(344); ((SatzWertContext)_localctx).versionReg = versionReg();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.versionReg, ((SatzWertContext)_localctx).versionReg.reg);
 				}
 				}
@@ -788,7 +795,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 34);
 				{
 				{
-				setState(337); stapelMaxGrErg();
+				setState(347); stapelMaxGrErg();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.stapelMaxGrößeErg, Collections.emptyList());
 				}
 				}
@@ -797,7 +804,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 35);
 				{
 				{
-				setState(340); stapelMaxGrZw();
+				setState(350); stapelMaxGrZw();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.stapelMaxGrößeZw, Collections.emptyList());
 				}
 				}
@@ -806,7 +813,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 36);
 				{
 				{
-				setState(343); ((SatzWertContext)_localctx).stapelMaxGrReg = stapelMaxGrReg();
+				setState(353); ((SatzWertContext)_localctx).stapelMaxGrReg = stapelMaxGrReg();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.stapelMaxGrößeReg, ((SatzWertContext)_localctx).stapelMaxGrReg.reg);
 				}
 				}
@@ -815,7 +822,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 37);
 				{
 				{
-				setState(346); stapelGrErg();
+				setState(356); stapelGrErg();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.stapelGrößeErg, Collections.emptyList());
 				}
 				}
@@ -824,7 +831,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 38);
 				{
 				{
-				setState(349); stapelGrZw();
+				setState(359); stapelGrZw();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.stapelGrößeZw, Collections.emptyList());
 				}
 				}
@@ -833,7 +840,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 39);
 				{
 				{
-				setState(352); ((SatzWertContext)_localctx).stapelGrReg = stapelGrReg();
+				setState(362); ((SatzWertContext)_localctx).stapelGrReg = stapelGrReg();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.stapelGrößeReg, ((SatzWertContext)_localctx).stapelGrReg.reg);
 				}
 				}
@@ -842,7 +849,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 40);
 				{
 				{
-				setState(355); ((SatzWertContext)_localctx).vergleicheRegister = vergleicheRegister();
+				setState(365); ((SatzWertContext)_localctx).vergleicheRegister = vergleicheRegister();
 				((SatzWertContext)_localctx).inhalt =  new VierRegisterOperation(SatzArt.vergleicheRegister, ((SatzWertContext)_localctx).vergleicheRegister.regA, ((SatzWertContext)_localctx).vergleicheRegister.regB, ((SatzWertContext)_localctx).vergleicheRegister.regC, ((SatzWertContext)_localctx).vergleicheRegister.regD);
 				}
 				}
@@ -851,7 +858,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 41);
 				{
 				{
-				setState(358); ((SatzWertContext)_localctx).vergleicheRegisterText = vergleicheRegisterText();
+				setState(368); ((SatzWertContext)_localctx).vergleicheRegisterText = vergleicheRegisterText();
 				((SatzWertContext)_localctx).inhalt =  new RegRegTextOperation(SatzArt.vergleicheRegisterText, ((SatzWertContext)_localctx).vergleicheRegisterText.anfang, ((SatzWertContext)_localctx).vergleicheRegisterText.ende, ((SatzWertContext)_localctx).vergleicheRegisterText.wortfolge);
 				}
 				}
@@ -860,7 +867,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 42);
 				{
 				{
-				setState(361); ((SatzWertContext)_localctx).rufeAuf = rufeAuf();
+				setState(371); ((SatzWertContext)_localctx).rufeAuf = rufeAuf();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.rufeAuf, ((SatzWertContext)_localctx).rufeAuf.ziel);
 				}
 				}
@@ -869,7 +876,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 43);
 				{
 				{
-				setState(364); ((SatzWertContext)_localctx).rufeAufWennGleich = rufeAufWennGleich();
+				setState(374); ((SatzWertContext)_localctx).rufeAufWennGleich = rufeAufWennGleich();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.rufeAufWennGleich, ((SatzWertContext)_localctx).rufeAufWennGleich.ziel);
 				}
 				}
@@ -878,7 +885,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 44);
 				{
 				{
-				setState(367); ((SatzWertContext)_localctx).rufeAufWennNichtGleich = rufeAufWennNichtGleich();
+				setState(377); ((SatzWertContext)_localctx).rufeAufWennNichtGleich = rufeAufWennNichtGleich();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.rufeAufWennNichtGleich, ((SatzWertContext)_localctx).rufeAufWennNichtGleich.ziel);
 				}
 				}
@@ -887,7 +894,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 45);
 				{
 				{
-				setState(370); ((SatzWertContext)_localctx).rufeAufWennKleiner = rufeAufWennKleiner();
+				setState(380); ((SatzWertContext)_localctx).rufeAufWennKleiner = rufeAufWennKleiner();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.rufeAufWennKleiner, ((SatzWertContext)_localctx).rufeAufWennKleiner.ziel);
 				}
 				}
@@ -896,7 +903,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 46);
 				{
 				{
-				setState(373); ((SatzWertContext)_localctx).rufeAufGr = rufeAufGr();
+				setState(383); ((SatzWertContext)_localctx).rufeAufGr = rufeAufGr();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.rufeAufGrößer, ((SatzWertContext)_localctx).rufeAufGr.ziel);
 				}
 				}
@@ -905,7 +912,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 47);
 				{
 				{
-				setState(376); ((SatzWertContext)_localctx).rufeAufKleinerGleich = rufeAufKleinerGleich();
+				setState(386); ((SatzWertContext)_localctx).rufeAufKleinerGleich = rufeAufKleinerGleich();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.rufeAufKleinerGleich, ((SatzWertContext)_localctx).rufeAufKleinerGleich.ziel);
 				}
 				}
@@ -914,7 +921,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 48);
 				{
 				{
-				setState(379); ((SatzWertContext)_localctx).rufeAufGrGleich = rufeAufGrGleich();
+				setState(389); ((SatzWertContext)_localctx).rufeAufGrGleich = rufeAufGrGleich();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.rufeAufGrößerGleich, ((SatzWertContext)_localctx).rufeAufGrGleich.ziel);
 				}
 				}
@@ -923,7 +930,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 49);
 				{
 				{
-				setState(382); geheZur();
+				setState(392); geheZur();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.geheZurück, Collections.emptyList());
 				}
 				}
@@ -932,7 +939,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 50);
 				{
 				{
-				setState(385); ((SatzWertContext)_localctx).rufeAufDirekt = rufeAufDirekt();
+				setState(395); ((SatzWertContext)_localctx).rufeAufDirekt = rufeAufDirekt();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.rufeAufDirekt, ((SatzWertContext)_localctx).rufeAufDirekt.ziel);
 				}
 				}
@@ -941,7 +948,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 51);
 				{
 				{
-				setState(388); ((SatzWertContext)_localctx).stapelSchreiben = stapelSchreiben();
+				setState(398); ((SatzWertContext)_localctx).stapelSchreiben = stapelSchreiben();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.stapelSchreiben, ((SatzWertContext)_localctx).stapelSchreiben.legen);
 				}
 				}
@@ -950,7 +957,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 52);
 				{
 				{
-				setState(391); stapelLesenErg();
+				setState(401); stapelLesenErg();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.stapelLesenErg, Collections.emptyList());
 				}
 				}
@@ -959,7 +966,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 53);
 				{
 				{
-				setState(394); stapelLesenZw();
+				setState(404); stapelLesenZw();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.stapelLesenZw, Collections.emptyList());
 				}
 				}
@@ -968,7 +975,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 54);
 				{
 				{
-				setState(397); ((SatzWertContext)_localctx).stapelLesenReg = stapelLesenReg();
+				setState(407); ((SatzWertContext)_localctx).stapelLesenReg = stapelLesenReg();
 				((SatzWertContext)_localctx).inhalt =  new EinzelZahlenoperation(SatzArt.stapelLesenReg, ((SatzWertContext)_localctx).stapelLesenReg.reg);
 				}
 				}
@@ -977,7 +984,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 55);
 				{
 				{
-				setState(400); ((SatzWertContext)_localctx).rufeAufWennFalsch = rufeAufWennFalsch();
+				setState(410); ((SatzWertContext)_localctx).rufeAufWennFalsch = rufeAufWennFalsch();
 				((SatzWertContext)_localctx).inhalt =  new Stellenoperation(SatzArt.rufeAufWennFalsch, ((SatzWertContext)_localctx).rufeAufWennFalsch.ziel);
 				}
 				}
@@ -986,7 +993,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 56);
 				{
 				{
-				setState(403); letzterFehler();
+				setState(413); letzterFehler();
 				((SatzWertContext)_localctx).inhalt =  new Satz(SatzArt.letzterFehler, Collections.emptyList());
 				}
 				}
@@ -1032,9 +1039,9 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(408); nehmeST();
-			setState(409); match(WS);
-			setState(410); letztenFehlerST();
+			setState(418); nehmeST();
+			setState(419); match(WS);
+			setState(420); letztenFehlerST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1060,12 +1067,18 @@ public class TPS_ANTLRParser extends Parser {
 		public AufrufSTContext aufrufST() {
 			return getRuleContext(AufrufSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public FehlerSTContext fehlerST() {
 			return getRuleContext(FehlerSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
@@ -1090,20 +1103,39 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufWennFalschContext rufeAufWennFalsch() throws RecognitionException {
 		RufeAufWennFalschContext _localctx = new RufeAufWennFalschContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_rufeAufWennFalsch);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(412); wennST();
-			setState(413); match(WS);
-			setState(414); fehlerST();
-			setState(415); match(WS);
-			setState(416); gabST();
-			setState(417); match(WS);
-			setState(418); aufrufST();
-			setState(419); match(WS);
-			setState(420); zuST();
-			setState(421); match(WS);
-			setState(422); ((RufeAufWennFalschContext)_localctx).stelleST = stelleST();
+			setState(422); wennST();
+			setState(423); match(WS);
+			setState(424); fehlerST();
+			setState(425); match(WS);
+			setState(426); gabST();
+			setState(427); match(WS);
+			setState(428); aufrufST();
+			setState(429); match(WS);
+			setState(430); zuST();
+			setState(431); match(WS);
+			setState(435);
+			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			case 1:
+				{
+				setState(432); direktPronomST();
+				setState(433); match(WS);
+				}
+				break;
+			}
+			setState(440);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(437); direktPronomST();
+				setState(438); match(WS);
+				}
+			}
+
+			setState(442); ((RufeAufWennFalschContext)_localctx).stelleST = stelleST();
 			((RufeAufWennFalschContext)_localctx).ziel =  new ZeichenKette(((RufeAufWennFalschContext)_localctx).stelleST.name);
 			}
 		}
@@ -1127,12 +1159,18 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public NehmeSTContext nehmeST() {
 			return getRuleContext(NehmeSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public StapelSTContext stapelST() {
 			return getRuleContext(StapelSTContext.class,0);
@@ -1157,18 +1195,37 @@ public class TPS_ANTLRParser extends Parser {
 	public final StapelLesenRegContext stapelLesenReg() throws RecognitionException {
 		StapelLesenRegContext _localctx = new StapelLesenRegContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_stapelLesenReg);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(425); nehmeST();
-			setState(426); match(WS);
-			setState(427); vonST();
-			setState(428); match(WS);
-			setState(429); stapelST();
-			setState(430); match(WS);
-			setState(431); zuST();
-			setState(432); match(WS);
-			setState(433); ((StapelLesenRegContext)_localctx).registerST = registerST();
+			setState(445); nehmeST();
+			setState(446); match(WS);
+			setState(447); vonST();
+			setState(448); match(WS);
+			setState(449); stapelST();
+			setState(450); match(WS);
+			setState(451); zuST();
+			setState(452); match(WS);
+			setState(456);
+			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
+			case 1:
+				{
+				setState(453); direktPronomST();
+				setState(454); match(WS);
+				}
+				break;
+			}
+			setState(461);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(458); direktPronomST();
+				setState(459); match(WS);
+				}
+			}
+
+			setState(463); ((StapelLesenRegContext)_localctx).registerST = registerST();
 			((StapelLesenRegContext)_localctx).reg =  ((StapelLesenRegContext)_localctx).registerST.reg;
 			}
 		}
@@ -1190,12 +1247,18 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public NehmeSTContext nehmeST() {
 			return getRuleContext(NehmeSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public StapelSTContext stapelST() {
 			return getRuleContext(StapelSTContext.class,0);
@@ -1220,18 +1283,37 @@ public class TPS_ANTLRParser extends Parser {
 	public final StapelLesenZwContext stapelLesenZw() throws RecognitionException {
 		StapelLesenZwContext _localctx = new StapelLesenZwContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_stapelLesenZw);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(436); nehmeST();
-			setState(437); match(WS);
-			setState(438); vonST();
-			setState(439); match(WS);
-			setState(440); stapelST();
-			setState(441); match(WS);
-			setState(442); zuST();
-			setState(443); match(WS);
-			setState(444); zwischenST();
+			setState(466); nehmeST();
+			setState(467); match(WS);
+			setState(468); vonST();
+			setState(469); match(WS);
+			setState(470); stapelST();
+			setState(471); match(WS);
+			setState(472); zuST();
+			setState(473); match(WS);
+			setState(477);
+			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
+			case 1:
+				{
+				setState(474); direktPronomST();
+				setState(475); match(WS);
+				}
+				break;
+			}
+			setState(482);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(479); direktPronomST();
+				setState(480); match(WS);
+				}
+			}
+
+			setState(484); zwischenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1249,6 +1331,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
@@ -1258,6 +1343,9 @@ public class TPS_ANTLRParser extends Parser {
 		}
 		public NehmeSTContext nehmeST() {
 			return getRuleContext(NehmeSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public StapelSTContext stapelST() {
 			return getRuleContext(StapelSTContext.class,0);
@@ -1282,18 +1370,37 @@ public class TPS_ANTLRParser extends Parser {
 	public final StapelLesenErgContext stapelLesenErg() throws RecognitionException {
 		StapelLesenErgContext _localctx = new StapelLesenErgContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_stapelLesenErg);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(446); nehmeST();
-			setState(447); match(WS);
-			setState(448); vonST();
-			setState(449); match(WS);
-			setState(450); stapelST();
-			setState(451); match(WS);
-			setState(452); zuST();
-			setState(453); match(WS);
-			setState(454); ergebnisST();
+			setState(486); nehmeST();
+			setState(487); match(WS);
+			setState(488); vonST();
+			setState(489); match(WS);
+			setState(490); stapelST();
+			setState(491); match(WS);
+			setState(492); zuST();
+			setState(493); match(WS);
+			setState(497);
+			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+			case 1:
+				{
+				setState(494); direktPronomST();
+				setState(495); match(WS);
+				}
+				break;
+			}
+			setState(502);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(499); direktPronomST();
+				setState(500); match(WS);
+				}
+			}
+
+			setState(504); ergebnisST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1323,6 +1430,9 @@ public class TPS_ANTLRParser extends Parser {
 		public ZahlSTContext zahlST() {
 			return getRuleContext(ZahlSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public StapelSTContext stapelST() {
 			return getRuleContext(StapelSTContext.class,0);
 		}
@@ -1343,16 +1453,26 @@ public class TPS_ANTLRParser extends Parser {
 	public final StapelSchreibenContext stapelSchreiben() throws RecognitionException {
 		StapelSchreibenContext _localctx = new StapelSchreibenContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_stapelSchreiben);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(456); speichereST();
-			setState(457); match(WS);
-			setState(458); ((StapelSchreibenContext)_localctx).zahlST = zahlST();
-			setState(459); match(WS);
-			setState(460); zuST();
-			setState(461); match(WS);
-			setState(462); stapelST();
+			setState(506); speichereST();
+			setState(507); match(WS);
+			setState(508); ((StapelSchreibenContext)_localctx).zahlST = zahlST();
+			setState(509); match(WS);
+			setState(510); zuST();
+			setState(511); match(WS);
+			setState(515);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(512); direktPronomST();
+				setState(513); match(WS);
+				}
+			}
+
+			setState(517); stapelST();
 			((StapelSchreibenContext)_localctx).legen =  ((StapelSchreibenContext)_localctx).zahlST.zahl;
 			}
 		}
@@ -1376,12 +1496,18 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public PosZahlSTContext posZahlST() {
 			return getRuleContext(PosZahlSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public RufeAufDirektContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1400,14 +1526,33 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufDirektContext rufeAufDirekt() throws RecognitionException {
 		RufeAufDirektContext _localctx = new RufeAufDirektContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_rufeAufDirekt);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(465); aufrufST();
-			setState(466); match(WS);
-			setState(467); zuST();
-			setState(468); match(WS);
-			setState(469); ((RufeAufDirektContext)_localctx).posZahlST = posZahlST();
+			setState(520); aufrufST();
+			setState(521); match(WS);
+			setState(522); zuST();
+			setState(523); match(WS);
+			setState(527);
+			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
+			case 1:
+				{
+				setState(524); direktPronomST();
+				setState(525); match(WS);
+				}
+				break;
+			}
+			setState(532);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(529); direktPronomST();
+				setState(530); match(WS);
+				}
+			}
+
+			setState(534); ((RufeAufDirektContext)_localctx).posZahlST = posZahlST();
 			((RufeAufDirektContext)_localctx).ziel =  ((RufeAufDirektContext)_localctx).posZahlST.zahl;
 			}
 		}
@@ -1446,7 +1591,7 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(472); zurückgehenST();
+			setState(537); zurückgehenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1463,16 +1608,25 @@ public class TPS_ANTLRParser extends Parser {
 	public static class RufeAufGrGleichContext extends ParserRuleContext {
 		public ZeichenKette ziel;
 		public StelleSTContext stelleST;
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
 		public AufrufSTContext aufrufST() {
 			return getRuleContext(AufrufSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
+		}
 		public GrößerGleichSTContext größerGleichST() {
 			return getRuleContext(GrößerGleichSTContext.class,0);
 		}
@@ -1499,18 +1653,39 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufGrGleichContext rufeAufGrGleich() throws RecognitionException {
 		RufeAufGrGleichContext _localctx = new RufeAufGrGleichContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_rufeAufGrGleich);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(474); wennST();
-			setState(475); match(WS);
-			setState(476); größerGleichST();
-			setState(477); match(WS);
-			setState(478); aufrufST();
-			setState(479); match(WS);
-			setState(480); zuST();
-			setState(481); match(WS);
-			setState(482); ((RufeAufGrGleichContext)_localctx).stelleST = stelleST();
+			setState(539); wennST();
+			setState(540); match(WS);
+			setState(541); größerGleichST();
+			setState(542); match(WS);
+			setState(543); istST();
+			setState(544); match(WS);
+			setState(545); aufrufST();
+			setState(546); match(WS);
+			setState(547); zuST();
+			setState(548); match(WS);
+			setState(552);
+			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
+			case 1:
+				{
+				setState(549); direktPronomST();
+				setState(550); match(WS);
+				}
+				break;
+			}
+			setState(557);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(554); direktPronomST();
+				setState(555); match(WS);
+				}
+			}
+
+			setState(559); ((RufeAufGrGleichContext)_localctx).stelleST = stelleST();
 			((RufeAufGrGleichContext)_localctx).ziel =  new ZeichenKette(((RufeAufGrGleichContext)_localctx).stelleST.name);
 			}
 		}
@@ -1528,6 +1703,9 @@ public class TPS_ANTLRParser extends Parser {
 	public static class RufeAufKleinerGleichContext extends ParserRuleContext {
 		public ZeichenKette ziel;
 		public StelleSTContext stelleST;
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public KleinerGleichSTContext kleinerGleichST() {
 			return getRuleContext(KleinerGleichSTContext.class,0);
 		}
@@ -1537,10 +1715,16 @@ public class TPS_ANTLRParser extends Parser {
 		public AufrufSTContext aufrufST() {
 			return getRuleContext(AufrufSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -1564,18 +1748,39 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufKleinerGleichContext rufeAufKleinerGleich() throws RecognitionException {
 		RufeAufKleinerGleichContext _localctx = new RufeAufKleinerGleichContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_rufeAufKleinerGleich);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(485); wennST();
-			setState(486); match(WS);
-			setState(487); kleinerGleichST();
-			setState(488); match(WS);
-			setState(489); aufrufST();
-			setState(490); match(WS);
-			setState(491); zuST();
-			setState(492); match(WS);
-			setState(493); ((RufeAufKleinerGleichContext)_localctx).stelleST = stelleST();
+			setState(562); wennST();
+			setState(563); match(WS);
+			setState(564); kleinerGleichST();
+			setState(565); match(WS);
+			setState(566); istST();
+			setState(567); match(WS);
+			setState(568); aufrufST();
+			setState(569); match(WS);
+			setState(570); zuST();
+			setState(571); match(WS);
+			setState(575);
+			switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
+			case 1:
+				{
+				setState(572); direktPronomST();
+				setState(573); match(WS);
+				}
+				break;
+			}
+			setState(580);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(577); direktPronomST();
+				setState(578); match(WS);
+				}
+			}
+
+			setState(582); ((RufeAufKleinerGleichContext)_localctx).stelleST = stelleST();
 			((RufeAufKleinerGleichContext)_localctx).ziel =  new ZeichenKette(((RufeAufKleinerGleichContext)_localctx).stelleST.name);
 			}
 		}
@@ -1596,16 +1801,25 @@ public class TPS_ANTLRParser extends Parser {
 		public GrößerSTContext größerST() {
 			return getRuleContext(GrößerSTContext.class,0);
 		}
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
 		public AufrufSTContext aufrufST() {
 			return getRuleContext(AufrufSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -1629,18 +1843,39 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufGrContext rufeAufGr() throws RecognitionException {
 		RufeAufGrContext _localctx = new RufeAufGrContext(_ctx, getState());
 		enterRule(_localctx, 26, RULE_rufeAufGr);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(496); wennST();
-			setState(497); match(WS);
-			setState(498); größerST();
-			setState(499); match(WS);
-			setState(500); aufrufST();
-			setState(501); match(WS);
-			setState(502); zuST();
-			setState(503); match(WS);
-			setState(504); ((RufeAufGrContext)_localctx).stelleST = stelleST();
+			setState(585); wennST();
+			setState(586); match(WS);
+			setState(587); größerST();
+			setState(588); match(WS);
+			setState(589); istST();
+			setState(590); match(WS);
+			setState(591); aufrufST();
+			setState(592); match(WS);
+			setState(593); zuST();
+			setState(594); match(WS);
+			setState(598);
+			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
+			case 1:
+				{
+				setState(595); direktPronomST();
+				setState(596); match(WS);
+				}
+				break;
+			}
+			setState(603);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(600); direktPronomST();
+				setState(601); match(WS);
+				}
+			}
+
+			setState(605); ((RufeAufGrContext)_localctx).stelleST = stelleST();
 			((RufeAufGrContext)_localctx).ziel =  new ZeichenKette(((RufeAufGrContext)_localctx).stelleST.name);
 			}
 		}
@@ -1658,11 +1893,17 @@ public class TPS_ANTLRParser extends Parser {
 	public static class RufeAufWennKleinerContext extends ParserRuleContext {
 		public ZeichenKette ziel;
 		public StelleSTContext stelleST;
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
 		public AufrufSTContext aufrufST() {
 			return getRuleContext(AufrufSTContext.class,0);
+		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
 		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
@@ -1671,6 +1912,9 @@ public class TPS_ANTLRParser extends Parser {
 			return getRuleContext(KleinerSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -1694,18 +1938,39 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufWennKleinerContext rufeAufWennKleiner() throws RecognitionException {
 		RufeAufWennKleinerContext _localctx = new RufeAufWennKleinerContext(_ctx, getState());
 		enterRule(_localctx, 28, RULE_rufeAufWennKleiner);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(507); wennST();
-			setState(508); match(WS);
-			setState(509); kleinerST();
-			setState(510); match(WS);
-			setState(511); aufrufST();
-			setState(512); match(WS);
-			setState(513); zuST();
-			setState(514); match(WS);
-			setState(515); ((RufeAufWennKleinerContext)_localctx).stelleST = stelleST();
+			setState(608); wennST();
+			setState(609); match(WS);
+			setState(610); kleinerST();
+			setState(611); match(WS);
+			setState(612); istST();
+			setState(613); match(WS);
+			setState(614); aufrufST();
+			setState(615); match(WS);
+			setState(616); zuST();
+			setState(617); match(WS);
+			setState(621);
+			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
+			case 1:
+				{
+				setState(618); direktPronomST();
+				setState(619); match(WS);
+				}
+				break;
+			}
+			setState(626);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(623); direktPronomST();
+				setState(624); match(WS);
+				}
+			}
+
+			setState(628); ((RufeAufWennKleinerContext)_localctx).stelleST = stelleST();
 			((RufeAufWennKleinerContext)_localctx).ziel =  new ZeichenKette(((RufeAufWennKleinerContext)_localctx).stelleST.name);
 			}
 		}
@@ -1723,11 +1988,17 @@ public class TPS_ANTLRParser extends Parser {
 	public static class RufeAufWennNichtGleichContext extends ParserRuleContext {
 		public ZeichenKette ziel;
 		public StelleSTContext stelleST;
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
 		public AufrufSTContext aufrufST() {
 			return getRuleContext(AufrufSTContext.class,0);
+		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
 		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
@@ -1735,6 +2006,9 @@ public class TPS_ANTLRParser extends Parser {
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public UngleichSTContext ungleichST() {
 			return getRuleContext(UngleichSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
@@ -1759,18 +2033,39 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufWennNichtGleichContext rufeAufWennNichtGleich() throws RecognitionException {
 		RufeAufWennNichtGleichContext _localctx = new RufeAufWennNichtGleichContext(_ctx, getState());
 		enterRule(_localctx, 30, RULE_rufeAufWennNichtGleich);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(518); wennST();
-			setState(519); match(WS);
-			setState(520); ungleichST();
-			setState(521); match(WS);
-			setState(522); aufrufST();
-			setState(523); match(WS);
-			setState(524); zuST();
-			setState(525); match(WS);
-			setState(526); ((RufeAufWennNichtGleichContext)_localctx).stelleST = stelleST();
+			setState(631); wennST();
+			setState(632); match(WS);
+			setState(633); ungleichST();
+			setState(634); match(WS);
+			setState(635); istST();
+			setState(636); match(WS);
+			setState(637); aufrufST();
+			setState(638); match(WS);
+			setState(639); zuST();
+			setState(640); match(WS);
+			setState(644);
+			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
+			case 1:
+				{
+				setState(641); direktPronomST();
+				setState(642); match(WS);
+				}
+				break;
+			}
+			setState(649);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(646); direktPronomST();
+				setState(647); match(WS);
+				}
+			}
+
+			setState(651); ((RufeAufWennNichtGleichContext)_localctx).stelleST = stelleST();
 			((RufeAufWennNichtGleichContext)_localctx).ziel =  new ZeichenKette(((RufeAufWennNichtGleichContext)_localctx).stelleST.name);
 			}
 		}
@@ -1791,16 +2086,25 @@ public class TPS_ANTLRParser extends Parser {
 		public GleichSTContext gleichST() {
 			return getRuleContext(GleichSTContext.class,0);
 		}
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
 		public AufrufSTContext aufrufST() {
 			return getRuleContext(AufrufSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -1824,18 +2128,39 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufWennGleichContext rufeAufWennGleich() throws RecognitionException {
 		RufeAufWennGleichContext _localctx = new RufeAufWennGleichContext(_ctx, getState());
 		enterRule(_localctx, 32, RULE_rufeAufWennGleich);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(529); wennST();
-			setState(530); match(WS);
-			setState(531); gleichST();
-			setState(532); match(WS);
-			setState(533); aufrufST();
-			setState(534); match(WS);
-			setState(535); zuST();
-			setState(536); match(WS);
-			setState(537); ((RufeAufWennGleichContext)_localctx).stelleST = stelleST();
+			setState(654); wennST();
+			setState(655); match(WS);
+			setState(656); gleichST();
+			setState(657); match(WS);
+			setState(658); istST();
+			setState(659); match(WS);
+			setState(660); aufrufST();
+			setState(661); match(WS);
+			setState(662); zuST();
+			setState(663); match(WS);
+			setState(667);
+			switch ( getInterpreter().adaptivePredict(_input,25,_ctx) ) {
+			case 1:
+				{
+				setState(664); direktPronomST();
+				setState(665); match(WS);
+				}
+				break;
+			}
+			setState(672);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(669); direktPronomST();
+				setState(670); match(WS);
+				}
+			}
+
+			setState(674); ((RufeAufWennGleichContext)_localctx).stelleST = stelleST();
 			((RufeAufWennGleichContext)_localctx).ziel =  new ZeichenKette(((RufeAufWennGleichContext)_localctx).stelleST.name);
 			}
 		}
@@ -1859,10 +2184,16 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
+		}
 		public StelleSTContext stelleST() {
 			return getRuleContext(StelleSTContext.class,0);
 		}
@@ -1883,14 +2214,33 @@ public class TPS_ANTLRParser extends Parser {
 	public final RufeAufContext rufeAuf() throws RecognitionException {
 		RufeAufContext _localctx = new RufeAufContext(_ctx, getState());
 		enterRule(_localctx, 34, RULE_rufeAuf);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(540); aufrufST();
-			setState(541); match(WS);
-			setState(542); zuST();
-			setState(543); match(WS);
-			setState(544); ((RufeAufContext)_localctx).stelleST = stelleST();
+			setState(677); aufrufST();
+			setState(678); match(WS);
+			setState(679); zuST();
+			setState(680); match(WS);
+			setState(684);
+			switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
+			case 1:
+				{
+				setState(681); direktPronomST();
+				setState(682); match(WS);
+				}
+				break;
+			}
+			setState(689);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(686); direktPronomST();
+				setState(687); match(WS);
+				}
+			}
+
+			setState(691); ((RufeAufContext)_localctx).stelleST = stelleST();
 			((RufeAufContext)_localctx).ziel =  new ZeichenKette(((RufeAufContext)_localctx).stelleST.name);
 			}
 		}
@@ -1950,15 +2300,15 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(547); vergleichST();
-			setState(548); match(WS);
-			setState(549); ((VergleicheRegisterTextContext)_localctx).bereichST = bereichST();
-			setState(550); match(WS);
-			setState(551); mitST();
-			setState(552); match(WS);
-			setState(553); derST();
-			setState(554); match(WS);
-			setState(555); ((VergleicheRegisterTextContext)_localctx).wortfolgeST = wortfolgeST();
+			setState(694); vergleichST();
+			setState(695); match(WS);
+			setState(696); ((VergleicheRegisterTextContext)_localctx).bereichST = bereichST();
+			setState(697); match(WS);
+			setState(698); mitST();
+			setState(699); match(WS);
+			setState(700); derST();
+			setState(701); match(WS);
+			setState(702); ((VergleicheRegisterTextContext)_localctx).wortfolgeST = wortfolgeST();
 				((VergleicheRegisterTextContext)_localctx).anfang =  ((VergleicheRegisterTextContext)_localctx).bereichST.anfang;
 					((VergleicheRegisterTextContext)_localctx).ende =  ((VergleicheRegisterTextContext)_localctx).bereichST.ende;
 					((VergleicheRegisterTextContext)_localctx).wortfolge =  new ZeichenKette(((VergleicheRegisterTextContext)_localctx).wortfolgeST.wortfolge);
@@ -2017,18 +2367,18 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(558); vergleichST();
-			setState(559); match(WS);
+			setState(705); vergleichST();
+			setState(706); match(WS);
 			{
-			setState(560); ((VergleicheRegisterContext)_localctx).bereichST = bereichST();
+			setState(707); ((VergleicheRegisterContext)_localctx).bereichST = bereichST();
 				((VergleicheRegisterContext)_localctx).regA =  ((VergleicheRegisterContext)_localctx).bereichST.anfang;
 						((VergleicheRegisterContext)_localctx).regB =  ((VergleicheRegisterContext)_localctx).bereichST.ende;
 			}
-			setState(563); match(WS);
-			setState(564); mitST();
-			setState(565); match(WS);
+			setState(710); match(WS);
+			setState(711); mitST();
+			setState(712); match(WS);
 			{
-			setState(566); ((VergleicheRegisterContext)_localctx).bereichST = bereichST();
+			setState(713); ((VergleicheRegisterContext)_localctx).bereichST = bereichST();
 				((VergleicheRegisterContext)_localctx).regC =  ((VergleicheRegisterContext)_localctx).bereichST.anfang;
 						((VergleicheRegisterContext)_localctx).regD =  ((VergleicheRegisterContext)_localctx).bereichST.ende;
 			}
@@ -2052,6 +2402,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
@@ -2061,6 +2414,9 @@ public class TPS_ANTLRParser extends Parser {
 		}
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public StapelGrZwContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2079,16 +2435,35 @@ public class TPS_ANTLRParser extends Parser {
 	public final StapelGrZwContext stapelGrZw() throws RecognitionException {
 		StapelGrZwContext _localctx = new StapelGrZwContext(_ctx, getState());
 		enterRule(_localctx, 40, RULE_stapelGrZw);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(569); speichereST();
-			setState(570); match(WS);
-			setState(571); stapelGrST();
-			setState(572); match(WS);
-			setState(573); zuST();
-			setState(574); match(WS);
-			setState(575); zwischenST();
+			setState(716); speichereST();
+			setState(717); match(WS);
+			setState(718); stapelGrST();
+			setState(719); match(WS);
+			setState(720); zuST();
+			setState(721); match(WS);
+			setState(725);
+			switch ( getInterpreter().adaptivePredict(_input,29,_ctx) ) {
+			case 1:
+				{
+				setState(722); direktPronomST();
+				setState(723); match(WS);
+				}
+				break;
+			}
+			setState(730);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(727); direktPronomST();
+				setState(728); match(WS);
+				}
+			}
+
+			setState(732); zwischenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2111,6 +2486,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
@@ -2120,6 +2498,9 @@ public class TPS_ANTLRParser extends Parser {
 		}
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public StapelGrRegContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2138,16 +2519,35 @@ public class TPS_ANTLRParser extends Parser {
 	public final StapelGrRegContext stapelGrReg() throws RecognitionException {
 		StapelGrRegContext _localctx = new StapelGrRegContext(_ctx, getState());
 		enterRule(_localctx, 42, RULE_stapelGrReg);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(577); speichereST();
-			setState(578); match(WS);
-			setState(579); stapelGrST();
-			setState(580); match(WS);
-			setState(581); zuST();
-			setState(582); match(WS);
-			setState(583); ((StapelGrRegContext)_localctx).registerST = registerST();
+			setState(734); speichereST();
+			setState(735); match(WS);
+			setState(736); stapelGrST();
+			setState(737); match(WS);
+			setState(738); zuST();
+			setState(739); match(WS);
+			setState(743);
+			switch ( getInterpreter().adaptivePredict(_input,31,_ctx) ) {
+			case 1:
+				{
+				setState(740); direktPronomST();
+				setState(741); match(WS);
+				}
+				break;
+			}
+			setState(748);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(745); direktPronomST();
+				setState(746); match(WS);
+				}
+			}
+
+			setState(750); ((StapelGrRegContext)_localctx).registerST = registerST();
 			((StapelGrRegContext)_localctx).reg =  ((StapelGrRegContext)_localctx).registerST.reg;
 			}
 		}
@@ -2179,6 +2579,9 @@ public class TPS_ANTLRParser extends Parser {
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public StapelGrErgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2199,13 +2602,22 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(586); speichereST();
-			setState(587); match(WS);
-			setState(588); stapelGrST();
-			setState(589); match(WS);
-			setState(590); zuST();
-			setState(591); match(WS);
-			setState(592); ergebnisST();
+			setState(753); speichereST();
+			setState(754); match(WS);
+			setState(755); stapelGrST();
+			setState(756); match(WS);
+			setState(757); zuST();
+			setState(760);
+			switch ( getInterpreter().adaptivePredict(_input,33,_ctx) ) {
+			case 1:
+				{
+				setState(758); match(WS);
+				setState(759); direktPronomST();
+				}
+				break;
+			}
+			setState(762); match(WS);
+			setState(763); ergebnisST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2228,6 +2640,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
@@ -2237,6 +2652,9 @@ public class TPS_ANTLRParser extends Parser {
 		}
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public StapelMaxGrRegContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2258,13 +2676,24 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(594); speichereST();
-			setState(595); match(WS);
-			setState(596); stapelMaxGrST();
-			setState(597); match(WS);
-			setState(598); zuST();
-			setState(599); match(WS);
-			setState(600); ((StapelMaxGrRegContext)_localctx).registerST = registerST();
+			setState(765); speichereST();
+			setState(766); match(WS);
+			setState(767); direktPronomST();
+			setState(768); match(WS);
+			setState(769); stapelMaxGrST();
+			setState(770); match(WS);
+			setState(771); zuST();
+			setState(774);
+			switch ( getInterpreter().adaptivePredict(_input,34,_ctx) ) {
+			case 1:
+				{
+				setState(772); match(WS);
+				setState(773); direktPronomST();
+				}
+				break;
+			}
+			setState(776); match(WS);
+			setState(777); ((StapelMaxGrRegContext)_localctx).registerST = registerST();
 			((StapelMaxGrRegContext)_localctx).reg =  ((StapelMaxGrRegContext)_localctx).registerST.reg;
 			}
 		}
@@ -2286,6 +2715,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
@@ -2295,6 +2727,9 @@ public class TPS_ANTLRParser extends Parser {
 		}
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public StapelMaxGrZwContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2316,13 +2751,24 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(603); speichereST();
-			setState(604); match(WS);
-			setState(605); stapelMaxGrST();
-			setState(606); match(WS);
-			setState(607); zuST();
-			setState(608); match(WS);
-			setState(609); zwischenST();
+			setState(780); speichereST();
+			setState(781); match(WS);
+			setState(782); direktPronomST();
+			setState(783); match(WS);
+			setState(784); stapelMaxGrST();
+			setState(785); match(WS);
+			setState(786); zuST();
+			setState(789);
+			switch ( getInterpreter().adaptivePredict(_input,35,_ctx) ) {
+			case 1:
+				{
+				setState(787); match(WS);
+				setState(788); direktPronomST();
+				}
+				break;
+			}
+			setState(791); match(WS);
+			setState(792); zwischenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2340,6 +2786,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public ZuSTContext zuST() {
 			return getRuleContext(ZuSTContext.class,0);
 		}
@@ -2352,6 +2801,9 @@ public class TPS_ANTLRParser extends Parser {
 		}
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public StapelMaxGrErgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2373,13 +2825,24 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(611); speichereST();
-			setState(612); match(WS);
-			setState(613); stapelMaxGrST();
-			setState(614); match(WS);
-			setState(615); zuST();
-			setState(616); match(WS);
-			setState(617); ergebnisST();
+			setState(794); speichereST();
+			setState(795); match(WS);
+			setState(796); direktPronomST();
+			setState(797); match(WS);
+			setState(798); stapelMaxGrST();
+			setState(799); match(WS);
+			setState(800); zuST();
+			setState(803);
+			switch ( getInterpreter().adaptivePredict(_input,36,_ctx) ) {
+			case 1:
+				{
+				setState(801); match(WS);
+				setState(802); direktPronomST();
+				}
+				break;
+			}
+			setState(805); match(WS);
+			setState(806); ergebnisST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2400,6 +2863,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public VersionSTContext versionST() {
 			return getRuleContext(VersionSTContext.class,0);
 		}
@@ -2409,6 +2875,9 @@ public class TPS_ANTLRParser extends Parser {
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public VersionZwContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2430,13 +2899,26 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(619); speichereST();
-			setState(620); match(WS);
-			setState(621); versionST();
-			setState(622); match(WS);
-			setState(623); zuST();
-			setState(624); match(WS);
-			setState(625); zwischenST();
+			setState(808); speichereST();
+			setState(809); match(WS);
+			setState(810); direktPronomST();
+			setState(811); match(WS);
+			setState(812); versionST();
+			setState(813); match(WS);
+			setState(814); zuST();
+			setState(815); match(WS);
+			setState(819);
+			switch ( getInterpreter().adaptivePredict(_input,37,_ctx) ) {
+			case 1:
+				{
+				setState(816); direktPronomST();
+				setState(817); match(WS);
+				}
+				break;
+			}
+			setState(821); direktPronomST();
+			setState(822); match(WS);
+			setState(823); zwischenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2459,6 +2941,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public VersionSTContext versionST() {
 			return getRuleContext(VersionSTContext.class,0);
 		}
@@ -2468,6 +2953,9 @@ public class TPS_ANTLRParser extends Parser {
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public VersionRegContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2486,16 +2974,28 @@ public class TPS_ANTLRParser extends Parser {
 	public final VersionRegContext versionReg() throws RecognitionException {
 		VersionRegContext _localctx = new VersionRegContext(_ctx, getState());
 		enterRule(_localctx, 54, RULE_versionReg);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(627); speichereST();
-			setState(628); match(WS);
-			setState(629); versionST();
-			setState(630); match(WS);
-			setState(631); zuST();
-			setState(632); match(WS);
-			setState(633); ((VersionRegContext)_localctx).registerST = registerST();
+			setState(825); speichereST();
+			setState(826); match(WS);
+			setState(827); direktPronomST();
+			setState(828); match(WS);
+			setState(829); versionST();
+			setState(830); match(WS);
+			setState(831); zuST();
+			setState(832); match(WS);
+			setState(836);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(833); direktPronomST();
+				setState(834); match(WS);
+				}
+			}
+
+			setState(838); ((VersionRegContext)_localctx).registerST = registerST();
 			((VersionRegContext)_localctx).reg =  ((VersionRegContext)_localctx).registerST.reg;
 			}
 		}
@@ -2514,6 +3014,9 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
 		public VersionSTContext versionST() {
 			return getRuleContext(VersionSTContext.class,0);
 		}
@@ -2526,6 +3029,9 @@ public class TPS_ANTLRParser extends Parser {
 		}
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public VersionErgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2544,16 +3050,28 @@ public class TPS_ANTLRParser extends Parser {
 	public final VersionErgContext versionErg() throws RecognitionException {
 		VersionErgContext _localctx = new VersionErgContext(_ctx, getState());
 		enterRule(_localctx, 56, RULE_versionErg);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(636); speichereST();
-			setState(637); match(WS);
-			setState(638); versionST();
-			setState(639); match(WS);
-			setState(640); zuST();
-			setState(641); match(WS);
-			setState(642); ergebnisST();
+			setState(841); speichereST();
+			setState(842); match(WS);
+			setState(843); direktPronomST();
+			setState(844); match(WS);
+			setState(845); versionST();
+			setState(846); match(WS);
+			setState(847); zuST();
+			setState(848); match(WS);
+			setState(852);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(849); direktPronomST();
+				setState(850); match(WS);
+				}
+			}
+
+			setState(854); ergebnisST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2583,6 +3101,9 @@ public class TPS_ANTLRParser extends Parser {
 		public FehlerSTContext fehlerST() {
 			return getRuleContext(FehlerSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -2609,20 +3130,30 @@ public class TPS_ANTLRParser extends Parser {
 	public final SpringeWennFalschContext springeWennFalsch() throws RecognitionException {
 		SpringeWennFalschContext _localctx = new SpringeWennFalschContext(_ctx, getState());
 		enterRule(_localctx, 58, RULE_springeWennFalsch);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(644); wennST();
-			setState(645); match(WS);
-			setState(646); fehlerST();
-			setState(647); match(WS);
-			setState(648); gabST();
-			setState(649); match(WS);
-			setState(650); springeST();
-			setState(651); match(WS);
-			setState(652); zuST();
-			setState(653); match(WS);
-			setState(654); ((SpringeWennFalschContext)_localctx).stelleST = stelleST();
+			setState(856); wennST();
+			setState(857); match(WS);
+			setState(858); fehlerST();
+			setState(859); match(WS);
+			setState(860); gabST();
+			setState(861); match(WS);
+			setState(862); springeST();
+			setState(863); match(WS);
+			setState(864); zuST();
+			setState(865); match(WS);
+			setState(869);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(866); direktPronomST();
+				setState(867); match(WS);
+				}
+			}
+
+			setState(871); ((SpringeWennFalschContext)_localctx).stelleST = stelleST();
 			((SpringeWennFalschContext)_localctx).ziel =  new ZeichenKette(((SpringeWennFalschContext)_localctx).stelleST.name);
 			}
 		}
@@ -2661,6 +3192,9 @@ public class TPS_ANTLRParser extends Parser {
 		public ZeichenSTContext zeichenST() {
 			return getRuleContext(ZeichenSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public RegisterZeichenEinlesenContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2678,18 +3212,28 @@ public class TPS_ANTLRParser extends Parser {
 	public final RegisterZeichenEinlesenContext registerZeichenEinlesen() throws RecognitionException {
 		RegisterZeichenEinlesenContext _localctx = new RegisterZeichenEinlesenContext(_ctx, getState());
 		enterRule(_localctx, 60, RULE_registerZeichenEinlesen);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(657); einlesenST();
-			setState(658); match(WS);
-			setState(659); ((RegisterZeichenEinlesenContext)_localctx).posZahlST = posZahlST();
-			setState(660); match(WS);
-			setState(661); zeichenST();
-			setState(662); match(WS);
-			setState(663); zuST();
-			setState(664); match(WS);
-			setState(665); ((RegisterZeichenEinlesenContext)_localctx).registerST = registerST();
+			setState(874); einlesenST();
+			setState(875); match(WS);
+			setState(876); ((RegisterZeichenEinlesenContext)_localctx).posZahlST = posZahlST();
+			setState(877); match(WS);
+			setState(878); zeichenST();
+			setState(879); match(WS);
+			setState(880); zuST();
+			setState(881); match(WS);
+			setState(885);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(882); direktPronomST();
+				setState(883); match(WS);
+				}
+			}
+
+			setState(887); ((RegisterZeichenEinlesenContext)_localctx).registerST = registerST();
 				((RegisterZeichenEinlesenContext)_localctx).anzahl =  ((RegisterZeichenEinlesenContext)_localctx).posZahlST.zahl;
 					((RegisterZeichenEinlesenContext)_localctx).reg =  ((RegisterZeichenEinlesenContext)_localctx).registerST.reg;
 			}
@@ -2724,6 +3268,9 @@ public class TPS_ANTLRParser extends Parser {
 		public WortSTContext wortST() {
 			return getRuleContext(WortSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public RegisterWortEinlesenContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2741,16 +3288,26 @@ public class TPS_ANTLRParser extends Parser {
 	public final RegisterWortEinlesenContext registerWortEinlesen() throws RecognitionException {
 		RegisterWortEinlesenContext _localctx = new RegisterWortEinlesenContext(_ctx, getState());
 		enterRule(_localctx, 62, RULE_registerWortEinlesen);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(668); einlesenST();
-			setState(669); match(WS);
-			setState(670); wortST();
-			setState(671); match(WS);
-			setState(672); zuST();
-			setState(673); match(WS);
-			setState(674); ((RegisterWortEinlesenContext)_localctx).registerST = registerST();
+			setState(890); einlesenST();
+			setState(891); match(WS);
+			setState(892); wortST();
+			setState(893); match(WS);
+			setState(894); zuST();
+			setState(895); match(WS);
+			setState(899);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(896); direktPronomST();
+				setState(897); match(WS);
+				}
+			}
+
+			setState(901); ((RegisterWortEinlesenContext)_localctx).registerST = registerST();
 			((RegisterWortEinlesenContext)_localctx).reg =  ((RegisterWortEinlesenContext)_localctx).registerST.reg;
 			}
 		}
@@ -2796,9 +3353,9 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(677); ausgebenST();
-			setState(678); match(WS);
-			setState(679); ((RegisterausgabeContext)_localctx).bereichST = bereichST();
+			setState(904); ausgebenST();
+			setState(905); match(WS);
+			setState(906); ((RegisterausgabeContext)_localctx).bereichST = bereichST();
 				((RegisterausgabeContext)_localctx).anfang =  ((RegisterausgabeContext)_localctx).bereichST.anfang;
 					((RegisterausgabeContext)_localctx).ende =  ((RegisterausgabeContext)_localctx).bereichST.ende;
 			}
@@ -2821,12 +3378,21 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
+		public ZuSTContext zuST() {
+			return getRuleContext(ZuSTContext.class,0);
+		}
 		public RegisterST_Context registerST_() {
 			return getRuleContext(RegisterST_Context.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public AnzahlSTContext anzahlST() {
 			return getRuleContext(AnzahlSTContext.class,0);
@@ -2851,13 +3417,30 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(682); speichereST();
-			setState(683); match(WS);
-			setState(684); anzahlST();
-			setState(685); match(WS);
-			setState(686); registerST_();
-			setState(687); match(WS);
-			setState(688); zwischenST();
+			setState(909); speichereST();
+			setState(910); match(WS);
+			setState(911); direktPronomST();
+			setState(912); match(WS);
+			setState(913); anzahlST();
+			setState(914); match(WS);
+			setState(915); direktPronomST();
+			setState(916); match(WS);
+			setState(917); registerST_();
+			setState(918); match(WS);
+			setState(919); zuST();
+			setState(920); match(WS);
+			setState(924);
+			switch ( getInterpreter().adaptivePredict(_input,43,_ctx) ) {
+			case 1:
+				{
+				setState(921); direktPronomST();
+				setState(922); match(WS);
+				}
+				break;
+			}
+			setState(926); direktPronomST();
+			setState(927); match(WS);
+			setState(928); zwischenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2875,6 +3458,12 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
+		public DirektPronomSTContext direktPronomST(int i) {
+			return getRuleContext(DirektPronomSTContext.class,i);
+		}
+		public ZuSTContext zuST() {
+			return getRuleContext(ZuSTContext.class,0);
+		}
 		public RegisterST_Context registerST_() {
 			return getRuleContext(RegisterST_Context.class,0);
 		}
@@ -2884,6 +3473,9 @@ public class TPS_ANTLRParser extends Parser {
 		}
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
+		}
+		public List<DirektPronomSTContext> direktPronomST() {
+			return getRuleContexts(DirektPronomSTContext.class);
 		}
 		public AnzahlSTContext anzahlST() {
 			return getRuleContext(AnzahlSTContext.class,0);
@@ -2908,13 +3500,76 @@ public class TPS_ANTLRParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(690); speichereST();
-			setState(691); match(WS);
-			setState(692); anzahlST();
-			setState(693); match(WS);
-			setState(694); registerST_();
-			setState(695); match(WS);
-			setState(696); ergebnisST();
+			setState(930); speichereST();
+			setState(931); match(WS);
+			setState(932); direktPronomST();
+			setState(933); match(WS);
+			setState(934); anzahlST();
+			setState(935); match(WS);
+			setState(936); direktPronomST();
+			setState(937); match(WS);
+			setState(938); registerST_();
+			setState(939); match(WS);
+			setState(940); zuST();
+			setState(941); match(WS);
+			setState(945);
+			switch ( getInterpreter().adaptivePredict(_input,44,_ctx) ) {
+			case 1:
+				{
+				setState(942); direktPronomST();
+				setState(943); match(WS);
+				}
+				break;
+			}
+			setState(947); direktPronomST();
+			setState(948); match(WS);
+			setState(949); ergebnisST();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class DirektPronomSTContext extends ParserRuleContext {
+		public TerminalNode DEN() { return getToken(TPS_ANTLRParser.DEN, 0); }
+		public TerminalNode DER() { return getToken(TPS_ANTLRParser.DER, 0); }
+		public TerminalNode DAS() { return getToken(TPS_ANTLRParser.DAS, 0); }
+		public TerminalNode DEM() { return getToken(TPS_ANTLRParser.DEM, 0); }
+		public TerminalNode DIE() { return getToken(TPS_ANTLRParser.DIE, 0); }
+		public DirektPronomSTContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_direktPronomST; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).enterDirektPronomST(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).exitDirektPronomST(this);
+		}
+	}
+
+	public final DirektPronomSTContext direktPronomST() throws RecognitionException {
+		DirektPronomSTContext _localctx = new DirektPronomSTContext(_ctx, getState());
+		enterRule(_localctx, 70, RULE_direktPronomST);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(951);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			consume();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2947,6 +3602,9 @@ public class TPS_ANTLRParser extends Parser {
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public LadeVomRegisterZwContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2963,17 +3621,27 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LadeVomRegisterZwContext ladeVomRegisterZw() throws RecognitionException {
 		LadeVomRegisterZwContext _localctx = new LadeVomRegisterZwContext(_ctx, getState());
-		enterRule(_localctx, 70, RULE_ladeVomRegisterZw);
+		enterRule(_localctx, 72, RULE_ladeVomRegisterZw);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(698); speichereST();
-			setState(699); match(WS);
-			setState(700); ((LadeVomRegisterZwContext)_localctx).registerST = registerST();
-			setState(701); match(WS);
-			setState(702); zuST();
-			setState(703); match(WS);
-			setState(704); zwischenST();
+			setState(953); speichereST();
+			setState(954); match(WS);
+			setState(955); ((LadeVomRegisterZwContext)_localctx).registerST = registerST();
+			setState(956); match(WS);
+			setState(957); zuST();
+			setState(958); match(WS);
+			setState(962);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(959); direktPronomST();
+				setState(960); match(WS);
+				}
+			}
+
+			setState(964); zwischenST();
 			((LadeVomRegisterZwContext)_localctx).reg =  ((LadeVomRegisterZwContext)_localctx).registerST.reg;
 			}
 		}
@@ -3007,6 +3675,9 @@ public class TPS_ANTLRParser extends Parser {
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public LadeVomRegisterErgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3023,17 +3694,27 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LadeVomRegisterErgContext ladeVomRegisterErg() throws RecognitionException {
 		LadeVomRegisterErgContext _localctx = new LadeVomRegisterErgContext(_ctx, getState());
-		enterRule(_localctx, 72, RULE_ladeVomRegisterErg);
+		enterRule(_localctx, 74, RULE_ladeVomRegisterErg);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(707); speichereST();
-			setState(708); match(WS);
-			setState(709); ((LadeVomRegisterErgContext)_localctx).registerST = registerST();
-			setState(710); match(WS);
-			setState(711); zuST();
-			setState(712); match(WS);
-			setState(713); ergebnisST();
+			setState(967); speichereST();
+			setState(968); match(WS);
+			setState(969); ((LadeVomRegisterErgContext)_localctx).registerST = registerST();
+			setState(970); match(WS);
+			setState(971); zuST();
+			setState(972); match(WS);
+			setState(976);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(973); direktPronomST();
+				setState(974); match(WS);
+				}
+			}
+
+			setState(978); ergebnisST();
 			((LadeVomRegisterErgContext)_localctx).reg =  ((LadeVomRegisterErgContext)_localctx).registerST.reg;
 			}
 		}
@@ -3069,6 +3750,9 @@ public class TPS_ANTLRParser extends Parser {
 		public ZahlSTContext zahlST() {
 			return getRuleContext(ZahlSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public LadeInRegisterContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3085,17 +3769,27 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LadeInRegisterContext ladeInRegister() throws RecognitionException {
 		LadeInRegisterContext _localctx = new LadeInRegisterContext(_ctx, getState());
-		enterRule(_localctx, 74, RULE_ladeInRegister);
+		enterRule(_localctx, 76, RULE_ladeInRegister);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(716); speichereST();
-			setState(717); match(WS);
-			setState(718); ((LadeInRegisterContext)_localctx).zahlST = zahlST();
-			setState(719); match(WS);
-			setState(720); zuST();
-			setState(721); match(WS);
-			setState(722); ((LadeInRegisterContext)_localctx).registerST = registerST();
+			setState(981); speichereST();
+			setState(982); match(WS);
+			setState(983); ((LadeInRegisterContext)_localctx).zahlST = zahlST();
+			setState(984); match(WS);
+			setState(985); zuST();
+			setState(986); match(WS);
+			setState(990);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(987); direktPronomST();
+				setState(988); match(WS);
+				}
+			}
+
+			setState(992); ((LadeInRegisterContext)_localctx).registerST = registerST();
 				((LadeInRegisterContext)_localctx).reg =  ((LadeInRegisterContext)_localctx).registerST.reg;
 					((LadeInRegisterContext)_localctx).wert =  ((LadeInRegisterContext)_localctx).zahlST.zahl;
 			}
@@ -3128,6 +3822,9 @@ public class TPS_ANTLRParser extends Parser {
 		public EinlesenSTContext einlesenST() {
 			return getRuleContext(EinlesenSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public LeseZahlEinZwischenContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3144,17 +3841,27 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LeseZahlEinZwischenContext leseZahlEinZwischen() throws RecognitionException {
 		LeseZahlEinZwischenContext _localctx = new LeseZahlEinZwischenContext(_ctx, getState());
-		enterRule(_localctx, 76, RULE_leseZahlEinZwischen);
+		enterRule(_localctx, 78, RULE_leseZahlEinZwischen);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(725); einlesenST();
-			setState(726); match(WS);
-			setState(727); zahlST_();
-			setState(728); match(WS);
-			setState(729); zuST();
-			setState(730); match(WS);
-			setState(731); zwischenST();
+			setState(995); einlesenST();
+			setState(996); match(WS);
+			setState(997); zahlST_();
+			setState(998); match(WS);
+			setState(999); zuST();
+			setState(1000); match(WS);
+			setState(1004);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1001); direktPronomST();
+				setState(1002); match(WS);
+				}
+			}
+
+			setState(1006); zwischenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -3185,6 +3892,9 @@ public class TPS_ANTLRParser extends Parser {
 		public EinlesenSTContext einlesenST() {
 			return getRuleContext(EinlesenSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public LeseZahlEinErgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3201,17 +3911,27 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LeseZahlEinErgContext leseZahlEinErg() throws RecognitionException {
 		LeseZahlEinErgContext _localctx = new LeseZahlEinErgContext(_ctx, getState());
-		enterRule(_localctx, 78, RULE_leseZahlEinErg);
+		enterRule(_localctx, 80, RULE_leseZahlEinErg);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(733); einlesenST();
-			setState(734); match(WS);
-			setState(735); zahlST_();
-			setState(736); match(WS);
-			setState(737); zuST();
-			setState(738); match(WS);
-			setState(739); ergebnisST();
+			setState(1008); einlesenST();
+			setState(1009); match(WS);
+			setState(1010); zahlST_();
+			setState(1011); match(WS);
+			setState(1012); zuST();
+			setState(1013); match(WS);
+			setState(1017);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1014); direktPronomST();
+				setState(1015); match(WS);
+				}
+			}
+
+			setState(1019); ergebnisST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -3257,15 +3977,15 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final StelleContext stelle() throws RecognitionException {
 		StelleContext _localctx = new StelleContext(_ctx, getState());
-		enterRule(_localctx, 80, RULE_stelle);
+		enterRule(_localctx, 82, RULE_stelle);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(741); hierST();
-			setState(742); match(WS);
-			setState(743); istST();
-			setState(744); match(WS);
-			setState(745); ((StelleContext)_localctx).stelleST = stelleST();
+			setState(1021); hierST();
+			setState(1022); match(WS);
+			setState(1023); istST();
+			setState(1024); match(WS);
+			setState(1025); ((StelleContext)_localctx).stelleST = stelleST();
 			((StelleContext)_localctx).name =  new ZeichenKette(((StelleContext)_localctx).stelleST.name);
 			}
 		}
@@ -3293,6 +4013,9 @@ public class TPS_ANTLRParser extends Parser {
 		public PosZahlSTContext posZahlST() {
 			return getRuleContext(PosZahlSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public SpringeSTContext springeST() {
 			return getRuleContext(SpringeSTContext.class,0);
 		}
@@ -3312,15 +4035,25 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeZuDirektContext springeZuDirekt() throws RecognitionException {
 		SpringeZuDirektContext _localctx = new SpringeZuDirektContext(_ctx, getState());
-		enterRule(_localctx, 82, RULE_springeZuDirekt);
+		enterRule(_localctx, 84, RULE_springeZuDirekt);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(748); springeST();
-			setState(749); match(WS);
-			setState(750); zuST();
-			setState(751); match(WS);
-			setState(752); ((SpringeZuDirektContext)_localctx).posZahlST = posZahlST();
+			setState(1028); springeST();
+			setState(1029); match(WS);
+			setState(1030); zuST();
+			setState(1031); match(WS);
+			setState(1035);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1032); direktPronomST();
+				setState(1033); match(WS);
+				}
+			}
+
+			setState(1037); ((SpringeZuDirektContext)_localctx).posZahlST = posZahlST();
 			((SpringeZuDirektContext)_localctx).ziel =  ((SpringeZuDirektContext)_localctx).posZahlST.zahl;
 			}
 		}
@@ -3341,6 +4074,9 @@ public class TPS_ANTLRParser extends Parser {
 		public GrößerSTContext größerST() {
 			return getRuleContext(GrößerSTContext.class,0);
 		}
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
@@ -3348,6 +4084,9 @@ public class TPS_ANTLRParser extends Parser {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -3373,19 +4112,31 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeWennGrGleichContext springeWennGrGleich() throws RecognitionException {
 		SpringeWennGrGleichContext _localctx = new SpringeWennGrGleichContext(_ctx, getState());
-		enterRule(_localctx, 84, RULE_springeWennGrGleich);
+		enterRule(_localctx, 86, RULE_springeWennGrGleich);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(755); wennST();
-			setState(756); match(WS);
-			setState(757); größerST();
-			setState(758); match(WS);
-			setState(759); springeST();
-			setState(760); match(WS);
-			setState(761); zuST();
-			setState(762); match(WS);
-			setState(763); ((SpringeWennGrGleichContext)_localctx).stelleST = stelleST();
+			setState(1040); wennST();
+			setState(1041); match(WS);
+			setState(1042); größerST();
+			setState(1043); match(WS);
+			setState(1044); istST();
+			setState(1045); match(WS);
+			setState(1046); springeST();
+			setState(1047); match(WS);
+			setState(1048); zuST();
+			setState(1049); match(WS);
+			setState(1053);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1050); direktPronomST();
+				setState(1051); match(WS);
+				}
+			}
+
+			setState(1055); ((SpringeWennGrGleichContext)_localctx).stelleST = stelleST();
 			((SpringeWennGrGleichContext)_localctx).ziel =  new ZeichenKette(((SpringeWennGrGleichContext)_localctx).stelleST.name);
 			}
 		}
@@ -3403,6 +4154,9 @@ public class TPS_ANTLRParser extends Parser {
 	public static class SpringeWennKleinerGleichContext extends ParserRuleContext {
 		public ZeichenKette ziel;
 		public StelleSTContext stelleST;
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public KleinerGleichSTContext kleinerGleichST() {
 			return getRuleContext(KleinerGleichSTContext.class,0);
 		}
@@ -3413,6 +4167,9 @@ public class TPS_ANTLRParser extends Parser {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -3438,19 +4195,31 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeWennKleinerGleichContext springeWennKleinerGleich() throws RecognitionException {
 		SpringeWennKleinerGleichContext _localctx = new SpringeWennKleinerGleichContext(_ctx, getState());
-		enterRule(_localctx, 86, RULE_springeWennKleinerGleich);
+		enterRule(_localctx, 88, RULE_springeWennKleinerGleich);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(766); wennST();
-			setState(767); match(WS);
-			setState(768); kleinerGleichST();
-			setState(769); match(WS);
-			setState(770); springeST();
-			setState(771); match(WS);
-			setState(772); zuST();
-			setState(773); match(WS);
-			setState(774); ((SpringeWennKleinerGleichContext)_localctx).stelleST = stelleST();
+			setState(1058); wennST();
+			setState(1059); match(WS);
+			setState(1060); kleinerGleichST();
+			setState(1061); match(WS);
+			setState(1062); istST();
+			setState(1063); match(WS);
+			setState(1064); springeST();
+			setState(1065); match(WS);
+			setState(1066); zuST();
+			setState(1067); match(WS);
+			setState(1071);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1068); direktPronomST();
+				setState(1069); match(WS);
+				}
+			}
+
+			setState(1073); ((SpringeWennKleinerGleichContext)_localctx).stelleST = stelleST();
 			((SpringeWennKleinerGleichContext)_localctx).ziel =  new ZeichenKette(((SpringeWennKleinerGleichContext)_localctx).stelleST.name);
 			}
 		}
@@ -3471,6 +4240,9 @@ public class TPS_ANTLRParser extends Parser {
 		public GrößerSTContext größerST() {
 			return getRuleContext(GrößerSTContext.class,0);
 		}
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
@@ -3478,6 +4250,9 @@ public class TPS_ANTLRParser extends Parser {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -3503,19 +4278,31 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeWennGrContext springeWennGr() throws RecognitionException {
 		SpringeWennGrContext _localctx = new SpringeWennGrContext(_ctx, getState());
-		enterRule(_localctx, 88, RULE_springeWennGr);
+		enterRule(_localctx, 90, RULE_springeWennGr);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(777); wennST();
-			setState(778); match(WS);
-			setState(779); größerST();
-			setState(780); match(WS);
-			setState(781); springeST();
-			setState(782); match(WS);
-			setState(783); zuST();
-			setState(784); match(WS);
-			setState(785); ((SpringeWennGrContext)_localctx).stelleST = stelleST();
+			setState(1076); wennST();
+			setState(1077); match(WS);
+			setState(1078); größerST();
+			setState(1079); match(WS);
+			setState(1080); istST();
+			setState(1081); match(WS);
+			setState(1082); springeST();
+			setState(1083); match(WS);
+			setState(1084); zuST();
+			setState(1085); match(WS);
+			setState(1089);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1086); direktPronomST();
+				setState(1087); match(WS);
+				}
+			}
+
+			setState(1091); ((SpringeWennGrContext)_localctx).stelleST = stelleST();
 			((SpringeWennGrContext)_localctx).ziel =  new ZeichenKette(((SpringeWennGrContext)_localctx).stelleST.name);
 			}
 		}
@@ -3533,6 +4320,9 @@ public class TPS_ANTLRParser extends Parser {
 	public static class SpringeWennKleinerContext extends ParserRuleContext {
 		public ZeichenKette ziel;
 		public StelleSTContext stelleST;
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
@@ -3543,6 +4333,9 @@ public class TPS_ANTLRParser extends Parser {
 			return getRuleContext(KleinerSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -3568,19 +4361,31 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeWennKleinerContext springeWennKleiner() throws RecognitionException {
 		SpringeWennKleinerContext _localctx = new SpringeWennKleinerContext(_ctx, getState());
-		enterRule(_localctx, 90, RULE_springeWennKleiner);
+		enterRule(_localctx, 92, RULE_springeWennKleiner);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(788); wennST();
-			setState(789); match(WS);
-			setState(790); kleinerST();
-			setState(791); match(WS);
-			setState(792); springeST();
-			setState(793); match(WS);
-			setState(794); zuST();
-			setState(795); match(WS);
-			setState(796); ((SpringeWennKleinerContext)_localctx).stelleST = stelleST();
+			setState(1094); wennST();
+			setState(1095); match(WS);
+			setState(1096); kleinerST();
+			setState(1097); match(WS);
+			setState(1098); istST();
+			setState(1099); match(WS);
+			setState(1100); springeST();
+			setState(1101); match(WS);
+			setState(1102); zuST();
+			setState(1103); match(WS);
+			setState(1107);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1104); direktPronomST();
+				setState(1105); match(WS);
+				}
+			}
+
+			setState(1109); ((SpringeWennKleinerContext)_localctx).stelleST = stelleST();
 			((SpringeWennKleinerContext)_localctx).ziel =  new ZeichenKette(((SpringeWennKleinerContext)_localctx).stelleST.name);
 			}
 		}
@@ -3598,6 +4403,9 @@ public class TPS_ANTLRParser extends Parser {
 	public static class SpringeWennNichtGleichContext extends ParserRuleContext {
 		public ZeichenKette ziel;
 		public StelleSTContext stelleST;
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
@@ -3607,6 +4415,9 @@ public class TPS_ANTLRParser extends Parser {
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public UngleichSTContext ungleichST() {
 			return getRuleContext(UngleichSTContext.class,0);
+		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
 		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
@@ -3633,19 +4444,31 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeWennNichtGleichContext springeWennNichtGleich() throws RecognitionException {
 		SpringeWennNichtGleichContext _localctx = new SpringeWennNichtGleichContext(_ctx, getState());
-		enterRule(_localctx, 92, RULE_springeWennNichtGleich);
+		enterRule(_localctx, 94, RULE_springeWennNichtGleich);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(799); wennST();
-			setState(800); match(WS);
-			setState(801); ungleichST();
-			setState(802); match(WS);
-			setState(803); springeST();
-			setState(804); match(WS);
-			setState(805); zuST();
-			setState(806); match(WS);
-			setState(807); ((SpringeWennNichtGleichContext)_localctx).stelleST = stelleST();
+			setState(1112); wennST();
+			setState(1113); match(WS);
+			setState(1114); ungleichST();
+			setState(1115); match(WS);
+			setState(1116); istST();
+			setState(1117); match(WS);
+			setState(1118); springeST();
+			setState(1119); match(WS);
+			setState(1120); zuST();
+			setState(1121); match(WS);
+			setState(1125);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1122); direktPronomST();
+				setState(1123); match(WS);
+				}
+			}
+
+			setState(1127); ((SpringeWennNichtGleichContext)_localctx).stelleST = stelleST();
 			((SpringeWennNichtGleichContext)_localctx).ziel =  new ZeichenKette(((SpringeWennNichtGleichContext)_localctx).stelleST.name);
 			}
 		}
@@ -3666,6 +4489,9 @@ public class TPS_ANTLRParser extends Parser {
 		public GleichSTContext gleichST() {
 			return getRuleContext(GleichSTContext.class,0);
 		}
+		public IstSTContext istST() {
+			return getRuleContext(IstSTContext.class,0);
+		}
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
@@ -3673,6 +4499,9 @@ public class TPS_ANTLRParser extends Parser {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public WennSTContext wennST() {
 			return getRuleContext(WennSTContext.class,0);
 		}
@@ -3698,19 +4527,31 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeWennGleichContext springeWennGleich() throws RecognitionException {
 		SpringeWennGleichContext _localctx = new SpringeWennGleichContext(_ctx, getState());
-		enterRule(_localctx, 94, RULE_springeWennGleich);
+		enterRule(_localctx, 96, RULE_springeWennGleich);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(810); wennST();
-			setState(811); match(WS);
-			setState(812); gleichST();
-			setState(813); match(WS);
-			setState(814); springeST();
-			setState(815); match(WS);
-			setState(816); zuST();
-			setState(817); match(WS);
-			setState(818); ((SpringeWennGleichContext)_localctx).stelleST = stelleST();
+			setState(1130); wennST();
+			setState(1131); match(WS);
+			setState(1132); gleichST();
+			setState(1133); match(WS);
+			setState(1134); istST();
+			setState(1135); match(WS);
+			setState(1136); springeST();
+			setState(1137); match(WS);
+			setState(1138); zuST();
+			setState(1139); match(WS);
+			setState(1143);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1140); direktPronomST();
+				setState(1141); match(WS);
+				}
+			}
+
+			setState(1145); ((SpringeWennGleichContext)_localctx).stelleST = stelleST();
 			((SpringeWennGleichContext)_localctx).ziel =  new ZeichenKette(((SpringeWennGleichContext)_localctx).stelleST.name);
 			}
 		}
@@ -3735,6 +4576,9 @@ public class TPS_ANTLRParser extends Parser {
 			return getRuleContext(ZuSTContext.class,0);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public SpringeSTContext springeST() {
 			return getRuleContext(SpringeSTContext.class,0);
 		}
@@ -3757,15 +4601,25 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeContext springe() throws RecognitionException {
 		SpringeContext _localctx = new SpringeContext(_ctx, getState());
-		enterRule(_localctx, 96, RULE_springe);
+		enterRule(_localctx, 98, RULE_springe);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(821); springeST();
-			setState(822); match(WS);
-			setState(823); zuST();
-			setState(824); match(WS);
-			setState(825); ((SpringeContext)_localctx).stelleST = stelleST();
+			setState(1148); springeST();
+			setState(1149); match(WS);
+			setState(1150); zuST();
+			setState(1151); match(WS);
+			setState(1155);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+				{
+				setState(1152); direktPronomST();
+				setState(1153); match(WS);
+				}
+			}
+
+			setState(1157); ((SpringeContext)_localctx).stelleST = stelleST();
 			((SpringeContext)_localctx).ziel =  new ZeichenKette(((SpringeContext)_localctx).stelleST.name);
 			}
 		}
@@ -3816,21 +4670,21 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final VergleicheContext vergleiche() throws RecognitionException {
 		VergleicheContext _localctx = new VergleicheContext(_ctx, getState());
-		enterRule(_localctx, 98, RULE_vergleiche);
+		enterRule(_localctx, 100, RULE_vergleiche);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(828); vergleichST();
-			setState(829); match(WS);
+			setState(1160); vergleichST();
+			setState(1161); match(WS);
 			{
-			setState(830); ((VergleicheContext)_localctx).zahlST = zahlST();
+			setState(1162); ((VergleicheContext)_localctx).zahlST = zahlST();
 			((VergleicheContext)_localctx).a =  ((VergleicheContext)_localctx).zahlST.zahl;
 			}
-			setState(833); match(WS);
-			setState(834); mitST();
-			setState(835); match(WS);
+			setState(1165); match(WS);
+			setState(1166); mitST();
+			setState(1167); match(WS);
 			{
-			setState(836); ((VergleicheContext)_localctx).zahlST = zahlST();
+			setState(1168); ((VergleicheContext)_localctx).zahlST = zahlST();
 			((VergleicheContext)_localctx).b =  ((VergleicheContext)_localctx).zahlST.zahl;
 			}
 			}
@@ -3863,6 +4717,9 @@ public class TPS_ANTLRParser extends Parser {
 		public SpeichereSTContext speichereST() {
 			return getRuleContext(SpeichereSTContext.class,0);
 		}
+		public DirektPronomSTContext direktPronomST() {
+			return getRuleContext(DirektPronomSTContext.class,0);
+		}
 		public ZwischenspeicherContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3879,24 +4736,34 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ZwischenspeicherContext zwischenspeicher() throws RecognitionException {
 		ZwischenspeicherContext _localctx = new ZwischenspeicherContext(_ctx, getState());
-		enterRule(_localctx, 100, RULE_zwischenspeicher);
+		enterRule(_localctx, 102, RULE_zwischenspeicher);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(839); speichereST();
-			setState(840); match(WS);
-			setState(841); ergebnisST();
-			setState(844);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			setState(1171); speichereST();
+			setState(1172); match(WS);
+			setState(1173); ergebnisST();
+			setState(1181);
+			switch ( getInterpreter().adaptivePredict(_input,59,_ctx) ) {
 			case 1:
 				{
-				setState(842); match(WS);
-				setState(843); zuST();
+				setState(1174); match(WS);
+				setState(1175); zuST();
+				setState(1179);
+				_la = _input.LA(1);
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DIE) | (1L << DER) | (1L << DAS) | (1L << DEM) | (1L << DEN))) != 0)) {
+					{
+					setState(1176); direktPronomST();
+					setState(1177); match(WS);
+					}
+				}
+
 				}
 				break;
 			}
-			setState(846); match(WS);
-			setState(847); zwischenST();
+			setState(1183); match(WS);
+			setState(1184); zwischenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -3920,14 +4787,14 @@ public class TPS_ANTLRParser extends Parser {
 		public AusgebenSTContext ausgebenST() {
 			return getRuleContext(AusgebenSTContext.class,0);
 		}
+		public AusDPSTContext ausDPST() {
+			return getRuleContext(AusDPSTContext.class,0);
+		}
 		public FolgendesSTContext folgendesST() {
 			return getRuleContext(FolgendesSTContext.class,0);
 		}
 		public WortfolgeSTContext wortfolgeST() {
 			return getRuleContext(WortfolgeSTContext.class,0);
-		}
-		public AusSTContext ausST() {
-			return getRuleContext(AusSTContext.class,0);
 		}
 		public AusgabeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3945,24 +4812,17 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final AusgabeContext ausgabe() throws RecognitionException {
 		AusgabeContext _localctx = new AusgabeContext(_ctx, getState());
-		enterRule(_localctx, 102, RULE_ausgabe);
+		enterRule(_localctx, 104, RULE_ausgabe);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(849); ausgebenST();
-			setState(850); match(WS);
-			setState(851); folgendesST();
-			setState(854);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
-			case 1:
-				{
-				setState(852); match(WS);
-				setState(853); ausST();
-				}
-				break;
-			}
-			setState(856); match(WS);
-			setState(857); ((AusgabeContext)_localctx).wortfolgeST = wortfolgeST();
+			setState(1186); ausgebenST();
+			setState(1187); match(WS);
+			setState(1188); folgendesST();
+			setState(1189); match(WS);
+			setState(1190); ausDPST();
+			setState(1191); match(WS);
+			setState(1192); ((AusgabeContext)_localctx).wortfolgeST = wortfolgeST();
 			((AusgabeContext)_localctx).wortfolge =  new ZeichenKette(((AusgabeContext)_localctx).wortfolgeST.wortfolge);
 			}
 		}
@@ -3978,9 +4838,15 @@ public class TPS_ANTLRParser extends Parser {
 	}
 
 	public static class LeerzeileContext extends ParserRuleContext {
-		public TerminalNode WS() { return getToken(TPS_ANTLRParser.WS, 0); }
-		public AusgebenSTContext ausgebenST() {
-			return getRuleContext(AusgebenSTContext.class,0);
+		public TerminalNode WS(int i) {
+			return getToken(TPS_ANTLRParser.WS, i);
+		}
+		public EinSTContext einST() {
+			return getRuleContext(EinSTContext.class,0);
+		}
+		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public MacheSTContext macheST() {
+			return getRuleContext(MacheSTContext.class,0);
 		}
 		public LeerzeileSTContext leerzeileST() {
 			return getRuleContext(LeerzeileSTContext.class,0);
@@ -4001,13 +4867,95 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LeerzeileContext leerzeile() throws RecognitionException {
 		LeerzeileContext _localctx = new LeerzeileContext(_ctx, getState());
-		enterRule(_localctx, 104, RULE_leerzeile);
+		enterRule(_localctx, 106, RULE_leerzeile);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(860); ausgebenST();
-			setState(861); match(WS);
-			setState(862); leerzeileST();
+			setState(1195); macheST();
+			setState(1196); match(WS);
+			setState(1197); einST();
+			setState(1198); match(WS);
+			setState(1199); leerzeileST();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class EinSTContext extends ParserRuleContext {
+		public TerminalNode EINEN() { return getToken(TPS_ANTLRParser.EINEN, 0); }
+		public TerminalNode EINE() { return getToken(TPS_ANTLRParser.EINE, 0); }
+		public TerminalNode EIN() { return getToken(TPS_ANTLRParser.EIN, 0); }
+		public EinSTContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_einST; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).enterEinST(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).exitEinST(this);
+		}
+	}
+
+	public final EinSTContext einST() throws RecognitionException {
+		EinSTContext _localctx = new EinSTContext(_ctx, getState());
+		enterRule(_localctx, 108, RULE_einST);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(1201);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EINEN) | (1L << EINE) | (1L << EIN))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			consume();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class MacheSTContext extends ParserRuleContext {
+		public TerminalNode MACHE() { return getToken(TPS_ANTLRParser.MACHE, 0); }
+		public MacheSTContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_macheST; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).enterMacheST(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).exitMacheST(this);
+		}
+	}
+
+	public final MacheSTContext macheST() throws RecognitionException {
+		MacheSTContext _localctx = new MacheSTContext(_ctx, getState());
+		enterRule(_localctx, 110, RULE_macheST);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(1203); match(MACHE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4045,13 +4993,13 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LeerzeichenContext leerzeichen() throws RecognitionException {
 		LeerzeichenContext _localctx = new LeerzeichenContext(_ctx, getState());
-		enterRule(_localctx, 106, RULE_leerzeichen);
+		enterRule(_localctx, 112, RULE_leerzeichen);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(864); ausgebenST();
-			setState(865); match(WS);
-			setState(866); leerzeichenST();
+			setState(1205); ausgebenST();
+			setState(1206); match(WS);
+			setState(1207); leerzeichenST();
 			}
 		}
 		catch (RecognitionException re) {
@@ -4091,13 +5039,13 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ZahlenausgabeContext zahlenausgabe() throws RecognitionException {
 		ZahlenausgabeContext _localctx = new ZahlenausgabeContext(_ctx, getState());
-		enterRule(_localctx, 108, RULE_zahlenausgabe);
+		enterRule(_localctx, 114, RULE_zahlenausgabe);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(868); ausgebenST();
-			setState(869); match(WS);
-			setState(870); ((ZahlenausgabeContext)_localctx).zahlST = zahlST();
+			setState(1209); ausgebenST();
+			setState(1210); match(WS);
+			setState(1211); ((ZahlenausgabeContext)_localctx).zahlST = zahlST();
 			((ZahlenausgabeContext)_localctx).ausgeben =  ((ZahlenausgabeContext)_localctx).zahlST.zahl;
 			}
 		}
@@ -4148,21 +5096,21 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final MultipliziereContext multipliziere() throws RecognitionException {
 		MultipliziereContext _localctx = new MultipliziereContext(_ctx, getState());
-		enterRule(_localctx, 110, RULE_multipliziere);
+		enterRule(_localctx, 116, RULE_multipliziere);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(873); multipliziereST();
-			setState(874); match(WS);
+			setState(1214); multipliziereST();
+			setState(1215); match(WS);
 			{
-			setState(875); ((MultipliziereContext)_localctx).zahlST = zahlST();
+			setState(1216); ((MultipliziereContext)_localctx).zahlST = zahlST();
 			((MultipliziereContext)_localctx).a =  ((MultipliziereContext)_localctx).zahlST.zahl;
 			}
-			setState(878); match(WS);
-			setState(879); mitST();
-			setState(880); match(WS);
+			setState(1219); match(WS);
+			setState(1220); mitST();
+			setState(1221); match(WS);
 			{
-			setState(881); ((MultipliziereContext)_localctx).zahlST = zahlST();
+			setState(1222); ((MultipliziereContext)_localctx).zahlST = zahlST();
 			((MultipliziereContext)_localctx).b =  ((MultipliziereContext)_localctx).zahlST.zahl;
 			}
 			}
@@ -4214,21 +5162,21 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final DividiereContext dividiere() throws RecognitionException {
 		DividiereContext _localctx = new DividiereContext(_ctx, getState());
-		enterRule(_localctx, 112, RULE_dividiere);
+		enterRule(_localctx, 118, RULE_dividiere);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(884); dividiereST();
-			setState(885); match(WS);
+			setState(1225); dividiereST();
+			setState(1226); match(WS);
 			{
-			setState(886); ((DividiereContext)_localctx).zahlST = zahlST();
+			setState(1227); ((DividiereContext)_localctx).zahlST = zahlST();
 			((DividiereContext)_localctx).a =  ((DividiereContext)_localctx).zahlST.zahl;
 			}
-			setState(889); match(WS);
-			setState(890); mitST();
-			setState(891); match(WS);
+			setState(1230); match(WS);
+			setState(1231); mitST();
+			setState(1232); match(WS);
 			{
-			setState(892); ((DividiereContext)_localctx).zahlST = zahlST();
+			setState(1233); ((DividiereContext)_localctx).zahlST = zahlST();
 			((DividiereContext)_localctx).b =  ((DividiereContext)_localctx).zahlST.zahl;
 			}
 			}
@@ -4280,21 +5228,21 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SubtrahiereContext subtrahiere() throws RecognitionException {
 		SubtrahiereContext _localctx = new SubtrahiereContext(_ctx, getState());
-		enterRule(_localctx, 114, RULE_subtrahiere);
+		enterRule(_localctx, 120, RULE_subtrahiere);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(895); subtrahiereST();
-			setState(896); match(WS);
+			setState(1236); subtrahiereST();
+			setState(1237); match(WS);
 			{
-			setState(897); ((SubtrahiereContext)_localctx).zahlST = zahlST();
+			setState(1238); ((SubtrahiereContext)_localctx).zahlST = zahlST();
 			((SubtrahiereContext)_localctx).a =  ((SubtrahiereContext)_localctx).zahlST.zahl;
 			}
-			setState(900); match(WS);
-			setState(901); mitST();
-			setState(902); match(WS);
+			setState(1241); match(WS);
+			setState(1242); mitST();
+			setState(1243); match(WS);
 			{
-			setState(903); ((SubtrahiereContext)_localctx).zahlST = zahlST();
+			setState(1244); ((SubtrahiereContext)_localctx).zahlST = zahlST();
 			((SubtrahiereContext)_localctx).b =  ((SubtrahiereContext)_localctx).zahlST.zahl;
 			}
 			}
@@ -4346,21 +5294,21 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final AddiereContext addiere() throws RecognitionException {
 		AddiereContext _localctx = new AddiereContext(_ctx, getState());
-		enterRule(_localctx, 116, RULE_addiere);
+		enterRule(_localctx, 122, RULE_addiere);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(906); addiereST();
-			setState(907); match(WS);
+			setState(1247); addiereST();
+			setState(1248); match(WS);
 			{
-			setState(908); ((AddiereContext)_localctx).zahlST = zahlST();
+			setState(1249); ((AddiereContext)_localctx).zahlST = zahlST();
 			((AddiereContext)_localctx).a =  ((AddiereContext)_localctx).zahlST.zahl;
 			}
-			setState(911); match(WS);
-			setState(912); mitST();
-			setState(913); match(WS);
+			setState(1252); match(WS);
+			setState(1253); mitST();
+			setState(1254); match(WS);
 			{
-			setState(914); ((AddiereContext)_localctx).zahlST = zahlST();
+			setState(1255); ((AddiereContext)_localctx).zahlST = zahlST();
 			((AddiereContext)_localctx).b =  ((AddiereContext)_localctx).zahlST.zahl;
 			}
 			}
@@ -4394,11 +5342,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final MitSTContext mitST() throws RecognitionException {
 		MitSTContext _localctx = new MitSTContext(_ctx, getState());
-		enterRule(_localctx, 118, RULE_mitST);
+		enterRule(_localctx, 124, RULE_mitST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(917); match(MIT);
+			setState(1258); match(MIT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4430,11 +5378,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final IstSTContext istST() throws RecognitionException {
 		IstSTContext _localctx = new IstSTContext(_ctx, getState());
-		enterRule(_localctx, 120, RULE_istST);
+		enterRule(_localctx, 126, RULE_istST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(919); match(IST);
+			setState(1260); match(IST);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4466,11 +5414,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final HierSTContext hierST() throws RecognitionException {
 		HierSTContext _localctx = new HierSTContext(_ctx, getState());
-		enterRule(_localctx, 122, RULE_hierST);
+		enterRule(_localctx, 128, RULE_hierST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(921); match(HIER);
+			setState(1262); match(HIER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4503,12 +5451,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final GabSTContext gabST() throws RecognitionException {
 		GabSTContext _localctx = new GabSTContext(_ctx, getState());
-		enterRule(_localctx, 124, RULE_gabST);
+		enterRule(_localctx, 130, RULE_gabST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(923);
+			setState(1264);
 			_la = _input.LA(1);
 			if ( !(_la==GAB || _la==WAR) ) {
 			_errHandler.recoverInline(this);
@@ -4528,6 +5476,8 @@ public class TPS_ANTLRParser extends Parser {
 	}
 
 	public static class ZuSTContext extends ParserRuleContext {
+		public TerminalNode AUF() { return getToken(TPS_ANTLRParser.AUF, 0); }
+		public TerminalNode ZUR() { return getToken(TPS_ANTLRParser.ZUR, 0); }
 		public TerminalNode ZU() { return getToken(TPS_ANTLRParser.ZU, 0); }
 		public TerminalNode IN() { return getToken(TPS_ANTLRParser.IN, 0); }
 		public ZuSTContext(ParserRuleContext parent, int invokingState) {
@@ -4546,14 +5496,14 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ZuSTContext zuST() throws RecognitionException {
 		ZuSTContext _localctx = new ZuSTContext(_ctx, getState());
-		enterRule(_localctx, 126, RULE_zuST);
+		enterRule(_localctx, 132, RULE_zuST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(925);
+			setState(1266);
 			_la = _input.LA(1);
-			if ( !(_la==ZU || _la==IN) ) {
+			if ( !(((((_la - 60)) & ~0x3f) == 0 && ((1L << (_la - 60)) & ((1L << (AUF - 60)) | (1L << (ZUR - 60)) | (1L << (ZU - 60)) | (1L << (IN - 60)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
@@ -4589,12 +5539,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final VonSTContext vonST() throws RecognitionException {
 		VonSTContext _localctx = new VonSTContext(_ctx, getState());
-		enterRule(_localctx, 128, RULE_vonST);
+		enterRule(_localctx, 134, RULE_vonST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(927);
+			setState(1268);
 			_la = _input.LA(1);
 			if ( !(_la==VOM || _la==VON) ) {
 			_errHandler.recoverInline(this);
@@ -4614,7 +5564,6 @@ public class TPS_ANTLRParser extends Parser {
 	}
 
 	public static class FolgendesSTContext extends ParserRuleContext {
-		public TerminalNode DP() { return getToken(TPS_ANTLRParser.DP, 0); }
 		public TerminalNode FOLGENDES() { return getToken(TPS_ANTLRParser.FOLGENDES, 0); }
 		public FolgendesSTContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4632,20 +5581,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final FolgendesSTContext folgendesST() throws RecognitionException {
 		FolgendesSTContext _localctx = new FolgendesSTContext(_ctx, getState());
-		enterRule(_localctx, 130, RULE_folgendesST);
-		int _la;
+		enterRule(_localctx, 136, RULE_folgendesST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(929); match(FOLGENDES);
-			setState(931);
-			_la = _input.LA(1);
-			if (_la==DP) {
-				{
-				setState(930); match(DP);
-				}
-			}
-
+			setState(1270); match(FOLGENDES);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4678,17 +5618,81 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final AusgebenSTContext ausgebenST() throws RecognitionException {
 		AusgebenSTContext _localctx = new AusgebenSTContext(_ctx, getState());
-		enterRule(_localctx, 132, RULE_ausgebenST);
+		enterRule(_localctx, 138, RULE_ausgebenST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(933);
+			setState(1272);
 			_la = _input.LA(1);
 			if ( !(_la==AUSGEBEN || _la==GEBE) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class AusDPSTContext extends ParserRuleContext {
+		public TerminalNode DP() { return getToken(TPS_ANTLRParser.DP, 0); }
+		public TerminalNode WS() { return getToken(TPS_ANTLRParser.WS, 0); }
+		public TerminalNode AUS_DP() { return getToken(TPS_ANTLRParser.AUS_DP, 0); }
+		public TerminalNode AUS() { return getToken(TPS_ANTLRParser.AUS, 0); }
+		public AusDPSTContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_ausDPST; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).enterAusDPST(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).exitAusDPST(this);
+		}
+	}
+
+	public final AusDPSTContext ausDPST() throws RecognitionException {
+		AusDPSTContext _localctx = new AusDPSTContext(_ctx, getState());
+		enterRule(_localctx, 140, RULE_ausDPST);
+		int _la;
+		try {
+			setState(1280);
+			switch (_input.LA(1)) {
+			case AUS_DP:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(1274); match(AUS_DP);
+				}
+				break;
+			case AUS:
+				enterOuterAlt(_localctx, 2);
+				{
+				{
+				setState(1275); match(AUS);
+				setState(1277);
+				_la = _input.LA(1);
+				if (_la==WS) {
+					{
+					setState(1276); match(WS);
+					}
+				}
+
+				setState(1279); match(DP);
+				}
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4720,11 +5724,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final AusSTContext ausST() throws RecognitionException {
 		AusSTContext _localctx = new AusSTContext(_ctx, getState());
-		enterRule(_localctx, 134, RULE_ausST);
+		enterRule(_localctx, 142, RULE_ausST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(935); match(AUS);
+			setState(1282); match(AUS);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4757,12 +5761,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LeerzeichenSTContext leerzeichenST() throws RecognitionException {
 		LeerzeichenSTContext _localctx = new LeerzeichenSTContext(_ctx, getState());
-		enterRule(_localctx, 136, RULE_leerzeichenST);
+		enterRule(_localctx, 144, RULE_leerzeichenST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(937);
+			setState(1284);
 			_la = _input.LA(1);
 			if ( !(_la==LEERTASTE || _la==LEERZEICHEN) ) {
 			_errHandler.recoverInline(this);
@@ -4800,12 +5804,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LeerzeileSTContext leerzeileST() throws RecognitionException {
 		LeerzeileSTContext _localctx = new LeerzeileSTContext(_ctx, getState());
-		enterRule(_localctx, 138, RULE_leerzeileST);
+		enterRule(_localctx, 146, RULE_leerzeileST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(939);
+			setState(1286);
 			_la = _input.LA(1);
 			if ( !(_la==ZEILENUMBRUCH || _la==LEERZEILE) ) {
 			_errHandler.recoverInline(this);
@@ -4845,12 +5849,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final AddiereSTContext addiereST() throws RecognitionException {
 		AddiereSTContext _localctx = new AddiereSTContext(_ctx, getState());
-		enterRule(_localctx, 140, RULE_addiereST);
+		enterRule(_localctx, 148, RULE_addiereST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(941);
+			setState(1288);
 			_la = _input.LA(1);
 			if ( !(_la==ADDIERE) ) {
 			_errHandler.recoverInline(this);
@@ -4890,12 +5894,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SubtrahiereSTContext subtrahiereST() throws RecognitionException {
 		SubtrahiereSTContext _localctx = new SubtrahiereSTContext(_ctx, getState());
-		enterRule(_localctx, 142, RULE_subtrahiereST);
+		enterRule(_localctx, 150, RULE_subtrahiereST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(943);
+			setState(1290);
 			_la = _input.LA(1);
 			if ( !(_la==SUBTRAHIERE) ) {
 			_errHandler.recoverInline(this);
@@ -4935,12 +5939,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final MultipliziereSTContext multipliziereST() throws RecognitionException {
 		MultipliziereSTContext _localctx = new MultipliziereSTContext(_ctx, getState());
-		enterRule(_localctx, 144, RULE_multipliziereST);
+		enterRule(_localctx, 152, RULE_multipliziereST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(945);
+			setState(1292);
 			_la = _input.LA(1);
 			if ( !(_la==MULTIPLIZIERE) ) {
 			_errHandler.recoverInline(this);
@@ -4980,12 +5984,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final DividiereSTContext dividiereST() throws RecognitionException {
 		DividiereSTContext _localctx = new DividiereSTContext(_ctx, getState());
-		enterRule(_localctx, 146, RULE_dividiereST);
+		enterRule(_localctx, 154, RULE_dividiereST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(947);
+			setState(1294);
 			_la = _input.LA(1);
 			if ( !(_la==DIVIDIERE) ) {
 			_errHandler.recoverInline(this);
@@ -5022,11 +6026,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final VergleichSTContext vergleichST() throws RecognitionException {
 		VergleichSTContext _localctx = new VergleichSTContext(_ctx, getState());
-		enterRule(_localctx, 148, RULE_vergleichST);
+		enterRule(_localctx, 156, RULE_vergleichST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(949); match(VERGLEICHE);
+			setState(1296); match(VERGLEICHE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -5061,23 +6065,23 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpringeSTContext springeST() throws RecognitionException {
 		SpringeSTContext _localctx = new SpringeSTContext(_ctx, getState());
-		enterRule(_localctx, 150, RULE_springeST);
+		enterRule(_localctx, 158, RULE_springeST);
 		try {
-			setState(955);
+			setState(1302);
 			switch (_input.LA(1)) {
 			case SPRINGE:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(951); match(SPRINGE);
+				setState(1298); match(SPRINGE);
 				}
 				break;
 			case GEBE:
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(952); match(GEBE);
-				setState(953); match(WS);
-				setState(954); match(ZU);
+				setState(1299); match(GEBE);
+				setState(1300); match(WS);
+				setState(1301); match(ZU);
 				}
 				}
 				break;
@@ -5099,12 +6103,10 @@ public class TPS_ANTLRParser extends Parser {
 	public static class StelleSTContext extends ParserRuleContext {
 		public String name;
 		public Token STELLE;
-		public TerminalNode WS(int i) {
-			return getToken(TPS_ANTLRParser.WS, i);
+		public StelleVorTextSTContext stelleVorTextST() {
+			return getRuleContext(StelleVorTextSTContext.class,0);
 		}
-		public TerminalNode DP() { return getToken(TPS_ANTLRParser.DP, 0); }
-		public TerminalNode STELLE_WORT() { return getToken(TPS_ANTLRParser.STELLE_WORT, 0); }
-		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
+		public TerminalNode WS() { return getToken(TPS_ANTLRParser.WS, 0); }
 		public TerminalNode STELLE() { return getToken(TPS_ANTLRParser.STELLE, 0); }
 		public StelleSTContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -5122,31 +6124,85 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final StelleSTContext stelleST() throws RecognitionException {
 		StelleSTContext _localctx = new StelleSTContext(_ctx, getState());
-		enterRule(_localctx, 152, RULE_stelleST);
-		int _la;
+		enterRule(_localctx, 160, RULE_stelleST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(957); match(STELLE_WORT);
-			setState(959);
-			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
-			case 1:
+			setState(1304); stelleVorTextST();
+			setState(1305); match(WS);
+			setState(1306); ((StelleSTContext)_localctx).STELLE = match(STELLE);
+			((StelleSTContext)_localctx).name =  ((StelleSTContext)_localctx).STELLE.getText();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class StelleVorTextSTContext extends ParserRuleContext {
+		public TerminalNode STELLE_WORT_DP() { return getToken(TPS_ANTLRParser.STELLE_WORT_DP, 0); }
+		public TerminalNode DP() { return getToken(TPS_ANTLRParser.DP, 0); }
+		public TerminalNode STELLE_WORT() { return getToken(TPS_ANTLRParser.STELLE_WORT, 0); }
+		public TerminalNode WS() { return getToken(TPS_ANTLRParser.WS, 0); }
+		public StelleVorTextSTContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_stelleVorTextST; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).enterStelleVorTextST(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).exitStelleVorTextST(this);
+		}
+	}
+
+	public final StelleVorTextSTContext stelleVorTextST() throws RecognitionException {
+		StelleVorTextSTContext _localctx = new StelleVorTextSTContext(_ctx, getState());
+		enterRule(_localctx, 162, RULE_stelleVorTextST);
+		int _la;
+		try {
+			setState(1317);
+			switch (_input.LA(1)) {
+			case STELLE_WORT_DP:
+				enterOuterAlt(_localctx, 1);
 				{
-				setState(958); match(WS);
+				setState(1309); match(STELLE_WORT_DP);
 				}
 				break;
-			}
-			setState(962);
-			_la = _input.LA(1);
-			if (_la==DP) {
+			case STELLE_WORT:
+				enterOuterAlt(_localctx, 2);
 				{
-				setState(961); match(DP);
+				{
+				setState(1310); match(STELLE_WORT);
+				setState(1312);
+				switch ( getInterpreter().adaptivePredict(_input,63,_ctx) ) {
+				case 1:
+					{
+					setState(1311); match(WS);
+					}
+					break;
 				}
-			}
+				setState(1315);
+				_la = _input.LA(1);
+				if (_la==DP) {
+					{
+					setState(1314); match(DP);
+					}
+				}
 
-			setState(964); match(WS);
-			setState(965); ((StelleSTContext)_localctx).STELLE = match(STELLE);
-			((StelleSTContext)_localctx).name =  ((StelleSTContext)_localctx).STELLE.getText();
+				}
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -5182,17 +6238,17 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final AufrufSTContext aufrufST() throws RecognitionException {
 		AufrufSTContext _localctx = new AufrufSTContext(_ctx, getState());
-		enterRule(_localctx, 154, RULE_aufrufST);
+		enterRule(_localctx, 164, RULE_aufrufST);
 		try {
-			setState(974);
+			setState(1325);
 			switch (_input.LA(1)) {
 			case RUFE:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(968); match(RUFE);
-				setState(969); match(WS);
-				setState(970); match(AUF);
+				setState(1319); match(RUFE);
+				setState(1320); match(WS);
+				setState(1321); match(AUF);
 				}
 				}
 				break;
@@ -5200,9 +6256,9 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(971); match(MACHE);
-				setState(972); match(WS);
-				setState(973); match(AUFRUF);
+				setState(1322); match(MACHE);
+				setState(1323); match(WS);
+				setState(1324); match(AUFRUF);
 				}
 				}
 				break;
@@ -5242,24 +6298,24 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ZurückgehenSTContext zurückgehenST() throws RecognitionException {
 		ZurückgehenSTContext _localctx = new ZurückgehenSTContext(_ctx, getState());
-		enterRule(_localctx, 156, RULE_zurückgehenST);
+		enterRule(_localctx, 166, RULE_zurückgehenST);
 		try {
-			setState(980);
+			setState(1331);
 			switch (_input.LA(1)) {
 			case GEHE:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(976); match(GEHE);
-				setState(977); match(WS);
-				setState(978); match(ZURÜCK);
+				setState(1327); match(GEHE);
+				setState(1328); match(WS);
+				setState(1329); match(ZURÜCK);
 				}
 				}
 				break;
 			case ZURÜCKGEHEN:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(979); match(ZURÜCKGEHEN);
+				setState(1330); match(ZURÜCKGEHEN);
 				}
 				break;
 			default:
@@ -5278,6 +6334,8 @@ public class TPS_ANTLRParser extends Parser {
 	}
 
 	public static class SpeichereSTContext extends ParserRuleContext {
+		public TerminalNode SCHREIBE() { return getToken(TPS_ANTLRParser.SCHREIBE, 0); }
+		public TerminalNode LADE() { return getToken(TPS_ANTLRParser.LADE, 0); }
 		public TerminalNode SPEICHERE() { return getToken(TPS_ANTLRParser.SPEICHERE, 0); }
 		public SpeichereSTContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -5295,11 +6353,17 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final SpeichereSTContext speichereST() throws RecognitionException {
 		SpeichereSTContext _localctx = new SpeichereSTContext(_ctx, getState());
-		enterRule(_localctx, 158, RULE_speichereST);
+		enterRule(_localctx, 168, RULE_speichereST);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(982); match(SPEICHERE);
+			setState(1333);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SCHREIBE) | (1L << SPEICHERE) | (1L << LADE))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			consume();
 			}
 		}
 		catch (RecognitionException re) {
@@ -5332,12 +6396,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ZwischenSTContext zwischenST() throws RecognitionException {
 		ZwischenSTContext _localctx = new ZwischenSTContext(_ctx, getState());
-		enterRule(_localctx, 160, RULE_zwischenST);
+		enterRule(_localctx, 170, RULE_zwischenST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(984);
+			setState(1335);
 			_la = _input.LA(1);
 			if ( !(_la==ZWISCHEN || _la==ZWISCHENSPEICHER) ) {
 			_errHandler.recoverInline(this);
@@ -5375,12 +6439,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ErgebnisSTContext ergebnisST() throws RecognitionException {
 		ErgebnisSTContext _localctx = new ErgebnisSTContext(_ctx, getState());
-		enterRule(_localctx, 162, RULE_ergebnisST);
+		enterRule(_localctx, 172, RULE_ergebnisST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(986);
+			setState(1337);
 			_la = _input.LA(1);
 			if ( !(_la==ERGEBNISSPEICHER || _la==ERGEBNIS) ) {
 			_errHandler.recoverInline(this);
@@ -5427,23 +6491,23 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final RegisterSTContext registerST() throws RecognitionException {
 		RegisterSTContext _localctx = new RegisterSTContext(_ctx, getState());
-		enterRule(_localctx, 164, RULE_registerST);
+		enterRule(_localctx, 174, RULE_registerST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(988); match(REGISTER);
-			setState(989); match(WS);
-			setState(992);
+			setState(1339); match(REGISTER);
+			setState(1340); match(WS);
+			setState(1343);
 			_la = _input.LA(1);
 			if (_la==VON) {
 				{
-				setState(990); match(VON);
-				setState(991); match(WS);
+				setState(1341); match(VON);
+				setState(1342); match(WS);
 				}
 			}
 
-			setState(994); ((RegisterSTContext)_localctx).posZahlST = posZahlST();
+			setState(1345); ((RegisterSTContext)_localctx).posZahlST = posZahlST();
 			((RegisterSTContext)_localctx).reg =  ((RegisterSTContext)_localctx).posZahlST.zahl;
 			}
 		}
@@ -5490,21 +6554,21 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final BereichSTContext bereichST() throws RecognitionException {
 		BereichSTContext _localctx = new BereichSTContext(_ctx, getState());
-		enterRule(_localctx, 166, RULE_bereichST);
+		enterRule(_localctx, 176, RULE_bereichST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(997); match(VON);
-			setState(998); match(WS);
+			setState(1348); match(VON);
+			setState(1349); match(WS);
 			{
-			setState(999); ((BereichSTContext)_localctx).registerST = registerST();
+			setState(1350); ((BereichSTContext)_localctx).registerST = registerST();
 			((BereichSTContext)_localctx).anfang =  ((BereichSTContext)_localctx).registerST.reg;
 			}
-			setState(1002); match(WS);
-			setState(1003); match(BIS);
-			setState(1004); match(WS);
+			setState(1353); match(WS);
+			setState(1354); match(BIS);
+			setState(1355); match(WS);
 			{
-			setState(1005); ((BereichSTContext)_localctx).registerST = registerST();
+			setState(1356); ((BereichSTContext)_localctx).registerST = registerST();
 			((BereichSTContext)_localctx).ende =  ((BereichSTContext)_localctx).registerST.reg;
 			}
 			}
@@ -5538,11 +6602,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final StapelSTContext stapelST() throws RecognitionException {
 		StapelSTContext _localctx = new StapelSTContext(_ctx, getState());
-		enterRule(_localctx, 168, RULE_stapelST);
+		enterRule(_localctx, 178, RULE_stapelST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1008); match(STAPEL);
+			setState(1359); match(STAPEL);
 			}
 		}
 		catch (RecognitionException re) {
@@ -5574,11 +6638,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final NehmeSTContext nehmeST() throws RecognitionException {
 		NehmeSTContext _localctx = new NehmeSTContext(_ctx, getState());
-		enterRule(_localctx, 170, RULE_nehmeST);
+		enterRule(_localctx, 180, RULE_nehmeST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1010); match(NEHME);
+			setState(1361); match(NEHME);
 			}
 		}
 		catch (RecognitionException re) {
@@ -5617,26 +6681,26 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ZahlSTContext zahlST() throws RecognitionException {
 		ZahlSTContext _localctx = new ZahlSTContext(_ctx, getState());
-		enterRule(_localctx, 172, RULE_zahlST);
+		enterRule(_localctx, 182, RULE_zahlST);
 		boolean negieren = false;
 		int _la;
 		try {
-			setState(1021);
-			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
+			setState(1372);
+			switch ( getInterpreter().adaptivePredict(_input,70,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(1014);
+				setState(1365);
 				_la = _input.LA(1);
 				if (_la==NAGATION) {
 					{
-					setState(1012); match(NAGATION);
+					setState(1363); match(NAGATION);
 					negieren = true;
 					}
 				}
 
-				setState(1016); ((ZahlSTContext)_localctx).POS_ZAHL = match(POS_ZAHL);
+				setState(1367); ((ZahlSTContext)_localctx).POS_ZAHL = match(POS_ZAHL);
 				((ZahlSTContext)_localctx).zahl =  new Zahl(- Long.parseLong(((ZahlSTContext)_localctx).POS_ZAHL.getText()));
 				}
 				}
@@ -5645,7 +6709,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(1018); ((ZahlSTContext)_localctx).posZahlST = posZahlST();
+				setState(1369); ((ZahlSTContext)_localctx).posZahlST = posZahlST();
 				((ZahlSTContext)_localctx).zahl =  ((ZahlSTContext)_localctx).posZahlST.zahl;
 				}
 				}
@@ -5689,15 +6753,15 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final PosZahlSTContext posZahlST() throws RecognitionException {
 		PosZahlSTContext _localctx = new PosZahlSTContext(_ctx, getState());
-		enterRule(_localctx, 174, RULE_posZahlST);
+		enterRule(_localctx, 184, RULE_posZahlST);
 		try {
-			setState(1031);
+			setState(1382);
 			switch (_input.LA(1)) {
 			case POS_ZAHL:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(1023); ((PosZahlSTContext)_localctx).POS_ZAHL = match(POS_ZAHL);
+				setState(1374); ((PosZahlSTContext)_localctx).POS_ZAHL = match(POS_ZAHL);
 				((PosZahlSTContext)_localctx).zahl =  new Zahl(Long.parseLong(((PosZahlSTContext)_localctx).POS_ZAHL.getText()));
 				}
 				}
@@ -5707,7 +6771,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(1025); ergebnisST();
+				setState(1376); ergebnisST();
 				((PosZahlSTContext)_localctx).zahl =  new Zahl(true);
 				}
 				}
@@ -5717,7 +6781,7 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				{
-				setState(1028); zwischenST();
+				setState(1379); zwischenST();
 				((PosZahlSTContext)_localctx).zahl =  new Zahl(false);
 				}
 				}
@@ -5756,12 +6820,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final FehlerSTContext fehlerST() throws RecognitionException {
 		FehlerSTContext _localctx = new FehlerSTContext(_ctx, getState());
-		enterRule(_localctx, 176, RULE_fehlerST);
+		enterRule(_localctx, 186, RULE_fehlerST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1033);
+			setState(1384);
 			_la = _input.LA(1);
 			if ( !(_la==FEHLER || _la==FALSCH) ) {
 			_errHandler.recoverInline(this);
@@ -5798,11 +6862,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final VersionSTContext versionST() throws RecognitionException {
 		VersionSTContext _localctx = new VersionSTContext(_ctx, getState());
-		enterRule(_localctx, 178, RULE_versionST);
+		enterRule(_localctx, 188, RULE_versionST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1035); match(VERSION);
+			setState(1386); match(VERSION);
 			}
 		}
 		catch (RecognitionException re) {
@@ -5818,11 +6882,14 @@ public class TPS_ANTLRParser extends Parser {
 
 	public static class StapelMaxGrSTContext extends ParserRuleContext {
 		public TerminalNode STAPEL() { return getToken(TPS_ANTLRParser.STAPEL, 0); }
+		public TerminalNode DES() { return getToken(TPS_ANTLRParser.DES, 0); }
 		public TerminalNode WS(int i) {
 			return getToken(TPS_ANTLRParser.WS, i);
 		}
 		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
 		public TerminalNode GRÖẞE() { return getToken(TPS_ANTLRParser.GRÖẞE, 0); }
+		public TerminalNode STAPELS() { return getToken(TPS_ANTLRParser.STAPELS, 0); }
+		public TerminalNode VOM() { return getToken(TPS_ANTLRParser.VOM, 0); }
 		public TerminalNode MAXIMALE() { return getToken(TPS_ANTLRParser.MAXIMALE, 0); }
 		public TerminalNode MAXIMUM() { return getToken(TPS_ANTLRParser.MAXIMUM, 0); }
 		public StapelMaxGrSTContext(ParserRuleContext parent, int invokingState) {
@@ -5841,19 +6908,61 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final StapelMaxGrSTContext stapelMaxGrST() throws RecognitionException {
 		StapelMaxGrSTContext _localctx = new StapelMaxGrSTContext(_ctx, getState());
-		enterRule(_localctx, 180, RULE_stapelMaxGrST);
+		enterRule(_localctx, 190, RULE_stapelMaxGrST);
 		try {
-			setState(1047);
+			setState(1410);
 			switch (_input.LA(1)) {
 			case MAXIMALE:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(1037); match(MAXIMALE);
-				setState(1038); match(WS);
-				setState(1039); match(STAPEL);
-				setState(1040); match(WS);
-				setState(1041); match(GRÖẞE);
+				setState(1388); match(MAXIMALE);
+				setState(1389); match(WS);
+				setState(1403);
+				switch (_input.LA(1)) {
+				case STAPEL:
+					{
+					{
+					setState(1390); match(STAPEL);
+					setState(1391); match(WS);
+					setState(1392); match(GRÖẞE);
+					}
+					}
+					break;
+				case GRÖẞE:
+					{
+					{
+					setState(1393); match(GRÖẞE);
+					setState(1394); match(WS);
+					setState(1401);
+					switch (_input.LA(1)) {
+					case VOM:
+						{
+						{
+						setState(1395); match(VOM);
+						setState(1396); match(WS);
+						setState(1397); match(STAPEL);
+						}
+						}
+						break;
+					case DES:
+						{
+						{
+						setState(1398); match(DES);
+						setState(1399); match(WS);
+						setState(1400); match(STAPELS);
+						}
+						}
+						break;
+					default:
+						throw new NoViableAltException(this);
+					}
+					}
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
 				}
 				}
 				break;
@@ -5861,11 +6970,11 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(1042); match(STAPEL);
-				setState(1043); match(WS);
-				setState(1044); match(MAXIMUM);
-				setState(1045); match(WS);
-				setState(1046); match(GRÖẞE);
+				setState(1405); match(STAPEL);
+				setState(1406); match(WS);
+				setState(1407); match(MAXIMUM);
+				setState(1408); match(WS);
+				setState(1409); match(GRÖẞE);
 				}
 				}
 				break;
@@ -5910,17 +7019,17 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final StapelGrSTContext stapelGrST() throws RecognitionException {
 		StapelGrSTContext _localctx = new StapelGrSTContext(_ctx, getState());
-		enterRule(_localctx, 182, RULE_stapelGrST);
+		enterRule(_localctx, 192, RULE_stapelGrST);
 		try {
-			setState(1062);
-			switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
+			setState(1425);
+			switch ( getInterpreter().adaptivePredict(_input,75,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(1049); match(STAPEL);
-				setState(1050); match(WS);
-				setState(1051); match(GRÖẞE);
+				setState(1412); match(STAPEL);
+				setState(1413); match(WS);
+				setState(1414); match(GRÖẞE);
 				}
 				}
 				break;
@@ -5928,11 +7037,11 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(1052); match(GRÖẞE);
-				setState(1053); match(WS);
-				setState(1054); match(DES);
-				setState(1055); match(WS);
-				setState(1056); match(STAPELS);
+				setState(1415); match(GRÖẞE);
+				setState(1416); match(WS);
+				setState(1417); match(DES);
+				setState(1418); match(WS);
+				setState(1419); match(STAPELS);
 				}
 				}
 				break;
@@ -5940,11 +7049,11 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				{
-				setState(1057); match(GRÖẞE);
-				setState(1058); match(WS);
-				setState(1059); match(VOM);
-				setState(1060); match(WS);
-				setState(1061); match(STAPEL);
+				setState(1420); match(GRÖẞE);
+				setState(1421); match(WS);
+				setState(1422); match(VOM);
+				setState(1423); match(WS);
+				setState(1424); match(STAPEL);
 				}
 				}
 				break;
@@ -5979,11 +7088,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final DerSTContext derST() throws RecognitionException {
 		DerSTContext _localctx = new DerSTContext(_ctx, getState());
-		enterRule(_localctx, 184, RULE_derST);
+		enterRule(_localctx, 194, RULE_derST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1064); match(DER);
+			setState(1427); match(DER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6000,6 +7109,7 @@ public class TPS_ANTLRParser extends Parser {
 	public static class WftContext extends ParserRuleContext {
 		public String teil;
 		public Token tok;
+		public TerminalNode EINEN() { return getToken(TPS_ANTLRParser.EINEN, 0); }
 		public TerminalNode ODER() { return getToken(TPS_ANTLRParser.ODER, 0); }
 		public TerminalNode MENGE() { return getToken(TPS_ANTLRParser.MENGE, 0); }
 		public TerminalNode AUSGEBEN() { return getToken(TPS_ANTLRParser.AUSGEBEN, 0); }
@@ -6054,6 +7164,7 @@ public class TPS_ANTLRParser extends Parser {
 		public TerminalNode ZEICHENFOLGE() { return getToken(TPS_ANTLRParser.ZEICHENFOLGE, 0); }
 		public TerminalNode ANZAHL() { return getToken(TPS_ANTLRParser.ANZAHL, 0); }
 		public TerminalNode STELLE() { return getToken(TPS_ANTLRParser.STELLE, 0); }
+		public TerminalNode EINE() { return getToken(TPS_ANTLRParser.EINE, 0); }
 		public TerminalNode BIS() { return getToken(TPS_ANTLRParser.BIS, 0); }
 		public TerminalNode WORTREIHE_WORT() { return getToken(TPS_ANTLRParser.WORTREIHE_WORT, 0); }
 		public TerminalNode EIN() { return getToken(TPS_ANTLRParser.EIN, 0); }
@@ -6092,482 +7203,406 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final WftContext wft() throws RecognitionException {
 		WftContext _localctx = new WftContext(_ctx, getState());
-		enterRule(_localctx, 186, RULE_wft);
+		enterRule(_localctx, 196, RULE_wft);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1142);
+			setState(1507);
 			switch (_input.LA(1)) {
 			case STELLE_WORT:
 				{
-				setState(1066); ((WftContext)_localctx).tok = match(STELLE_WORT);
+				setState(1429); ((WftContext)_localctx).tok = match(STELLE_WORT);
 				}
 				break;
 			case DER:
 				{
-				setState(1067); ((WftContext)_localctx).tok = match(DER);
+				setState(1430); ((WftContext)_localctx).tok = match(DER);
 				}
 				break;
 			case WORTREIHE_WORT:
 				{
-				setState(1068); ((WftContext)_localctx).tok = match(WORTREIHE_WORT);
+				setState(1431); ((WftContext)_localctx).tok = match(WORTREIHE_WORT);
 				}
 				break;
 			case WORTKETTE_WORT:
 				{
-				setState(1069); ((WftContext)_localctx).tok = match(WORTKETTE_WORT);
+				setState(1432); ((WftContext)_localctx).tok = match(WORTKETTE_WORT);
 				}
 				break;
 			case WORTFOLGE_WORT:
 				{
-				setState(1070); ((WftContext)_localctx).tok = match(WORTFOLGE_WORT);
+				setState(1433); ((WftContext)_localctx).tok = match(WORTFOLGE_WORT);
 				}
 				break;
 			case LETZTEN:
 				{
-				setState(1071); ((WftContext)_localctx).tok = match(LETZTEN);
+				setState(1434); ((WftContext)_localctx).tok = match(LETZTEN);
 				}
 				break;
 			case ZEICHEN:
 				{
-				setState(1072); ((WftContext)_localctx).tok = match(ZEICHEN);
+				setState(1435); ((WftContext)_localctx).tok = match(ZEICHEN);
 				}
 				break;
 			case ZEICHENFOLGE:
 				{
-				setState(1073); ((WftContext)_localctx).tok = match(ZEICHENFOLGE);
+				setState(1436); ((WftContext)_localctx).tok = match(ZEICHENFOLGE);
 				}
 				break;
 			case ZEICHENKETTE:
 				{
-				setState(1074); ((WftContext)_localctx).tok = match(ZEICHENKETTE);
+				setState(1437); ((WftContext)_localctx).tok = match(ZEICHENKETTE);
 				}
 				break;
 			case WORT_WORT:
 				{
-				setState(1075); ((WftContext)_localctx).tok = match(WORT_WORT);
+				setState(1438); ((WftContext)_localctx).tok = match(WORT_WORT);
 				}
 				break;
 			case MENGE:
 				{
-				setState(1076); ((WftContext)_localctx).tok = match(MENGE);
+				setState(1439); ((WftContext)_localctx).tok = match(MENGE);
 				}
 				break;
 			case ANZAHL:
 				{
-				setState(1077); ((WftContext)_localctx).tok = match(ANZAHL);
+				setState(1440); ((WftContext)_localctx).tok = match(ANZAHL);
 				}
 				break;
 			case ZAHL_WORT:
 				{
-				setState(1078); ((WftContext)_localctx).tok = match(ZAHL_WORT);
+				setState(1441); ((WftContext)_localctx).tok = match(ZAHL_WORT);
 				}
 				break;
 			case EINESEN:
 				{
-				setState(1079); ((WftContext)_localctx).tok = match(EINESEN);
+				setState(1442); ((WftContext)_localctx).tok = match(EINESEN);
+				}
+				break;
+			case EINEN:
+				{
+				setState(1443); ((WftContext)_localctx).tok = match(EINEN);
+				}
+				break;
+			case EINE:
+				{
+				setState(1444); ((WftContext)_localctx).tok = match(EINE);
 				}
 				break;
 			case EIN:
 				{
-				setState(1080); ((WftContext)_localctx).tok = match(EIN);
+				setState(1445); ((WftContext)_localctx).tok = match(EIN);
 				}
 				break;
 			case LESE:
 				{
-				setState(1081); ((WftContext)_localctx).tok = match(LESE);
+				setState(1446); ((WftContext)_localctx).tok = match(LESE);
 				}
 				break;
 			case ODER:
 				{
-				setState(1082); ((WftContext)_localctx).tok = match(ODER);
+				setState(1447); ((WftContext)_localctx).tok = match(ODER);
 				}
 				break;
 			case KLEINER:
 				{
-				setState(1083); ((WftContext)_localctx).tok = match(KLEINER);
+				setState(1448); ((WftContext)_localctx).tok = match(KLEINER);
 				}
 				break;
 			case GRÖẞER:
 				{
-				setState(1084); ((WftContext)_localctx).tok = match(GRÖẞER);
+				setState(1449); ((WftContext)_localctx).tok = match(GRÖẞER);
 				}
 				break;
 			case UNGLEICH:
 				{
-				setState(1085); ((WftContext)_localctx).tok = match(UNGLEICH);
+				setState(1450); ((WftContext)_localctx).tok = match(UNGLEICH);
 				}
 				break;
 			case NICHT:
 				{
-				setState(1086); ((WftContext)_localctx).tok = match(NICHT);
+				setState(1451); ((WftContext)_localctx).tok = match(NICHT);
 				}
 				break;
 			case GLEICH:
 				{
-				setState(1087); ((WftContext)_localctx).tok = match(GLEICH);
+				setState(1452); ((WftContext)_localctx).tok = match(GLEICH);
 				}
 				break;
 			case FALLS:
 				{
-				setState(1088); ((WftContext)_localctx).tok = match(FALLS);
+				setState(1453); ((WftContext)_localctx).tok = match(FALLS);
 				}
 				break;
 			case WENN:
 				{
-				setState(1089); ((WftContext)_localctx).tok = match(WENN);
+				setState(1454); ((WftContext)_localctx).tok = match(WENN);
 				}
 				break;
 			case DES:
 				{
-				setState(1090); ((WftContext)_localctx).tok = match(DES);
+				setState(1455); ((WftContext)_localctx).tok = match(DES);
 				}
 				break;
 			case STAPELS:
 				{
-				setState(1091); ((WftContext)_localctx).tok = match(STAPELS);
+				setState(1456); ((WftContext)_localctx).tok = match(STAPELS);
 				}
 				break;
 			case VOM:
 				{
-				setState(1092); ((WftContext)_localctx).tok = match(VOM);
+				setState(1457); ((WftContext)_localctx).tok = match(VOM);
 				}
 				break;
 			case MAXIMALE:
 				{
-				setState(1093); ((WftContext)_localctx).tok = match(MAXIMALE);
+				setState(1458); ((WftContext)_localctx).tok = match(MAXIMALE);
 				}
 				break;
 			case GRÖẞE:
 				{
-				setState(1094); ((WftContext)_localctx).tok = match(GRÖẞE);
+				setState(1459); ((WftContext)_localctx).tok = match(GRÖẞE);
 				}
 				break;
 			case MAXIMUM:
 				{
-				setState(1095); ((WftContext)_localctx).tok = match(MAXIMUM);
+				setState(1460); ((WftContext)_localctx).tok = match(MAXIMUM);
 				}
 				break;
 			case VERSION:
 				{
-				setState(1096); ((WftContext)_localctx).tok = match(VERSION);
+				setState(1461); ((WftContext)_localctx).tok = match(VERSION);
 				}
 				break;
 			case FEHLER:
 				{
-				setState(1097); ((WftContext)_localctx).tok = match(FEHLER);
+				setState(1462); ((WftContext)_localctx).tok = match(FEHLER);
 				}
 				break;
 			case FALSCH:
 				{
-				setState(1098); ((WftContext)_localctx).tok = match(FALSCH);
+				setState(1463); ((WftContext)_localctx).tok = match(FALSCH);
 				}
 				break;
 			case NAGATION:
 				{
-				setState(1099); ((WftContext)_localctx).tok = match(NAGATION);
+				setState(1464); ((WftContext)_localctx).tok = match(NAGATION);
 				}
 				break;
 			case NEHME:
 				{
-				setState(1100); ((WftContext)_localctx).tok = match(NEHME);
+				setState(1465); ((WftContext)_localctx).tok = match(NEHME);
 				}
 				break;
 			case STAPEL:
 				{
-				setState(1101); ((WftContext)_localctx).tok = match(STAPEL);
+				setState(1466); ((WftContext)_localctx).tok = match(STAPEL);
 				}
 				break;
 			case POS_ZAHL:
 				{
-				setState(1102); ((WftContext)_localctx).tok = match(POS_ZAHL);
+				setState(1467); ((WftContext)_localctx).tok = match(POS_ZAHL);
 				}
 				break;
 			case REGISTER:
 				{
-				setState(1103); ((WftContext)_localctx).tok = match(REGISTER);
+				setState(1468); ((WftContext)_localctx).tok = match(REGISTER);
 				}
 				break;
 			case BIS:
 				{
-				setState(1104); ((WftContext)_localctx).tok = match(BIS);
+				setState(1469); ((WftContext)_localctx).tok = match(BIS);
 				}
 				break;
 			case ERGEBNISSPEICHER:
 				{
-				setState(1105); ((WftContext)_localctx).tok = match(ERGEBNISSPEICHER);
+				setState(1470); ((WftContext)_localctx).tok = match(ERGEBNISSPEICHER);
 				}
 				break;
 			case ERGEBNIS:
 				{
-				setState(1106); ((WftContext)_localctx).tok = match(ERGEBNIS);
+				setState(1471); ((WftContext)_localctx).tok = match(ERGEBNIS);
 				}
 				break;
 			case ZWISCHEN:
 				{
-				setState(1107); ((WftContext)_localctx).tok = match(ZWISCHEN);
+				setState(1472); ((WftContext)_localctx).tok = match(ZWISCHEN);
 				}
 				break;
 			case ZWISCHENSPEICHER:
 				{
-				setState(1108); ((WftContext)_localctx).tok = match(ZWISCHENSPEICHER);
+				setState(1473); ((WftContext)_localctx).tok = match(ZWISCHENSPEICHER);
 				}
 				break;
 			case SPEICHERE:
 				{
-				setState(1109); ((WftContext)_localctx).tok = match(SPEICHERE);
+				setState(1474); ((WftContext)_localctx).tok = match(SPEICHERE);
 				}
 				break;
 			case GEHE:
 				{
-				setState(1110); ((WftContext)_localctx).tok = match(GEHE);
+				setState(1475); ((WftContext)_localctx).tok = match(GEHE);
 				}
 				break;
 			case ZURÜCKGEHEN:
 				{
-				setState(1111); ((WftContext)_localctx).tok = match(ZURÜCKGEHEN);
+				setState(1476); ((WftContext)_localctx).tok = match(ZURÜCKGEHEN);
 				}
 				break;
 			case ZURÜCK:
 				{
-				setState(1112); ((WftContext)_localctx).tok = match(ZURÜCK);
+				setState(1477); ((WftContext)_localctx).tok = match(ZURÜCK);
 				}
 				break;
 			case AUF:
 				{
-				setState(1113); ((WftContext)_localctx).tok = match(AUF);
+				setState(1478); ((WftContext)_localctx).tok = match(AUF);
 				}
 				break;
 			case AUFRUF:
 				{
-				setState(1114); ((WftContext)_localctx).tok = match(AUFRUF);
+				setState(1479); ((WftContext)_localctx).tok = match(AUFRUF);
 				}
 				break;
 			case MACHE:
 				{
-				setState(1115); ((WftContext)_localctx).tok = match(MACHE);
+				setState(1480); ((WftContext)_localctx).tok = match(MACHE);
 				}
 				break;
 			case RUFE:
 				{
-				setState(1116); ((WftContext)_localctx).tok = match(RUFE);
+				setState(1481); ((WftContext)_localctx).tok = match(RUFE);
 				}
 				break;
 			case DP:
 				{
-				setState(1117); ((WftContext)_localctx).tok = match(DP);
+				setState(1482); ((WftContext)_localctx).tok = match(DP);
 				}
 				break;
 			case SPRINGE:
 				{
-				setState(1118); ((WftContext)_localctx).tok = match(SPRINGE);
+				setState(1483); ((WftContext)_localctx).tok = match(SPRINGE);
 				}
 				break;
 			case VERGLEICHE:
 				{
-				setState(1119); ((WftContext)_localctx).tok = match(VERGLEICHE);
+				setState(1484); ((WftContext)_localctx).tok = match(VERGLEICHE);
 				}
 				break;
 			case DIVIDIERE:
 				{
-				setState(1120); ((WftContext)_localctx).tok = match(DIVIDIERE);
+				setState(1485); ((WftContext)_localctx).tok = match(DIVIDIERE);
 				}
 				break;
 			case MULTIPLIZIERE:
 				{
-				setState(1121); ((WftContext)_localctx).tok = match(MULTIPLIZIERE);
+				setState(1486); ((WftContext)_localctx).tok = match(MULTIPLIZIERE);
 				}
 				break;
 			case SUBTRAHIERE:
 				{
-				setState(1122); ((WftContext)_localctx).tok = match(SUBTRAHIERE);
+				setState(1487); ((WftContext)_localctx).tok = match(SUBTRAHIERE);
 				}
 				break;
 			case ADDIERE:
 				{
-				setState(1123); ((WftContext)_localctx).tok = match(ADDIERE);
+				setState(1488); ((WftContext)_localctx).tok = match(ADDIERE);
 				}
 				break;
 			case ZEILENUMBRUCH:
 				{
-				setState(1124); ((WftContext)_localctx).tok = match(ZEILENUMBRUCH);
+				setState(1489); ((WftContext)_localctx).tok = match(ZEILENUMBRUCH);
 				}
 				break;
 			case LEERZEILE:
 				{
-				setState(1125); ((WftContext)_localctx).tok = match(LEERZEILE);
+				setState(1490); ((WftContext)_localctx).tok = match(LEERZEILE);
 				}
 				break;
 			case LEERTASTE:
 				{
-				setState(1126); ((WftContext)_localctx).tok = match(LEERTASTE);
+				setState(1491); ((WftContext)_localctx).tok = match(LEERTASTE);
 				}
 				break;
 			case LEERZEICHEN:
 				{
-				setState(1127); ((WftContext)_localctx).tok = match(LEERZEICHEN);
+				setState(1492); ((WftContext)_localctx).tok = match(LEERZEICHEN);
 				}
 				break;
 			case AUS:
 				{
-				setState(1128); ((WftContext)_localctx).tok = match(AUS);
+				setState(1493); ((WftContext)_localctx).tok = match(AUS);
 				}
 				break;
 			case AUSGEBEN:
 				{
-				setState(1129); ((WftContext)_localctx).tok = match(AUSGEBEN);
+				setState(1494); ((WftContext)_localctx).tok = match(AUSGEBEN);
 				}
 				break;
 			case GEBE:
 				{
-				setState(1130); ((WftContext)_localctx).tok = match(GEBE);
+				setState(1495); ((WftContext)_localctx).tok = match(GEBE);
 				}
 				break;
 			case FOLGENDES:
 				{
-				setState(1131); ((WftContext)_localctx).tok = match(FOLGENDES);
+				setState(1496); ((WftContext)_localctx).tok = match(FOLGENDES);
 				}
 				break;
 			case VON:
 				{
-				setState(1132); ((WftContext)_localctx).tok = match(VON);
+				setState(1497); ((WftContext)_localctx).tok = match(VON);
 				}
 				break;
 			case ZU:
 				{
-				setState(1133); ((WftContext)_localctx).tok = match(ZU);
+				setState(1498); ((WftContext)_localctx).tok = match(ZU);
 				}
 				break;
 			case GAB:
 				{
-				setState(1134); ((WftContext)_localctx).tok = match(GAB);
+				setState(1499); ((WftContext)_localctx).tok = match(GAB);
 				}
 				break;
 			case WAR:
 				{
-				setState(1135); ((WftContext)_localctx).tok = match(WAR);
+				setState(1500); ((WftContext)_localctx).tok = match(WAR);
 				}
 				break;
 			case MIT:
 				{
-				setState(1136); ((WftContext)_localctx).tok = match(MIT);
+				setState(1501); ((WftContext)_localctx).tok = match(MIT);
 				}
 				break;
 			case IST:
 				{
-				setState(1137); ((WftContext)_localctx).tok = match(IST);
+				setState(1502); ((WftContext)_localctx).tok = match(IST);
 				}
 				break;
 			case HIER:
 				{
-				setState(1138); ((WftContext)_localctx).tok = match(HIER);
+				setState(1503); ((WftContext)_localctx).tok = match(HIER);
 				}
 				break;
 			case STELLE:
 				{
-				setState(1139); ((WftContext)_localctx).tok = match(STELLE);
+				setState(1504); ((WftContext)_localctx).tok = match(STELLE);
 				}
 				break;
 			case REST:
 				{
-				setState(1140); ((WftContext)_localctx).tok = match(REST);
+				setState(1505); ((WftContext)_localctx).tok = match(REST);
 				}
 				break;
 			case REST_2:
 				{
-				setState(1141); ((WftContext)_localctx).tok = match(REST_2);
+				setState(1506); ((WftContext)_localctx).tok = match(REST_2);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
 			((WftContext)_localctx).teil =  ((WftContext)_localctx).tok.getText();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class WortfolgeSTALTContext extends ParserRuleContext {
-		public String wortfolge;
-		public WftContext wft;
-		public List<WftContext> wft() {
-			return getRuleContexts(WftContext.class);
-		}
-		public TerminalNode WS(int i) {
-			return getToken(TPS_ANTLRParser.WS, i);
-		}
-		public List<TerminalNode> WS() { return getTokens(TPS_ANTLRParser.WS); }
-		public WftContext wft(int i) {
-			return getRuleContext(WftContext.class,i);
-		}
-		public WortfolgeSTALTContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_wortfolgeSTALT; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).enterWortfolgeSTALT(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof TPS_ANTLRListener ) ((TPS_ANTLRListener)listener).exitWortfolgeSTALT(this);
-		}
-	}
-
-	public final WortfolgeSTALTContext wortfolgeSTALT() throws RecognitionException {
-		WortfolgeSTALTContext _localctx = new WortfolgeSTALTContext(_ctx, getState());
-		enterRule(_localctx, 188, RULE_wortfolgeSTALT);
-		StringBuilder wf = new StringBuilder();
-		int _la;
-		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(1156); 
-			_errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					setState(1151);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-					while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STELLE_WORT) | (1L << DER) | (1L << WORTREIHE_WORT) | (1L << WORTKETTE_WORT) | (1L << WORTFOLGE_WORT) | (1L << LETZTEN) | (1L << ZEICHEN) | (1L << ZEICHENFOLGE) | (1L << ZEICHENKETTE) | (1L << WORT_WORT) | (1L << MENGE) | (1L << ANZAHL) | (1L << ZAHL_WORT) | (1L << EINESEN) | (1L << EIN) | (1L << LESE) | (1L << ODER) | (1L << KLEINER) | (1L << GRÖẞER) | (1L << UNGLEICH) | (1L << NICHT) | (1L << GLEICH) | (1L << FALLS) | (1L << WENN) | (1L << DES) | (1L << STAPELS) | (1L << VOM) | (1L << MAXIMALE) | (1L << GRÖẞE) | (1L << MAXIMUM) | (1L << VERSION) | (1L << FEHLER) | (1L << FALSCH) | (1L << NAGATION) | (1L << NEHME) | (1L << STAPEL) | (1L << POS_ZAHL) | (1L << REGISTER) | (1L << BIS) | (1L << ERGEBNISSPEICHER) | (1L << ERGEBNIS) | (1L << ZWISCHEN) | (1L << ZWISCHENSPEICHER) | (1L << SPEICHERE) | (1L << GEHE) | (1L << ZURÜCKGEHEN) | (1L << ZURÜCK) | (1L << AUF) | (1L << AUFRUF) | (1L << MACHE) | (1L << RUFE) | (1L << DP) | (1L << SPRINGE) | (1L << VERGLEICHE) | (1L << DIVIDIERE) | (1L << MULTIPLIZIERE) | (1L << SUBTRAHIERE) | (1L << ADDIERE) | (1L << ZEILENUMBRUCH) | (1L << LEERZEILE) | (1L << LEERTASTE) | (1L << LEERZEICHEN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (AUS - 64)) | (1L << (AUSGEBEN - 64)) | (1L << (GEBE - 64)) | (1L << (FOLGENDES - 64)) | (1L << (VON - 64)) | (1L << (ZU - 64)) | (1L << (GAB - 64)) | (1L << (WAR - 64)) | (1L << (MIT - 64)) | (1L << (IST - 64)) | (1L << (HIER - 64)) | (1L << (STELLE - 64)) | (1L << (REST - 64)) | (1L << (REST_2 - 64)))) != 0)) {
-						{
-						{
-						setState(1146); ((WortfolgeSTALTContext)_localctx).wft = wft();
-						wf.append(((WortfolgeSTALTContext)_localctx).wft.teil);
-						}
-						}
-						setState(1153);
-						_errHandler.sync(this);
-						_la = _input.LA(1);
-					}
-					setState(1154); match(WS);
-					wf.append(' ');
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				setState(1158); 
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,20,_ctx);
-			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
-			setState(1160); ((WortfolgeSTALTContext)_localctx).wft = wft();
-			wf.append(((WortfolgeSTALTContext)_localctx).wft.teil);
-			((WortfolgeSTALTContext)_localctx).wortfolge =  wf.toString();
 			}
 		}
 		catch (RecognitionException re) {
@@ -6610,35 +7645,42 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final WortfolgeSTContext wortfolgeST() throws RecognitionException {
 		WortfolgeSTContext _localctx = new WortfolgeSTContext(_ctx, getState());
-		enterRule(_localctx, 190, RULE_wortfolgeST);
+		enterRule(_localctx, 198, RULE_wortfolgeST);
 		StringBuilder wf = new StringBuilder();
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1170); 
+			setState(1511); ((WortfolgeSTContext)_localctx).wft = wft();
+			wf.append(((WortfolgeSTContext)_localctx).wft.teil);
+			setState(1525);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			do {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STELLE_WORT) | (1L << DER) | (1L << WORTREIHE_WORT) | (1L << WORTKETTE_WORT) | (1L << WORTFOLGE_WORT) | (1L << LETZTEN) | (1L << ZEICHEN) | (1L << ZEICHENFOLGE) | (1L << ZEICHENKETTE) | (1L << WORT_WORT) | (1L << MENGE) | (1L << ANZAHL) | (1L << ZAHL_WORT) | (1L << EINESEN) | (1L << EINEN) | (1L << EINE) | (1L << EIN) | (1L << LESE) | (1L << ODER) | (1L << KLEINER) | (1L << GRÖẞER) | (1L << UNGLEICH) | (1L << NICHT) | (1L << GLEICH) | (1L << FALLS) | (1L << WENN) | (1L << DES) | (1L << STAPELS) | (1L << VOM) | (1L << MAXIMALE) | (1L << GRÖẞE) | (1L << MAXIMUM) | (1L << VERSION) | (1L << FEHLER) | (1L << FALSCH) | (1L << NAGATION) | (1L << NEHME) | (1L << STAPEL) | (1L << POS_ZAHL) | (1L << REGISTER) | (1L << BIS) | (1L << ERGEBNISSPEICHER) | (1L << ERGEBNIS) | (1L << ZWISCHEN) | (1L << ZWISCHENSPEICHER) | (1L << SPEICHERE) | (1L << GEHE) | (1L << ZURÜCKGEHEN) | (1L << ZURÜCK) | (1L << AUF) | (1L << AUFRUF) | (1L << MACHE) | (1L << RUFE))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SPRINGE - 64)) | (1L << (VERGLEICHE - 64)) | (1L << (DIVIDIERE - 64)) | (1L << (MULTIPLIZIERE - 64)) | (1L << (SUBTRAHIERE - 64)) | (1L << (ADDIERE - 64)) | (1L << (ZEILENUMBRUCH - 64)) | (1L << (LEERZEILE - 64)) | (1L << (LEERTASTE - 64)) | (1L << (LEERZEICHEN - 64)) | (1L << (DP - 64)) | (1L << (AUS - 64)) | (1L << (AUSGEBEN - 64)) | (1L << (GEBE - 64)) | (1L << (FOLGENDES - 64)) | (1L << (VON - 64)) | (1L << (ZU - 64)) | (1L << (GAB - 64)) | (1L << (WAR - 64)) | (1L << (MIT - 64)) | (1L << (IST - 64)) | (1L << (HIER - 64)) | (1L << (STELLE - 64)) | (1L << (REST - 64)) | (1L << (REST_2 - 64)))) != 0)) {
 				{
 				{
-				setState(1164); ((WortfolgeSTContext)_localctx).wft = wft();
-				wf.append(((WortfolgeSTContext)_localctx).wft.teil);
-				setState(1168);
-				switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
-				case 1:
-					{
-					setState(1166); match(WS);
-					wf.append(' ');
-					}
-					break;
-				}
-				}
-				}
-				setState(1172); 
+				setState(1516); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STELLE_WORT) | (1L << DER) | (1L << WORTREIHE_WORT) | (1L << WORTKETTE_WORT) | (1L << WORTFOLGE_WORT) | (1L << LETZTEN) | (1L << ZEICHEN) | (1L << ZEICHENFOLGE) | (1L << ZEICHENKETTE) | (1L << WORT_WORT) | (1L << MENGE) | (1L << ANZAHL) | (1L << ZAHL_WORT) | (1L << EINESEN) | (1L << EIN) | (1L << LESE) | (1L << ODER) | (1L << KLEINER) | (1L << GRÖẞER) | (1L << UNGLEICH) | (1L << NICHT) | (1L << GLEICH) | (1L << FALLS) | (1L << WENN) | (1L << DES) | (1L << STAPELS) | (1L << VOM) | (1L << MAXIMALE) | (1L << GRÖẞE) | (1L << MAXIMUM) | (1L << VERSION) | (1L << FEHLER) | (1L << FALSCH) | (1L << NAGATION) | (1L << NEHME) | (1L << STAPEL) | (1L << POS_ZAHL) | (1L << REGISTER) | (1L << BIS) | (1L << ERGEBNISSPEICHER) | (1L << ERGEBNIS) | (1L << ZWISCHEN) | (1L << ZWISCHENSPEICHER) | (1L << SPEICHERE) | (1L << GEHE) | (1L << ZURÜCKGEHEN) | (1L << ZURÜCK) | (1L << AUF) | (1L << AUFRUF) | (1L << MACHE) | (1L << RUFE) | (1L << DP) | (1L << SPRINGE) | (1L << VERGLEICHE) | (1L << DIVIDIERE) | (1L << MULTIPLIZIERE) | (1L << SUBTRAHIERE) | (1L << ADDIERE) | (1L << ZEILENUMBRUCH) | (1L << LEERZEILE) | (1L << LEERTASTE) | (1L << LEERZEICHEN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (AUS - 64)) | (1L << (AUSGEBEN - 64)) | (1L << (GEBE - 64)) | (1L << (FOLGENDES - 64)) | (1L << (VON - 64)) | (1L << (ZU - 64)) | (1L << (GAB - 64)) | (1L << (WAR - 64)) | (1L << (MIT - 64)) | (1L << (IST - 64)) | (1L << (HIER - 64)) | (1L << (STELLE - 64)) | (1L << (REST - 64)) | (1L << (REST_2 - 64)))) != 0) );
+				do {
+					{
+					{
+					setState(1513); ((WortfolgeSTContext)_localctx).wft = wft();
+					wf.append(((WortfolgeSTContext)_localctx).wft.teil);
+					}
+					}
+					setState(1518); 
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STELLE_WORT) | (1L << DER) | (1L << WORTREIHE_WORT) | (1L << WORTKETTE_WORT) | (1L << WORTFOLGE_WORT) | (1L << LETZTEN) | (1L << ZEICHEN) | (1L << ZEICHENFOLGE) | (1L << ZEICHENKETTE) | (1L << WORT_WORT) | (1L << MENGE) | (1L << ANZAHL) | (1L << ZAHL_WORT) | (1L << EINESEN) | (1L << EINEN) | (1L << EINE) | (1L << EIN) | (1L << LESE) | (1L << ODER) | (1L << KLEINER) | (1L << GRÖẞER) | (1L << UNGLEICH) | (1L << NICHT) | (1L << GLEICH) | (1L << FALLS) | (1L << WENN) | (1L << DES) | (1L << STAPELS) | (1L << VOM) | (1L << MAXIMALE) | (1L << GRÖẞE) | (1L << MAXIMUM) | (1L << VERSION) | (1L << FEHLER) | (1L << FALSCH) | (1L << NAGATION) | (1L << NEHME) | (1L << STAPEL) | (1L << POS_ZAHL) | (1L << REGISTER) | (1L << BIS) | (1L << ERGEBNISSPEICHER) | (1L << ERGEBNIS) | (1L << ZWISCHEN) | (1L << ZWISCHENSPEICHER) | (1L << SPEICHERE) | (1L << GEHE) | (1L << ZURÜCKGEHEN) | (1L << ZURÜCK) | (1L << AUF) | (1L << AUFRUF) | (1L << MACHE) | (1L << RUFE))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SPRINGE - 64)) | (1L << (VERGLEICHE - 64)) | (1L << (DIVIDIERE - 64)) | (1L << (MULTIPLIZIERE - 64)) | (1L << (SUBTRAHIERE - 64)) | (1L << (ADDIERE - 64)) | (1L << (ZEILENUMBRUCH - 64)) | (1L << (LEERZEILE - 64)) | (1L << (LEERTASTE - 64)) | (1L << (LEERZEICHEN - 64)) | (1L << (DP - 64)) | (1L << (AUS - 64)) | (1L << (AUSGEBEN - 64)) | (1L << (GEBE - 64)) | (1L << (FOLGENDES - 64)) | (1L << (VON - 64)) | (1L << (ZU - 64)) | (1L << (GAB - 64)) | (1L << (WAR - 64)) | (1L << (MIT - 64)) | (1L << (IST - 64)) | (1L << (HIER - 64)) | (1L << (STELLE - 64)) | (1L << (REST - 64)) | (1L << (REST_2 - 64)))) != 0) );
+				setState(1520); match(WS);
+				wf.append(' ');
+				}
+				}
+				setState(1527);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
 			((WortfolgeSTContext)_localctx).wortfolge =  wf.toString();
 			}
 		}
@@ -6655,6 +7697,8 @@ public class TPS_ANTLRParser extends Parser {
 
 	public static class WennSTContext extends ParserRuleContext {
 		public TerminalNode WENN() { return getToken(TPS_ANTLRParser.WENN, 0); }
+		public TerminalNode WS() { return getToken(TPS_ANTLRParser.WS, 0); }
+		public TerminalNode ES() { return getToken(TPS_ANTLRParser.ES, 0); }
 		public TerminalNode FALLS() { return getToken(TPS_ANTLRParser.FALLS, 0); }
 		public WennSTContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -6672,17 +7716,19 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final WennSTContext wennST() throws RecognitionException {
 		WennSTContext _localctx = new WennSTContext(_ctx, getState());
-		enterRule(_localctx, 192, RULE_wennST);
+		enterRule(_localctx, 200, RULE_wennST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1176);
+			setState(1530);
 			_la = _input.LA(1);
 			if ( !(_la==FALLS || _la==WENN) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
+			setState(1531); match(WS);
+			setState(1532); match(ES);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6717,23 +7763,23 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final UngleichSTContext ungleichST() throws RecognitionException {
 		UngleichSTContext _localctx = new UngleichSTContext(_ctx, getState());
-		enterRule(_localctx, 194, RULE_ungleichST);
+		enterRule(_localctx, 202, RULE_ungleichST);
 		try {
-			setState(1182);
+			setState(1538);
 			switch (_input.LA(1)) {
 			case UNGLEICH:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(1178); match(UNGLEICH);
+				setState(1534); match(UNGLEICH);
 				}
 				break;
 			case NICHT:
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(1179); match(NICHT);
-				setState(1180); match(WS);
-				setState(1181); match(GLEICH);
+				setState(1535); match(NICHT);
+				setState(1536); match(WS);
+				setState(1537); match(GLEICH);
 				}
 				}
 				break;
@@ -6770,11 +7816,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final GleichSTContext gleichST() throws RecognitionException {
 		GleichSTContext _localctx = new GleichSTContext(_ctx, getState());
-		enterRule(_localctx, 196, RULE_gleichST);
+		enterRule(_localctx, 204, RULE_gleichST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1184); match(GLEICH);
+			setState(1540); match(GLEICH);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6806,11 +7852,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final GrößerSTContext größerST() throws RecognitionException {
 		GrößerSTContext _localctx = new GrößerSTContext(_ctx, getState());
-		enterRule(_localctx, 198, RULE_größerST);
+		enterRule(_localctx, 206, RULE_größerST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1186); match(GRÖẞER);
+			setState(1542); match(GRÖẞER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6842,11 +7888,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final KleinerSTContext kleinerST() throws RecognitionException {
 		KleinerSTContext _localctx = new KleinerSTContext(_ctx, getState());
-		enterRule(_localctx, 200, RULE_kleinerST);
+		enterRule(_localctx, 208, RULE_kleinerST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1188); match(KLEINER);
+			setState(1544); match(KLEINER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6884,19 +7930,19 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final GrößerGleichSTContext größerGleichST() throws RecognitionException {
 		GrößerGleichSTContext _localctx = new GrößerGleichSTContext(_ctx, getState());
-		enterRule(_localctx, 202, RULE_größerGleichST);
+		enterRule(_localctx, 210, RULE_größerGleichST);
 		try {
-			setState(1200);
+			setState(1556);
 			switch (_input.LA(1)) {
 			case GRÖẞER:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(1190); match(GRÖẞER);
-				setState(1191); match(WS);
-				setState(1192); match(ODER);
-				setState(1193); match(WS);
-				setState(1194); match(GLEICH);
+				setState(1546); match(GRÖẞER);
+				setState(1547); match(WS);
+				setState(1548); match(ODER);
+				setState(1549); match(WS);
+				setState(1550); match(GLEICH);
 				}
 				}
 				break;
@@ -6904,11 +7950,11 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(1195); match(GLEICH);
-				setState(1196); match(WS);
-				setState(1197); match(ODER);
-				setState(1198); match(WS);
-				setState(1199); match(GRÖẞER);
+				setState(1551); match(GLEICH);
+				setState(1552); match(WS);
+				setState(1553); match(ODER);
+				setState(1554); match(WS);
+				setState(1555); match(GRÖẞER);
 				}
 				}
 				break;
@@ -6951,19 +7997,19 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final KleinerGleichSTContext kleinerGleichST() throws RecognitionException {
 		KleinerGleichSTContext _localctx = new KleinerGleichSTContext(_ctx, getState());
-		enterRule(_localctx, 204, RULE_kleinerGleichST);
+		enterRule(_localctx, 212, RULE_kleinerGleichST);
 		try {
-			setState(1212);
+			setState(1568);
 			switch (_input.LA(1)) {
 			case KLEINER:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(1202); match(KLEINER);
-				setState(1203); match(WS);
-				setState(1204); match(ODER);
-				setState(1205); match(WS);
-				setState(1206); match(GLEICH);
+				setState(1558); match(KLEINER);
+				setState(1559); match(WS);
+				setState(1560); match(ODER);
+				setState(1561); match(WS);
+				setState(1562); match(GLEICH);
 				}
 				}
 				break;
@@ -6971,11 +8017,11 @@ public class TPS_ANTLRParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(1207); match(GLEICH);
-				setState(1208); match(WS);
-				setState(1209); match(ODER);
-				setState(1210); match(WS);
-				setState(1211); match(KLEINER);
+				setState(1563); match(GLEICH);
+				setState(1564); match(WS);
+				setState(1565); match(ODER);
+				setState(1566); match(WS);
+				setState(1567); match(KLEINER);
 				}
 				}
 				break;
@@ -7015,24 +8061,24 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final EinlesenSTContext einlesenST() throws RecognitionException {
 		EinlesenSTContext _localctx = new EinlesenSTContext(_ctx, getState());
-		enterRule(_localctx, 206, RULE_einlesenST);
+		enterRule(_localctx, 214, RULE_einlesenST);
 		try {
-			setState(1218);
+			setState(1574);
 			switch (_input.LA(1)) {
 			case LESE:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(1214); match(LESE);
-				setState(1215); match(WS);
-				setState(1216); match(EIN);
+				setState(1570); match(LESE);
+				setState(1571); match(WS);
+				setState(1572); match(EIN);
 				}
 				}
 				break;
 			case EINESEN:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(1217); match(EINESEN);
+				setState(1573); match(EINESEN);
 				}
 				break;
 			default:
@@ -7068,11 +8114,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ZahlST_Context zahlST_() throws RecognitionException {
 		ZahlST_Context _localctx = new ZahlST_Context(_ctx, getState());
-		enterRule(_localctx, 208, RULE_zahlST_);
+		enterRule(_localctx, 216, RULE_zahlST_);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1220); match(ZAHL_WORT);
+			setState(1576); match(ZAHL_WORT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -7104,11 +8150,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final RegisterST_Context registerST_() throws RecognitionException {
 		RegisterST_Context _localctx = new RegisterST_Context(_ctx, getState());
-		enterRule(_localctx, 210, RULE_registerST_);
+		enterRule(_localctx, 218, RULE_registerST_);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1222); match(REGISTER);
+			setState(1578); match(REGISTER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -7141,12 +8187,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final AnzahlSTContext anzahlST() throws RecognitionException {
 		AnzahlSTContext _localctx = new AnzahlSTContext(_ctx, getState());
-		enterRule(_localctx, 212, RULE_anzahlST);
+		enterRule(_localctx, 220, RULE_anzahlST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1224);
+			setState(1580);
 			_la = _input.LA(1);
 			if ( !(_la==MENGE || _la==ANZAHL) ) {
 			_errHandler.recoverInline(this);
@@ -7185,12 +8231,12 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final WortSTContext wortST() throws RecognitionException {
 		WortSTContext _localctx = new WortSTContext(_ctx, getState());
-		enterRule(_localctx, 214, RULE_wortST);
+		enterRule(_localctx, 222, RULE_wortST);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1226);
+			setState(1582);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ZEICHENFOLGE) | (1L << ZEICHENKETTE) | (1L << WORT_WORT))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -7227,11 +8273,11 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final ZeichenSTContext zeichenST() throws RecognitionException {
 		ZeichenSTContext _localctx = new ZeichenSTContext(_ctx, getState());
-		enterRule(_localctx, 216, RULE_zeichenST);
+		enterRule(_localctx, 224, RULE_zeichenST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1228); match(ZEICHEN);
+			setState(1584); match(ZEICHEN);
 			}
 		}
 		catch (RecognitionException re) {
@@ -7265,13 +8311,13 @@ public class TPS_ANTLRParser extends Parser {
 
 	public final LetztenFehlerSTContext letztenFehlerST() throws RecognitionException {
 		LetztenFehlerSTContext _localctx = new LetztenFehlerSTContext(_ctx, getState());
-		enterRule(_localctx, 218, RULE_letztenFehlerST);
+		enterRule(_localctx, 226, RULE_letztenFehlerST);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1230); match(LETZTEN);
-			setState(1231); match(WS);
-			setState(1232); match(FEHLER);
+			setState(1586); match(LETZTEN);
+			setState(1587); match(WS);
+			setState(1588); match(FEHLER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -7286,7 +8332,7 @@ public class TPS_ANTLRParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3Q\u04d5\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3]\u0639\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -7298,9 +8344,9 @@ public class TPS_ANTLRParser extends Parser {
 		"\tI\4J\tJ\4K\tK\4L\tL\4M\tM\4N\tN\4O\tO\4P\tP\4Q\tQ\4R\tR\4S\tS\4T\tT"+
 		"\4U\tU\4V\tV\4W\tW\4X\tX\4Y\tY\4Z\tZ\4[\t[\4\\\t\\\4]\t]\4^\t^\4_\t_\4"+
 		"`\t`\4a\ta\4b\tb\4c\tc\4d\td\4e\te\4f\tf\4g\tg\4h\th\4i\ti\4j\tj\4k\t"+
-		"k\4l\tl\4m\tm\4n\tn\4o\to\3\2\3\2\5\2\u00e1\n\2\3\2\3\2\6\2\u00e5\n\2"+
-		"\r\2\16\2\u00e6\3\3\3\3\3\3\5\3\u00ec\n\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
+		"k\4l\tl\4m\tm\4n\tn\4o\to\4p\tp\4q\tq\4r\tr\4s\ts\3\2\3\2\5\2\u00e9\n"+
+		"\2\3\2\3\2\6\2\u00ed\n\2\r\2\16\2\u00ee\3\2\3\2\3\3\3\3\3\3\5\3\u00f6"+
+		"\n\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
 		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
 		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
 		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
@@ -7309,426 +8355,571 @@ public class TPS_ANTLRParser extends Parser {
 		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
 		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
 		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\u0199\n\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3"+
-		"\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7"+
-		"\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3"+
-		"\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3"+
-		"\13\3\13\3\13\3\13\3\13\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
-		"\r\3\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\17\3\17"+
-		"\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\3\20\3\20\3\20\3\20\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21"+
-		"\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22"+
-		"\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\3\24\3\24\3\24\3\24\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25"+
-		"\3\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\27\3\27\3\27\3\27\3\27"+
-		"\3\27\3\27\3\27\3\27\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\31\3\31"+
-		"\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\32\3\32\3\32\3\32\3\32\3\32\3\32"+
-		"\3\32\3\33\3\33\3\33\3\33\3\33\3\33\3\33\3\33\3\34\3\34\3\34\3\34\3\34"+
-		"\3\34\3\34\3\34\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\36\3\36"+
-		"\3\36\3\36\3\36\3\36\3\36\3\36\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37"+
-		"\3\37\3\37\3\37\3\37\3\37\3 \3 \3 \3 \3 \3 \3 \3 \3 \3 \3 \3!\3!\3!\3"+
-		"!\3!\3!\3!\3!\3!\3\"\3\"\3\"\3\"\3\"\3#\3#\3#\3#\3#\3#\3#\3#\3$\3$\3$"+
-		"\3$\3$\3$\3$\3$\3%\3%\3%\3%\3%\3%\3%\3%\3%\3&\3&\3&\3&\3&\3&\3&\3&\3&"+
-		"\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3(\3(\3(\3(\3(\3(\3(\3(\3)\3)\3)"+
-		"\3)\3)\3)\3)\3)\3*\3*\3*\3*\3*\3*\3*\3+\3+\3+\3+\3+\3+\3+\3,\3,\3,\3,"+
-		"\3,\3,\3,\3,\3,\3,\3,\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3.\3.\3.\3.\3."+
-		"\3.\3.\3.\3.\3.\3.\3/\3/\3/\3/\3/\3/\3/\3/\3/\3/\3/\3\60\3\60\3\60\3\60"+
-		"\3\60\3\60\3\60\3\60\3\60\3\60\3\60\3\61\3\61\3\61\3\61\3\61\3\61\3\61"+
-		"\3\61\3\61\3\61\3\61\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\63\3\63\3\63"+
-		"\3\63\3\63\3\63\3\63\3\63\3\63\3\63\3\63\3\64\3\64\3\64\3\64\3\64\5\64"+
-		"\u034f\n\64\3\64\3\64\3\64\3\65\3\65\3\65\3\65\3\65\5\65\u0359\n\65\3"+
-		"\65\3\65\3\65\3\65\3\66\3\66\3\66\3\66\3\67\3\67\3\67\3\67\38\38\38\3"+
-		"8\38\39\39\39\39\39\39\39\39\39\39\39\3:\3:\3:\3:\3:\3:\3:\3:\3:\3:\3"+
-		":\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3"+
-		"=\3=\3>\3>\3?\3?\3@\3@\3A\3A\3B\3B\3C\3C\5C\u03a6\nC\3D\3D\3E\3E\3F\3"+
-		"F\3G\3G\3H\3H\3I\3I\3J\3J\3K\3K\3L\3L\3M\3M\3M\3M\5M\u03be\nM\3N\3N\5"+
-		"N\u03c2\nN\3N\5N\u03c5\nN\3N\3N\3N\3N\3O\3O\3O\3O\3O\3O\5O\u03d1\nO\3"+
-		"P\3P\3P\3P\5P\u03d7\nP\3Q\3Q\3R\3R\3S\3S\3T\3T\3T\3T\5T\u03e3\nT\3T\3"+
-		"T\3T\3U\3U\3U\3U\3U\3U\3U\3U\3U\3U\3U\3V\3V\3W\3W\3X\3X\5X\u03f9\nX\3"+
-		"X\3X\3X\3X\3X\5X\u0400\nX\3Y\3Y\3Y\3Y\3Y\3Y\3Y\3Y\5Y\u040a\nY\3Z\3Z\3"+
-		"[\3[\3\\\3\\\3\\\3\\\3\\\3\\\3\\\3\\\3\\\3\\\5\\\u041a\n\\\3]\3]\3]\3"+
-		"]\3]\3]\3]\3]\3]\3]\3]\3]\3]\5]\u0429\n]\3^\3^\3_\3_\3_\3_\3_\3_\3_\3"+
-		"_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3"+
-		"_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3"+
-		"_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\3_\5"+
-		"_\u0479\n_\3_\3_\3`\3`\3`\7`\u0480\n`\f`\16`\u0483\13`\3`\3`\6`\u0487"+
-		"\n`\r`\16`\u0488\3`\3`\3`\3`\3a\3a\3a\3a\5a\u0493\na\6a\u0495\na\ra\16"+
-		"a\u0496\3a\3a\3b\3b\3c\3c\3c\3c\5c\u04a1\nc\3d\3d\3e\3e\3f\3f\3g\3g\3"+
-		"g\3g\3g\3g\3g\3g\3g\3g\5g\u04b3\ng\3h\3h\3h\3h\3h\3h\3h\3h\3h\3h\5h\u04bf"+
-		"\nh\3i\3i\3i\3i\5i\u04c5\ni\3j\3j\3k\3k\3l\3l\3m\3m\3n\3n\3o\3o\3o\3o"+
-		"\3o\2\2p\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668"+
+		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\u01a3\n"+
+		"\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6"+
+		"\5\6\u01b6\n\6\3\6\3\6\3\6\5\6\u01bb\n\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3"+
+		"\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7\u01cb\n\7\3\7\3\7\3\7\5\7\u01d0\n\7\3\7"+
+		"\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\5\b\u01e0\n\b\3\b"+
+		"\3\b\3\b\5\b\u01e5\n\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t"+
+		"\3\t\5\t\u01f4\n\t\3\t\3\t\3\t\5\t\u01f9\n\t\3\t\3\t\3\n\3\n\3\n\3\n\3"+
+		"\n\3\n\3\n\3\n\3\n\5\n\u0206\n\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13"+
+		"\3\13\3\13\5\13\u0212\n\13\3\13\3\13\3\13\5\13\u0217\n\13\3\13\3\13\3"+
+		"\13\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\5\r\u022b"+
+		"\n\r\3\r\3\r\3\r\5\r\u0230\n\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\16\3"+
+		"\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u0242\n\16\3\16\3\16\3\16"+
+		"\5\16\u0247\n\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17"+
+		"\3\17\3\17\3\17\3\17\3\17\5\17\u0259\n\17\3\17\3\17\3\17\5\17\u025e\n"+
+		"\17\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3"+
+		"\20\3\20\3\20\5\20\u0270\n\20\3\20\3\20\3\20\5\20\u0275\n\20\3\20\3\20"+
+		"\3\20\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21"+
+		"\5\21\u0287\n\21\3\21\3\21\3\21\5\21\u028c\n\21\3\21\3\21\3\21\3\22\3"+
+		"\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u029e"+
+		"\n\22\3\22\3\22\3\22\5\22\u02a3\n\22\3\22\3\22\3\22\3\23\3\23\3\23\3\23"+
+		"\3\23\3\23\3\23\5\23\u02af\n\23\3\23\3\23\3\23\5\23\u02b4\n\23\3\23\3"+
+		"\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\26\3\26\3\26\3\26\3"+
+		"\26\3\26\3\26\3\26\3\26\5\26\u02d8\n\26\3\26\3\26\3\26\5\26\u02dd\n\26"+
+		"\3\26\3\26\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\5\27\u02ea\n\27"+
+		"\3\27\3\27\3\27\5\27\u02ef\n\27\3\27\3\27\3\27\3\30\3\30\3\30\3\30\3\30"+
+		"\3\30\3\30\5\30\u02fb\n\30\3\30\3\30\3\30\3\31\3\31\3\31\3\31\3\31\3\31"+
+		"\3\31\3\31\3\31\5\31\u0309\n\31\3\31\3\31\3\31\3\31\3\32\3\32\3\32\3\32"+
+		"\3\32\3\32\3\32\3\32\3\32\5\32\u0318\n\32\3\32\3\32\3\32\3\33\3\33\3\33"+
+		"\3\33\3\33\3\33\3\33\3\33\3\33\5\33\u0326\n\33\3\33\3\33\3\33\3\34\3\34"+
+		"\3\34\3\34\3\34\3\34\3\34\3\34\3\34\3\34\3\34\5\34\u0336\n\34\3\34\3\34"+
+		"\3\34\3\34\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\5\35"+
+		"\u0347\n\35\3\35\3\35\3\35\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36"+
+		"\3\36\3\36\5\36\u0357\n\36\3\36\3\36\3\37\3\37\3\37\3\37\3\37\3\37\3\37"+
+		"\3\37\3\37\3\37\3\37\3\37\3\37\5\37\u0368\n\37\3\37\3\37\3\37\3 \3 \3"+
+		" \3 \3 \3 \3 \3 \3 \3 \3 \5 \u0378\n \3 \3 \3 \3!\3!\3!\3!\3!\3!\3!\3"+
+		"!\3!\5!\u0386\n!\3!\3!\3!\3\"\3\"\3\"\3\"\3\"\3#\3#\3#\3#\3#\3#\3#\3#"+
+		"\3#\3#\3#\3#\3#\3#\3#\5#\u039f\n#\3#\3#\3#\3#\3$\3$\3$\3$\3$\3$\3$\3$"+
+		"\3$\3$\3$\3$\3$\3$\3$\5$\u03b4\n$\3$\3$\3$\3$\3%\3%\3&\3&\3&\3&\3&\3&"+
+		"\3&\3&\3&\5&\u03c5\n&\3&\3&\3&\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\5\'"+
+		"\u03d3\n\'\3\'\3\'\3\'\3(\3(\3(\3(\3(\3(\3(\3(\3(\5(\u03e1\n(\3(\3(\3"+
+		"(\3)\3)\3)\3)\3)\3)\3)\3)\3)\5)\u03ef\n)\3)\3)\3*\3*\3*\3*\3*\3*\3*\3"+
+		"*\3*\5*\u03fc\n*\3*\3*\3+\3+\3+\3+\3+\3+\3+\3,\3,\3,\3,\3,\3,\3,\5,\u040e"+
+		"\n,\3,\3,\3,\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\5-\u0420\n-\3-\3-"+
+		"\3-\3.\3.\3.\3.\3.\3.\3.\3.\3.\3.\3.\3.\3.\5.\u0432\n.\3.\3.\3.\3/\3/"+
+		"\3/\3/\3/\3/\3/\3/\3/\3/\3/\3/\3/\5/\u0444\n/\3/\3/\3/\3\60\3\60\3\60"+
+		"\3\60\3\60\3\60\3\60\3\60\3\60\3\60\3\60\3\60\3\60\5\60\u0456\n\60\3\60"+
+		"\3\60\3\60\3\61\3\61\3\61\3\61\3\61\3\61\3\61\3\61\3\61\3\61\3\61\3\61"+
+		"\3\61\5\61\u0468\n\61\3\61\3\61\3\61\3\62\3\62\3\62\3\62\3\62\3\62\3\62"+
+		"\3\62\3\62\3\62\3\62\3\62\3\62\5\62\u047a\n\62\3\62\3\62\3\62\3\63\3\63"+
+		"\3\63\3\63\3\63\3\63\3\63\5\63\u0486\n\63\3\63\3\63\3\63\3\64\3\64\3\64"+
+		"\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\65\3\65\3\65\3\65\3\65\3\65"+
+		"\3\65\3\65\5\65\u049e\n\65\5\65\u04a0\n\65\3\65\3\65\3\65\3\66\3\66\3"+
+		"\66\3\66\3\66\3\66\3\66\3\66\3\66\3\67\3\67\3\67\3\67\3\67\3\67\38\38"+
+		"\39\39\3:\3:\3:\3:\3;\3;\3;\3;\3;\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3="+
+		"\3=\3=\3=\3=\3=\3=\3=\3=\3=\3=\3>\3>\3>\3>\3>\3>\3>\3>\3>\3>\3>\3?\3?"+
+		"\3?\3?\3?\3?\3?\3?\3?\3?\3?\3@\3@\3A\3A\3B\3B\3C\3C\3D\3D\3E\3E\3F\3F"+
+		"\3G\3G\3H\3H\3H\5H\u0500\nH\3H\5H\u0503\nH\3I\3I\3J\3J\3K\3K\3L\3L\3M"+
+		"\3M\3N\3N\3O\3O\3P\3P\3Q\3Q\3Q\3Q\5Q\u0519\nQ\3R\3R\3R\3R\3R\3S\3S\3S"+
+		"\5S\u0523\nS\3S\5S\u0526\nS\5S\u0528\nS\3T\3T\3T\3T\3T\3T\5T\u0530\nT"+
+		"\3U\3U\3U\3U\5U\u0536\nU\3V\3V\3W\3W\3X\3X\3Y\3Y\3Y\3Y\5Y\u0542\nY\3Y"+
+		"\3Y\3Y\3Z\3Z\3Z\3Z\3Z\3Z\3Z\3Z\3Z\3Z\3Z\3[\3[\3\\\3\\\3]\3]\5]\u0558\n"+
+		"]\3]\3]\3]\3]\3]\5]\u055f\n]\3^\3^\3^\3^\3^\3^\3^\3^\5^\u0569\n^\3_\3"+
+		"_\3`\3`\3a\3a\3a\3a\3a\3a\3a\3a\3a\3a\3a\3a\3a\5a\u057c\na\5a\u057e\n"+
+		"a\3a\3a\3a\3a\3a\5a\u0585\na\3b\3b\3b\3b\3b\3b\3b\3b\3b\3b\3b\3b\3b\5"+
+		"b\u0594\nb\3c\3c\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3"+
+		"d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3"+
+		"d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3"+
+		"d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\3d\5d\u05e6\nd\3d\3d\3e\3e\3"+
+		"e\3e\3e\6e\u05ef\ne\re\16e\u05f0\3e\3e\3e\7e\u05f6\ne\fe\16e\u05f9\13"+
+		"e\3e\3e\3f\3f\3f\3f\3g\3g\3g\3g\5g\u0605\ng\3h\3h\3i\3i\3j\3j\3k\3k\3"+
+		"k\3k\3k\3k\3k\3k\3k\3k\5k\u0617\nk\3l\3l\3l\3l\3l\3l\3l\3l\3l\3l\5l\u0623"+
+		"\nl\3m\3m\3m\3m\5m\u0629\nm\3n\3n\3o\3o\3p\3p\3q\3q\3r\3r\3s\3s\3s\3s"+
+		"\3s\2\2t\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668"+
 		":<>@BDFHJLNPRTVXZ\\^`bdfhjlnprtvxz|~\u0080\u0082\u0084\u0086\u0088\u008a"+
 		"\u008c\u008e\u0090\u0092\u0094\u0096\u0098\u009a\u009c\u009e\u00a0\u00a2"+
 		"\u00a4\u00a6\u00a8\u00aa\u00ac\u00ae\u00b0\u00b2\u00b4\u00b6\u00b8\u00ba"+
 		"\u00bc\u00be\u00c0\u00c2\u00c4\u00c6\u00c8\u00ca\u00cc\u00ce\u00d0\u00d2"+
-		"\u00d4\u00d6\u00d8\u00da\u00dc\2\22\3\2IJ\3\2GH\4\2\36\36FF\3\2CD\3\2"+
-		"@A\3\2>?\3\2==\3\2<<\3\2;;\3\2::\3\2-.\3\2+,\3\2#$\3\2\32\33\3\2\16\17"+
-		"\3\2\13\r\u0503\2\u00e4\3\2\2\2\4\u00e8\3\2\2\2\6\u0198\3\2\2\2\b\u019a"+
-		"\3\2\2\2\n\u019e\3\2\2\2\f\u01ab\3\2\2\2\16\u01b6\3\2\2\2\20\u01c0\3\2"+
-		"\2\2\22\u01ca\3\2\2\2\24\u01d3\3\2\2\2\26\u01da\3\2\2\2\30\u01dc\3\2\2"+
-		"\2\32\u01e7\3\2\2\2\34\u01f2\3\2\2\2\36\u01fd\3\2\2\2 \u0208\3\2\2\2\""+
-		"\u0213\3\2\2\2$\u021e\3\2\2\2&\u0225\3\2\2\2(\u0230\3\2\2\2*\u023b\3\2"+
-		"\2\2,\u0243\3\2\2\2.\u024c\3\2\2\2\60\u0254\3\2\2\2\62\u025d\3\2\2\2\64"+
-		"\u0265\3\2\2\2\66\u026d\3\2\2\28\u0275\3\2\2\2:\u027e\3\2\2\2<\u0286\3"+
-		"\2\2\2>\u0293\3\2\2\2@\u029e\3\2\2\2B\u02a7\3\2\2\2D\u02ac\3\2\2\2F\u02b4"+
-		"\3\2\2\2H\u02bc\3\2\2\2J\u02c5\3\2\2\2L\u02ce\3\2\2\2N\u02d7\3\2\2\2P"+
-		"\u02df\3\2\2\2R\u02e7\3\2\2\2T\u02ee\3\2\2\2V\u02f5\3\2\2\2X\u0300\3\2"+
-		"\2\2Z\u030b\3\2\2\2\\\u0316\3\2\2\2^\u0321\3\2\2\2`\u032c\3\2\2\2b\u0337"+
-		"\3\2\2\2d\u033e\3\2\2\2f\u0349\3\2\2\2h\u0353\3\2\2\2j\u035e\3\2\2\2l"+
-		"\u0362\3\2\2\2n\u0366\3\2\2\2p\u036b\3\2\2\2r\u0376\3\2\2\2t\u0381\3\2"+
-		"\2\2v\u038c\3\2\2\2x\u0397\3\2\2\2z\u0399\3\2\2\2|\u039b\3\2\2\2~\u039d"+
-		"\3\2\2\2\u0080\u039f\3\2\2\2\u0082\u03a1\3\2\2\2\u0084\u03a3\3\2\2\2\u0086"+
-		"\u03a7\3\2\2\2\u0088\u03a9\3\2\2\2\u008a\u03ab\3\2\2\2\u008c\u03ad\3\2"+
-		"\2\2\u008e\u03af\3\2\2\2\u0090\u03b1\3\2\2\2\u0092\u03b3\3\2\2\2\u0094"+
-		"\u03b5\3\2\2\2\u0096\u03b7\3\2\2\2\u0098\u03bd\3\2\2\2\u009a\u03bf\3\2"+
-		"\2\2\u009c\u03d0\3\2\2\2\u009e\u03d6\3\2\2\2\u00a0\u03d8\3\2\2\2\u00a2"+
-		"\u03da\3\2\2\2\u00a4\u03dc\3\2\2\2\u00a6\u03de\3\2\2\2\u00a8\u03e7\3\2"+
-		"\2\2\u00aa\u03f2\3\2\2\2\u00ac\u03f4\3\2\2\2\u00ae\u03ff\3\2\2\2\u00b0"+
-		"\u0409\3\2\2\2\u00b2\u040b\3\2\2\2\u00b4\u040d\3\2\2\2\u00b6\u0419\3\2"+
-		"\2\2\u00b8\u0428\3\2\2\2\u00ba\u042a\3\2\2\2\u00bc\u0478\3\2\2\2\u00be"+
-		"\u0486\3\2\2\2\u00c0\u0494\3\2\2\2\u00c2\u049a\3\2\2\2\u00c4\u04a0\3\2"+
-		"\2\2\u00c6\u04a2\3\2\2\2\u00c8\u04a4\3\2\2\2\u00ca\u04a6\3\2\2\2\u00cc"+
-		"\u04b2\3\2\2\2\u00ce\u04be\3\2\2\2\u00d0\u04c4\3\2\2\2\u00d2\u04c6\3\2"+
-		"\2\2\u00d4\u04c8\3\2\2\2\u00d6\u04ca\3\2\2\2\u00d8\u04cc\3\2\2\2\u00da"+
-		"\u04ce\3\2\2\2\u00dc\u04d0\3\2\2\2\u00de\u00e0\5\4\3\2\u00df\u00e1\7\3"+
-		"\2\2\u00e0\u00df\3\2\2\2\u00e0\u00e1\3\2\2\2\u00e1\u00e2\3\2\2\2\u00e2"+
-		"\u00e3\b\2\1\2\u00e3\u00e5\3\2\2\2\u00e4\u00de\3\2\2\2\u00e5\u00e6\3\2"+
-		"\2\2\u00e6\u00e4\3\2\2\2\u00e6\u00e7\3\2\2\2\u00e7\3\3\2\2\2\u00e8\u00e9"+
-		"\b\3\1\2\u00e9\u00eb\5\6\4\2\u00ea\u00ec\7\3\2\2\u00eb\u00ea\3\2\2\2\u00eb"+
-		"\u00ec\3\2\2\2\u00ec\u00ed\3\2\2\2\u00ed\u00ee\7N\2\2\u00ee\u00ef\b\3"+
-		"\1\2\u00ef\5\3\2\2\2\u00f0\u00f1\5v<\2\u00f1\u00f2\b\4\1\2\u00f2\u0199"+
-		"\3\2\2\2\u00f3\u00f4\5t;\2\u00f4\u00f5\b\4\1\2\u00f5\u0199\3\2\2\2\u00f6"+
-		"\u00f7\5p9\2\u00f7\u00f8\b\4\1\2\u00f8\u0199\3\2\2\2\u00f9\u00fa\5r:\2"+
-		"\u00fa\u00fb\b\4\1\2\u00fb\u0199\3\2\2\2\u00fc\u00fd\5n8\2\u00fd\u00fe"+
-		"\b\4\1\2\u00fe\u0199\3\2\2\2\u00ff\u0100\5l\67\2\u0100\u0101\b\4\1\2\u0101"+
-		"\u0199\3\2\2\2\u0102\u0103\5j\66\2\u0103\u0104\b\4\1\2\u0104\u0199\3\2"+
-		"\2\2\u0105\u0106\5h\65\2\u0106\u0107\b\4\1\2\u0107\u0199\3\2\2\2\u0108"+
-		"\u0109\5f\64\2\u0109\u010a\b\4\1\2\u010a\u0199\3\2\2\2\u010b\u010c\5d"+
-		"\63\2\u010c\u010d\b\4\1\2\u010d\u0199\3\2\2\2\u010e\u010f\5b\62\2\u010f"+
-		"\u0110\b\4\1\2\u0110\u0199\3\2\2\2\u0111\u0112\5^\60\2\u0112\u0113\b\4"+
-		"\1\2\u0113\u0199\3\2\2\2\u0114\u0115\5`\61\2\u0115\u0116\b\4\1\2\u0116"+
-		"\u0199\3\2\2\2\u0117\u0118\5\\/\2\u0118\u0119\b\4\1\2\u0119\u0199\3\2"+
-		"\2\2\u011a\u011b\5Z.\2\u011b\u011c\b\4\1\2\u011c\u0199\3\2\2\2\u011d\u011e"+
-		"\5X-\2\u011e\u011f\b\4\1\2\u011f\u0199\3\2\2\2\u0120\u0121\5V,\2\u0121"+
-		"\u0122\b\4\1\2\u0122\u0199\3\2\2\2\u0123\u0124\5T+\2\u0124\u0125\b\4\1"+
-		"\2\u0125\u0199\3\2\2\2\u0126\u0127\5R*\2\u0127\u0128\b\4\1\2\u0128\u0199"+
-		"\3\2\2\2\u0129\u012a\5P)\2\u012a\u012b\b\4\1\2\u012b\u0199\3\2\2\2\u012c"+
-		"\u012d\5N(\2\u012d\u012e\b\4\1\2\u012e\u0199\3\2\2\2\u012f\u0130\5L\'"+
-		"\2\u0130\u0131\b\4\1\2\u0131\u0199\3\2\2\2\u0132\u0133\5J&\2\u0133\u0134"+
-		"\b\4\1\2\u0134\u0199\3\2\2\2\u0135\u0136\5H%\2\u0136\u0137\b\4\1\2\u0137"+
-		"\u0199\3\2\2\2\u0138\u0139\5F$\2\u0139\u013a\b\4\1\2\u013a\u0199\3\2\2"+
-		"\2\u013b\u013c\5D#\2\u013c\u013d\b\4\1\2\u013d\u0199\3\2\2\2\u013e\u013f"+
-		"\5B\"\2\u013f\u0140\b\4\1\2\u0140\u0199\3\2\2\2\u0141\u0142\5@!\2\u0142"+
-		"\u0143\b\4\1\2\u0143\u0199\3\2\2\2\u0144\u0145\5> \2\u0145\u0146\b\4\1"+
-		"\2\u0146\u0199\3\2\2\2\u0147\u0148\5<\37\2\u0148\u0149\b\4\1\2\u0149\u0199"+
-		"\3\2\2\2\u014a\u014b\5:\36\2\u014b\u014c\b\4\1\2\u014c\u0199\3\2\2\2\u014d"+
-		"\u014e\5\66\34\2\u014e\u014f\b\4\1\2\u014f\u0199\3\2\2\2\u0150\u0151\5"+
-		"8\35\2\u0151\u0152\b\4\1\2\u0152\u0199\3\2\2\2\u0153\u0154\5\64\33\2\u0154"+
-		"\u0155\b\4\1\2\u0155\u0199\3\2\2\2\u0156\u0157\5\62\32\2\u0157\u0158\b"+
-		"\4\1\2\u0158\u0199\3\2\2\2\u0159\u015a\5\60\31\2\u015a\u015b\b\4\1\2\u015b"+
-		"\u0199\3\2\2\2\u015c\u015d\5.\30\2\u015d\u015e\b\4\1\2\u015e\u0199\3\2"+
-		"\2\2\u015f\u0160\5*\26\2\u0160\u0161\b\4\1\2\u0161\u0199\3\2\2\2\u0162"+
-		"\u0163\5,\27\2\u0163\u0164\b\4\1\2\u0164\u0199\3\2\2\2\u0165\u0166\5("+
-		"\25\2\u0166\u0167\b\4\1\2\u0167\u0199\3\2\2\2\u0168\u0169\5&\24\2\u0169"+
-		"\u016a\b\4\1\2\u016a\u0199\3\2\2\2\u016b\u016c\5$\23\2\u016c\u016d\b\4"+
-		"\1\2\u016d\u0199\3\2\2\2\u016e\u016f\5\"\22\2\u016f\u0170\b\4\1\2\u0170"+
-		"\u0199\3\2\2\2\u0171\u0172\5 \21\2\u0172\u0173\b\4\1\2\u0173\u0199\3\2"+
-		"\2\2\u0174\u0175\5\36\20\2\u0175\u0176\b\4\1\2\u0176\u0199\3\2\2\2\u0177"+
-		"\u0178\5\34\17\2\u0178\u0179\b\4\1\2\u0179\u0199\3\2\2\2\u017a\u017b\5"+
-		"\32\16\2\u017b\u017c\b\4\1\2\u017c\u0199\3\2\2\2\u017d\u017e\5\30\r\2"+
-		"\u017e\u017f\b\4\1\2\u017f\u0199\3\2\2\2\u0180\u0181\5\26\f\2\u0181\u0182"+
-		"\b\4\1\2\u0182\u0199\3\2\2\2\u0183\u0184\5\24\13\2\u0184\u0185\b\4\1\2"+
-		"\u0185\u0199\3\2\2\2\u0186\u0187\5\22\n\2\u0187\u0188\b\4\1\2\u0188\u0199"+
-		"\3\2\2\2\u0189\u018a\5\20\t\2\u018a\u018b\b\4\1\2\u018b\u0199\3\2\2\2"+
-		"\u018c\u018d\5\16\b\2\u018d\u018e\b\4\1\2\u018e\u0199\3\2\2\2\u018f\u0190"+
-		"\5\f\7\2\u0190\u0191\b\4\1\2\u0191\u0199\3\2\2\2\u0192\u0193\5\n\6\2\u0193"+
-		"\u0194\b\4\1\2\u0194\u0199\3\2\2\2\u0195\u0196\5\b\5\2\u0196\u0197\b\4"+
-		"\1\2\u0197\u0199\3\2\2\2\u0198\u00f0\3\2\2\2\u0198\u00f3\3\2\2\2\u0198"+
-		"\u00f6\3\2\2\2\u0198\u00f9\3\2\2\2\u0198\u00fc\3\2\2\2\u0198\u00ff\3\2"+
-		"\2\2\u0198\u0102\3\2\2\2\u0198\u0105\3\2\2\2\u0198\u0108\3\2\2\2\u0198"+
-		"\u010b\3\2\2\2\u0198\u010e\3\2\2\2\u0198\u0111\3\2\2\2\u0198\u0114\3\2"+
-		"\2\2\u0198\u0117\3\2\2\2\u0198\u011a\3\2\2\2\u0198\u011d\3\2\2\2\u0198"+
-		"\u0120\3\2\2\2\u0198\u0123\3\2\2\2\u0198\u0126\3\2\2\2\u0198\u0129\3\2"+
-		"\2\2\u0198\u012c\3\2\2\2\u0198\u012f\3\2\2\2\u0198\u0132\3\2\2\2\u0198"+
-		"\u0135\3\2\2\2\u0198\u0138\3\2\2\2\u0198\u013b\3\2\2\2\u0198\u013e\3\2"+
-		"\2\2\u0198\u0141\3\2\2\2\u0198\u0144\3\2\2\2\u0198\u0147\3\2\2\2\u0198"+
-		"\u014a\3\2\2\2\u0198\u014d\3\2\2\2\u0198\u0150\3\2\2\2\u0198\u0153\3\2"+
-		"\2\2\u0198\u0156\3\2\2\2\u0198\u0159\3\2\2\2\u0198\u015c\3\2\2\2\u0198"+
-		"\u015f\3\2\2\2\u0198\u0162\3\2\2\2\u0198\u0165\3\2\2\2\u0198\u0168\3\2"+
-		"\2\2\u0198\u016b\3\2\2\2\u0198\u016e\3\2\2\2\u0198\u0171\3\2\2\2\u0198"+
-		"\u0174\3\2\2\2\u0198\u0177\3\2\2\2\u0198\u017a\3\2\2\2\u0198\u017d\3\2"+
-		"\2\2\u0198\u0180\3\2\2\2\u0198\u0183\3\2\2\2\u0198\u0186\3\2\2\2\u0198"+
-		"\u0189\3\2\2\2\u0198\u018c\3\2\2\2\u0198\u018f\3\2\2\2\u0198\u0192\3\2"+
-		"\2\2\u0198\u0195\3\2\2\2\u0199\7\3\2\2\2\u019a\u019b\5\u00acW\2\u019b"+
-		"\u019c\7\3\2\2\u019c\u019d\5\u00dco\2\u019d\t\3\2\2\2\u019e\u019f\5\u00c2"+
-		"b\2\u019f\u01a0\7\3\2\2\u01a0\u01a1\5\u00b2Z\2\u01a1\u01a2\7\3\2\2\u01a2"+
-		"\u01a3\5~@\2\u01a3\u01a4\7\3\2\2\u01a4\u01a5\5\u009cO\2\u01a5\u01a6\7"+
-		"\3\2\2\u01a6\u01a7\5\u0080A\2\u01a7\u01a8\7\3\2\2\u01a8\u01a9\5\u009a"+
-		"N\2\u01a9\u01aa\b\6\1\2\u01aa\13\3\2\2\2\u01ab\u01ac\5\u00acW\2\u01ac"+
-		"\u01ad\7\3\2\2\u01ad\u01ae\5\u0082B\2\u01ae\u01af\7\3\2\2\u01af\u01b0"+
-		"\5\u00aaV\2\u01b0\u01b1\7\3\2\2\u01b1\u01b2\5\u0080A\2\u01b2\u01b3\7\3"+
-		"\2\2\u01b3\u01b4\5\u00a6T\2\u01b4\u01b5\b\7\1\2\u01b5\r\3\2\2\2\u01b6"+
-		"\u01b7\5\u00acW\2\u01b7\u01b8\7\3\2\2\u01b8\u01b9\5\u0082B\2\u01b9\u01ba"+
-		"\7\3\2\2\u01ba\u01bb\5\u00aaV\2\u01bb\u01bc\7\3\2\2\u01bc\u01bd\5\u0080"+
-		"A\2\u01bd\u01be\7\3\2\2\u01be\u01bf\5\u00a2R\2\u01bf\17\3\2\2\2\u01c0"+
-		"\u01c1\5\u00acW\2\u01c1\u01c2\7\3\2\2\u01c2\u01c3\5\u0082B\2\u01c3\u01c4"+
-		"\7\3\2\2\u01c4\u01c5\5\u00aaV\2\u01c5\u01c6\7\3\2\2\u01c6\u01c7\5\u0080"+
-		"A\2\u01c7\u01c8\7\3\2\2\u01c8\u01c9\5\u00a4S\2\u01c9\21\3\2\2\2\u01ca"+
-		"\u01cb\5\u00a0Q\2\u01cb\u01cc\7\3\2\2\u01cc\u01cd\5\u00aeX\2\u01cd\u01ce"+
-		"\7\3\2\2\u01ce\u01cf\5\u0080A\2\u01cf\u01d0\7\3\2\2\u01d0\u01d1\5\u00aa"+
-		"V\2\u01d1\u01d2\b\n\1\2\u01d2\23\3\2\2\2\u01d3\u01d4\5\u009cO\2\u01d4"+
-		"\u01d5\7\3\2\2\u01d5\u01d6\5\u0080A\2\u01d6\u01d7\7\3\2\2\u01d7\u01d8"+
-		"\5\u00b0Y\2\u01d8\u01d9\b\13\1\2\u01d9\25\3\2\2\2\u01da\u01db\5\u009e"+
-		"P\2\u01db\27\3\2\2\2\u01dc\u01dd\5\u00c2b\2\u01dd\u01de\7\3\2\2\u01de"+
-		"\u01df\5\u00ccg\2\u01df\u01e0\7\3\2\2\u01e0\u01e1\5\u009cO\2\u01e1\u01e2"+
-		"\7\3\2\2\u01e2\u01e3\5\u0080A\2\u01e3\u01e4\7\3\2\2\u01e4\u01e5\5\u009a"+
-		"N\2\u01e5\u01e6\b\r\1\2\u01e6\31\3\2\2\2\u01e7\u01e8\5\u00c2b\2\u01e8"+
-		"\u01e9\7\3\2\2\u01e9\u01ea\5\u00ceh\2\u01ea\u01eb\7\3\2\2\u01eb\u01ec"+
-		"\5\u009cO\2\u01ec\u01ed\7\3\2\2\u01ed\u01ee\5\u0080A\2\u01ee\u01ef\7\3"+
-		"\2\2\u01ef\u01f0\5\u009aN\2\u01f0\u01f1\b\16\1\2\u01f1\33\3\2\2\2\u01f2"+
-		"\u01f3\5\u00c2b\2\u01f3\u01f4\7\3\2\2\u01f4\u01f5\5\u00c8e\2\u01f5\u01f6"+
-		"\7\3\2\2\u01f6\u01f7\5\u009cO\2\u01f7\u01f8\7\3\2\2\u01f8\u01f9\5\u0080"+
-		"A\2\u01f9\u01fa\7\3\2\2\u01fa\u01fb\5\u009aN\2\u01fb\u01fc\b\17\1\2\u01fc"+
-		"\35\3\2\2\2\u01fd\u01fe\5\u00c2b\2\u01fe\u01ff\7\3\2\2\u01ff\u0200\5\u00ca"+
-		"f\2\u0200\u0201\7\3\2\2\u0201\u0202\5\u009cO\2\u0202\u0203\7\3\2\2\u0203"+
-		"\u0204\5\u0080A\2\u0204\u0205\7\3\2\2\u0205\u0206\5\u009aN\2\u0206\u0207"+
-		"\b\20\1\2\u0207\37\3\2\2\2\u0208\u0209\5\u00c2b\2\u0209\u020a\7\3\2\2"+
-		"\u020a\u020b\5\u00c4c\2\u020b\u020c\7\3\2\2\u020c\u020d\5\u009cO\2\u020d"+
-		"\u020e\7\3\2\2\u020e\u020f\5\u0080A\2\u020f\u0210\7\3\2\2\u0210\u0211"+
-		"\5\u009aN\2\u0211\u0212\b\21\1\2\u0212!\3\2\2\2\u0213\u0214\5\u00c2b\2"+
-		"\u0214\u0215\7\3\2\2\u0215\u0216\5\u00c6d\2\u0216\u0217\7\3\2\2\u0217"+
-		"\u0218\5\u009cO\2\u0218\u0219\7\3\2\2\u0219\u021a\5\u0080A\2\u021a\u021b"+
-		"\7\3\2\2\u021b\u021c\5\u009aN\2\u021c\u021d\b\22\1\2\u021d#\3\2\2\2\u021e"+
-		"\u021f\5\u009cO\2\u021f\u0220\7\3\2\2\u0220\u0221\5\u0080A\2\u0221\u0222"+
-		"\7\3\2\2\u0222\u0223\5\u009aN\2\u0223\u0224\b\23\1\2\u0224%\3\2\2\2\u0225"+
-		"\u0226\5\u0096L\2\u0226\u0227\7\3\2\2\u0227\u0228\5\u00a8U\2\u0228\u0229"+
-		"\7\3\2\2\u0229\u022a\5x=\2\u022a\u022b\7\3\2\2\u022b\u022c\5\u00ba^\2"+
-		"\u022c\u022d\7\3\2\2\u022d\u022e\5\u00c0a\2\u022e\u022f\b\24\1\2\u022f"+
-		"\'\3\2\2\2\u0230\u0231\5\u0096L\2\u0231\u0232\7\3\2\2\u0232\u0233\5\u00a8"+
-		"U\2\u0233\u0234\b\25\1\2\u0234\u0235\3\2\2\2\u0235\u0236\7\3\2\2\u0236"+
-		"\u0237\5x=\2\u0237\u0238\7\3\2\2\u0238\u0239\5\u00a8U\2\u0239\u023a\b"+
-		"\25\1\2\u023a)\3\2\2\2\u023b\u023c\5\u00a0Q\2\u023c\u023d\7\3\2\2\u023d"+
-		"\u023e\5\u00b8]\2\u023e\u023f\7\3\2\2\u023f\u0240\5\u0080A\2\u0240\u0241"+
-		"\7\3\2\2\u0241\u0242\5\u00a2R\2\u0242+\3\2\2\2\u0243\u0244\5\u00a0Q\2"+
-		"\u0244\u0245\7\3\2\2\u0245\u0246\5\u00b8]\2\u0246\u0247\7\3\2\2\u0247"+
-		"\u0248\5\u0080A\2\u0248\u0249\7\3\2\2\u0249\u024a\5\u00a6T\2\u024a\u024b"+
-		"\b\27\1\2\u024b-\3\2\2\2\u024c\u024d\5\u00a0Q\2\u024d\u024e\7\3\2\2\u024e"+
-		"\u024f\5\u00b8]\2\u024f\u0250\7\3\2\2\u0250\u0251\5\u0080A\2\u0251\u0252"+
-		"\7\3\2\2\u0252\u0253\5\u00a4S\2\u0253/\3\2\2\2\u0254\u0255\5\u00a0Q\2"+
-		"\u0255\u0256\7\3\2\2\u0256\u0257\5\u00b6\\\2\u0257\u0258\7\3\2\2\u0258"+
-		"\u0259\5\u0080A\2\u0259\u025a\7\3\2\2\u025a\u025b\5\u00a6T\2\u025b\u025c"+
-		"\b\31\1\2\u025c\61\3\2\2\2\u025d\u025e\5\u00a0Q\2\u025e\u025f\7\3\2\2"+
-		"\u025f\u0260\5\u00b6\\\2\u0260\u0261\7\3\2\2\u0261\u0262\5\u0080A\2\u0262"+
-		"\u0263\7\3\2\2\u0263\u0264\5\u00a2R\2\u0264\63\3\2\2\2\u0265\u0266\5\u00a0"+
-		"Q\2\u0266\u0267\7\3\2\2\u0267\u0268\5\u00b6\\\2\u0268\u0269\7\3\2\2\u0269"+
-		"\u026a\5\u0080A\2\u026a\u026b\7\3\2\2\u026b\u026c\5\u00a4S\2\u026c\65"+
-		"\3\2\2\2\u026d\u026e\5\u00a0Q\2\u026e\u026f\7\3\2\2\u026f\u0270\5\u00b4"+
-		"[\2\u0270\u0271\7\3\2\2\u0271\u0272\5\u0080A\2\u0272\u0273\7\3\2\2\u0273"+
-		"\u0274\5\u00a2R\2\u0274\67\3\2\2\2\u0275\u0276\5\u00a0Q\2\u0276\u0277"+
-		"\7\3\2\2\u0277\u0278\5\u00b4[\2\u0278\u0279\7\3\2\2\u0279\u027a\5\u0080"+
-		"A\2\u027a\u027b\7\3\2\2\u027b\u027c\5\u00a6T\2\u027c\u027d\b\35\1\2\u027d"+
-		"9\3\2\2\2\u027e\u027f\5\u00a0Q\2\u027f\u0280\7\3\2\2\u0280\u0281\5\u00b4"+
-		"[\2\u0281\u0282\7\3\2\2\u0282\u0283\5\u0080A\2\u0283\u0284\7\3\2\2\u0284"+
-		"\u0285\5\u00a4S\2\u0285;\3\2\2\2\u0286\u0287\5\u00c2b\2\u0287\u0288\7"+
-		"\3\2\2\u0288\u0289\5\u00b2Z\2\u0289\u028a\7\3\2\2\u028a\u028b\5~@\2\u028b"+
-		"\u028c\7\3\2\2\u028c\u028d\5\u0098M\2\u028d\u028e\7\3\2\2\u028e\u028f"+
-		"\5\u0080A\2\u028f\u0290\7\3\2\2\u0290\u0291\5\u009aN\2\u0291\u0292\b\37"+
-		"\1\2\u0292=\3\2\2\2\u0293\u0294\5\u00d0i\2\u0294\u0295\7\3\2\2\u0295\u0296"+
-		"\5\u00b0Y\2\u0296\u0297\7\3\2\2\u0297\u0298\5\u00dan\2\u0298\u0299\7\3"+
-		"\2\2\u0299\u029a\5\u0080A\2\u029a\u029b\7\3\2\2\u029b\u029c\5\u00a6T\2"+
-		"\u029c\u029d\b \1\2\u029d?\3\2\2\2\u029e\u029f\5\u00d0i\2\u029f\u02a0"+
-		"\7\3\2\2\u02a0\u02a1\5\u00d8m\2\u02a1\u02a2\7\3\2\2\u02a2\u02a3\5\u0080"+
-		"A\2\u02a3\u02a4\7\3\2\2\u02a4\u02a5\5\u00a6T\2\u02a5\u02a6\b!\1\2\u02a6"+
-		"A\3\2\2\2\u02a7\u02a8\5\u0086D\2\u02a8\u02a9\7\3\2\2\u02a9\u02aa\5\u00a8"+
-		"U\2\u02aa\u02ab\b\"\1\2\u02abC\3\2\2\2\u02ac\u02ad\5\u00a0Q\2\u02ad\u02ae"+
-		"\7\3\2\2\u02ae\u02af\5\u00d6l\2\u02af\u02b0\7\3\2\2\u02b0\u02b1\5\u00d4"+
-		"k\2\u02b1\u02b2\7\3\2\2\u02b2\u02b3\5\u00a2R\2\u02b3E\3\2\2\2\u02b4\u02b5"+
-		"\5\u00a0Q\2\u02b5\u02b6\7\3\2\2\u02b6\u02b7\5\u00d6l\2\u02b7\u02b8\7\3"+
-		"\2\2\u02b8\u02b9\5\u00d4k\2\u02b9\u02ba\7\3\2\2\u02ba\u02bb\5\u00a4S\2"+
-		"\u02bbG\3\2\2\2\u02bc\u02bd\5\u00a0Q\2\u02bd\u02be\7\3\2\2\u02be\u02bf"+
-		"\5\u00a6T\2\u02bf\u02c0\7\3\2\2\u02c0\u02c1\5\u0080A\2\u02c1\u02c2\7\3"+
-		"\2\2\u02c2\u02c3\5\u00a2R\2\u02c3\u02c4\b%\1\2\u02c4I\3\2\2\2\u02c5\u02c6"+
-		"\5\u00a0Q\2\u02c6\u02c7\7\3\2\2\u02c7\u02c8\5\u00a6T\2\u02c8\u02c9\7\3"+
-		"\2\2\u02c9\u02ca\5\u0080A\2\u02ca\u02cb\7\3\2\2\u02cb\u02cc\5\u00a4S\2"+
-		"\u02cc\u02cd\b&\1\2\u02cdK\3\2\2\2\u02ce\u02cf\5\u00a0Q\2\u02cf\u02d0"+
-		"\7\3\2\2\u02d0\u02d1\5\u00aeX\2\u02d1\u02d2\7\3\2\2\u02d2\u02d3\5\u0080"+
-		"A\2\u02d3\u02d4\7\3\2\2\u02d4\u02d5\5\u00a6T\2\u02d5\u02d6\b\'\1\2\u02d6"+
-		"M\3\2\2\2\u02d7\u02d8\5\u00d0i\2\u02d8\u02d9\7\3\2\2\u02d9\u02da\5\u00d2"+
-		"j\2\u02da\u02db\7\3\2\2\u02db\u02dc\5\u0080A\2\u02dc\u02dd\7\3\2\2\u02dd"+
-		"\u02de\5\u00a2R\2\u02deO\3\2\2\2\u02df\u02e0\5\u00d0i\2\u02e0\u02e1\7"+
-		"\3\2\2\u02e1\u02e2\5\u00d2j\2\u02e2\u02e3\7\3\2\2\u02e3\u02e4\5\u0080"+
-		"A\2\u02e4\u02e5\7\3\2\2\u02e5\u02e6\5\u00a4S\2\u02e6Q\3\2\2\2\u02e7\u02e8"+
-		"\5|?\2\u02e8\u02e9\7\3\2\2\u02e9\u02ea\5z>\2\u02ea\u02eb\7\3\2\2\u02eb"+
-		"\u02ec\5\u009aN\2\u02ec\u02ed\b*\1\2\u02edS\3\2\2\2\u02ee\u02ef\5\u0098"+
-		"M\2\u02ef\u02f0\7\3\2\2\u02f0\u02f1\5\u0080A\2\u02f1\u02f2\7\3\2\2\u02f2"+
-		"\u02f3\5\u00b0Y\2\u02f3\u02f4\b+\1\2\u02f4U\3\2\2\2\u02f5\u02f6\5\u00c2"+
-		"b\2\u02f6\u02f7\7\3\2\2\u02f7\u02f8\5\u00c8e\2\u02f8\u02f9\7\3\2\2\u02f9"+
-		"\u02fa\5\u0098M\2\u02fa\u02fb\7\3\2\2\u02fb\u02fc\5\u0080A\2\u02fc\u02fd"+
-		"\7\3\2\2\u02fd\u02fe\5\u009aN\2\u02fe\u02ff\b,\1\2\u02ffW\3\2\2\2\u0300"+
-		"\u0301\5\u00c2b\2\u0301\u0302\7\3\2\2\u0302\u0303\5\u00ceh\2\u0303\u0304"+
-		"\7\3\2\2\u0304\u0305\5\u0098M\2\u0305\u0306\7\3\2\2\u0306\u0307\5\u0080"+
-		"A\2\u0307\u0308\7\3\2\2\u0308\u0309\5\u009aN\2\u0309\u030a\b-\1\2\u030a"+
-		"Y\3\2\2\2\u030b\u030c\5\u00c2b\2\u030c\u030d\7\3\2\2\u030d\u030e\5\u00c8"+
-		"e\2\u030e\u030f\7\3\2\2\u030f\u0310\5\u0098M\2\u0310\u0311\7\3\2\2\u0311"+
-		"\u0312\5\u0080A\2\u0312\u0313\7\3\2\2\u0313\u0314\5\u009aN\2\u0314\u0315"+
-		"\b.\1\2\u0315[\3\2\2\2\u0316\u0317\5\u00c2b\2\u0317\u0318\7\3\2\2\u0318"+
-		"\u0319\5\u00caf\2\u0319\u031a\7\3\2\2\u031a\u031b\5\u0098M\2\u031b\u031c"+
-		"\7\3\2\2\u031c\u031d\5\u0080A\2\u031d\u031e\7\3\2\2\u031e\u031f\5\u009a"+
-		"N\2\u031f\u0320\b/\1\2\u0320]\3\2\2\2\u0321\u0322\5\u00c2b\2\u0322\u0323"+
-		"\7\3\2\2\u0323\u0324\5\u00c4c\2\u0324\u0325\7\3\2\2\u0325\u0326\5\u0098"+
-		"M\2\u0326\u0327\7\3\2\2\u0327\u0328\5\u0080A\2\u0328\u0329\7\3\2\2\u0329"+
-		"\u032a\5\u009aN\2\u032a\u032b\b\60\1\2\u032b_\3\2\2\2\u032c\u032d\5\u00c2"+
-		"b\2\u032d\u032e\7\3\2\2\u032e\u032f\5\u00c6d\2\u032f\u0330\7\3\2\2\u0330"+
-		"\u0331\5\u0098M\2\u0331\u0332\7\3\2\2\u0332\u0333\5\u0080A\2\u0333\u0334"+
-		"\7\3\2\2\u0334\u0335\5\u009aN\2\u0335\u0336\b\61\1\2\u0336a\3\2\2\2\u0337"+
-		"\u0338\5\u0098M\2\u0338\u0339\7\3\2\2\u0339\u033a\5\u0080A\2\u033a\u033b"+
-		"\7\3\2\2\u033b\u033c\5\u009aN\2\u033c\u033d\b\62\1\2\u033dc\3\2\2\2\u033e"+
-		"\u033f\5\u0096L\2\u033f\u0340\7\3\2\2\u0340\u0341\5\u00aeX\2\u0341\u0342"+
-		"\b\63\1\2\u0342\u0343\3\2\2\2\u0343\u0344\7\3\2\2\u0344\u0345\5x=\2\u0345"+
-		"\u0346\7\3\2\2\u0346\u0347\5\u00aeX\2\u0347\u0348\b\63\1\2\u0348e\3\2"+
-		"\2\2\u0349\u034a\5\u00a0Q\2\u034a\u034b\7\3\2\2\u034b\u034e\5\u00a4S\2"+
-		"\u034c\u034d\7\3\2\2\u034d\u034f\5\u0080A\2\u034e\u034c\3\2\2\2\u034e"+
-		"\u034f\3\2\2\2\u034f\u0350\3\2\2\2\u0350\u0351\7\3\2\2\u0351\u0352\5\u00a2"+
-		"R\2\u0352g\3\2\2\2\u0353\u0354\5\u0086D\2\u0354\u0355\7\3\2\2\u0355\u0358"+
-		"\5\u0084C\2\u0356\u0357\7\3\2\2\u0357\u0359\5\u0088E\2\u0358\u0356\3\2"+
-		"\2\2\u0358\u0359\3\2\2\2\u0359\u035a\3\2\2\2\u035a\u035b\7\3\2\2\u035b"+
-		"\u035c\5\u00c0a\2\u035c\u035d\b\65\1\2\u035di\3\2\2\2\u035e\u035f\5\u0086"+
-		"D\2\u035f\u0360\7\3\2\2\u0360\u0361\5\u008cG\2\u0361k\3\2\2\2\u0362\u0363"+
-		"\5\u0086D\2\u0363\u0364\7\3\2\2\u0364\u0365\5\u008aF\2\u0365m\3\2\2\2"+
-		"\u0366\u0367\5\u0086D\2\u0367\u0368\7\3\2\2\u0368\u0369\5\u00aeX\2\u0369"+
-		"\u036a\b8\1\2\u036ao\3\2\2\2\u036b\u036c\5\u0092J\2\u036c\u036d\7\3\2"+
-		"\2\u036d\u036e\5\u00aeX\2\u036e\u036f\b9\1\2\u036f\u0370\3\2\2\2\u0370"+
-		"\u0371\7\3\2\2\u0371\u0372\5x=\2\u0372\u0373\7\3\2\2\u0373\u0374\5\u00ae"+
-		"X\2\u0374\u0375\b9\1\2\u0375q\3\2\2\2\u0376\u0377\5\u0094K\2\u0377\u0378"+
-		"\7\3\2\2\u0378\u0379\5\u00aeX\2\u0379\u037a\b:\1\2\u037a\u037b\3\2\2\2"+
-		"\u037b\u037c\7\3\2\2\u037c\u037d\5x=\2\u037d\u037e\7\3\2\2\u037e\u037f"+
-		"\5\u00aeX\2\u037f\u0380\b:\1\2\u0380s\3\2\2\2\u0381\u0382\5\u0090I\2\u0382"+
-		"\u0383\7\3\2\2\u0383\u0384\5\u00aeX\2\u0384\u0385\b;\1\2\u0385\u0386\3"+
-		"\2\2\2\u0386\u0387\7\3\2\2\u0387\u0388\5x=\2\u0388\u0389\7\3\2\2\u0389"+
-		"\u038a\5\u00aeX\2\u038a\u038b\b;\1\2\u038bu\3\2\2\2\u038c\u038d\5\u008e"+
-		"H\2\u038d\u038e\7\3\2\2\u038e\u038f\5\u00aeX\2\u038f\u0390\b<\1\2\u0390"+
-		"\u0391\3\2\2\2\u0391\u0392\7\3\2\2\u0392\u0393\5x=\2\u0393\u0394\7\3\2"+
-		"\2\u0394\u0395\5\u00aeX\2\u0395\u0396\b<\1\2\u0396w\3\2\2\2\u0397\u0398"+
-		"\7K\2\2\u0398y\3\2\2\2\u0399\u039a\7L\2\2\u039a{\3\2\2\2\u039b\u039c\7"+
-		"M\2\2\u039c}\3\2\2\2\u039d\u039e\t\2\2\2\u039e\177\3\2\2\2\u039f\u03a0"+
-		"\t\3\2\2\u03a0\u0081\3\2\2\2\u03a1\u03a2\t\4\2\2\u03a2\u0083\3\2\2\2\u03a3"+
-		"\u03a5\7E\2\2\u03a4\u03a6\7\67\2\2\u03a5\u03a4\3\2\2\2\u03a5\u03a6\3\2"+
-		"\2\2\u03a6\u0085\3\2\2\2\u03a7\u03a8\t\5\2\2\u03a8\u0087\3\2\2\2\u03a9"+
-		"\u03aa\7B\2\2\u03aa\u0089\3\2\2\2\u03ab\u03ac\t\6\2\2\u03ac\u008b\3\2"+
-		"\2\2\u03ad\u03ae\t\7\2\2\u03ae\u008d\3\2\2\2\u03af\u03b0\t\b\2\2\u03b0"+
-		"\u008f\3\2\2\2\u03b1\u03b2\t\t\2\2\u03b2\u0091\3\2\2\2\u03b3\u03b4\t\n"+
-		"\2\2\u03b4\u0093\3\2\2\2\u03b5\u03b6\t\13\2\2\u03b6\u0095\3\2\2\2\u03b7"+
-		"\u03b8\79\2\2\u03b8\u0097\3\2\2\2\u03b9\u03be\78\2\2\u03ba\u03bb\7D\2"+
-		"\2\u03bb\u03bc\7\3\2\2\u03bc\u03be\7G\2\2\u03bd\u03b9\3\2\2\2\u03bd\u03ba"+
-		"\3\2\2\2\u03be\u0099\3\2\2\2\u03bf\u03c1\7\4\2\2\u03c0\u03c2\7\3\2\2\u03c1"+
-		"\u03c0\3\2\2\2\u03c1\u03c2\3\2\2\2\u03c2\u03c4\3\2\2\2\u03c3\u03c5\7\67"+
-		"\2\2\u03c4\u03c3\3\2\2\2\u03c4\u03c5\3\2\2\2\u03c5\u03c6\3\2\2\2\u03c6"+
-		"\u03c7\7\3\2\2\u03c7\u03c8\7O\2\2\u03c8\u03c9\bN\1\2\u03c9\u009b\3\2\2"+
-		"\2\u03ca\u03cb\7\66\2\2\u03cb\u03cc\7\3\2\2\u03cc\u03d1\7\63\2\2\u03cd"+
-		"\u03ce\7\65\2\2\u03ce\u03cf\7\3\2\2\u03cf\u03d1\7\64\2\2\u03d0\u03ca\3"+
-		"\2\2\2\u03d0\u03cd\3\2\2\2\u03d1\u009d\3\2\2\2\u03d2\u03d3\7\60\2\2\u03d3"+
-		"\u03d4\7\3\2\2\u03d4\u03d7\7\62\2\2\u03d5\u03d7\7\61\2\2\u03d6\u03d2\3"+
-		"\2\2\2\u03d6\u03d5\3\2\2\2\u03d7\u009f\3\2\2\2\u03d8\u03d9\7/\2\2\u03d9"+
-		"\u00a1\3\2\2\2\u03da\u03db\t\f\2\2\u03db\u00a3\3\2\2\2\u03dc\u03dd\t\r"+
-		"\2\2\u03dd\u00a5\3\2\2\2\u03de\u03df\7)\2\2\u03df\u03e2\7\3\2\2\u03e0"+
-		"\u03e1\7F\2\2\u03e1\u03e3\7\3\2\2\u03e2\u03e0\3\2\2\2\u03e2\u03e3\3\2"+
-		"\2\2\u03e3\u03e4\3\2\2\2\u03e4\u03e5\5\u00b0Y\2\u03e5\u03e6\bT\1\2\u03e6"+
-		"\u00a7\3\2\2\2\u03e7\u03e8\7F\2\2\u03e8\u03e9\7\3\2\2\u03e9\u03ea\5\u00a6"+
-		"T\2\u03ea\u03eb\bU\1\2\u03eb\u03ec\3\2\2\2\u03ec\u03ed\7\3\2\2\u03ed\u03ee"+
-		"\7*\2\2\u03ee\u03ef\7\3\2\2\u03ef\u03f0\5\u00a6T\2\u03f0\u03f1\bU\1\2"+
-		"\u03f1\u00a9\3\2\2\2\u03f2\u03f3\7\'\2\2\u03f3\u00ab\3\2\2\2\u03f4\u03f5"+
-		"\7&\2\2\u03f5\u00ad\3\2\2\2\u03f6\u03f7\7%\2\2\u03f7\u03f9\bX\1\2\u03f8"+
-		"\u03f6\3\2\2\2\u03f8\u03f9\3\2\2\2\u03f9\u03fa\3\2\2\2\u03fa\u03fb\7("+
-		"\2\2\u03fb\u0400\bX\1\2\u03fc\u03fd\5\u00b0Y\2\u03fd\u03fe\bX\1\2\u03fe"+
-		"\u0400\3\2\2\2\u03ff\u03f8\3\2\2\2\u03ff\u03fc\3\2\2\2\u0400\u00af\3\2"+
-		"\2\2\u0401\u0402\7(\2\2\u0402\u040a\bY\1\2\u0403\u0404\5\u00a4S\2\u0404"+
-		"\u0405\bY\1\2\u0405\u040a\3\2\2\2\u0406\u0407\5\u00a2R\2\u0407\u0408\b"+
-		"Y\1\2\u0408\u040a\3\2\2\2\u0409\u0401\3\2\2\2\u0409\u0403\3\2\2\2\u0409"+
-		"\u0406\3\2\2\2\u040a\u00b1\3\2\2\2\u040b\u040c\t\16\2\2\u040c\u00b3\3"+
-		"\2\2\2\u040d\u040e\7\"\2\2\u040e\u00b5\3\2\2\2\u040f\u0410\7\37\2\2\u0410"+
-		"\u0411\7\3\2\2\u0411\u0412\7\'\2\2\u0412\u0413\7\3\2\2\u0413\u041a\7 "+
-		"\2\2\u0414\u0415\7\'\2\2\u0415\u0416\7\3\2\2\u0416\u0417\7!\2\2\u0417"+
-		"\u0418\7\3\2\2\u0418\u041a\7 \2\2\u0419\u040f\3\2\2\2\u0419\u0414\3\2"+
-		"\2\2\u041a\u00b7\3\2\2\2\u041b\u041c\7\'\2\2\u041c\u041d\7\3\2\2\u041d"+
-		"\u0429\7 \2\2\u041e\u041f\7 \2\2\u041f\u0420\7\3\2\2\u0420\u0421\7\34"+
-		"\2\2\u0421\u0422\7\3\2\2\u0422\u0429\7\35\2\2\u0423\u0424\7 \2\2\u0424"+
-		"\u0425\7\3\2\2\u0425\u0426\7\36\2\2\u0426\u0427\7\3\2\2\u0427\u0429\7"+
-		"\'\2\2\u0428\u041b\3\2\2\2\u0428\u041e\3\2\2\2\u0428\u0423\3\2\2\2\u0429"+
-		"\u00b9\3\2\2\2\u042a\u042b\7\5\2\2\u042b\u00bb\3\2\2\2\u042c\u0479\7\4"+
-		"\2\2\u042d\u0479\7\5\2\2\u042e\u0479\7\6\2\2\u042f\u0479\7\7\2\2\u0430"+
-		"\u0479\7\b\2\2\u0431\u0479\7\t\2\2\u0432\u0479\7\n\2\2\u0433\u0479\7\13"+
-		"\2\2\u0434\u0479\7\f\2\2\u0435\u0479\7\r\2\2\u0436\u0479\7\16\2\2\u0437"+
-		"\u0479\7\17\2\2\u0438\u0479\7\20\2\2\u0439\u0479\7\21\2\2\u043a\u0479"+
-		"\7\22\2\2\u043b\u0479\7\23\2\2\u043c\u0479\7\24\2\2\u043d\u0479\7\25\2"+
-		"\2\u043e\u0479\7\26\2\2\u043f\u0479\7\27\2\2\u0440\u0479\7\30\2\2\u0441"+
-		"\u0479\7\31\2\2\u0442\u0479\7\32\2\2\u0443\u0479\7\33\2\2\u0444\u0479"+
-		"\7\34\2\2\u0445\u0479\7\35\2\2\u0446\u0479\7\36\2\2\u0447\u0479\7\37\2"+
-		"\2\u0448\u0479\7 \2\2\u0449\u0479\7!\2\2\u044a\u0479\7\"\2\2\u044b\u0479"+
-		"\7#\2\2\u044c\u0479\7$\2\2\u044d\u0479\7%\2\2\u044e\u0479\7&\2\2\u044f"+
-		"\u0479\7\'\2\2\u0450\u0479\7(\2\2\u0451\u0479\7)\2\2\u0452\u0479\7*\2"+
-		"\2\u0453\u0479\7+\2\2\u0454\u0479\7,\2\2\u0455\u0479\7-\2\2\u0456\u0479"+
-		"\7.\2\2\u0457\u0479\7/\2\2\u0458\u0479\7\60\2\2\u0459\u0479\7\61\2\2\u045a"+
-		"\u0479\7\62\2\2\u045b\u0479\7\63\2\2\u045c\u0479\7\64\2\2\u045d\u0479"+
-		"\7\65\2\2\u045e\u0479\7\66\2\2\u045f\u0479\7\67\2\2\u0460\u0479\78\2\2"+
-		"\u0461\u0479\79\2\2\u0462\u0479\7:\2\2\u0463\u0479\7;\2\2\u0464\u0479"+
-		"\7<\2\2\u0465\u0479\7=\2\2\u0466\u0479\7>\2\2\u0467\u0479\7?\2\2\u0468"+
-		"\u0479\7@\2\2\u0469\u0479\7A\2\2\u046a\u0479\7B\2\2\u046b\u0479\7C\2\2"+
-		"\u046c\u0479\7D\2\2\u046d\u0479\7E\2\2\u046e\u0479\7F\2\2\u046f\u0479"+
-		"\7G\2\2\u0470\u0479\7I\2\2\u0471\u0479\7J\2\2\u0472\u0479\7K\2\2\u0473"+
-		"\u0479\7L\2\2\u0474\u0479\7M\2\2\u0475\u0479\7O\2\2\u0476\u0479\7P\2\2"+
-		"\u0477\u0479\7Q\2\2\u0478\u042c\3\2\2\2\u0478\u042d\3\2\2\2\u0478\u042e"+
-		"\3\2\2\2\u0478\u042f\3\2\2\2\u0478\u0430\3\2\2\2\u0478\u0431\3\2\2\2\u0478"+
-		"\u0432\3\2\2\2\u0478\u0433\3\2\2\2\u0478\u0434\3\2\2\2\u0478\u0435\3\2"+
-		"\2\2\u0478\u0436\3\2\2\2\u0478\u0437\3\2\2\2\u0478\u0438\3\2\2\2\u0478"+
-		"\u0439\3\2\2\2\u0478\u043a\3\2\2\2\u0478\u043b\3\2\2\2\u0478\u043c\3\2"+
-		"\2\2\u0478\u043d\3\2\2\2\u0478\u043e\3\2\2\2\u0478\u043f\3\2\2\2\u0478"+
-		"\u0440\3\2\2\2\u0478\u0441\3\2\2\2\u0478\u0442\3\2\2\2\u0478\u0443\3\2"+
-		"\2\2\u0478\u0444\3\2\2\2\u0478\u0445\3\2\2\2\u0478\u0446\3\2\2\2\u0478"+
-		"\u0447\3\2\2\2\u0478\u0448\3\2\2\2\u0478\u0449\3\2\2\2\u0478\u044a\3\2"+
-		"\2\2\u0478\u044b\3\2\2\2\u0478\u044c\3\2\2\2\u0478\u044d\3\2\2\2\u0478"+
-		"\u044e\3\2\2\2\u0478\u044f\3\2\2\2\u0478\u0450\3\2\2\2\u0478\u0451\3\2"+
-		"\2\2\u0478\u0452\3\2\2\2\u0478\u0453\3\2\2\2\u0478\u0454\3\2\2\2\u0478"+
-		"\u0455\3\2\2\2\u0478\u0456\3\2\2\2\u0478\u0457\3\2\2\2\u0478\u0458\3\2"+
-		"\2\2\u0478\u0459\3\2\2\2\u0478\u045a\3\2\2\2\u0478\u045b\3\2\2\2\u0478"+
-		"\u045c\3\2\2\2\u0478\u045d\3\2\2\2\u0478\u045e\3\2\2\2\u0478\u045f\3\2"+
-		"\2\2\u0478\u0460\3\2\2\2\u0478\u0461\3\2\2\2\u0478\u0462\3\2\2\2\u0478"+
-		"\u0463\3\2\2\2\u0478\u0464\3\2\2\2\u0478\u0465\3\2\2\2\u0478\u0466\3\2"+
-		"\2\2\u0478\u0467\3\2\2\2\u0478\u0468\3\2\2\2\u0478\u0469\3\2\2\2\u0478"+
-		"\u046a\3\2\2\2\u0478\u046b\3\2\2\2\u0478\u046c\3\2\2\2\u0478\u046d\3\2"+
-		"\2\2\u0478\u046e\3\2\2\2\u0478\u046f\3\2\2\2\u0478\u0470\3\2\2\2\u0478"+
-		"\u0471\3\2\2\2\u0478\u0472\3\2\2\2\u0478\u0473\3\2\2\2\u0478\u0474\3\2"+
-		"\2\2\u0478\u0475\3\2\2\2\u0478\u0476\3\2\2\2\u0478\u0477\3\2\2\2\u0479"+
-		"\u047a\3\2\2\2\u047a\u047b\b_\1\2\u047b\u00bd\3\2\2\2\u047c\u047d\5\u00bc"+
-		"_\2\u047d\u047e\b`\1\2\u047e\u0480\3\2\2\2\u047f\u047c\3\2\2\2\u0480\u0483"+
-		"\3\2\2\2\u0481\u047f\3\2\2\2\u0481\u0482\3\2\2\2\u0482\u0484\3\2\2\2\u0483"+
-		"\u0481\3\2\2\2\u0484\u0485\7\3\2\2\u0485\u0487\b`\1\2\u0486\u0481\3\2"+
-		"\2\2\u0487\u0488\3\2\2\2\u0488\u0486\3\2\2\2\u0488\u0489\3\2\2\2\u0489"+
-		"\u048a\3\2\2\2\u048a\u048b\5\u00bc_\2\u048b\u048c\b`\1\2\u048c\u048d\b"+
-		"`\1\2\u048d\u00bf\3\2\2\2\u048e\u048f\5\u00bc_\2\u048f\u0492\ba\1\2\u0490"+
-		"\u0491\7\3\2\2\u0491\u0493\ba\1\2\u0492\u0490\3\2\2\2\u0492\u0493\3\2"+
-		"\2\2\u0493\u0495\3\2\2\2\u0494\u048e\3\2\2\2\u0495\u0496\3\2\2\2\u0496"+
-		"\u0494\3\2\2\2\u0496\u0497\3\2\2\2\u0497\u0498\3\2\2\2\u0498\u0499\ba"+
-		"\1\2\u0499\u00c1\3\2\2\2\u049a\u049b\t\17\2\2\u049b\u00c3\3\2\2\2\u049c"+
-		"\u04a1\7\27\2\2\u049d\u049e\7\30\2\2\u049e\u049f\7\3\2\2\u049f\u04a1\7"+
-		"\31\2\2\u04a0\u049c\3\2\2\2\u04a0\u049d\3\2\2\2\u04a1\u00c5\3\2\2\2\u04a2"+
-		"\u04a3\7\31\2\2\u04a3\u00c7\3\2\2\2\u04a4\u04a5\7\26\2\2\u04a5\u00c9\3"+
-		"\2\2\2\u04a6\u04a7\7\25\2\2\u04a7\u00cb\3\2\2\2\u04a8\u04a9\7\26\2\2\u04a9"+
-		"\u04aa\7\3\2\2\u04aa\u04ab\7\24\2\2\u04ab\u04ac\7\3\2\2\u04ac\u04b3\7"+
-		"\31\2\2\u04ad\u04ae\7\31\2\2\u04ae\u04af\7\3\2\2\u04af\u04b0\7\24\2\2"+
-		"\u04b0\u04b1\7\3\2\2\u04b1\u04b3\7\26\2\2\u04b2\u04a8\3\2\2\2\u04b2\u04ad"+
-		"\3\2\2\2\u04b3\u00cd\3\2\2\2\u04b4\u04b5\7\25\2\2\u04b5\u04b6\7\3\2\2"+
-		"\u04b6\u04b7\7\24\2\2\u04b7\u04b8\7\3\2\2\u04b8\u04bf\7\31\2\2\u04b9\u04ba"+
-		"\7\31\2\2\u04ba\u04bb\7\3\2\2\u04bb\u04bc\7\24\2\2\u04bc\u04bd\7\3\2\2"+
-		"\u04bd\u04bf\7\25\2\2\u04be\u04b4\3\2\2\2\u04be\u04b9\3\2\2\2\u04bf\u00cf"+
-		"\3\2\2\2\u04c0\u04c1\7\23\2\2\u04c1\u04c2\7\3\2\2\u04c2\u04c5\7\22\2\2"+
-		"\u04c3\u04c5\7\21\2\2\u04c4\u04c0\3\2\2\2\u04c4\u04c3\3\2\2\2\u04c5\u00d1"+
-		"\3\2\2\2\u04c6\u04c7\7\20\2\2\u04c7\u00d3\3\2\2\2\u04c8\u04c9\7)\2\2\u04c9"+
-		"\u00d5\3\2\2\2\u04ca\u04cb\t\20\2\2\u04cb\u00d7\3\2\2\2\u04cc\u04cd\t"+
-		"\21\2\2\u04cd\u00d9\3\2\2\2\u04ce\u04cf\7\n\2\2\u04cf\u00db\3\2\2\2\u04d0"+
-		"\u04d1\7\t\2\2\u04d1\u04d2\7\3\2\2\u04d2\u04d3\7#\2\2\u04d3\u00dd\3\2"+
-		"\2\2\35\u00e0\u00e6\u00eb\u0198\u034e\u0358\u03a5\u03bd\u03c1\u03c4\u03d0"+
-		"\u03d6\u03e2\u03f8\u03ff\u0409\u0419\u0428\u0478\u0481\u0488\u0492\u0496"+
-		"\u04a0\u04b2\u04be\u04c4";
+		"\u00d4\u00d6\u00d8\u00da\u00dc\u00de\u00e0\u00e2\u00e4\2\25\3\2\7\13\3"+
+		"\2\30\32\3\2VW\4\2>>SU\4\2\'\'RR\3\2OP\3\2JK\3\2HI\3\2GG\3\2FF\3\2EE\3"+
+		"\2DD\3\28:\3\2\66\67\3\2\64\65\3\2,-\3\2\"#\3\2\24\25\3\2\21\23\u069d"+
+		"\2\u00ec\3\2\2\2\4\u00f2\3\2\2\2\6\u01a2\3\2\2\2\b\u01a4\3\2\2\2\n\u01a8"+
+		"\3\2\2\2\f\u01bf\3\2\2\2\16\u01d4\3\2\2\2\20\u01e8\3\2\2\2\22\u01fc\3"+
+		"\2\2\2\24\u020a\3\2\2\2\26\u021b\3\2\2\2\30\u021d\3\2\2\2\32\u0234\3\2"+
+		"\2\2\34\u024b\3\2\2\2\36\u0262\3\2\2\2 \u0279\3\2\2\2\"\u0290\3\2\2\2"+
+		"$\u02a7\3\2\2\2&\u02b8\3\2\2\2(\u02c3\3\2\2\2*\u02ce\3\2\2\2,\u02e0\3"+
+		"\2\2\2.\u02f3\3\2\2\2\60\u02ff\3\2\2\2\62\u030e\3\2\2\2\64\u031c\3\2\2"+
+		"\2\66\u032a\3\2\2\28\u033b\3\2\2\2:\u034b\3\2\2\2<\u035a\3\2\2\2>\u036c"+
+		"\3\2\2\2@\u037c\3\2\2\2B\u038a\3\2\2\2D\u038f\3\2\2\2F\u03a4\3\2\2\2H"+
+		"\u03b9\3\2\2\2J\u03bb\3\2\2\2L\u03c9\3\2\2\2N\u03d7\3\2\2\2P\u03e5\3\2"+
+		"\2\2R\u03f2\3\2\2\2T\u03ff\3\2\2\2V\u0406\3\2\2\2X\u0412\3\2\2\2Z\u0424"+
+		"\3\2\2\2\\\u0436\3\2\2\2^\u0448\3\2\2\2`\u045a\3\2\2\2b\u046c\3\2\2\2"+
+		"d\u047e\3\2\2\2f\u048a\3\2\2\2h\u0495\3\2\2\2j\u04a4\3\2\2\2l\u04ad\3"+
+		"\2\2\2n\u04b3\3\2\2\2p\u04b5\3\2\2\2r\u04b7\3\2\2\2t\u04bb\3\2\2\2v\u04c0"+
+		"\3\2\2\2x\u04cb\3\2\2\2z\u04d6\3\2\2\2|\u04e1\3\2\2\2~\u04ec\3\2\2\2\u0080"+
+		"\u04ee\3\2\2\2\u0082\u04f0\3\2\2\2\u0084\u04f2\3\2\2\2\u0086\u04f4\3\2"+
+		"\2\2\u0088\u04f6\3\2\2\2\u008a\u04f8\3\2\2\2\u008c\u04fa\3\2\2\2\u008e"+
+		"\u0502\3\2\2\2\u0090\u0504\3\2\2\2\u0092\u0506\3\2\2\2\u0094\u0508\3\2"+
+		"\2\2\u0096\u050a\3\2\2\2\u0098\u050c\3\2\2\2\u009a\u050e\3\2\2\2\u009c"+
+		"\u0510\3\2\2\2\u009e\u0512\3\2\2\2\u00a0\u0518\3\2\2\2\u00a2\u051a\3\2"+
+		"\2\2\u00a4\u0527\3\2\2\2\u00a6\u052f\3\2\2\2\u00a8\u0535\3\2\2\2\u00aa"+
+		"\u0537\3\2\2\2\u00ac\u0539\3\2\2\2\u00ae\u053b\3\2\2\2\u00b0\u053d\3\2"+
+		"\2\2\u00b2\u0546\3\2\2\2\u00b4\u0551\3\2\2\2\u00b6\u0553\3\2\2\2\u00b8"+
+		"\u055e\3\2\2\2\u00ba\u0568\3\2\2\2\u00bc\u056a\3\2\2\2\u00be\u056c\3\2"+
+		"\2\2\u00c0\u0584\3\2\2\2\u00c2\u0593\3\2\2\2\u00c4\u0595\3\2\2\2\u00c6"+
+		"\u05e5\3\2\2\2\u00c8\u05e9\3\2\2\2\u00ca\u05fc\3\2\2\2\u00cc\u0604\3\2"+
+		"\2\2\u00ce\u0606\3\2\2\2\u00d0\u0608\3\2\2\2\u00d2\u060a\3\2\2\2\u00d4"+
+		"\u0616\3\2\2\2\u00d6\u0622\3\2\2\2\u00d8\u0628\3\2\2\2\u00da\u062a\3\2"+
+		"\2\2\u00dc\u062c\3\2\2\2\u00de\u062e\3\2\2\2\u00e0\u0630\3\2\2\2\u00e2"+
+		"\u0632\3\2\2\2\u00e4\u0634\3\2\2\2\u00e6\u00e8\5\4\3\2\u00e7\u00e9\7\4"+
+		"\2\2\u00e8\u00e7\3\2\2\2\u00e8\u00e9\3\2\2\2\u00e9\u00ea\3\2\2\2\u00ea"+
+		"\u00eb\b\2\1\2\u00eb\u00ed\3\2\2\2\u00ec\u00e6\3\2\2\2\u00ed\u00ee\3\2"+
+		"\2\2\u00ee\u00ec\3\2\2\2\u00ee\u00ef\3\2\2\2\u00ef\u00f0\3\2\2\2\u00f0"+
+		"\u00f1\7\2\2\3\u00f1\3\3\2\2\2\u00f2\u00f3\b\3\1\2\u00f3\u00f5\5\6\4\2"+
+		"\u00f4\u00f6\7\4\2\2\u00f5\u00f4\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6\u00f7"+
+		"\3\2\2\2\u00f7\u00f8\7\3\2\2\u00f8\u00f9\b\3\1\2\u00f9\5\3\2\2\2\u00fa"+
+		"\u00fb\5|?\2\u00fb\u00fc\b\4\1\2\u00fc\u01a3\3\2\2\2\u00fd\u00fe\5z>\2"+
+		"\u00fe\u00ff\b\4\1\2\u00ff\u01a3\3\2\2\2\u0100\u0101\5v<\2\u0101\u0102"+
+		"\b\4\1\2\u0102\u01a3\3\2\2\2\u0103\u0104\5x=\2\u0104\u0105\b\4\1\2\u0105"+
+		"\u01a3\3\2\2\2\u0106\u0107\5t;\2\u0107\u0108\b\4\1\2\u0108\u01a3\3\2\2"+
+		"\2\u0109\u010a\5r:\2\u010a\u010b\b\4\1\2\u010b\u01a3\3\2\2\2\u010c\u010d"+
+		"\5l\67\2\u010d\u010e\b\4\1\2\u010e\u01a3\3\2\2\2\u010f\u0110\5j\66\2\u0110"+
+		"\u0111\b\4\1\2\u0111\u01a3\3\2\2\2\u0112\u0113\5h\65\2\u0113\u0114\b\4"+
+		"\1\2\u0114\u01a3\3\2\2\2\u0115\u0116\5f\64\2\u0116\u0117\b\4\1\2\u0117"+
+		"\u01a3\3\2\2\2\u0118\u0119\5d\63\2\u0119\u011a\b\4\1\2\u011a\u01a3\3\2"+
+		"\2\2\u011b\u011c\5`\61\2\u011c\u011d\b\4\1\2\u011d\u01a3\3\2\2\2\u011e"+
+		"\u011f\5b\62\2\u011f\u0120\b\4\1\2\u0120\u01a3\3\2\2\2\u0121\u0122\5^"+
+		"\60\2\u0122\u0123\b\4\1\2\u0123\u01a3\3\2\2\2\u0124\u0125\5\\/\2\u0125"+
+		"\u0126\b\4\1\2\u0126\u01a3\3\2\2\2\u0127\u0128\5Z.\2\u0128\u0129\b\4\1"+
+		"\2\u0129\u01a3\3\2\2\2\u012a\u012b\5X-\2\u012b\u012c\b\4\1\2\u012c\u01a3"+
+		"\3\2\2\2\u012d\u012e\5V,\2\u012e\u012f\b\4\1\2\u012f\u01a3\3\2\2\2\u0130"+
+		"\u0131\5T+\2\u0131\u0132\b\4\1\2\u0132\u01a3\3\2\2\2\u0133\u0134\5R*\2"+
+		"\u0134\u0135\b\4\1\2\u0135\u01a3\3\2\2\2\u0136\u0137\5P)\2\u0137\u0138"+
+		"\b\4\1\2\u0138\u01a3\3\2\2\2\u0139\u013a\5N(\2\u013a\u013b\b\4\1\2\u013b"+
+		"\u01a3\3\2\2\2\u013c\u013d\5L\'\2\u013d\u013e\b\4\1\2\u013e\u01a3\3\2"+
+		"\2\2\u013f\u0140\5J&\2\u0140\u0141\b\4\1\2\u0141\u01a3\3\2\2\2\u0142\u0143"+
+		"\5F$\2\u0143\u0144\b\4\1\2\u0144\u01a3\3\2\2\2\u0145\u0146\5D#\2\u0146"+
+		"\u0147\b\4\1\2\u0147\u01a3\3\2\2\2\u0148\u0149\5B\"\2\u0149\u014a\b\4"+
+		"\1\2\u014a\u01a3\3\2\2\2\u014b\u014c\5@!\2\u014c\u014d\b\4\1\2\u014d\u01a3"+
+		"\3\2\2\2\u014e\u014f\5> \2\u014f\u0150\b\4\1\2\u0150\u01a3\3\2\2\2\u0151"+
+		"\u0152\5<\37\2\u0152\u0153\b\4\1\2\u0153\u01a3\3\2\2\2\u0154\u0155\5:"+
+		"\36\2\u0155\u0156\b\4\1\2\u0156\u01a3\3\2\2\2\u0157\u0158\5\66\34\2\u0158"+
+		"\u0159\b\4\1\2\u0159\u01a3\3\2\2\2\u015a\u015b\58\35\2\u015b\u015c\b\4"+
+		"\1\2\u015c\u01a3\3\2\2\2\u015d\u015e\5\64\33\2\u015e\u015f\b\4\1\2\u015f"+
+		"\u01a3\3\2\2\2\u0160\u0161\5\62\32\2\u0161\u0162\b\4\1\2\u0162\u01a3\3"+
+		"\2\2\2\u0163\u0164\5\60\31\2\u0164\u0165\b\4\1\2\u0165\u01a3\3\2\2\2\u0166"+
+		"\u0167\5.\30\2\u0167\u0168\b\4\1\2\u0168\u01a3\3\2\2\2\u0169\u016a\5*"+
+		"\26\2\u016a\u016b\b\4\1\2\u016b\u01a3\3\2\2\2\u016c\u016d\5,\27\2\u016d"+
+		"\u016e\b\4\1\2\u016e\u01a3\3\2\2\2\u016f\u0170\5(\25\2\u0170\u0171\b\4"+
+		"\1\2\u0171\u01a3\3\2\2\2\u0172\u0173\5&\24\2\u0173\u0174\b\4\1\2\u0174"+
+		"\u01a3\3\2\2\2\u0175\u0176\5$\23\2\u0176\u0177\b\4\1\2\u0177\u01a3\3\2"+
+		"\2\2\u0178\u0179\5\"\22\2\u0179\u017a\b\4\1\2\u017a\u01a3\3\2\2\2\u017b"+
+		"\u017c\5 \21\2\u017c\u017d\b\4\1\2\u017d\u01a3\3\2\2\2\u017e\u017f\5\36"+
+		"\20\2\u017f\u0180\b\4\1\2\u0180\u01a3\3\2\2\2\u0181\u0182\5\34\17\2\u0182"+
+		"\u0183\b\4\1\2\u0183\u01a3\3\2\2\2\u0184\u0185\5\32\16\2\u0185\u0186\b"+
+		"\4\1\2\u0186\u01a3\3\2\2\2\u0187\u0188\5\30\r\2\u0188\u0189\b\4\1\2\u0189"+
+		"\u01a3\3\2\2\2\u018a\u018b\5\26\f\2\u018b\u018c\b\4\1\2\u018c\u01a3\3"+
+		"\2\2\2\u018d\u018e\5\24\13\2\u018e\u018f\b\4\1\2\u018f\u01a3\3\2\2\2\u0190"+
+		"\u0191\5\22\n\2\u0191\u0192\b\4\1\2\u0192\u01a3\3\2\2\2\u0193\u0194\5"+
+		"\20\t\2\u0194\u0195\b\4\1\2\u0195\u01a3\3\2\2\2\u0196\u0197\5\16\b\2\u0197"+
+		"\u0198\b\4\1\2\u0198\u01a3\3\2\2\2\u0199\u019a\5\f\7\2\u019a\u019b\b\4"+
+		"\1\2\u019b\u01a3\3\2\2\2\u019c\u019d\5\n\6\2\u019d\u019e\b\4\1\2\u019e"+
+		"\u01a3\3\2\2\2\u019f\u01a0\5\b\5\2\u01a0\u01a1\b\4\1\2\u01a1\u01a3\3\2"+
+		"\2\2\u01a2\u00fa\3\2\2\2\u01a2\u00fd\3\2\2\2\u01a2\u0100\3\2\2\2\u01a2"+
+		"\u0103\3\2\2\2\u01a2\u0106\3\2\2\2\u01a2\u0109\3\2\2\2\u01a2\u010c\3\2"+
+		"\2\2\u01a2\u010f\3\2\2\2\u01a2\u0112\3\2\2\2\u01a2\u0115\3\2\2\2\u01a2"+
+		"\u0118\3\2\2\2\u01a2\u011b\3\2\2\2\u01a2\u011e\3\2\2\2\u01a2\u0121\3\2"+
+		"\2\2\u01a2\u0124\3\2\2\2\u01a2\u0127\3\2\2\2\u01a2\u012a\3\2\2\2\u01a2"+
+		"\u012d\3\2\2\2\u01a2\u0130\3\2\2\2\u01a2\u0133\3\2\2\2\u01a2\u0136\3\2"+
+		"\2\2\u01a2\u0139\3\2\2\2\u01a2\u013c\3\2\2\2\u01a2\u013f\3\2\2\2\u01a2"+
+		"\u0142\3\2\2\2\u01a2\u0145\3\2\2\2\u01a2\u0148\3\2\2\2\u01a2\u014b\3\2"+
+		"\2\2\u01a2\u014e\3\2\2\2\u01a2\u0151\3\2\2\2\u01a2\u0154\3\2\2\2\u01a2"+
+		"\u0157\3\2\2\2\u01a2\u015a\3\2\2\2\u01a2\u015d\3\2\2\2\u01a2\u0160\3\2"+
+		"\2\2\u01a2\u0163\3\2\2\2\u01a2\u0166\3\2\2\2\u01a2\u0169\3\2\2\2\u01a2"+
+		"\u016c\3\2\2\2\u01a2\u016f\3\2\2\2\u01a2\u0172\3\2\2\2\u01a2\u0175\3\2"+
+		"\2\2\u01a2\u0178\3\2\2\2\u01a2\u017b\3\2\2\2\u01a2\u017e\3\2\2\2\u01a2"+
+		"\u0181\3\2\2\2\u01a2\u0184\3\2\2\2\u01a2\u0187\3\2\2\2\u01a2\u018a\3\2"+
+		"\2\2\u01a2\u018d\3\2\2\2\u01a2\u0190\3\2\2\2\u01a2\u0193\3\2\2\2\u01a2"+
+		"\u0196\3\2\2\2\u01a2\u0199\3\2\2\2\u01a2\u019c\3\2\2\2\u01a2\u019f\3\2"+
+		"\2\2\u01a3\7\3\2\2\2\u01a4\u01a5\5\u00b6\\\2\u01a5\u01a6\7\4\2\2\u01a6"+
+		"\u01a7\5\u00e4s\2\u01a7\t\3\2\2\2\u01a8\u01a9\5\u00caf\2\u01a9\u01aa\7"+
+		"\4\2\2\u01aa\u01ab\5\u00bc_\2\u01ab\u01ac\7\4\2\2\u01ac\u01ad\5\u0084"+
+		"C\2\u01ad\u01ae\7\4\2\2\u01ae\u01af\5\u00a6T\2\u01af\u01b0\7\4\2\2\u01b0"+
+		"\u01b1\5\u0086D\2\u01b1\u01b5\7\4\2\2\u01b2\u01b3\5H%\2\u01b3\u01b4\7"+
+		"\4\2\2\u01b4\u01b6\3\2\2\2\u01b5\u01b2\3\2\2\2\u01b5\u01b6\3\2\2\2\u01b6"+
+		"\u01ba\3\2\2\2\u01b7\u01b8\5H%\2\u01b8\u01b9\7\4\2\2\u01b9\u01bb\3\2\2"+
+		"\2\u01ba\u01b7\3\2\2\2\u01ba\u01bb\3\2\2\2\u01bb\u01bc\3\2\2\2\u01bc\u01bd"+
+		"\5\u00a2R\2\u01bd\u01be\b\6\1\2\u01be\13\3\2\2\2\u01bf\u01c0\5\u00b6\\"+
+		"\2\u01c0\u01c1\7\4\2\2\u01c1\u01c2\5\u0088E\2\u01c2\u01c3\7\4\2\2\u01c3"+
+		"\u01c4\5\u00b4[\2\u01c4\u01c5\7\4\2\2\u01c5\u01c6\5\u0086D\2\u01c6\u01ca"+
+		"\7\4\2\2\u01c7\u01c8\5H%\2\u01c8\u01c9\7\4\2\2\u01c9\u01cb\3\2\2\2\u01ca"+
+		"\u01c7\3\2\2\2\u01ca\u01cb\3\2\2\2\u01cb\u01cf\3\2\2\2\u01cc\u01cd\5H"+
+		"%\2\u01cd\u01ce\7\4\2\2\u01ce\u01d0\3\2\2\2\u01cf\u01cc\3\2\2\2\u01cf"+
+		"\u01d0\3\2\2\2\u01d0\u01d1\3\2\2\2\u01d1\u01d2\5\u00b0Y\2\u01d2\u01d3"+
+		"\b\7\1\2\u01d3\r\3\2\2\2\u01d4\u01d5\5\u00b6\\\2\u01d5\u01d6\7\4\2\2\u01d6"+
+		"\u01d7\5\u0088E\2\u01d7\u01d8\7\4\2\2\u01d8\u01d9\5\u00b4[\2\u01d9\u01da"+
+		"\7\4\2\2\u01da\u01db\5\u0086D\2\u01db\u01df\7\4\2\2\u01dc\u01dd\5H%\2"+
+		"\u01dd\u01de\7\4\2\2\u01de\u01e0\3\2\2\2\u01df\u01dc\3\2\2\2\u01df\u01e0"+
+		"\3\2\2\2\u01e0\u01e4\3\2\2\2\u01e1\u01e2\5H%\2\u01e2\u01e3\7\4\2\2\u01e3"+
+		"\u01e5\3\2\2\2\u01e4\u01e1\3\2\2\2\u01e4\u01e5\3\2\2\2\u01e5\u01e6\3\2"+
+		"\2\2\u01e6\u01e7\5\u00acW\2\u01e7\17\3\2\2\2\u01e8\u01e9\5\u00b6\\\2\u01e9"+
+		"\u01ea\7\4\2\2\u01ea\u01eb\5\u0088E\2\u01eb\u01ec\7\4\2\2\u01ec\u01ed"+
+		"\5\u00b4[\2\u01ed\u01ee\7\4\2\2\u01ee\u01ef\5\u0086D\2\u01ef\u01f3\7\4"+
+		"\2\2\u01f0\u01f1\5H%\2\u01f1\u01f2\7\4\2\2\u01f2\u01f4\3\2\2\2\u01f3\u01f0"+
+		"\3\2\2\2\u01f3\u01f4\3\2\2\2\u01f4\u01f8\3\2\2\2\u01f5\u01f6\5H%\2\u01f6"+
+		"\u01f7\7\4\2\2\u01f7\u01f9\3\2\2\2\u01f8\u01f5\3\2\2\2\u01f8\u01f9\3\2"+
+		"\2\2\u01f9\u01fa\3\2\2\2\u01fa\u01fb\5\u00aeX\2\u01fb\21\3\2\2\2\u01fc"+
+		"\u01fd\5\u00aaV\2\u01fd\u01fe\7\4\2\2\u01fe\u01ff\5\u00b8]\2\u01ff\u0200"+
+		"\7\4\2\2\u0200\u0201\5\u0086D\2\u0201\u0205\7\4\2\2\u0202\u0203\5H%\2"+
+		"\u0203\u0204\7\4\2\2\u0204\u0206\3\2\2\2\u0205\u0202\3\2\2\2\u0205\u0206"+
+		"\3\2\2\2\u0206\u0207\3\2\2\2\u0207\u0208\5\u00b4[\2\u0208\u0209\b\n\1"+
+		"\2\u0209\23\3\2\2\2\u020a\u020b\5\u00a6T\2\u020b\u020c\7\4\2\2\u020c\u020d"+
+		"\5\u0086D\2\u020d\u0211\7\4\2\2\u020e\u020f\5H%\2\u020f\u0210\7\4\2\2"+
+		"\u0210\u0212\3\2\2\2\u0211\u020e\3\2\2\2\u0211\u0212\3\2\2\2\u0212\u0216"+
+		"\3\2\2\2\u0213\u0214\5H%\2\u0214\u0215\7\4\2\2\u0215\u0217\3\2\2\2\u0216"+
+		"\u0213\3\2\2\2\u0216\u0217\3\2\2\2\u0217\u0218\3\2\2\2\u0218\u0219\5\u00ba"+
+		"^\2\u0219\u021a\b\13\1\2\u021a\25\3\2\2\2\u021b\u021c\5\u00a8U\2\u021c"+
+		"\27\3\2\2\2\u021d\u021e\5\u00caf\2\u021e\u021f\7\4\2\2\u021f\u0220\5\u00d4"+
+		"k\2\u0220\u0221\7\4\2\2\u0221\u0222\5\u0080A\2\u0222\u0223\7\4\2\2\u0223"+
+		"\u0224\5\u00a6T\2\u0224\u0225\7\4\2\2\u0225\u0226\5\u0086D\2\u0226\u022a"+
+		"\7\4\2\2\u0227\u0228\5H%\2\u0228\u0229\7\4\2\2\u0229\u022b\3\2\2\2\u022a"+
+		"\u0227\3\2\2\2\u022a\u022b\3\2\2\2\u022b\u022f\3\2\2\2\u022c\u022d\5H"+
+		"%\2\u022d\u022e\7\4\2\2\u022e\u0230\3\2\2\2\u022f\u022c\3\2\2\2\u022f"+
+		"\u0230\3\2\2\2\u0230\u0231\3\2\2\2\u0231\u0232\5\u00a2R\2\u0232\u0233"+
+		"\b\r\1\2\u0233\31\3\2\2\2\u0234\u0235\5\u00caf\2\u0235\u0236\7\4\2\2\u0236"+
+		"\u0237\5\u00d6l\2\u0237\u0238\7\4\2\2\u0238\u0239\5\u0080A\2\u0239\u023a"+
+		"\7\4\2\2\u023a\u023b\5\u00a6T\2\u023b\u023c\7\4\2\2\u023c\u023d\5\u0086"+
+		"D\2\u023d\u0241\7\4\2\2\u023e\u023f\5H%\2\u023f\u0240\7\4\2\2\u0240\u0242"+
+		"\3\2\2\2\u0241\u023e\3\2\2\2\u0241\u0242\3\2\2\2\u0242\u0246\3\2\2\2\u0243"+
+		"\u0244\5H%\2\u0244\u0245\7\4\2\2\u0245\u0247\3\2\2\2\u0246\u0243\3\2\2"+
+		"\2\u0246\u0247\3\2\2\2\u0247\u0248\3\2\2\2\u0248\u0249\5\u00a2R\2\u0249"+
+		"\u024a\b\16\1\2\u024a\33\3\2\2\2\u024b\u024c\5\u00caf\2\u024c\u024d\7"+
+		"\4\2\2\u024d\u024e\5\u00d0i\2\u024e\u024f\7\4\2\2\u024f\u0250\5\u0080"+
+		"A\2\u0250\u0251\7\4\2\2\u0251\u0252\5\u00a6T\2\u0252\u0253\7\4\2\2\u0253"+
+		"\u0254\5\u0086D\2\u0254\u0258\7\4\2\2\u0255\u0256\5H%\2\u0256\u0257\7"+
+		"\4\2\2\u0257\u0259\3\2\2\2\u0258\u0255\3\2\2\2\u0258\u0259\3\2\2\2\u0259"+
+		"\u025d\3\2\2\2\u025a\u025b\5H%\2\u025b\u025c\7\4\2\2\u025c\u025e\3\2\2"+
+		"\2\u025d\u025a\3\2\2\2\u025d\u025e\3\2\2\2\u025e\u025f\3\2\2\2\u025f\u0260"+
+		"\5\u00a2R\2\u0260\u0261\b\17\1\2\u0261\35\3\2\2\2\u0262\u0263\5\u00ca"+
+		"f\2\u0263\u0264\7\4\2\2\u0264\u0265\5\u00d2j\2\u0265\u0266\7\4\2\2\u0266"+
+		"\u0267\5\u0080A\2\u0267\u0268\7\4\2\2\u0268\u0269\5\u00a6T\2\u0269\u026a"+
+		"\7\4\2\2\u026a\u026b\5\u0086D\2\u026b\u026f\7\4\2\2\u026c\u026d\5H%\2"+
+		"\u026d\u026e\7\4\2\2\u026e\u0270\3\2\2\2\u026f\u026c\3\2\2\2\u026f\u0270"+
+		"\3\2\2\2\u0270\u0274\3\2\2\2\u0271\u0272\5H%\2\u0272\u0273\7\4\2\2\u0273"+
+		"\u0275\3\2\2\2\u0274\u0271\3\2\2\2\u0274\u0275\3\2\2\2\u0275\u0276\3\2"+
+		"\2\2\u0276\u0277\5\u00a2R\2\u0277\u0278\b\20\1\2\u0278\37\3\2\2\2\u0279"+
+		"\u027a\5\u00caf\2\u027a\u027b\7\4\2\2\u027b\u027c\5\u00ccg\2\u027c\u027d"+
+		"\7\4\2\2\u027d\u027e\5\u0080A\2\u027e\u027f\7\4\2\2\u027f\u0280\5\u00a6"+
+		"T\2\u0280\u0281\7\4\2\2\u0281\u0282\5\u0086D\2\u0282\u0286\7\4\2\2\u0283"+
+		"\u0284\5H%\2\u0284\u0285\7\4\2\2\u0285\u0287\3\2\2\2\u0286\u0283\3\2\2"+
+		"\2\u0286\u0287\3\2\2\2\u0287\u028b\3\2\2\2\u0288\u0289\5H%\2\u0289\u028a"+
+		"\7\4\2\2\u028a\u028c\3\2\2\2\u028b\u0288\3\2\2\2\u028b\u028c\3\2\2\2\u028c"+
+		"\u028d\3\2\2\2\u028d\u028e\5\u00a2R\2\u028e\u028f\b\21\1\2\u028f!\3\2"+
+		"\2\2\u0290\u0291\5\u00caf\2\u0291\u0292\7\4\2\2\u0292\u0293\5\u00ceh\2"+
+		"\u0293\u0294\7\4\2\2\u0294\u0295\5\u0080A\2\u0295\u0296\7\4\2\2\u0296"+
+		"\u0297\5\u00a6T\2\u0297\u0298\7\4\2\2\u0298\u0299\5\u0086D\2\u0299\u029d"+
+		"\7\4\2\2\u029a\u029b\5H%\2\u029b\u029c\7\4\2\2\u029c\u029e\3\2\2\2\u029d"+
+		"\u029a\3\2\2\2\u029d\u029e\3\2\2\2\u029e\u02a2\3\2\2\2\u029f\u02a0\5H"+
+		"%\2\u02a0\u02a1\7\4\2\2\u02a1\u02a3\3\2\2\2\u02a2\u029f\3\2\2\2\u02a2"+
+		"\u02a3\3\2\2\2\u02a3\u02a4\3\2\2\2\u02a4\u02a5\5\u00a2R\2\u02a5\u02a6"+
+		"\b\22\1\2\u02a6#\3\2\2\2\u02a7\u02a8\5\u00a6T\2\u02a8\u02a9\7\4\2\2\u02a9"+
+		"\u02aa\5\u0086D\2\u02aa\u02ae\7\4\2\2\u02ab\u02ac\5H%\2\u02ac\u02ad\7"+
+		"\4\2\2\u02ad\u02af\3\2\2\2\u02ae\u02ab\3\2\2\2\u02ae\u02af\3\2\2\2\u02af"+
+		"\u02b3\3\2\2\2\u02b0\u02b1\5H%\2\u02b1\u02b2\7\4\2\2\u02b2\u02b4\3\2\2"+
+		"\2\u02b3\u02b0\3\2\2\2\u02b3\u02b4\3\2\2\2\u02b4\u02b5\3\2\2\2\u02b5\u02b6"+
+		"\5\u00a2R\2\u02b6\u02b7\b\23\1\2\u02b7%\3\2\2\2\u02b8\u02b9\5\u009eP\2"+
+		"\u02b9\u02ba\7\4\2\2\u02ba\u02bb\5\u00b2Z\2\u02bb\u02bc\7\4\2\2\u02bc"+
+		"\u02bd\5~@\2\u02bd\u02be\7\4\2\2\u02be\u02bf\5\u00c4c\2\u02bf\u02c0\7"+
+		"\4\2\2\u02c0\u02c1\5\u00c8e\2\u02c1\u02c2\b\24\1\2\u02c2\'\3\2\2\2\u02c3"+
+		"\u02c4\5\u009eP\2\u02c4\u02c5\7\4\2\2\u02c5\u02c6\5\u00b2Z\2\u02c6\u02c7"+
+		"\b\25\1\2\u02c7\u02c8\3\2\2\2\u02c8\u02c9\7\4\2\2\u02c9\u02ca\5~@\2\u02ca"+
+		"\u02cb\7\4\2\2\u02cb\u02cc\5\u00b2Z\2\u02cc\u02cd\b\25\1\2\u02cd)\3\2"+
+		"\2\2\u02ce\u02cf\5\u00aaV\2\u02cf\u02d0\7\4\2\2\u02d0\u02d1\5\u00c2b\2"+
+		"\u02d1\u02d2\7\4\2\2\u02d2\u02d3\5\u0086D\2\u02d3\u02d7\7\4\2\2\u02d4"+
+		"\u02d5\5H%\2\u02d5\u02d6\7\4\2\2\u02d6\u02d8\3\2\2\2\u02d7\u02d4\3\2\2"+
+		"\2\u02d7\u02d8\3\2\2\2\u02d8\u02dc\3\2\2\2\u02d9\u02da\5H%\2\u02da\u02db"+
+		"\7\4\2\2\u02db\u02dd\3\2\2\2\u02dc\u02d9\3\2\2\2\u02dc\u02dd\3\2\2\2\u02dd"+
+		"\u02de\3\2\2\2\u02de\u02df\5\u00acW\2\u02df+\3\2\2\2\u02e0\u02e1\5\u00aa"+
+		"V\2\u02e1\u02e2\7\4\2\2\u02e2\u02e3\5\u00c2b\2\u02e3\u02e4\7\4\2\2\u02e4"+
+		"\u02e5\5\u0086D\2\u02e5\u02e9\7\4\2\2\u02e6\u02e7\5H%\2\u02e7\u02e8\7"+
+		"\4\2\2\u02e8\u02ea\3\2\2\2\u02e9\u02e6\3\2\2\2\u02e9\u02ea\3\2\2\2\u02ea"+
+		"\u02ee\3\2\2\2\u02eb\u02ec\5H%\2\u02ec\u02ed\7\4\2\2\u02ed\u02ef\3\2\2"+
+		"\2\u02ee\u02eb\3\2\2\2\u02ee\u02ef\3\2\2\2\u02ef\u02f0\3\2\2\2\u02f0\u02f1"+
+		"\5\u00b0Y\2\u02f1\u02f2\b\27\1\2\u02f2-\3\2\2\2\u02f3\u02f4\5\u00aaV\2"+
+		"\u02f4\u02f5\7\4\2\2\u02f5\u02f6\5\u00c2b\2\u02f6\u02f7\7\4\2\2\u02f7"+
+		"\u02fa\5\u0086D\2\u02f8\u02f9\7\4\2\2\u02f9\u02fb\5H%\2\u02fa\u02f8\3"+
+		"\2\2\2\u02fa\u02fb\3\2\2\2\u02fb\u02fc\3\2\2\2\u02fc\u02fd\7\4\2\2\u02fd"+
+		"\u02fe\5\u00aeX\2\u02fe/\3\2\2\2\u02ff\u0300\5\u00aaV\2\u0300\u0301\7"+
+		"\4\2\2\u0301\u0302\5H%\2\u0302\u0303\7\4\2\2\u0303\u0304\5\u00c0a\2\u0304"+
+		"\u0305\7\4\2\2\u0305\u0308\5\u0086D\2\u0306\u0307\7\4\2\2\u0307\u0309"+
+		"\5H%\2\u0308\u0306\3\2\2\2\u0308\u0309\3\2\2\2\u0309\u030a\3\2\2\2\u030a"+
+		"\u030b\7\4\2\2\u030b\u030c\5\u00b0Y\2\u030c\u030d\b\31\1\2\u030d\61\3"+
+		"\2\2\2\u030e\u030f\5\u00aaV\2\u030f\u0310\7\4\2\2\u0310\u0311\5H%\2\u0311"+
+		"\u0312\7\4\2\2\u0312\u0313\5\u00c0a\2\u0313\u0314\7\4\2\2\u0314\u0317"+
+		"\5\u0086D\2\u0315\u0316\7\4\2\2\u0316\u0318\5H%\2\u0317\u0315\3\2\2\2"+
+		"\u0317\u0318\3\2\2\2\u0318\u0319\3\2\2\2\u0319\u031a\7\4\2\2\u031a\u031b"+
+		"\5\u00acW\2\u031b\63\3\2\2\2\u031c\u031d\5\u00aaV\2\u031d\u031e\7\4\2"+
+		"\2\u031e\u031f\5H%\2\u031f\u0320\7\4\2\2\u0320\u0321\5\u00c0a\2\u0321"+
+		"\u0322\7\4\2\2\u0322\u0325\5\u0086D\2\u0323\u0324\7\4\2\2\u0324\u0326"+
+		"\5H%\2\u0325\u0323\3\2\2\2\u0325\u0326\3\2\2\2\u0326\u0327\3\2\2\2\u0327"+
+		"\u0328\7\4\2\2\u0328\u0329\5\u00aeX\2\u0329\65\3\2\2\2\u032a\u032b\5\u00aa"+
+		"V\2\u032b\u032c\7\4\2\2\u032c\u032d\5H%\2\u032d\u032e\7\4\2\2\u032e\u032f"+
+		"\5\u00be`\2\u032f\u0330\7\4\2\2\u0330\u0331\5\u0086D\2\u0331\u0335\7\4"+
+		"\2\2\u0332\u0333\5H%\2\u0333\u0334\7\4\2\2\u0334\u0336\3\2\2\2\u0335\u0332"+
+		"\3\2\2\2\u0335\u0336\3\2\2\2\u0336\u0337\3\2\2\2\u0337\u0338\5H%\2\u0338"+
+		"\u0339\7\4\2\2\u0339\u033a\5\u00acW\2\u033a\67\3\2\2\2\u033b\u033c\5\u00aa"+
+		"V\2\u033c\u033d\7\4\2\2\u033d\u033e\5H%\2\u033e\u033f\7\4\2\2\u033f\u0340"+
+		"\5\u00be`\2\u0340\u0341\7\4\2\2\u0341\u0342\5\u0086D\2\u0342\u0346\7\4"+
+		"\2\2\u0343\u0344\5H%\2\u0344\u0345\7\4\2\2\u0345\u0347\3\2\2\2\u0346\u0343"+
+		"\3\2\2\2\u0346\u0347\3\2\2\2\u0347\u0348\3\2\2\2\u0348\u0349\5\u00b0Y"+
+		"\2\u0349\u034a\b\35\1\2\u034a9\3\2\2\2\u034b\u034c\5\u00aaV\2\u034c\u034d"+
+		"\7\4\2\2\u034d\u034e\5H%\2\u034e\u034f\7\4\2\2\u034f\u0350\5\u00be`\2"+
+		"\u0350\u0351\7\4\2\2\u0351\u0352\5\u0086D\2\u0352\u0356\7\4\2\2\u0353"+
+		"\u0354\5H%\2\u0354\u0355\7\4\2\2\u0355\u0357\3\2\2\2\u0356\u0353\3\2\2"+
+		"\2\u0356\u0357\3\2\2\2\u0357\u0358\3\2\2\2\u0358\u0359\5\u00aeX\2\u0359"+
+		";\3\2\2\2\u035a\u035b\5\u00caf\2\u035b\u035c\7\4\2\2\u035c\u035d\5\u00bc"+
+		"_\2\u035d\u035e\7\4\2\2\u035e\u035f\5\u0084C\2\u035f\u0360\7\4\2\2\u0360"+
+		"\u0361\5\u00a0Q\2\u0361\u0362\7\4\2\2\u0362\u0363\5\u0086D\2\u0363\u0367"+
+		"\7\4\2\2\u0364\u0365\5H%\2\u0365\u0366\7\4\2\2\u0366\u0368\3\2\2\2\u0367"+
+		"\u0364\3\2\2\2\u0367\u0368\3\2\2\2\u0368\u0369\3\2\2\2\u0369\u036a\5\u00a2"+
+		"R\2\u036a\u036b\b\37\1\2\u036b=\3\2\2\2\u036c\u036d\5\u00d8m\2\u036d\u036e"+
+		"\7\4\2\2\u036e\u036f\5\u00ba^\2\u036f\u0370\7\4\2\2\u0370\u0371\5\u00e2"+
+		"r\2\u0371\u0372\7\4\2\2\u0372\u0373\5\u0086D\2\u0373\u0377\7\4\2\2\u0374"+
+		"\u0375\5H%\2\u0375\u0376\7\4\2\2\u0376\u0378\3\2\2\2\u0377\u0374\3\2\2"+
+		"\2\u0377\u0378\3\2\2\2\u0378\u0379\3\2\2\2\u0379\u037a\5\u00b0Y\2\u037a"+
+		"\u037b\b \1\2\u037b?\3\2\2\2\u037c\u037d\5\u00d8m\2\u037d\u037e\7\4\2"+
+		"\2\u037e\u037f\5\u00e0q\2\u037f\u0380\7\4\2\2\u0380\u0381\5\u0086D\2\u0381"+
+		"\u0385\7\4\2\2\u0382\u0383\5H%\2\u0383\u0384\7\4\2\2\u0384\u0386\3\2\2"+
+		"\2\u0385\u0382\3\2\2\2\u0385\u0386\3\2\2\2\u0386\u0387\3\2\2\2\u0387\u0388"+
+		"\5\u00b0Y\2\u0388\u0389\b!\1\2\u0389A\3\2\2\2\u038a\u038b\5\u008cG\2\u038b"+
+		"\u038c\7\4\2\2\u038c\u038d\5\u00b2Z\2\u038d\u038e\b\"\1\2\u038eC\3\2\2"+
+		"\2\u038f\u0390\5\u00aaV\2\u0390\u0391\7\4\2\2\u0391\u0392\5H%\2\u0392"+
+		"\u0393\7\4\2\2\u0393\u0394\5\u00dep\2\u0394\u0395\7\4\2\2\u0395\u0396"+
+		"\5H%\2\u0396\u0397\7\4\2\2\u0397\u0398\5\u00dco\2\u0398\u0399\7\4\2\2"+
+		"\u0399\u039a\5\u0086D\2\u039a\u039e\7\4\2\2\u039b\u039c\5H%\2\u039c\u039d"+
+		"\7\4\2\2\u039d\u039f\3\2\2\2\u039e\u039b\3\2\2\2\u039e\u039f\3\2\2\2\u039f"+
+		"\u03a0\3\2\2\2\u03a0\u03a1\5H%\2\u03a1\u03a2\7\4\2\2\u03a2\u03a3\5\u00ac"+
+		"W\2\u03a3E\3\2\2\2\u03a4\u03a5\5\u00aaV\2\u03a5\u03a6\7\4\2\2\u03a6\u03a7"+
+		"\5H%\2\u03a7\u03a8\7\4\2\2\u03a8\u03a9\5\u00dep\2\u03a9\u03aa\7\4\2\2"+
+		"\u03aa\u03ab\5H%\2\u03ab\u03ac\7\4\2\2\u03ac\u03ad\5\u00dco\2\u03ad\u03ae"+
+		"\7\4\2\2\u03ae\u03af\5\u0086D\2\u03af\u03b3\7\4\2\2\u03b0\u03b1\5H%\2"+
+		"\u03b1\u03b2\7\4\2\2\u03b2\u03b4\3\2\2\2\u03b3\u03b0\3\2\2\2\u03b3\u03b4"+
+		"\3\2\2\2\u03b4\u03b5\3\2\2\2\u03b5\u03b6\5H%\2\u03b6\u03b7\7\4\2\2\u03b7"+
+		"\u03b8\5\u00aeX\2\u03b8G\3\2\2\2\u03b9\u03ba\t\2\2\2\u03baI\3\2\2\2\u03bb"+
+		"\u03bc\5\u00aaV\2\u03bc\u03bd\7\4\2\2\u03bd\u03be\5\u00b0Y\2\u03be\u03bf"+
+		"\7\4\2\2\u03bf\u03c0\5\u0086D\2\u03c0\u03c4\7\4\2\2\u03c1\u03c2\5H%\2"+
+		"\u03c2\u03c3\7\4\2\2\u03c3\u03c5\3\2\2\2\u03c4\u03c1\3\2\2\2\u03c4\u03c5"+
+		"\3\2\2\2\u03c5\u03c6\3\2\2\2\u03c6\u03c7\5\u00acW\2\u03c7\u03c8\b&\1\2"+
+		"\u03c8K\3\2\2\2\u03c9\u03ca\5\u00aaV\2\u03ca\u03cb\7\4\2\2\u03cb\u03cc"+
+		"\5\u00b0Y\2\u03cc\u03cd\7\4\2\2\u03cd\u03ce\5\u0086D\2\u03ce\u03d2\7\4"+
+		"\2\2\u03cf\u03d0\5H%\2\u03d0\u03d1\7\4\2\2\u03d1\u03d3\3\2\2\2\u03d2\u03cf"+
+		"\3\2\2\2\u03d2\u03d3\3\2\2\2\u03d3\u03d4\3\2\2\2\u03d4\u03d5\5\u00aeX"+
+		"\2\u03d5\u03d6\b\'\1\2\u03d6M\3\2\2\2\u03d7\u03d8\5\u00aaV\2\u03d8\u03d9"+
+		"\7\4\2\2\u03d9\u03da\5\u00b8]\2\u03da\u03db\7\4\2\2\u03db\u03dc\5\u0086"+
+		"D\2\u03dc\u03e0\7\4\2\2\u03dd\u03de\5H%\2\u03de\u03df\7\4\2\2\u03df\u03e1"+
+		"\3\2\2\2\u03e0\u03dd\3\2\2\2\u03e0\u03e1\3\2\2\2\u03e1\u03e2\3\2\2\2\u03e2"+
+		"\u03e3\5\u00b0Y\2\u03e3\u03e4\b(\1\2\u03e4O\3\2\2\2\u03e5\u03e6\5\u00d8"+
+		"m\2\u03e6\u03e7\7\4\2\2\u03e7\u03e8\5\u00dan\2\u03e8\u03e9\7\4\2\2\u03e9"+
+		"\u03ea\5\u0086D\2\u03ea\u03ee\7\4\2\2\u03eb\u03ec\5H%\2\u03ec\u03ed\7"+
+		"\4\2\2\u03ed\u03ef\3\2\2\2\u03ee\u03eb\3\2\2\2\u03ee\u03ef\3\2\2\2\u03ef"+
+		"\u03f0\3\2\2\2\u03f0\u03f1\5\u00acW\2\u03f1Q\3\2\2\2\u03f2\u03f3\5\u00d8"+
+		"m\2\u03f3\u03f4\7\4\2\2\u03f4\u03f5\5\u00dan\2\u03f5\u03f6\7\4\2\2\u03f6"+
+		"\u03f7\5\u0086D\2\u03f7\u03fb\7\4\2\2\u03f8\u03f9\5H%\2\u03f9\u03fa\7"+
+		"\4\2\2\u03fa\u03fc\3\2\2\2\u03fb\u03f8\3\2\2\2\u03fb\u03fc\3\2\2\2\u03fc"+
+		"\u03fd\3\2\2\2\u03fd\u03fe\5\u00aeX\2\u03feS\3\2\2\2\u03ff\u0400\5\u0082"+
+		"B\2\u0400\u0401\7\4\2\2\u0401\u0402\5\u0080A\2\u0402\u0403\7\4\2\2\u0403"+
+		"\u0404\5\u00a2R\2\u0404\u0405\b+\1\2\u0405U\3\2\2\2\u0406\u0407\5\u00a0"+
+		"Q\2\u0407\u0408\7\4\2\2\u0408\u0409\5\u0086D\2\u0409\u040d\7\4\2\2\u040a"+
+		"\u040b\5H%\2\u040b\u040c\7\4\2\2\u040c\u040e\3\2\2\2\u040d\u040a\3\2\2"+
+		"\2\u040d\u040e\3\2\2\2\u040e\u040f\3\2\2\2\u040f\u0410\5\u00ba^\2\u0410"+
+		"\u0411\b,\1\2\u0411W\3\2\2\2\u0412\u0413\5\u00caf\2\u0413\u0414\7\4\2"+
+		"\2\u0414\u0415\5\u00d0i\2\u0415\u0416\7\4\2\2\u0416\u0417\5\u0080A\2\u0417"+
+		"\u0418\7\4\2\2\u0418\u0419\5\u00a0Q\2\u0419\u041a\7\4\2\2\u041a\u041b"+
+		"\5\u0086D\2\u041b\u041f\7\4\2\2\u041c\u041d\5H%\2\u041d\u041e\7\4\2\2"+
+		"\u041e\u0420\3\2\2\2\u041f\u041c\3\2\2\2\u041f\u0420\3\2\2\2\u0420\u0421"+
+		"\3\2\2\2\u0421\u0422\5\u00a2R\2\u0422\u0423\b-\1\2\u0423Y\3\2\2\2\u0424"+
+		"\u0425\5\u00caf\2\u0425\u0426\7\4\2\2\u0426\u0427\5\u00d6l\2\u0427\u0428"+
+		"\7\4\2\2\u0428\u0429\5\u0080A\2\u0429\u042a\7\4\2\2\u042a\u042b\5\u00a0"+
+		"Q\2\u042b\u042c\7\4\2\2\u042c\u042d\5\u0086D\2\u042d\u0431\7\4\2\2\u042e"+
+		"\u042f\5H%\2\u042f\u0430\7\4\2\2\u0430\u0432\3\2\2\2\u0431\u042e\3\2\2"+
+		"\2\u0431\u0432\3\2\2\2\u0432\u0433\3\2\2\2\u0433\u0434\5\u00a2R\2\u0434"+
+		"\u0435\b.\1\2\u0435[\3\2\2\2\u0436\u0437\5\u00caf\2\u0437\u0438\7\4\2"+
+		"\2\u0438\u0439\5\u00d0i\2\u0439\u043a\7\4\2\2\u043a\u043b\5\u0080A\2\u043b"+
+		"\u043c\7\4\2\2\u043c\u043d\5\u00a0Q\2\u043d\u043e\7\4\2\2\u043e\u043f"+
+		"\5\u0086D\2\u043f\u0443\7\4\2\2\u0440\u0441\5H%\2\u0441\u0442\7\4\2\2"+
+		"\u0442\u0444\3\2\2\2\u0443\u0440\3\2\2\2\u0443\u0444\3\2\2\2\u0444\u0445"+
+		"\3\2\2\2\u0445\u0446\5\u00a2R\2\u0446\u0447\b/\1\2\u0447]\3\2\2\2\u0448"+
+		"\u0449\5\u00caf\2\u0449\u044a\7\4\2\2\u044a\u044b\5\u00d2j\2\u044b\u044c"+
+		"\7\4\2\2\u044c\u044d\5\u0080A\2\u044d\u044e\7\4\2\2\u044e\u044f\5\u00a0"+
+		"Q\2\u044f\u0450\7\4\2\2\u0450\u0451\5\u0086D\2\u0451\u0455\7\4\2\2\u0452"+
+		"\u0453\5H%\2\u0453\u0454\7\4\2\2\u0454\u0456\3\2\2\2\u0455\u0452\3\2\2"+
+		"\2\u0455\u0456\3\2\2\2\u0456\u0457\3\2\2\2\u0457\u0458\5\u00a2R\2\u0458"+
+		"\u0459\b\60\1\2\u0459_\3\2\2\2\u045a\u045b\5\u00caf\2\u045b\u045c\7\4"+
+		"\2\2\u045c\u045d\5\u00ccg\2\u045d\u045e\7\4\2\2\u045e\u045f\5\u0080A\2"+
+		"\u045f\u0460\7\4\2\2\u0460\u0461\5\u00a0Q\2\u0461\u0462\7\4\2\2\u0462"+
+		"\u0463\5\u0086D\2\u0463\u0467\7\4\2\2\u0464\u0465\5H%\2\u0465\u0466\7"+
+		"\4\2\2\u0466\u0468\3\2\2\2\u0467\u0464\3\2\2\2\u0467\u0468\3\2\2\2\u0468"+
+		"\u0469\3\2\2\2\u0469\u046a\5\u00a2R\2\u046a\u046b\b\61\1\2\u046ba\3\2"+
+		"\2\2\u046c\u046d\5\u00caf\2\u046d\u046e\7\4\2\2\u046e\u046f\5\u00ceh\2"+
+		"\u046f\u0470\7\4\2\2\u0470\u0471\5\u0080A\2\u0471\u0472\7\4\2\2\u0472"+
+		"\u0473\5\u00a0Q\2\u0473\u0474\7\4\2\2\u0474\u0475\5\u0086D\2\u0475\u0479"+
+		"\7\4\2\2\u0476\u0477\5H%\2\u0477\u0478\7\4\2\2\u0478\u047a\3\2\2\2\u0479"+
+		"\u0476\3\2\2\2\u0479\u047a\3\2\2\2\u047a\u047b\3\2\2\2\u047b\u047c\5\u00a2"+
+		"R\2\u047c\u047d\b\62\1\2\u047dc\3\2\2\2\u047e\u047f\5\u00a0Q\2\u047f\u0480"+
+		"\7\4\2\2\u0480\u0481\5\u0086D\2\u0481\u0485\7\4\2\2\u0482\u0483\5H%\2"+
+		"\u0483\u0484\7\4\2\2\u0484\u0486\3\2\2\2\u0485\u0482\3\2\2\2\u0485\u0486"+
+		"\3\2\2\2\u0486\u0487\3\2\2\2\u0487\u0488\5\u00a2R\2\u0488\u0489\b\63\1"+
+		"\2\u0489e\3\2\2\2\u048a\u048b\5\u009eP\2\u048b\u048c\7\4\2\2\u048c\u048d"+
+		"\5\u00b8]\2\u048d\u048e\b\64\1\2\u048e\u048f\3\2\2\2\u048f\u0490\7\4\2"+
+		"\2\u0490\u0491\5~@\2\u0491\u0492\7\4\2\2\u0492\u0493\5\u00b8]\2\u0493"+
+		"\u0494\b\64\1\2\u0494g\3\2\2\2\u0495\u0496\5\u00aaV\2\u0496\u0497\7\4"+
+		"\2\2\u0497\u049f\5\u00aeX\2\u0498\u0499\7\4\2\2\u0499\u049d\5\u0086D\2"+
+		"\u049a\u049b\5H%\2\u049b\u049c\7\4\2\2\u049c\u049e\3\2\2\2\u049d\u049a"+
+		"\3\2\2\2\u049d\u049e\3\2\2\2\u049e\u04a0\3\2\2\2\u049f\u0498\3\2\2\2\u049f"+
+		"\u04a0\3\2\2\2\u04a0\u04a1\3\2\2\2\u04a1\u04a2\7\4\2\2\u04a2\u04a3\5\u00ac"+
+		"W\2\u04a3i\3\2\2\2\u04a4\u04a5\5\u008cG\2\u04a5\u04a6\7\4\2\2\u04a6\u04a7"+
+		"\5\u008aF\2\u04a7\u04a8\7\4\2\2\u04a8\u04a9\5\u008eH\2\u04a9\u04aa\7\4"+
+		"\2\2\u04aa\u04ab\5\u00c8e\2\u04ab\u04ac\b\66\1\2\u04ack\3\2\2\2\u04ad"+
+		"\u04ae\5p9\2\u04ae\u04af\7\4\2\2\u04af\u04b0\5n8\2\u04b0\u04b1\7\4\2\2"+
+		"\u04b1\u04b2\5\u0094K\2\u04b2m\3\2\2\2\u04b3\u04b4\t\3\2\2\u04b4o\3\2"+
+		"\2\2\u04b5\u04b6\7@\2\2\u04b6q\3\2\2\2\u04b7\u04b8\5\u008cG\2\u04b8\u04b9"+
+		"\7\4\2\2\u04b9\u04ba\5\u0092J\2\u04bas\3\2\2\2\u04bb\u04bc\5\u008cG\2"+
+		"\u04bc\u04bd\7\4\2\2\u04bd\u04be\5\u00b8]\2\u04be\u04bf\b;\1\2\u04bfu"+
+		"\3\2\2\2\u04c0\u04c1\5\u009aN\2\u04c1\u04c2\7\4\2\2\u04c2\u04c3\5\u00b8"+
+		"]\2\u04c3\u04c4\b<\1\2\u04c4\u04c5\3\2\2\2\u04c5\u04c6\7\4\2\2\u04c6\u04c7"+
+		"\5~@\2\u04c7\u04c8\7\4\2\2\u04c8\u04c9\5\u00b8]\2\u04c9\u04ca\b<\1\2\u04ca"+
+		"w\3\2\2\2\u04cb\u04cc\5\u009cO\2\u04cc\u04cd\7\4\2\2\u04cd\u04ce\5\u00b8"+
+		"]\2\u04ce\u04cf\b=\1\2\u04cf\u04d0\3\2\2\2\u04d0\u04d1\7\4\2\2\u04d1\u04d2"+
+		"\5~@\2\u04d2\u04d3\7\4\2\2\u04d3\u04d4\5\u00b8]\2\u04d4\u04d5\b=\1\2\u04d5"+
+		"y\3\2\2\2\u04d6\u04d7\5\u0098M\2\u04d7\u04d8\7\4\2\2\u04d8\u04d9\5\u00b8"+
+		"]\2\u04d9\u04da\b>\1\2\u04da\u04db\3\2\2\2\u04db\u04dc\7\4\2\2\u04dc\u04dd"+
+		"\5~@\2\u04dd\u04de\7\4\2\2\u04de\u04df\5\u00b8]\2\u04df\u04e0\b>\1\2\u04e0"+
+		"{\3\2\2\2\u04e1\u04e2\5\u0096L\2\u04e2\u04e3\7\4\2\2\u04e3\u04e4\5\u00b8"+
+		"]\2\u04e4\u04e5\b?\1\2\u04e5\u04e6\3\2\2\2\u04e6\u04e7\7\4\2\2\u04e7\u04e8"+
+		"\5~@\2\u04e8\u04e9\7\4\2\2\u04e9\u04ea\5\u00b8]\2\u04ea\u04eb\b?\1\2\u04eb"+
+		"}\3\2\2\2\u04ec\u04ed\7X\2\2\u04ed\177\3\2\2\2\u04ee\u04ef\7Y\2\2\u04ef"+
+		"\u0081\3\2\2\2\u04f0\u04f1\7Z\2\2\u04f1\u0083\3\2\2\2\u04f2\u04f3\t\4"+
+		"\2\2\u04f3\u0085\3\2\2\2\u04f4\u04f5\t\5\2\2\u04f5\u0087\3\2\2\2\u04f6"+
+		"\u04f7\t\6\2\2\u04f7\u0089\3\2\2\2\u04f8\u04f9\7Q\2\2\u04f9\u008b\3\2"+
+		"\2\2\u04fa\u04fb\t\7\2\2\u04fb\u008d\3\2\2\2\u04fc\u0503\7L\2\2\u04fd"+
+		"\u04ff\7N\2\2\u04fe\u0500\7\4\2\2\u04ff\u04fe\3\2\2\2\u04ff\u0500\3\2"+
+		"\2\2\u0500\u0501\3\2\2\2\u0501\u0503\7M\2\2\u0502\u04fc\3\2\2\2\u0502"+
+		"\u04fd\3\2\2\2\u0503\u008f\3\2\2\2\u0504\u0505\7N\2\2\u0505\u0091\3\2"+
+		"\2\2\u0506\u0507\t\b\2\2\u0507\u0093\3\2\2\2\u0508\u0509\t\t\2\2\u0509"+
+		"\u0095\3\2\2\2\u050a\u050b\t\n\2\2\u050b\u0097\3\2\2\2\u050c\u050d\t\13"+
+		"\2\2\u050d\u0099\3\2\2\2\u050e\u050f\t\f\2\2\u050f\u009b\3\2\2\2\u0510"+
+		"\u0511\t\r\2\2\u0511\u009d\3\2\2\2\u0512\u0513\7C\2\2\u0513\u009f\3\2"+
+		"\2\2\u0514\u0519\7B\2\2\u0515\u0516\7P\2\2\u0516\u0517\7\4\2\2\u0517\u0519"+
+		"\7T\2\2\u0518\u0514\3\2\2\2\u0518\u0515\3\2\2\2\u0519\u00a1\3\2\2\2\u051a"+
+		"\u051b\5\u00a4S\2\u051b\u051c\7\4\2\2\u051c\u051d\7[\2\2\u051d\u051e\b"+
+		"R\1\2\u051e\u00a3\3\2\2\2\u051f\u0528\7\5\2\2\u0520\u0522\7\6\2\2\u0521"+
+		"\u0523\7\4\2\2\u0522\u0521\3\2\2\2\u0522\u0523\3\2\2\2\u0523\u0525\3\2"+
+		"\2\2\u0524\u0526\7M\2\2\u0525\u0524\3\2\2\2\u0525\u0526\3\2\2\2\u0526"+
+		"\u0528\3\2\2\2\u0527\u051f\3\2\2\2\u0527\u0520\3\2\2\2\u0528\u00a5\3\2"+
+		"\2\2\u0529\u052a\7A\2\2\u052a\u052b\7\4\2\2\u052b\u0530\7>\2\2\u052c\u052d"+
+		"\7@\2\2\u052d\u052e\7\4\2\2\u052e\u0530\7?\2\2\u052f\u0529\3\2\2\2\u052f"+
+		"\u052c\3\2\2\2\u0530\u00a7\3\2\2\2\u0531\u0532\7;\2\2\u0532\u0533\7\4"+
+		"\2\2\u0533\u0536\7=\2\2\u0534\u0536\7<\2\2\u0535\u0531\3\2\2\2\u0535\u0534"+
+		"\3\2\2\2\u0536\u00a9\3\2\2\2\u0537\u0538\t\16\2\2\u0538\u00ab\3\2\2\2"+
+		"\u0539\u053a\t\17\2\2\u053a\u00ad\3\2\2\2\u053b\u053c\t\20\2\2\u053c\u00af"+
+		"\3\2\2\2\u053d\u053e\7\62\2\2\u053e\u0541\7\4\2\2\u053f\u0540\7R\2\2\u0540"+
+		"\u0542\7\4\2\2\u0541\u053f\3\2\2\2\u0541\u0542\3\2\2\2\u0542\u0543\3\2"+
+		"\2\2\u0543\u0544\5\u00ba^\2\u0544\u0545\bY\1\2\u0545\u00b1\3\2\2\2\u0546"+
+		"\u0547\7R\2\2\u0547\u0548\7\4\2\2\u0548\u0549\5\u00b0Y\2\u0549\u054a\b"+
+		"Z\1\2\u054a\u054b\3\2\2\2\u054b\u054c\7\4\2\2\u054c\u054d\7\63\2\2\u054d"+
+		"\u054e\7\4\2\2\u054e\u054f\5\u00b0Y\2\u054f\u0550\bZ\1\2\u0550\u00b3\3"+
+		"\2\2\2\u0551\u0552\7\60\2\2\u0552\u00b5\3\2\2\2\u0553\u0554\7/\2\2\u0554"+
+		"\u00b7\3\2\2\2\u0555\u0556\7.\2\2\u0556\u0558\b]\1\2\u0557\u0555\3\2\2"+
+		"\2\u0557\u0558\3\2\2\2\u0558\u0559\3\2\2\2\u0559\u055a\7\61\2\2\u055a"+
+		"\u055f\b]\1\2\u055b\u055c\5\u00ba^\2\u055c\u055d\b]\1\2\u055d\u055f\3"+
+		"\2\2\2\u055e\u0557\3\2\2\2\u055e\u055b\3\2\2\2\u055f\u00b9\3\2\2\2\u0560"+
+		"\u0561\7\61\2\2\u0561\u0569\b^\1\2\u0562\u0563\5\u00aeX\2\u0563\u0564"+
+		"\b^\1\2\u0564\u0569\3\2\2\2\u0565\u0566\5\u00acW\2\u0566\u0567\b^\1\2"+
+		"\u0567\u0569\3\2\2\2\u0568\u0560\3\2\2\2\u0568\u0562\3\2\2\2\u0568\u0565"+
+		"\3\2\2\2\u0569\u00bb\3\2\2\2\u056a\u056b\t\21\2\2\u056b\u00bd\3\2\2\2"+
+		"\u056c\u056d\7+\2\2\u056d\u00bf\3\2\2\2\u056e\u056f\7(\2\2\u056f\u057d"+
+		"\7\4\2\2\u0570\u0571\7\60\2\2\u0571\u0572\7\4\2\2\u0572\u057e\7)\2\2\u0573"+
+		"\u0574\7)\2\2\u0574\u057b\7\4\2\2\u0575\u0576\7\'\2\2\u0576\u0577\7\4"+
+		"\2\2\u0577\u057c\7\60\2\2\u0578\u0579\7%\2\2\u0579\u057a\7\4\2\2\u057a"+
+		"\u057c\7&\2\2\u057b\u0575\3\2\2\2\u057b\u0578\3\2\2\2\u057c\u057e\3\2"+
+		"\2\2\u057d\u0570\3\2\2\2\u057d\u0573\3\2\2\2\u057e\u0585\3\2\2\2\u057f"+
+		"\u0580\7\60\2\2\u0580\u0581\7\4\2\2\u0581\u0582\7*\2\2\u0582\u0583\7\4"+
+		"\2\2\u0583\u0585\7)\2\2\u0584\u056e\3\2\2\2\u0584\u057f\3\2\2\2\u0585"+
+		"\u00c1\3\2\2\2\u0586\u0587\7\60\2\2\u0587\u0588\7\4\2\2\u0588\u0594\7"+
+		")\2\2\u0589\u058a\7)\2\2\u058a\u058b\7\4\2\2\u058b\u058c\7%\2\2\u058c"+
+		"\u058d\7\4\2\2\u058d\u0594\7&\2\2\u058e\u058f\7)\2\2\u058f\u0590\7\4\2"+
+		"\2\u0590\u0591\7\'\2\2\u0591\u0592\7\4\2\2\u0592\u0594\7\60\2\2\u0593"+
+		"\u0586\3\2\2\2\u0593\u0589\3\2\2\2\u0593\u058e\3\2\2\2\u0594\u00c3\3\2"+
+		"\2\2\u0595\u0596\7\b\2\2\u0596\u00c5\3\2\2\2\u0597\u05e6\7\6\2\2\u0598"+
+		"\u05e6\7\b\2\2\u0599\u05e6\7\f\2\2\u059a\u05e6\7\r\2\2\u059b\u05e6\7\16"+
+		"\2\2\u059c\u05e6\7\17\2\2\u059d\u05e6\7\20\2\2\u059e\u05e6\7\21\2\2\u059f"+
+		"\u05e6\7\22\2\2\u05a0\u05e6\7\23\2\2\u05a1\u05e6\7\24\2\2\u05a2\u05e6"+
+		"\7\25\2\2\u05a3\u05e6\7\26\2\2\u05a4\u05e6\7\27\2\2\u05a5\u05e6\7\30\2"+
+		"\2\u05a6\u05e6\7\31\2\2\u05a7\u05e6\7\32\2\2\u05a8\u05e6\7\33\2\2\u05a9"+
+		"\u05e6\7\34\2\2\u05aa\u05e6\7\35\2\2\u05ab\u05e6\7\36\2\2\u05ac\u05e6"+
+		"\7\37\2\2\u05ad\u05e6\7 \2\2\u05ae\u05e6\7!\2\2\u05af\u05e6\7\"\2\2\u05b0"+
+		"\u05e6\7#\2\2\u05b1\u05e6\7%\2\2\u05b2\u05e6\7&\2\2\u05b3\u05e6\7\'\2"+
+		"\2\u05b4\u05e6\7(\2\2\u05b5\u05e6\7)\2\2\u05b6\u05e6\7*\2\2\u05b7\u05e6"+
+		"\7+\2\2\u05b8\u05e6\7,\2\2\u05b9\u05e6\7-\2\2\u05ba\u05e6\7.\2\2\u05bb"+
+		"\u05e6\7/\2\2\u05bc\u05e6\7\60\2\2\u05bd\u05e6\7\61\2\2\u05be\u05e6\7"+
+		"\62\2\2\u05bf\u05e6\7\63\2\2\u05c0\u05e6\7\64\2\2\u05c1\u05e6\7\65\2\2"+
+		"\u05c2\u05e6\7\66\2\2\u05c3\u05e6\7\67\2\2\u05c4\u05e6\79\2\2\u05c5\u05e6"+
+		"\7;\2\2\u05c6\u05e6\7<\2\2\u05c7\u05e6\7=\2\2\u05c8\u05e6\7>\2\2\u05c9"+
+		"\u05e6\7?\2\2\u05ca\u05e6\7@\2\2\u05cb\u05e6\7A\2\2\u05cc\u05e6\7M\2\2"+
+		"\u05cd\u05e6\7B\2\2\u05ce\u05e6\7C\2\2\u05cf\u05e6\7D\2\2\u05d0\u05e6"+
+		"\7E\2\2\u05d1\u05e6\7F\2\2\u05d2\u05e6\7G\2\2\u05d3\u05e6\7H\2\2\u05d4"+
+		"\u05e6\7I\2\2\u05d5\u05e6\7J\2\2\u05d6\u05e6\7K\2\2\u05d7\u05e6\7N\2\2"+
+		"\u05d8\u05e6\7O\2\2\u05d9\u05e6\7P\2\2\u05da\u05e6\7Q\2\2\u05db\u05e6"+
+		"\7R\2\2\u05dc\u05e6\7T\2\2\u05dd\u05e6\7V\2\2\u05de\u05e6\7W\2\2\u05df"+
+		"\u05e6\7X\2\2\u05e0\u05e6\7Y\2\2\u05e1\u05e6\7Z\2\2\u05e2\u05e6\7[\2\2"+
+		"\u05e3\u05e6\7\\\2\2\u05e4\u05e6\7]\2\2\u05e5\u0597\3\2\2\2\u05e5\u0598"+
+		"\3\2\2\2\u05e5\u0599\3\2\2\2\u05e5\u059a\3\2\2\2\u05e5\u059b\3\2\2\2\u05e5"+
+		"\u059c\3\2\2\2\u05e5\u059d\3\2\2\2\u05e5\u059e\3\2\2\2\u05e5\u059f\3\2"+
+		"\2\2\u05e5\u05a0\3\2\2\2\u05e5\u05a1\3\2\2\2\u05e5\u05a2\3\2\2\2\u05e5"+
+		"\u05a3\3\2\2\2\u05e5\u05a4\3\2\2\2\u05e5\u05a5\3\2\2\2\u05e5\u05a6\3\2"+
+		"\2\2\u05e5\u05a7\3\2\2\2\u05e5\u05a8\3\2\2\2\u05e5\u05a9\3\2\2\2\u05e5"+
+		"\u05aa\3\2\2\2\u05e5\u05ab\3\2\2\2\u05e5\u05ac\3\2\2\2\u05e5\u05ad\3\2"+
+		"\2\2\u05e5\u05ae\3\2\2\2\u05e5\u05af\3\2\2\2\u05e5\u05b0\3\2\2\2\u05e5"+
+		"\u05b1\3\2\2\2\u05e5\u05b2\3\2\2\2\u05e5\u05b3\3\2\2\2\u05e5\u05b4\3\2"+
+		"\2\2\u05e5\u05b5\3\2\2\2\u05e5\u05b6\3\2\2\2\u05e5\u05b7\3\2\2\2\u05e5"+
+		"\u05b8\3\2\2\2\u05e5\u05b9\3\2\2\2\u05e5\u05ba\3\2\2\2\u05e5\u05bb\3\2"+
+		"\2\2\u05e5\u05bc\3\2\2\2\u05e5\u05bd\3\2\2\2\u05e5\u05be\3\2\2\2\u05e5"+
+		"\u05bf\3\2\2\2\u05e5\u05c0\3\2\2\2\u05e5\u05c1\3\2\2\2\u05e5\u05c2\3\2"+
+		"\2\2\u05e5\u05c3\3\2\2\2\u05e5\u05c4\3\2\2\2\u05e5\u05c5\3\2\2\2\u05e5"+
+		"\u05c6\3\2\2\2\u05e5\u05c7\3\2\2\2\u05e5\u05c8\3\2\2\2\u05e5\u05c9\3\2"+
+		"\2\2\u05e5\u05ca\3\2\2\2\u05e5\u05cb\3\2\2\2\u05e5\u05cc\3\2\2\2\u05e5"+
+		"\u05cd\3\2\2\2\u05e5\u05ce\3\2\2\2\u05e5\u05cf\3\2\2\2\u05e5\u05d0\3\2"+
+		"\2\2\u05e5\u05d1\3\2\2\2\u05e5\u05d2\3\2\2\2\u05e5\u05d3\3\2\2\2\u05e5"+
+		"\u05d4\3\2\2\2\u05e5\u05d5\3\2\2\2\u05e5\u05d6\3\2\2\2\u05e5\u05d7\3\2"+
+		"\2\2\u05e5\u05d8\3\2\2\2\u05e5\u05d9\3\2\2\2\u05e5\u05da\3\2\2\2\u05e5"+
+		"\u05db\3\2\2\2\u05e5\u05dc\3\2\2\2\u05e5\u05dd\3\2\2\2\u05e5\u05de\3\2"+
+		"\2\2\u05e5\u05df\3\2\2\2\u05e5\u05e0\3\2\2\2\u05e5\u05e1\3\2\2\2\u05e5"+
+		"\u05e2\3\2\2\2\u05e5\u05e3\3\2\2\2\u05e5\u05e4\3\2\2\2\u05e6\u05e7\3\2"+
+		"\2\2\u05e7\u05e8\bd\1\2\u05e8\u00c7\3\2\2\2\u05e9\u05ea\5\u00c6d\2\u05ea"+
+		"\u05f7\be\1\2\u05eb\u05ec\5\u00c6d\2\u05ec\u05ed\be\1\2\u05ed\u05ef\3"+
+		"\2\2\2\u05ee\u05eb\3\2\2\2\u05ef\u05f0\3\2\2\2\u05f0\u05ee\3\2\2\2\u05f0"+
+		"\u05f1\3\2\2\2\u05f1\u05f2\3\2\2\2\u05f2\u05f3\7\4\2\2\u05f3\u05f4\be"+
+		"\1\2\u05f4\u05f6\3\2\2\2\u05f5\u05ee\3\2\2\2\u05f6\u05f9\3\2\2\2\u05f7"+
+		"\u05f5\3\2\2\2\u05f7\u05f8\3\2\2\2\u05f8\u05fa\3\2\2\2\u05f9\u05f7\3\2"+
+		"\2\2\u05fa\u05fb\be\1\2\u05fb\u00c9\3\2\2\2\u05fc\u05fd\t\22\2\2\u05fd"+
+		"\u05fe\7\4\2\2\u05fe\u05ff\7$\2\2\u05ff\u00cb\3\2\2\2\u0600\u0605\7\37"+
+		"\2\2\u0601\u0602\7 \2\2\u0602\u0603\7\4\2\2\u0603\u0605\7!\2\2\u0604\u0600"+
+		"\3\2\2\2\u0604\u0601\3\2\2\2\u0605\u00cd\3\2\2\2\u0606\u0607\7!\2\2\u0607"+
+		"\u00cf\3\2\2\2\u0608\u0609\7\36\2\2\u0609\u00d1\3\2\2\2\u060a\u060b\7"+
+		"\35\2\2\u060b\u00d3\3\2\2\2\u060c\u060d\7\36\2\2\u060d\u060e\7\4\2\2\u060e"+
+		"\u060f\7\34\2\2\u060f\u0610\7\4\2\2\u0610\u0617\7!\2\2\u0611\u0612\7!"+
+		"\2\2\u0612\u0613\7\4\2\2\u0613\u0614\7\34\2\2\u0614\u0615\7\4\2\2\u0615"+
+		"\u0617\7\36\2\2\u0616\u060c\3\2\2\2\u0616\u0611\3\2\2\2\u0617\u00d5\3"+
+		"\2\2\2\u0618\u0619\7\35\2\2\u0619\u061a\7\4\2\2\u061a\u061b\7\34\2\2\u061b"+
+		"\u061c\7\4\2\2\u061c\u0623\7!\2\2\u061d\u061e\7!\2\2\u061e\u061f\7\4\2"+
+		"\2\u061f\u0620\7\34\2\2\u0620\u0621\7\4\2\2\u0621\u0623\7\35\2\2\u0622"+
+		"\u0618\3\2\2\2\u0622\u061d\3\2\2\2\u0623\u00d7\3\2\2\2\u0624\u0625\7\33"+
+		"\2\2\u0625\u0626\7\4\2\2\u0626\u0629\7\32\2\2\u0627\u0629\7\27\2\2\u0628"+
+		"\u0624\3\2\2\2\u0628\u0627\3\2\2\2\u0629\u00d9\3\2\2\2\u062a\u062b\7\26"+
+		"\2\2\u062b\u00db\3\2\2\2\u062c\u062d\7\62\2\2\u062d\u00dd\3\2\2\2\u062e"+
+		"\u062f\t\23\2\2\u062f\u00df\3\2\2\2\u0630\u0631\t\24\2\2\u0631\u00e1\3"+
+		"\2\2\2\u0632\u0633\7\20\2\2\u0633\u00e3\3\2\2\2\u0634\u0635\7\17\2\2\u0635"+
+		"\u0636\7\4\2\2\u0636\u0637\7,\2\2\u0637\u00e5\3\2\2\2U\u00e8\u00ee\u00f5"+
+		"\u01a2\u01b5\u01ba\u01ca\u01cf\u01df\u01e4\u01f3\u01f8\u0205\u0211\u0216"+
+		"\u022a\u022f\u0241\u0246\u0258\u025d\u026f\u0274\u0286\u028b\u029d\u02a2"+
+		"\u02ae\u02b3\u02d7\u02dc\u02e9\u02ee\u02fa\u0308\u0317\u0325\u0335\u0346"+
+		"\u0356\u0367\u0377\u0385\u039e\u03b3\u03c4\u03d2\u03e0\u03ee\u03fb\u040d"+
+		"\u041f\u0431\u0443\u0455\u0467\u0479\u0485\u049d\u049f\u04ff\u0502\u0518"+
+		"\u0522\u0525\u0527\u052f\u0535\u0541\u0557\u055e\u0568\u057b\u057d\u0584"+
+		"\u0593\u05e5\u05f0\u05f7\u0604\u0616\u0622\u0628";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

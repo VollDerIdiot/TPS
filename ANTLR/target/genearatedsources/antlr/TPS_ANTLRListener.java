@@ -187,6 +187,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitGrößerGleichST(@NotNull TPS_ANTLRParser.GrößerGleichSTContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stelleVorTextST}.
+	 * @param ctx the parse tree
+	 */
+	void enterStelleVorTextST(@NotNull TPS_ANTLRParser.StelleVorTextSTContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#stelleVorTextST}.
+	 * @param ctx the parse tree
+	 */
+	void exitStelleVorTextST(@NotNull TPS_ANTLRParser.StelleVorTextSTContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#satzWert}.
 	 * @param ctx the parse tree
 	 */
@@ -377,6 +387,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitRufeAufGr(@NotNull TPS_ANTLRParser.RufeAufGrContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#direktPronomST}.
+	 * @param ctx the parse tree
+	 */
+	void enterDirektPronomST(@NotNull TPS_ANTLRParser.DirektPronomSTContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#direktPronomST}.
+	 * @param ctx the parse tree
+	 */
+	void exitDirektPronomST(@NotNull TPS_ANTLRParser.DirektPronomSTContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelGrST}.
 	 * @param ctx the parse tree
 	 */
@@ -456,6 +476,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLetztenFehlerST(@NotNull TPS_ANTLRParser.LetztenFehlerSTContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#ausDPST}.
+	 * @param ctx the parse tree
+	 */
+	void enterAusDPST(@NotNull TPS_ANTLRParser.AusDPSTContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#ausDPST}.
+	 * @param ctx the parse tree
+	 */
+	void exitAusDPST(@NotNull TPS_ANTLRParser.AusDPSTContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#fehlerST}.
 	 * @param ctx the parse tree
@@ -697,16 +727,6 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitBereichST(@NotNull TPS_ANTLRParser.BereichSTContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TPS_ANTLRParser#wortfolgeSTALT}.
-	 * @param ctx the parse tree
-	 */
-	void enterWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TPS_ANTLRParser#wortfolgeSTALT}.
-	 * @param ctx the parse tree
-	 */
-	void exitWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#stapelMaxGrReg}.
 	 * @param ctx the parse tree
 	 */
@@ -947,6 +967,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 */
 	void exitLadeInRegister(@NotNull TPS_ANTLRParser.LadeInRegisterContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#macheST}.
+	 * @param ctx the parse tree
+	 */
+	void enterMacheST(@NotNull TPS_ANTLRParser.MacheSTContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#macheST}.
+	 * @param ctx the parse tree
+	 */
+	void exitMacheST(@NotNull TPS_ANTLRParser.MacheSTContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#vergleicheRegisterText}.
 	 * @param ctx the parse tree
 	 */
@@ -1016,6 +1046,16 @@ public interface TPS_ANTLRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVergleicheRegister(@NotNull TPS_ANTLRParser.VergleicheRegisterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TPS_ANTLRParser#einST}.
+	 * @param ctx the parse tree
+	 */
+	void enterEinST(@NotNull TPS_ANTLRParser.EinSTContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TPS_ANTLRParser#einST}.
+	 * @param ctx the parse tree
+	 */
+	void exitEinST(@NotNull TPS_ANTLRParser.EinSTContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TPS_ANTLRParser#ausST}.
 	 * @param ctx the parse tree

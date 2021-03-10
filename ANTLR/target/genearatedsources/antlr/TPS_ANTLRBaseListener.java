@@ -229,6 +229,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStelleVorTextST(@NotNull TPS_ANTLRParser.StelleVorTextSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStelleVorTextST(@NotNull TPS_ANTLRParser.StelleVorTextSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSatzWert(@NotNull TPS_ANTLRParser.SatzWertContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -457,6 +469,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDirektPronomST(@NotNull TPS_ANTLRParser.DirektPronomSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDirektPronomST(@NotNull TPS_ANTLRParser.DirektPronomSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStapelGrST(@NotNull TPS_ANTLRParser.StapelGrSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -548,6 +572,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLetztenFehlerST(@NotNull TPS_ANTLRParser.LetztenFehlerSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAusDPST(@NotNull TPS_ANTLRParser.AusDPSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAusDPST(@NotNull TPS_ANTLRParser.AusDPSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -841,18 +877,6 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitWortfolgeSTALT(@NotNull TPS_ANTLRParser.WortfolgeSTALTContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterStapelMaxGrReg(@NotNull TPS_ANTLRParser.StapelMaxGrRegContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1141,6 +1165,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMacheST(@NotNull TPS_ANTLRParser.MacheSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMacheST(@NotNull TPS_ANTLRParser.MacheSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVergleicheRegisterText(@NotNull TPS_ANTLRParser.VergleicheRegisterTextContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1220,6 +1256,18 @@ public class TPS_ANTLRBaseListener implements TPS_ANTLRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVergleicheRegister(@NotNull TPS_ANTLRParser.VergleicheRegisterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEinST(@NotNull TPS_ANTLRParser.EinSTContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEinST(@NotNull TPS_ANTLRParser.EinSTContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

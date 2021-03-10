@@ -11,7 +11,7 @@ import java.util.*;
 }
 
 @parser::members {
-	public int line(){ return _ctx.start.getLine();}
+public int line(){ return _ctx.start.getLine();}
 }
 
 datei returns [List<Satz> inhalt] @init {$inhalt = new ArrayList<>();}
@@ -20,7 +20,7 @@ datei returns [List<Satz> inhalt] @init {$inhalt = new ArrayList<>();}
 		satz WS?
 		{$inhalt.add($satz.inhalt);}
 
-	)+
+	)+ EOF
 ;
 
 satz returns [int zeile, Satz inhalt]
@@ -382,38 +382,71 @@ letzterFehler
 
 rufeAufWennFalsch returns [ZeichenKette ziel]
 :
-	wennST WS fehlerST WS gabST WS aufrufST WS zuST WS stelleST
+	wennST WS fehlerST WS gabST WS aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 stapelLesenReg returns [Zahl reg]
 :
-	nehmeST WS vonST WS stapelST WS zuST WS registerST
+	nehmeST WS vonST WS stapelST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? registerST
 	{$reg = $registerST.reg;}
 
 ;
 
 stapelLesenZw
 :
-	nehmeST WS vonST WS stapelST WS zuST WS zwischenST
+	nehmeST WS vonST WS stapelST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? zwischenST
 ;
 
 stapelLesenErg
 :
-	nehmeST WS vonST WS stapelST WS zuST WS ergebnisST
+	nehmeST WS vonST WS stapelST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? ergebnisST
 ;
 
 stapelSchreiben returns [Zahl legen]
 :
-	speichereST WS zahlST WS zuST WS stapelST
+	speichereST WS zahlST WS zuST WS
+	(
+		direktPronomST WS
+	)? stapelST
 	{$legen = $zahlST.zahl;}
 
 ;
 
 rufeAufDirekt returns [Zahl ziel]
 :
-	aufrufST WS zuST WS posZahlST
+	aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? posZahlST
 	{$ziel = $posZahlST.zahl;}
 
 ;
@@ -425,49 +458,91 @@ geheZur
 
 rufeAufGrGleich returns [ZeichenKette ziel]
 :
-	wennST WS größerGleichST WS aufrufST WS zuST WS stelleST
+	wennST WS größerGleichST WS istST WS aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 rufeAufKleinerGleich returns [ZeichenKette ziel]
 :
-	wennST WS kleinerGleichST WS aufrufST WS zuST WS stelleST
+	wennST WS kleinerGleichST WS istST WS aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 rufeAufGr returns [ZeichenKette ziel]
 :
-	wennST WS größerST WS aufrufST WS zuST WS stelleST
+	wennST WS größerST WS istST WS aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 rufeAufWennKleiner returns [ZeichenKette ziel]
 :
-	wennST WS kleinerST WS aufrufST WS zuST WS stelleST
+	wennST WS kleinerST WS istST WS aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 rufeAufWennNichtGleich returns [ZeichenKette ziel]
 :
-	wennST WS ungleichST WS aufrufST WS zuST WS stelleST
+	wennST WS ungleichST WS istST WS aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 rufeAufWennGleich returns [ZeichenKette ziel]
 :
-	wennST WS gleichST WS aufrufST WS zuST WS stelleST
+	wennST WS gleichST WS istST WS aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 rufeAuf returns [ZeichenKette ziel]
 :
-	aufrufST WS zuST WS stelleST
+	aufrufST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
@@ -500,65 +575,104 @@ vergleicheRegister returns [Zahl regA, Zahl regB, Zahl regC, Zahl regD]
 
 stapelGrZw
 :
-	speichereST WS stapelGrST WS zuST WS zwischenST
+	speichereST WS stapelGrST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? zwischenST
 ;
 
 stapelGrReg returns [Zahl reg]
 :
-	speichereST WS stapelGrST WS zuST WS registerST
+	speichereST WS stapelGrST WS zuST WS
+	(
+		direktPronomST WS
+	)?
+	(
+		direktPronomST WS
+	)? registerST
 	{$reg = $registerST.reg;}
 
 ;
 
 stapelGrErg
 :
-	speichereST WS stapelGrST WS zuST WS ergebnisST
+	speichereST WS stapelGrST WS zuST
+	(
+		WS direktPronomST
+	)? WS ergebnisST
 ;
 
 stapelMaxGrReg returns [Zahl reg]
 :
-	speichereST WS stapelMaxGrST WS zuST WS registerST
+	speichereST WS direktPronomST WS stapelMaxGrST WS zuST
+	(
+		WS direktPronomST
+	)? WS registerST
 	{$reg = $registerST.reg;}
 
 ;
 
 stapelMaxGrZw
 :
-	speichereST WS stapelMaxGrST WS zuST WS zwischenST
+	speichereST WS direktPronomST WS stapelMaxGrST WS zuST
+	(
+		WS direktPronomST
+	)? WS zwischenST
 ;
 
 stapelMaxGrErg
 :
-	speichereST WS stapelMaxGrST WS zuST WS ergebnisST
+	speichereST WS direktPronomST WS stapelMaxGrST WS zuST
+	(
+		WS direktPronomST
+	)? WS ergebnisST
 ;
 
 versionZw
 :
-	speichereST WS versionST WS zuST WS zwischenST
+	speichereST WS direktPronomST WS versionST WS zuST WS
+	(
+		direktPronomST WS
+	)? direktPronomST WS zwischenST
 ;
 
 versionReg returns [Zahl reg]
 :
-	speichereST WS versionST WS zuST WS registerST
+	speichereST WS direktPronomST WS versionST WS zuST WS
+	(
+		direktPronomST WS
+	)? registerST
 	{$reg = $registerST.reg;}
 
 ;
 
 versionErg
 :
-	speichereST WS versionST WS zuST WS ergebnisST
+	speichereST WS direktPronomST WS versionST WS zuST WS
+	(
+		direktPronomST WS
+	)? ergebnisST
 ;
 
 springeWennFalsch returns [ZeichenKette ziel]
 :
-	wennST WS fehlerST WS gabST WS springeST WS zuST WS stelleST
+	wennST WS fehlerST WS gabST WS springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 registerZeichenEinlesen returns [Zahl anzahl, Zahl reg]
 :
-	einlesenST WS posZahlST WS zeichenST WS zuST WS registerST
+	einlesenST WS posZahlST WS zeichenST WS zuST WS
+	(
+		direktPronomST WS
+	)? registerST
 	{	$anzahl = $posZahlST.zahl;
 		$reg = $registerST.reg;}
 
@@ -566,7 +680,10 @@ registerZeichenEinlesen returns [Zahl anzahl, Zahl reg]
 
 registerWortEinlesen returns [Zahl reg]
 :
-	einlesenST WS wortST WS zuST WS registerST
+	einlesenST WS wortST WS zuST WS
+	(
+		direktPronomST WS
+	)? registerST
 	{$reg = $registerST.reg;}
 
 ;
@@ -581,31 +698,57 @@ registerausgabe returns [Zahl anfang, Zahl ende]
 
 ladeRegisterAnzahlZw
 :
-	speichereST WS anzahlST WS registerST_ WS zwischenST
+	speichereST WS direktPronomST WS anzahlST WS direktPronomST WS registerST_ WS
+	zuST WS
+	(
+		direktPronomST WS
+	)? direktPronomST WS zwischenST
 ;
 
 ladeRegisterAnzahlErg
 :
-	speichereST WS anzahlST WS registerST_ WS ergebnisST
+	speichereST WS direktPronomST WS anzahlST WS direktPronomST WS registerST_ WS
+	zuST WS
+	(
+		direktPronomST WS
+	)? direktPronomST WS ergebnisST
+;
+
+direktPronomST
+:
+	DIE
+	| DER
+	| DAS
+	| DEM
+	| DEN
 ;
 
 ladeVomRegisterZw returns [Zahl reg]
 :
-	speichereST WS registerST WS zuST WS zwischenST
+	speichereST WS registerST WS zuST WS
+	(
+		direktPronomST WS
+	)? zwischenST
 	{$reg = $registerST.reg;}
 
 ;
 
 ladeVomRegisterErg returns [Zahl reg]
 :
-	speichereST WS registerST WS zuST WS ergebnisST
+	speichereST WS registerST WS zuST WS
+	(
+		direktPronomST WS
+	)? ergebnisST
 	{$reg = $registerST.reg;}
 
 ;
 
 ladeInRegister returns [Zahl wert, Zahl reg]
 :
-	speichereST WS zahlST WS zuST WS registerST
+	speichereST WS zahlST WS zuST WS
+	(
+		direktPronomST WS
+	)? registerST
 	{	$reg = $registerST.reg;
 		$wert = $zahlST.zahl;}
 
@@ -613,12 +756,18 @@ ladeInRegister returns [Zahl wert, Zahl reg]
 
 leseZahlEinZwischen
 :
-	einlesenST WS zahlST_ WS zuST WS zwischenST
+	einlesenST WS zahlST_ WS zuST WS
+	(
+		direktPronomST WS
+	)? zwischenST
 ;
 
 leseZahlEinErg
 :
-	einlesenST WS zahlST_ WS zuST WS ergebnisST
+	einlesenST WS zahlST_ WS zuST WS
+	(
+		direktPronomST WS
+	)? ergebnisST
 ;
 
 stelle returns [ZeichenKette name]
@@ -630,56 +779,80 @@ stelle returns [ZeichenKette name]
 
 springeZuDirekt returns [Zahl ziel]
 :
-	springeST WS zuST WS posZahlST
+	springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? posZahlST
 	{$ziel = $posZahlST.zahl;}
 
 ;
 
 springeWennGrGleich returns [ZeichenKette ziel]
 :
-	wennST WS größerST WS springeST WS zuST WS stelleST
+	wennST WS größerST WS istST WS springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 springeWennKleinerGleich returns [ZeichenKette ziel]
 :
-	wennST WS kleinerGleichST WS springeST WS zuST WS stelleST
+	wennST WS kleinerGleichST WS istST WS springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 springeWennGr returns [ZeichenKette ziel]
 :
-	wennST WS größerST WS springeST WS zuST WS stelleST
+	wennST WS größerST WS istST WS springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 springeWennKleiner returns [ZeichenKette ziel]
 :
-	wennST WS kleinerST WS springeST WS zuST WS stelleST
+	wennST WS kleinerST WS istST WS springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 springeWennNichtGleich returns [ZeichenKette ziel]
 :
-	wennST WS ungleichST WS springeST WS zuST WS stelleST
+	wennST WS ungleichST WS istST WS springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 springeWennGleich returns [ZeichenKette ziel]
 :
-	wennST WS gleichST WS springeST WS zuST WS stelleST
+	wennST WS gleichST WS istST WS springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
 
 springe returns [ZeichenKette ziel]
 :
-	springeST WS zuST WS stelleST
+	springeST WS zuST WS
+	(
+		direktPronomST WS
+	)? stelleST
 	{$ziel = new ZeichenKette($stelleST.name);}
 
 ;
@@ -704,22 +877,34 @@ zwischenspeicher
 	speichereST WS ergebnisST
 	(
 		WS zuST
+		(
+			direktPronomST WS
+		)?
 	)? WS zwischenST
 ;
 
 ausgabe returns [ZeichenKette wortfolge]
 :
-	ausgebenST WS folgendesST
-	(
-		WS ausST
-	)? WS wortfolgeST
+	ausgebenST WS folgendesST WS ausDPST WS wortfolgeST
 	{$wortfolge = new ZeichenKette($wortfolgeST.wortfolge);}
 
 ;
 
 leerzeile
 :
-	ausgebenST WS leerzeileST
+	macheST WS einST WS leerzeileST
+;
+
+einST
+:
+	EIN
+	| EINE
+	| EINEN
+;
+
+macheST
+:
+	MACHE
 ;
 
 leerzeichen
@@ -822,7 +1007,9 @@ gabST
 zuST
 :
 	ZU
+	| AUF
 	| IN
+	| ZUR
 ;
 
 vonST
@@ -833,13 +1020,22 @@ vonST
 
 folgendesST
 :
-	FOLGENDES DP?
+	FOLGENDES
 ;
 
 ausgebenST
 :
 	GEBE
 	| AUSGEBEN
+;
+
+ausDPST
+:
+	AUS_DP
+	|
+	(
+		AUS WS? DP
+	)
 ;
 
 ausST
@@ -899,15 +1095,18 @@ springeST
 
 stelleST returns [String name]
 :
-	STELLE_WORT
-	(
-		WS
-	)?
-	(
-		DP
-	)? WS STELLE
+	stelleVorTextST WS STELLE
 	{$name = $STELLE.getText();}
 
+;
+
+stelleVorTextST
+:
+	STELLE_WORT_DP
+	|
+	(
+		STELLE_WORT WS? DP?
+	)
 ;
 
 aufrufST
@@ -932,6 +1131,8 @@ zurückgehenST
 speichereST
 :
 	SPEICHERE
+	| LADE
+	| SCHREIBE
 ;
 
 zwischenST
@@ -1035,7 +1236,25 @@ versionST
 stapelMaxGrST
 :
 	(
-		MAXIMALE WS STAPEL WS GRÖẞE
+		MAXIMALE WS
+		(
+			(
+				STAPEL WS GRÖẞE
+			)
+			|
+			(
+				GRÖẞE WS
+				(
+					(
+						VOM WS STAPEL
+					)
+					|
+					(
+						DES WS STAPELS
+					)
+				)
+			)
+		)
 	)
 	|
 	(
@@ -1080,6 +1299,8 @@ wft returns [String teil]
 		| tok = ANZAHL
 		| tok = ZAHL_WORT
 		| tok = EINESEN
+		| tok = EINEN
+		| tok = EINE
 		| tok = EIN
 		| tok = LESE
 		| tok = ODER
@@ -1147,45 +1368,31 @@ wft returns [String teil]
 
 ;
 
-wortfolgeSTALT returns [String wortfolge]
+wortfolgeST returns [String wortfolge]
 @init {StringBuilder wf = new StringBuilder();}
 :
+	wft
+	{wf.append($wft.teil);}
+
 	(
 		(
 			wft
 			{wf.append($wft.teil);}
 
-		)* WS
+		)+ WS
 		{wf.append(' ');}
 
-	)+ wft
-	{wf.append($wft.teil);}
-
-	{$wortfolge = wf.toString();}
-
-;
-
-wortfolgeST returns [String wortfolge]
-@init {StringBuilder wf = new StringBuilder();}
-:
-	(
-		wft
-		{wf.append($wft.teil);}
-
-		(
-			WS
-			{wf.append(' ');}
-
-		)?
-	)+
+	)*
 	{$wortfolge = wf.toString();}
 
 ;
 
 wennST
 :
-	WENN
-	| FALLS
+	(
+		WENN
+		| FALLS
+	) WS ES
 ;
 
 ungleichST
@@ -1275,9 +1482,19 @@ letztenFehlerST
 	LETZTEN WS FEHLER
 ;
 
+PUNKT
+:
+	'.'
+;
+
 WS
 :
 	[ \t\r\n]+
+;
+
+STELLE_WORT_DP
+:
+	'stelle:'
 ;
 
 STELLE_WORT
@@ -1285,9 +1502,29 @@ STELLE_WORT
 	'stelle'
 ;
 
+DIE
+:
+	'die'
+;
+
 DER
 :
 	'der'
+;
+
+DAS
+:
+	'das'
+;
+
+DEM
+:
+	'dem'
+;
+
+DEN
+:
+	'den'
 ;
 
 WORTREIHE_WORT
@@ -1350,6 +1587,16 @@ EINESEN
 	'einlesen'
 ;
 
+EINEN
+:
+	'einen'
+;
+
+EINE
+:
+	'eine'
+;
+
 EIN
 :
 	'ein'
@@ -1398,6 +1645,11 @@ FALLS
 WENN
 :
 	'wenn'
+;
+
+ES
+:
+	'es'
 ;
 
 DES
@@ -1495,9 +1747,19 @@ ZWISCHENSPEICHER
 	'zwischenspeicher'
 ;
 
+SCHREIBE
+:
+	'schreibe'
+;
+
 SPEICHERE
 :
 	'speichere'
+;
+
+LADE
+:
+	'lade'
 ;
 
 GEHE
@@ -1533,11 +1795,6 @@ MACHE
 RUFE
 :
 	'rufe'
-;
-
-DP
-:
-	':'
 ;
 
 SPRINGE
@@ -1590,6 +1847,16 @@ LEERZEICHEN
 	'leerzeichen'
 ;
 
+AUS_DP
+:
+	'aus:'
+;
+
+DP
+:
+	':'
+;
+
 AUS
 :
 	'aus'
@@ -1613,6 +1880,11 @@ FOLGENDES
 VON
 :
 	'von'
+;
+
+ZUR
+:
+	'zur'
 ;
 
 ZU
@@ -1650,23 +1922,19 @@ HIER
 	'hier'
 ;
 
-PUNKT
-:
-	[.]
-;
-
 STELLE
 :
-	[A-z_ÜÄÖẞ]
+	[A-Z_ÜÄÖẞ]+
 ;
 
 REST
 :
-	[^. \t\r\n]+
+	(
+		~( '.' | ':' | ' ' | '\t' | '\r' | '\n' | [A-Z_ÜÄÖẞ] )
+	)+
 ;
 
 REST_2
 :
-	[a-z()\\/\[\]}{\^+#'*~\-=!"²³\§\%\&?ßüäö´`<>|,;°]+
+	[a-z()\\/\[\]}{\^+#'*~\=!"²³\§\%\&?ßüäö´`<>|,;°]+
 ;
-

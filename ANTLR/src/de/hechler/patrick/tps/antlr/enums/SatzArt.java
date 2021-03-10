@@ -23,7 +23,9 @@ public enum SatzArt implements Serializable {
 	
 	@Version(3) @Änderung(4) leseZahlEinErg, @Version(3) @Änderung(4) leseZahlEinZwischen,
 	
-	@Version(4) ladeInRegister, @Version(4) ladeVomRegisterErg, @Version(4) ladeVomRegisterZw, @Version(4) ladeRegisterAnzahlErg, @Version(4) ladeRegisterAnzahlZw,
+	@Version(4) ladeInRegister, @Version(4) ladeVomRegisterErg, @Version(4) ladeVomRegisterZw, 
+	
+	@Version(4) ladeRegisterAnzahlErg, @Version(4) ladeRegisterAnzahlZw,
 	
 	@Version(4) registerausgabe,
 	

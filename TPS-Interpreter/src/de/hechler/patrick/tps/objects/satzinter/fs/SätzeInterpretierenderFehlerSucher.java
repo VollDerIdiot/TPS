@@ -9,7 +9,7 @@ import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.antlr.objects.Satz;
 import de.hechler.patrick.tps.interpreter.SätzeInterpretierenderFehlerSucherVorlage;
 
-@Version(7)
+@Version(6)
 public class SätzeInterpretierenderFehlerSucher extends SätzeInterpretierenderFehlerSucherVorlage {
 	
 	public SätzeInterpretierenderFehlerSucher(Scanner eingabe, PrintStream ausgabe, int registerAnzahl, int stapelMaxGröße) {
@@ -178,7 +178,10 @@ public class SätzeInterpretierenderFehlerSucher extends SätzeInterpretierender
 			case registerZeichenEinlesen: {
 				long reg = zahl(machen.param(0));
 				long anzahl = zahl(machen.param(1));
-				if (anzahl < 0) {
+				if (reg + anzahl >= register.length) {
+					fehler(FEHLER_ZU_GROẞE_REGISTERANGABE, stelle);
+					erg = Ergebnis.fehler;
+				} else if (anzahl < 0) {
 					fehler(FEHLER_NEGATIVE_ZAHL, stelle);
 					erg = Ergebnis.fehler;
 				} else if (testRegister(reg, stelle)) {
@@ -205,14 +208,14 @@ public class SätzeInterpretierenderFehlerSucher extends SätzeInterpretierender
 				if (testRegister(reg, stelle) && testRegister(regB, stelle)) {
 					char[] chars;
 					if (regB < reg) {
-						chars = new char[(int) (regB - reg)];
-						for (int i = (int) reg, ii = 0; i <= regB; i ++ , ii ++ ) {
-							register[i] = chars[ii];
-						}
-					} else {
 						chars = new char[(int) (reg - regB)];
 						for (int i = (int) reg, ii = 0; i <= regB; i -- , ii ++ ) {
-							register[i] = chars[ii];
+							chars[ii] = (char) register[i];
+						}
+					} else {
+						chars = new char[(int) (regB - reg)];
+						for (int i = (int) reg, ii = 0; i <= regB; i ++ , ii ++ ) {
+							chars[ii] = (char) register[i];
 						}
 					}
 					ausgabe.print(new String(chars));
