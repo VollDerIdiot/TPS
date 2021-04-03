@@ -11,11 +11,11 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 import de.hechler.patrick.tps.antlr.objects.Parameter;
 import de.hechler.patrick.tps.antlr.objects.ZeichenKette;
-import genearatedsources.antlr.TPS_ANTLRLexer;
-import genearatedsources.antlr.TPS_ANTLRParser;
-import genearatedsources.antlr.TPS_ANTLRParser.BereichSTContext;
-import genearatedsources.antlr.TPS_ANTLRParser.WortfolgeSTContext;
-import genearatedsources.antlr.TPS_ANTLRParser.ZahlSTContext;
+import name.TPS_ANTLRLexer;
+import name.TPS_ANTLRParser;
+import name.TPS_ANTLRParser.BereichSTContext;
+import name.TPS_ANTLRParser.WortfolgeSTContext;
+import name.TPS_ANTLRParser.ZahlSTContext;
 
 @SuppressWarnings("deprecation")
 public class TestMain {

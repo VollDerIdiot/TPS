@@ -1,7 +1,8 @@
 grammar TPS_ANTLR;
 
 @header {
-package genearatedsources.antlr;
+package name;
+
 
 import de.hechler.patrick.tps.antlr.enums.*;
 import de.hechler.patrick.tps.antlr.objects.*;

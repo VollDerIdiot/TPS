@@ -18,9 +18,9 @@ import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 import de.hechler.patrick.tps.antlr.anotatins.Version;
 import de.hechler.patrick.tps.antlr.objects.Satz;
-import genearatedsources.antlr.TPS_ANTLRLexer;
-import genearatedsources.antlr.TPS_ANTLRParser;
-import genearatedsources.antlr.TPS_ANTLRParser.DateiContext;
+import name.TPS_ANTLRLexer;
+import name.TPS_ANTLRParser;
+import name.TPS_ANTLRParser.DateiContext;
 
 @Version(6)
 public class TollerSIFS extends SätzeInterpretierenderFehlerSucher {
